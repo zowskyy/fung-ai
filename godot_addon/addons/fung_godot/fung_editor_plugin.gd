@@ -11,7 +11,7 @@ func _enter_tree() -> void:
 	print("[Fung] Editor plugin loaded")
 
 	# Create the backend client service
-	backend_client = Node.new()
+	backend_client = preload("res://addons/fung_godot/services/fung_backend_client.gd").new()
 	backend_client.name = "FungBackendClient"
 	add_child(backend_client)
 
