@@ -82,13 +82,14 @@ func _on_world_completed(result: Dictionary) -> void:
 
 	# Validate loaded data against schemas
 	print("[main] Validating loaded data against JSON Schema contracts...")
-	# TODO: Uncomment validation once data types issue is resolved
-	# var validation_result := _schema_validator.validate_world_data()
-	# if not validation_result.success:
-	# 	push_error("[main] Schema validation failed: %s" % validation_result.errors)
-	# 	notify_finished(false, "Schema validation failed: %s" % ", ".join(validation_result.errors))
-	# 	return
-	print("[main] Schema validation DISABLED for debugging")
+	var validation_result := _schema_validator.validate_world_data()
+	if not validation_result.success:
+		for error in validation_result.errors:
+			push_error("[main] Validation error: %s" % error)
+		# Allow execution to continue with warning instead of failing
+		print("[main] WARNING: Schema validation failed but continuing anyway")
+	else:
+		print("[main] Schema validation passed")
 
 	print("[main] Loading animation manifest...")
 	var manifest_data := _save_service.load_json(ANIMATION_MANIFEST_PATH)
