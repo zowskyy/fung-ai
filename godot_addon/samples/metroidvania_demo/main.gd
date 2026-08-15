@@ -112,8 +112,8 @@ func _spawn_player(payload: Dictionary) -> void:
 	var camera: Camera2D = Camera2D.new()
 	camera.name = "Camera"
 	camera.zoom = Vector2(2.5, 2.5)
-	camera.current = true
 	player.add_child(camera)
+	camera.current = true
 
 
 func _build_debug_label(result: Dictionary, payload: Dictionary) -> void:
