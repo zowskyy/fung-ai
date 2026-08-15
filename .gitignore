@@ -40,6 +40,9 @@ godot_project/user/
 # Generated outputs (but keep tracked recipe/demo content)
 *.png
 !research/**/*.png
+# NO SAND BEACH source character/environment art (not derived output --
+# renders/ under the same tree stays ignored via its own .gitignore)
+!godot_project/NO_SAND_BEACH/assets/**/*.png
 *.jpg
 *.jpeg
 .coverage
