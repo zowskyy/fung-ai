@@ -1,0 +1,190 @@
+{
+  "tests": [
+    {
+      "description": "properties - valid object",
+      "schema": {
+        "type": "object",
+        "properties": {
+          "name": {"type": "string"},
+          "age": {"type": "integer"}
+        }
+      },
+      "data": {"name": "Alice", "age": 30},
+      "valid": true
+    },
+    {
+      "description": "properties - extra fields allowed by default",
+      "schema": {
+        "type": "object",
+        "properties": {
+          "name": {"type": "string"}
+        }
+      },
+      "data": {"name": "Alice", "extra": "field"},
+      "valid": true
+    },
+    {
+      "description": "properties - type mismatch",
+      "schema": {
+        "type": "object",
+        "properties": {
+          "age": {"type": "integer"}
+        }
+      },
+      "data": {"age": "not a number"},
+      "valid": false
+    },
+    {
+      "description": "required - all present valid",
+      "schema": {
+        "type": "object",
+        "properties": {
+          "name": {"type": "string"},
+          "email": {"type": "string"}
+        },
+        "required": ["name", "email"]
+      },
+      "data": {"name": "Alice", "email": "alice@example.com"},
+      "valid": true
+    },
+    {
+      "description": "required - missing one field",
+      "schema": {
+        "type": "object",
+        "properties": {
+          "name": {"type": "string"},
+          "email": {"type": "string"}
+        },
+        "required": ["name", "email"]
+      },
+      "data": {"name": "Alice"},
+      "valid": false
+    },
+    {
+      "description": "required - missing multiple fields",
+      "schema": {
+        "type": "object",
+        "properties": {
+          "name": {"type": "string"},
+          "email": {"type": "string"},
+          "age": {"type": "integer"}
+        },
+        "required": ["name", "email", "age"]
+      },
+      "data": {"name": "Alice"},
+      "valid": false
+    },
+    {
+      "description": "required - empty array allows any object",
+      "schema": {
+        "type": "object",
+        "properties": {
+          "name": {"type": "string"}
+        },
+        "required": []
+      },
+      "data": {},
+      "valid": true
+    },
+    {
+      "description": "additionalProperties true - allows extra fields",
+      "schema": {
+        "type": "object",
+        "properties": {
+          "name": {"type": "string"}
+        },
+        "additionalProperties": true
+      },
+      "data": {"name": "Alice", "extra": "allowed"},
+      "valid": true
+    },
+    {
+      "description": "additionalProperties false - rejects extra fields",
+      "schema": {
+        "type": "object",
+        "properties": {
+          "name": {"type": "string"}
+        },
+        "additionalProperties": false
+      },
+      "data": {"name": "Alice", "extra": "not allowed"},
+      "valid": false
+    },
+    {
+      "description": "additionalProperties false - exact match valid",
+      "schema": {
+        "type": "object",
+        "properties": {
+          "name": {"type": "string"}
+        },
+        "additionalProperties": false
+      },
+      "data": {"name": "Alice"},
+      "valid": true
+    },
+    {
+      "description": "additionalProperties schema - validates additional fields",
+      "schema": {
+        "type": "object",
+        "properties": {
+          "name": {"type": "string"}
+        },
+        "additionalProperties": {"type": "string"}
+      },
+      "data": {"name": "Alice", "nickname": "Ace"},
+      "valid": true
+    },
+    {
+      "description": "additionalProperties schema - rejects wrong type in additional",
+      "schema": {
+        "type": "object",
+        "properties": {
+          "name": {"type": "string"}
+        },
+        "additionalProperties": {"type": "string"}
+      },
+      "data": {"name": "Alice", "age": 30},
+      "valid": false
+    },
+    {
+      "description": "empty object - valid",
+      "schema": {"type": "object"},
+      "data": {},
+      "valid": true
+    },
+    {
+      "description": "object with nested objects",
+      "schema": {
+        "type": "object",
+        "properties": {
+          "person": {
+            "type": "object",
+            "properties": {
+              "name": {"type": "string"}
+            }
+          }
+        }
+      },
+      "data": {"person": {"name": "Alice"}},
+      "valid": true
+    },
+    {
+      "description": "propertyNames with pattern",
+      "schema": {
+        "type": "object",
+        "propertyNames": {"pattern": "^[a-z]+$"}
+      },
+      "data": {"lowercase": true},
+      "valid": true
+    },
+    {
+      "description": "propertyNames with pattern - invalid property",
+      "schema": {
+        "type": "object",
+        "propertyNames": {"pattern": "^[a-z]+$"}
+      },
+      "data": {"CamelCase": true},
+      "valid": false
+    }
+  ]
+}
