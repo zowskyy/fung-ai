@@ -1,0 +1,25 @@
+[gd_resource type="Resource" script_class="ScenePlan" load_steps=5 format=3]
+
+[ext_resource type="Script" path="res://addons/scene_animator/data/scene_plan.gd" id="1_plan"]
+[ext_resource type="Script" path="res://addons/scene_animator/data/beats/dialogue_beat.gd" id="2_dialogue"]
+
+[sub_resource type="Resource" id="Resource_dialogue_a"]
+script = ExtResource("2_dialogue")
+beat_id = &"dialogue_a"
+speaker_actor_id = &"hero"
+target_actor_id = &""
+dialogue_id = &"line_a"
+next_beat_id = &"dialogue_b"
+
+[sub_resource type="Resource" id="Resource_dialogue_b"]
+script = ExtResource("2_dialogue")
+beat_id = &"dialogue_b"
+speaker_actor_id = &"hero"
+target_actor_id = &"villain"
+dialogue_id = &"line_b"
+
+[resource]
+script = ExtResource("1_plan")
+plan_id = &"valid_linear"
+display_name = "Valid Linear Scene Plan"
+beats = Array[Resource]([SubResource("Resource_dialogue_a"), SubResource("Resource_dialogue_b")])

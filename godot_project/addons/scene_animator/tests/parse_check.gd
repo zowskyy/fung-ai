@@ -65,12 +65,21 @@ var _order: Array[String] = [
 	"runtime/runners/end_beat_runner.gd",
 	# director (refs plan/bindings/registry/beat runner types)
 	"runtime/scene_director.gd",
+	# test harness (ref runtime types + each other)
+	"tests/support/test_result.gd",
+	"tests/support/test_context.gd",
+	"tests/support/fake_actor_adapter.gd",
+	"tests/support/fake_camera_adapter.gd",
+	"tests/support/fake_mechanics_registry.gd",
+	"tests/test_runtime_execution.gd",
+	"tests/run_scene_animator_tests.gd",
+	"tests/parse_check.gd",
 ]
 
 var _resources: Array[String] = [
-	"templates/linear_scene_plan.tres",
-	"templates/encounter_scene_plan.tres",
-	"templates/interaction_scene_plan.tres",
+	"tests/fixtures/valid_linear_scene_plan.tres",
+	"tests/fixtures/invalid_missing_speaker_plan.tres",
+	"tests/fixtures/invalid_unknown_target_plan.tres",
 ]
 
 var _ok := true
@@ -100,6 +109,7 @@ func _init() -> void:
 		_smoke_instantiate()
 
 	_ok = _assert_no_legacy_target_path() and _ok
+	_ok = _assert_manifest_covers_tree() and _ok
 
 	_print()
 
@@ -147,6 +157,25 @@ func _assert_no_legacy_target_path() -> bool:
 		return false
 
 	return true
+
+
+func _walk_gd(rel_dir: String, found: Array[String]) -> void:
+	for child in DirAccess.get_directories_at(ADDON + rel_dir):
+		_walk_gd(rel_dir + child + "/", found)
+	for file in DirAccess.get_files_at(ADDON + rel_dir):
+		if file.ends_with(".gd"):
+			found.append(rel_dir + file)
+
+
+func _assert_manifest_covers_tree() -> bool:
+	var ok := true
+	var found: Array[String] = []
+	_walk_gd("", found)
+	for rel in found:
+		if not _order.has(rel):
+			ok = false
+			_errors.append("script missing from manifest: " + rel)
+	return ok
 
 
 func _print() -> void:
