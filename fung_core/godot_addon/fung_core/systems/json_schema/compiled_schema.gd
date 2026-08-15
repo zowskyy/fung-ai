@@ -27,7 +27,7 @@ func _compile_regex_patterns(schema: Dictionary, path: String = "") -> void:
 			# Store compiled regex directly in the schema for easy access during validation
 			var regex = RegEx.new()
 			if regex.compile(value) != OK:
-				push_error("Failed to compile regex pattern: %s" % value)
+				push_error("Failed to compile regex pattern: %s" % [value])
 			else:
 				schema["__compiled_pattern"] = regex
 
@@ -37,7 +37,7 @@ func _compile_regex_patterns(schema: Dictionary, path: String = "") -> void:
 		elif value is Array:
 			for i in range(value.size()):
 				if value[i] is Dictionary:
-					_compile_regex_patterns(value[i], path + "." + key + "[%d]" % i if path else key + "[%d]" % i)
+					_compile_regex_patterns(value[i], path + "." + key + ("[%d]" % [i]) if path else key + ("[%d]" % [i]))
 
 
 ## Extract all $ref definitions for offline resolution.
@@ -56,7 +56,7 @@ func _extract_refs(schema: Dictionary, path: String = "") -> void:
 		elif value is Array:
 			for i in range(value.size()):
 				if value[i] is Dictionary:
-					_extract_refs(value[i], path + "." + key + "[%d]" % i if path else key + "[%d]" % i)
+					_extract_refs(value[i], path + "." + key + ("[%d]" % [i]) if path else key + ("[%d]" % [i]))
 
 
 ## Main validation entry point.
@@ -225,5 +225,5 @@ func _validate_single_type(data: Variant, type_name: String, path: String, resul
 		"string":
 			return data_type == TYPE_STRING
 		_:
-			push_error("Unknown type: %s" % type_name)
+			push_error("Unknown type: %s" % [type_name])
 			return false

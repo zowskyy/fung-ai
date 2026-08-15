@@ -78,7 +78,7 @@ static func _apply_operation(data: Dictionary, operation: Dictionary) -> Diction
 			var from_path = operation.get("from", "")
 			return _apply_copy(data, from_path, path)
 		_:
-			push_error("Unknown patch operation: %s" % op_type)
+			push_error("Unknown patch operation: %s" % [op_type])
 			return data
 
 
@@ -146,7 +146,7 @@ static func _apply_replace(data: Dictionary, path: String, value: Variant) -> Di
 static func _apply_copy(data: Dictionary, from_path: String, to_path: String) -> Dictionary:
 	var source_value = _get_value_at_path(data, from_path)
 	if source_value == null:
-		push_warning("Copy source path not found: %s" % from_path)
+		push_warning("Copy source path not found: %s" % [from_path])
 		return data
 
 	# Deep copy the value

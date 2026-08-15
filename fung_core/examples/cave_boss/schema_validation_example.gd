@@ -48,8 +48,8 @@ func validate_world_data() -> ValidationResult:
 		return result
 
 	print("✓ Loaded world.schema.json successfully")
-	print("  - schema title: %s" % schema_data.get("title", "N/A"))
-	print("  - required fields: %s" % schema_data.get("required", []))
+	print("  - schema title: %s" % [schema_data.get("title", "N/A")])
+	print("  - required fields: %s" % [schema_data.get("required", [])])
 
 	# Create schema asset and compile
 	print("\nCompiling schema...")
@@ -181,6 +181,6 @@ func print_schema_info() -> void:
 		var prop = properties[prop_name]
 		var prop_type = prop.get("type", "N/A")
 		var description = prop.get("description", "")
-		print("  - %s: %s%s" % [prop_name, prop_type, " (%s)" % description if description else ""])
+		print("  - %s: %s%s" % [prop_name, prop_type, " (%s)" % [description] if description else ""])
 
-	print("===========================================================")  # 27 equals
+	print("=".repeat(27))
