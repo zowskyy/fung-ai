@@ -1,7 +1,7 @@
 {
   "id": "java-number-guess",
   "name": "Java Number Guess",
-  "description": "Guess a number in Java — the language that runs on billions of devices.",
+  "description": "Number guessing in Java. Learn OOP basics.\n\n  ┌─ Game Console ─┐\n  │ Guess (1-100) │\n  │ > 50           │\n  │ Too High!      │\n  │ > 25           │\n  │ Too Low!       │\n  │ > 37           │\n  │ You Win! 🎉    │\n  └────────────────┘\n\nLearn: classes, Scanner, loops, logic."
   "language": "java",
   "icon": "coffee",
   "fields": [

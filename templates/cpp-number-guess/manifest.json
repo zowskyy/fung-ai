@@ -1,7 +1,7 @@
 {
   "id": "cpp-number-guess",
   "name": "C++ Number Guess",
-  "description": "Guess a number in C++ — compiled to native code, runs at machine speed.",
+  "description": "Lightning-fast number guessing in C++.\n\n   $ ./game\n   Think of a number (1-100)...\n   My guess: 50\n   Higher? y/n: y\n   My guess: 75\n   Higher? y/n: n\n   My guess: 62\n   Got it! 🎉\n\nLearn: C++, compiling, I/O streams."
   "language": "cpp",
   "icon": "terminal",
   "fields": [

@@ -1,7 +1,7 @@
 {
   "id": "2d-platformer",
   "name": "2D Platformer Game",
-  "description": "A jump-and-run game you customize with a few plain-language answers. No code needed.",
+  "description": "Jump-and-run game. Make your hero jump, avoid enemies, reach the flag.\n\n     ╭─────╮\n     │  ◆  │  <- Your Hero\n     ╰─────╯\n     \n  ⚔  ⚔  ⚔ <- Enemies\n  \n  🚩 <- Goal\n  \nCustomize: hero name, colors, difficulty, jump feel.",
   "language": "python",
   "icon": "game",
   "fields": [

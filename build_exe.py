@@ -70,15 +70,11 @@ cmd: list[str] = [
     "--noconfirm",
     "--clean",
     "--add-data", f"{TEMPLATES}:templates",
-    # Neon fungai branding
-    "--icon", str(ROOT / "app" / "icon.svg") if (ROOT / "app" / "icon.svg").exists() else "",
     # Exclude problematic PySide6 modules that Creator doesn't use
     "--exclude-module", "PySide6.QtMultimedia",
     "--exclude-module", "PySide6.QtNetworkAuth",
     "--exclude-module", "PySide6.QtWebEngineCore",
 ]
-# Remove empty icon entry if file doesn't exist
-cmd = [c for c in cmd if c]
 for module in HIDDEN:
     cmd += ["--hidden-import", module]
 

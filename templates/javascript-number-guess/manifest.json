@@ -1,7 +1,7 @@
 {
   "id": "javascript-number-guess",
   "name": "JavaScript Number Guess",
-  "description": "Guess a number in JavaScript — runs anywhere with Node.js.",
+  "description": "Web-ready number guessing in JavaScript.\n\n   $ node game.js\n   Guess a number (1-100):\n   > 50\n   Too high!\n   > 25\n   Too low!\n   > 37\n   You Won! 🎉\n\nLearn: Node.js, prompt-sync, conditionals."
   "language": "javascript",
   "icon": "terminal",
   "fields": [

@@ -1,7 +1,7 @@
 {
   "id": "kotlin-number-guess",
   "name": "Kotlin Number Guess",
-  "description": "Guess a number in Kotlin — modern, concise, and fun.",
+  "description": "Modern number guessing in Kotlin.\n\n   kotlinc -script game.kt\n   Thinking of a number...\n   Guess: 50\n   Too High!\n   Guess: 25\n   Too Low!\n   Guess: 37\n   You Win! 🎉\n\nLearn: Kotlin, readLine(), when expressions."
   "language": "kotlin",
   "icon": "code",
   "fields": [
