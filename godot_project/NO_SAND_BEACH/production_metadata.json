@@ -184,7 +184,25 @@
         "memory": "seq_01 Beat 1.14 flashback -- warm, sepia, soft-focus, tender. M2S period-styled (see visual_reference above).",
         "glitch": "seq_03 on-screen warning -- full separate design, not a transition from the memory design. Black-and-white CA-choppy thread mask (chaotic-rule CA pattern, distinct from the smooth-dissolution rule used elsewhere). See RENDER_STYLE.md."
       },
-      "appearance_modes_confirmed_by_user": true
+      "appearance_modes_confirmed_by_user": true,
+      "realized_assets": {
+        "memory": {
+          "status": "first_reference_generated",
+          "path": "res://NO_SAND_BEACH/assets/characters/earl/earl_memory_reference_v1.png",
+          "generation_method": "ElevenLabs creative_generate_image",
+          "model_id": "flux-2-pro",
+          "prompt": "Black-and-white hand-drawn animation character design reference sheet. A young Black man in his late 20s, handsome, warm and loving expression but with an undercurrent of street toughness, wearing early-1990s streetwear (flat-brim cap, open jacket over a plain tee). Soft, tender, nostalgic quality suitable for a loving memory/flashback scene. High-contrast ink illustration style, clean expressive linework, cinematic hardened-realism character register reminiscent of Menace II Society, full body reference pose plus a face close-up detail, no color, pure black and white.",
+          "note": "Full turnaround sheet (multiple angles + close-up), M2S period wardrobe (flat-brim cap, open jacket). Generated black-and-white per the film's locked overall palette, with 'warm/tender' as a lighting-and-expression direction rather than literal sepia color -- since the film stays black-and-white throughout."
+        },
+        "glitch": {
+          "status": "first_reference_generated",
+          "path": "res://NO_SAND_BEACH/assets/characters/earl/earl_glitch_reference_v1.png",
+          "generation_method": "ElevenLabs creative_generate_image",
+          "model_id": "flux-2-pro",
+          "prompt": "Black and white illustration of a haunting face made entirely of dense tangled thread-like linework, scratchy crosshatched texture, hollow unsettling eye sockets, two hands emerging from below framing/gripping the face. Unraveling, decaying, glitch-like quality -- as if the face is dissolving into static and thread. High contrast, stark black ink on white, no color, no shading gradients, pure graphic linework suitable as a texture/pattern reference.",
+          "note": "User selected this specific variation (of 4 generated) for its horizontal scan-line static/glitch quality, the most literal digital-corruption read of the set. This is the AI-generated seed image, not yet run through the CA-choppy chaotic-rule dissolve pass from RENDER_STYLE.md -- that pass is still Phase D work."
+        }
+      }
     },
     "minor_characters": {
       "confirmed_by_user": true,
