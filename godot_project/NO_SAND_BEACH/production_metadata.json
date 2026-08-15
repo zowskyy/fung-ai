@@ -135,13 +135,23 @@
     "earl": {
       "role": "father_deceased",
       "age_states_needed": ["memory_single_design"],
-      "age_states_confirmed": false,
+      "age_states_confirmed": true,
       "period_styled_states": ["memory_single_design"],
       "appearance_modes": {
         "memory": "seq_01 Beat 1.14 flashback -- warm, sepia, soft-focus, tender. M2S period-styled (see visual_reference above).",
         "glitch": "seq_03 on-screen warning -- full separate design, not a transition from the memory design. Black-and-white CA-choppy thread mask (chaotic-rule CA pattern, distinct from the smooth-dissolution rule used elsewhere). See RENDER_STYLE.md."
       },
       "appearance_modes_confirmed_by_user": true
+    },
+    "minor_characters": {
+      "confirmed_by_user": true,
+      "policy": "simple_generic_no_reference",
+      "roster": {
+        "classmates": "seq_01, two extras (Beat 1.13, the beach-privilege conversation). Simple/generic, no individual design.",
+        "judge": "seq_05, presides over the expungement hearing. Simple/generic, no individual design.",
+        "student_kids": "seq_06, one or more kids in Pure's free coding class. Simple/generic, no individual design."
+      },
+      "note": "Lightweight, single-sequence-only designs -- no age-variant treatment, no period styling, no reference photos needed."
     }
   }
 }
