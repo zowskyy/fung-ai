@@ -221,7 +221,15 @@ func _validate_single_type(data: Variant, type_name: String, path: String, resul
 		"number":
 			return data_type == TYPE_INT or data_type == TYPE_FLOAT
 		"integer":
-			return data_type == TYPE_INT
+			if data_type == TYPE_INT:
+				return true
+			# JSON.parse_string() deserializes all JSON numbers as TYPE_FLOAT
+			# (JSON has no separate integer grammar). Per Draft 2020-12, "integer"
+			# means "a number with a zero fractional part", so a whole-valued
+			# float (5.0) must validate as an integer.
+			if data_type == TYPE_FLOAT:
+				return float(data) == floor(float(data))
+			return false
 		"string":
 			return data_type == TYPE_STRING
 		_:
