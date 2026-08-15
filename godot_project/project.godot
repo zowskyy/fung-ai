@@ -25,4 +25,4 @@ renderer/rendering_method.mobile="gl_compatibility"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/animation_engine_dock/plugin.cfg", "res://addons/scene_animator/plugin.cfg")
+enabled=PackedStringArray("res://addons/animation_engine_dock/plugin.cfg", "res://addons/scene_animator/plugin.cfg", "res://addons/character_animator/plugin.cfg")
