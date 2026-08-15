@@ -5,6 +5,12 @@ import argparse
 import traceback
 from pathlib import Path
 
+from bridge.generation import (
+    RECIPES,
+    generate_candidate_grid,
+    compute_candidate_metrics,
+    tags_from_metrics,
+)
 from bridge.schemas import GenerationRequest, GenerationResult, StatusUpdate, BridgeError, Candidate
 from bridge.manifest_writer import atomic_write_json, read_json, ensure_dir
 
@@ -32,14 +38,26 @@ def write_status(
 
 def generate_candidates(request: GenerationRequest) -> GenerationResult:
     """Generate candidates using fung_ai_v2 engine."""
-    import random
     from fung_ai_v2 import __version__ as fung_version
 
     # Write initial status
     write_status(request.status_path, request.request_id, "running", 0.05, "initializing")
 
-    # For v0.1: stub implementation that creates a few deterministic candidates
-    # TODO: Integrate actual fung_ai_v2 generation engine
+    # Validate recipe exists
+    if request.recipe_id not in RECIPES:
+        raise BridgeError(
+            code="RECIPE_NOT_FOUND",
+            message=f"Recipe '{request.recipe_id}' not found",
+            details={"recipe_id": request.recipe_id, "available": list(RECIPES.keys())},
+            action="Select a recipe from the available list",
+        )
+
+    recipe = RECIPES[request.recipe_id]
+
+    # Determine candidate count based on budget
+    budget_counts = {"fast": 3, "balanced": 6, "thorough": 12}
+    actual_count = budget_counts.get(request.generation_budget, 6)
+
     result = GenerationResult(
         request_id=request.request_id,
         success=True,
@@ -51,46 +69,50 @@ def generate_candidates(request: GenerationRequest) -> GenerationResult:
         errors=[],
     )
 
-    # Generate stub candidates
-    random.seed(request.seed)
-    for i in range(min(request.candidate_count, 3)):  # v0.1: stub 3 candidates
+    # Generate candidates
+    valid_count = 0
+    for i in range(actual_count):
         candidate_seed = request.seed + i
-        candidate_id = f"candidate_{i+1:03d}"
+        candidate_id = f"candidate_{i + 1:03d}"
 
-        # Write progress
-        progress = 0.1 + (i / max(1, request.candidate_count)) * 0.8
-        msg = f"Generated {i + 1}/{request.candidate_count}"
-        write_status(
-            request.status_path,
-            request.request_id,
-            "running",
-            progress,
-            "generating",
-            msg,
+        # Generate grid
+        progress = 0.1 + (i / max(1, actual_count)) * 0.7
+        grid = generate_candidate_grid(
+            candidate_seed,
+            tuple(request.map_size_tiles),
+            recipe,
+            lambda p, msg: write_status(
+                request.status_path,
+                request.request_id,
+                "running",
+                progress + p * 0.05,
+                "generating",
+                msg,
+            ),
         )
 
-        # Create candidate
+        if grid is None:
+            continue  # Invalid candidate, skip
+
+        valid_count += 1
+        metrics = compute_candidate_metrics(grid)
+        tags = tags_from_metrics(metrics)
+
         candidate = Candidate(
             candidate_id=candidate_id,
             seed=candidate_seed,
             valid=True,
             preview_path=f"previews/{candidate_id}.png",
             payload_path=f"candidates/{candidate_id}.json",
-            metrics={
-                "walkable_ratio": 0.40 + random.random() * 0.2,
-                "path_length": int(50 + random.random() * 50),
-                "loop_count": random.randint(1, 5),
-                "branch_count": random.randint(3, 12),
-                "open_space_score": 0.4 + random.random() * 0.4,
-                "score": 0.7 + random.random() * 0.25,
-            },
-            tags=random.sample([
-                "Long Route", "Short Run", "Open Chambers", "Tight Tunnels",
-                "Many Loops", "Branching", "Linear", "Arena-Friendly",
-                "Exploration-Focused", "Chokepoint Heavy"
-            ], k=3),
+            metrics=metrics,
+            tags=tags,
         )
         result.candidates.append(candidate)
+
+    if not result.candidates:
+        result.warnings.append(
+            f"No valid candidates generated (attempted {actual_count}). Try different parameters."
+        )
 
     return result
 
