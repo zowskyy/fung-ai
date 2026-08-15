@@ -65,6 +65,15 @@ var _order: Array[String] = [
 	"runtime/runners/end_beat_runner.gd",
 	# director (refs plan/bindings/registry/beat runner types)
 	"runtime/scene_director.gd",
+	# editor validation core (pure RefCounted, no editor deps)
+	"editor/validators/validation_issue.gd",
+	"editor/validators/scene_plan_validation_result.gd",
+	"editor/validators/scene_plan_validator.gd",
+	# editor UI (ref validator + engine editor classes)
+	"editor/scene_plan_dock.gd",
+	"editor/inspectors/scene_plan_inspector.gd",
+	# editor plugin (ref dock + inspector)
+	"plugin.gd",
 	# test harness (ref runtime types + each other)
 	"tests/support/test_result.gd",
 	"tests/support/test_context.gd",
@@ -72,6 +81,7 @@ var _order: Array[String] = [
 	"tests/support/fake_camera_adapter.gd",
 	"tests/support/fake_mechanics_registry.gd",
 	"tests/test_runtime_execution.gd",
+	"tests/test_plugin_activation.gd",
 	"tests/run_scene_animator_tests.gd",
 	"tests/parse_check.gd",
 ]
