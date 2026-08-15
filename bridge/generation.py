@@ -30,39 +30,206 @@ class RecipeConfig:
     fitness_targets: dict[str, tuple[float, float]] | None = None
 
 
-# Built-in recipes for v0.1
+# Built-in recipes for v0.1.
+#
+# fitness_targets below are calibrated against REAL generate_candidate_grid()
+# output, not aspiration: each recipe's (rule_string, initial_density, steps)
+# combo was run across 30 seeds at its intended map size (see the recipe's
+# fixture in tests/fixtures/requests/<id>.json and tests/test_recipes.py,
+# which asserts the fixture seed's metrics fall inside these ranges) plus a
+# spot-check across seeds 0-4 at 48x48 (the size used by
+# TestGenerateCandidateGrid.test_all_builtin_recipes_can_generate in
+# tests/test_generation.py). Targets are the observed min/max with a margin
+# on each side, not a hoped-for range. If you add or retune a recipe, run the
+# same empirical calibration before writing its targets -- an earlier version
+# of compact_roguelike_rooms (and dense_maze/open_exploration) had
+# fitness_targets that were never checked against real output and were
+# wrong by a wide margin (e.g. compact_roguelike_rooms claimed
+# walkable_ratio 0.35-0.55 but actually produced ~0.90).
 RECIPES: dict[str, RecipeConfig] = {
+    # --- Top-down caves ---
     "compact_roguelike_rooms": RecipeConfig(
         id="compact_roguelike_rooms",
-        description="Roguelike with compact rooms and clear paths",
-        rule_string="B3/S23",
-        initial_density=0.35,
-        steps=120,
+        version="1.1.0",
+        description="Roguelike-style rooms connected by branching corridors",
+        rule_string="B2/S23",
+        initial_density=0.45,
+        steps=8,
         fitness_targets={
-            "walkable_ratio": (0.35, 0.55),
-            "path_length": (40, 100),
+            "walkable_ratio": (0.55, 0.75),
+            "path_length": (85, 175),
         },
     ),
     "open_exploration": RecipeConfig(
         id="open_exploration",
+        version="1.1.0",
         description="Open caverns for exploration",
-        rule_string="B4/S3",
-        initial_density=0.25,
-        steps=80,
+        rule_string="B3/S23",
+        initial_density=0.30,
+        steps=15,
         fitness_targets={
-            "walkable_ratio": (0.50, 0.75),
-            "path_length": (30, 80),
+            "walkable_ratio": (0.72, 0.90),
+            "path_length": (65, 135),
         },
     ),
     "dense_maze": RecipeConfig(
         id="dense_maze",
-        description="Dense maze-like corridors",
-        rule_string="B2/S23",
-        initial_density=0.55,
-        steps=100,
+        version="1.1.0",
+        description="Dense maze-like corridors with the tightest chokepoints of any recipe",
+        rule_string="B1/S12",
+        initial_density=0.45,
+        steps=30,
         fitness_targets={
-            "walkable_ratio": (0.20, 0.35),
-            "path_length": (80, 150),
+            "walkable_ratio": (0.55, 0.70),
+            "path_length": (75, 140),
+        },
+    ),
+    "branching_delve": RecipeConfig(
+        id="branching_delve",
+        description="Winding descent with frequent branching junctions",
+        rule_string="B36/S238",
+        initial_density=0.40,
+        steps=8,
+        fitness_targets={
+            "walkable_ratio": (0.62, 0.80),
+            "path_length": (80, 165),
+        },
+    ),
+    "flooded_network": RecipeConfig(
+        id="flooded_network",
+        description="Interconnected open chambers with abundant loops, like a flooded cave network",
+        rule_string="B368/S245",
+        initial_density=0.30,
+        steps=30,
+        fitness_targets={
+            "walkable_ratio": (0.65, 0.88),
+            "path_length": (75, 165),
+        },
+    ),
+    "crystal_caverns": RecipeConfig(
+        id="crystal_caverns",
+        description="Large faceted open chambers with high visibility",
+        rule_string="B4/S45678",
+        initial_density=0.45,
+        steps=8,
+        fitness_targets={
+            "walkable_ratio": (0.68, 0.92),
+            "path_length": (65, 130),
+        },
+    ),
+    "lava_tubes": RecipeConfig(
+        id="lava_tubes",
+        description="Winding tube-like corridors of consistently moderate width",
+        rule_string="B25/S4",
+        initial_density=0.40,
+        steps=30,
+        fitness_targets={
+            "walkable_ratio": (0.65, 0.80),
+            "path_length": (80, 140),
+        },
+    ),
+    "fungal_underground": RecipeConfig(
+        id="fungal_underground",
+        description="Organic clustered pockets and irregular chambers",
+        rule_string="B368/S245",
+        initial_density=0.30,
+        steps=15,
+        fitness_targets={
+            "walkable_ratio": (0.58, 0.80),
+            "path_length": (80, 190),
+        },
+    ),
+    "sewer_labyrinth": RecipeConfig(
+        id="sewer_labyrinth",
+        description="Tight looping corridors with long winding paths",
+        rule_string="B35/S236",
+        initial_density=0.25,
+        steps=8,
+        fitness_targets={
+            "walkable_ratio": (0.53, 0.75),
+            "path_length": (85, 190),
+        },
+    ),
+    "boss_arena_loops": RecipeConfig(
+        id="boss_arena_loops",
+        description="Open arena chambers with many loops and short paths, for boss encounters",
+        rule_string="B5678/S45678",
+        initial_density=0.45,
+        steps=30,
+        fitness_targets={
+            "walkable_ratio": (0.60, 0.87),
+            "path_length": (70, 140),
+        },
+    ),
+    # --- Side-view / platformer-oriented caves ---
+    # These use the same 2D CA engine as the top-down recipes; the "side
+    # view" orientation comes from pairing the rule with a tall (narrow
+    # width, tall height) or wide map_size_tiles at request time, since
+    # spawn/exit are always placed on the top/bottom edges.
+    "vertical_metroidvania_cavern": RecipeConfig(
+        id="vertical_metroidvania_cavern",
+        description="Tall winding cavern for vertical metroidvania-style traversal",
+        rule_string="B36/S23",
+        initial_density=0.45,
+        steps=15,
+        fitness_targets={
+            "walkable_ratio": (0.67, 0.85),
+            "path_length": (90, 160),
+        },
+    ),
+    "layered_mining_shafts": RecipeConfig(
+        id="layered_mining_shafts",
+        description="Long branching vertical mining shafts and connecting tunnels",
+        rule_string="B234/S",
+        initial_density=0.30,
+        steps=5,
+        fitness_targets={
+            "walkable_ratio": (0.60, 0.77),
+            "path_length": (100, 265),
+        },
+    ),
+    "wide_platforming_grotto": RecipeConfig(
+        id="wide_platforming_grotto",
+        description="Wide, highly open grotto suited for horizontal platforming",
+        rule_string="B4/S45678",
+        initial_density=0.40,
+        steps=5,
+        fitness_targets={
+            "walkable_ratio": (0.78, 0.97),
+            "path_length": (50, 100),
+        },
+    ),
+    "hazardous_descent": RecipeConfig(
+        id="hazardous_descent",
+        description="Tall open cavern with a long, hazard-strewn descent",
+        rule_string="B3/S45678",
+        initial_density=0.50,
+        steps=8,
+        fitness_targets={
+            "walkable_ratio": (0.63, 0.85),
+            "path_length": (85, 185),
+        },
+    ),
+    "ice_climb": RecipeConfig(
+        id="ice_climb",
+        description="Tall winding ascent with moderate branching",
+        rule_string="B36/S23",
+        initial_density=0.30,
+        steps=5,
+        fitness_targets={
+            "walkable_ratio": (0.62, 0.80),
+            "path_length": (90, 170),
+        },
+    ),
+    "secret_tunnel_network": RecipeConfig(
+        id="secret_tunnel_network",
+        description="Dense, highly-connected tunnel network riddled with secret branches",
+        rule_string="B4678/S35678",
+        initial_density=0.30,
+        steps=3,
+        fitness_targets={
+            "walkable_ratio": (0.85, 0.98),
+            "path_length": (80, 125),
         },
     ),
 }
