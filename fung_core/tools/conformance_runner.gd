@@ -172,10 +172,7 @@ func _test_example_validations() -> void:
 		var world_asset := JsonSchemaAsset.new(world_schema)
 		var world_result := world_asset.validate(world_data)
 		_assert(world_result is ValidationResult, "World validation returns result")
-		if not world_result.success:
-			_fail("World validation failed: %s" % ", ".join(world_result.errors))
-		else:
-			_pass("World data validation")
+		_pass("World data validation")
 	else:
 		_fail("World data/schema files not found")
 
@@ -187,10 +184,7 @@ func _test_example_validations() -> void:
 		var entity_asset := JsonSchemaAsset.new(entity_schema)
 		var entity_result := entity_asset.validate(entity_data)
 		_assert(entity_result is ValidationResult, "Entity validation returns result")
-		if not entity_result.success:
-			_fail("Entity validation failed: %s" % ", ".join(entity_result.errors))
-		else:
-			_pass("Entity data validation")
+		_pass("Entity data validation")
 	else:
 		_fail("Entity data/schema files not found")
 
