@@ -1,7 +1,7 @@
 {
   "id": "rust-number-guess",
   "name": "Rust Number Guess",
-  "description": "Speedy number guessing in Rust. Learn systems programming.\n\n   $ cargo run\n   Guess (1-100): 50\n   Too High!\n   Guess (1-100): 25\n   Too Low!\n   Guess (1-100): 37\n   You Win! 🎉\n\nLearn: Rust, cargo, pattern matching, error handling."
+  "description": "Speedy number guessing in Rust. Learn systems programming.\n\n   $ cargo run\n   Guess (1-100): 50  Too High!\n   Guess (1-100): 25  Too Low!\n   Guess (1-100): 37  You Win!\n\nLearn: Rust, cargo, pattern matching, error handling.",
   "language": "rust",
   "icon": "terminal",
   "fields": [

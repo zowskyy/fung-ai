@@ -1,7 +1,7 @@
 {
   "id": "python-number-guess",
   "name": "Python Number Guess",
-  "description": "Classic number guessing game in Python.\n\n   Computer: I'm thinking of a number...\n   You: Is it 50?\n   Computer: Too high!\n   You: Is it 25?\n   Computer: You got it! 🎉\n\nGreat first Python project. Learn: input(), if/else, loops."
+  "description": "Classic number guessing game in Python.\n\n   Computer: I'm thinking of a number...\n   You: Is it 50?\n   Computer: Too high!\n   You: Is it 25?\n   Computer: You got it! :tada:\n\nGreat first Python project. Learn: input(), if/else, loops.",
   "language": "python",
   "icon": "terminal",
   "fields": [

@@ -182,7 +182,7 @@ class EditorScreen(QWidget):
         self.tabs.addTab(self._build_edit_tab(), "Edit")
         self.tabs.addTab(self._build_run_tab(), "Run")
         self.tabs.addTab(self._build_versions_tab(), "Versions")
-        self.tabs.addTab(self._build_ai_tab(), "Ask AI")
+        self.tabs.addTab(self._build_ai_tab(), "Spread the fungus...")
         content_layout.addWidget(self.tabs, stretch=1)
 
         layout.addWidget(content, stretch=1)
@@ -581,7 +581,7 @@ class EditorScreen(QWidget):
         prompt_row = QHBoxLayout()
         self.prompt_edit = QLineEdit()
         self.prompt_edit.setPlaceholderText(
-            "e.g. Suggest three fun hero names  (type # to attach, @ for mode, / for commands)"
+            "Spread the fungus... (type # to attach, @ for mode, / for commands)"
         )
         self.prompt_edit.returnPressed.connect(self._send_prompt)
         self._completer = QCompleter(self)
@@ -835,6 +835,7 @@ class EditorScreen(QWidget):
             )
             return
         self.chat_log.append_markdown(f"**You:** {user}")
+        self.chat_log.append_markdown("_it's aliiiiiiveee......_")
         self.prompt_edit.clear()
         self.ai_send_btn.setEnabled(False)
         self._ai_raw = ""
