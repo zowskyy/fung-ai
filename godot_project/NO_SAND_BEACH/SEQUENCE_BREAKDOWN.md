@@ -46,9 +46,10 @@ NO SAND BEACH takes visual and tonal direction from *Menace II Society* (1993). 
 
 - **Story beats:** Pure builds "No Sand Beach" app, rewrites his background, gets hired, gets the corner office overlooking Newport Beach. App starts erasing real memories. Earl appears as a glitch on-screen warning him.
 - **Likely locations:** Home workspace/laptop, corner office (Newport Beach view), abstract "glitch"/UI space for Earl's appearances
-- **Characters:** Pure (age 27 design, contemporary wardrobe), Earl (glitch/digital appearance — same design as memory Earl, possibly with a corrupted/glitched shader treatment)
+- **Characters:** Pure (age 27 design, contemporary wardrobe), Earl (glitch appearance — **confirmed as a full separate design from his Seq 1 memory design**, not a shared/transitioning one)
 - **Animation states (anticipated):** Pure — coding intently, triumphant (new office), unsettled/forgetting (glitch reactions); Earl — glitch materialize, speaking, glitch dissolve
 - **VFX:** UI/screen glitch effect, memory-erasure visual metaphor (this is a new VFX category beyond Sequence 1's sepia-memory treatment)
+- **Style note:** Earl's glitch design is locked — black-and-white, procedurally-generated "choppy" thread-mask pattern (reference: dense scratchy linework, hollow eyes, hands framing the face), built via the same CA engine as the main render style but tuned to a chaotic/non-convergent rule instead of the smooth dissolution rule. Full spec in `RENDER_STYLE.md`.
 
 ---
 
@@ -97,6 +98,6 @@ NO SAND BEACH takes visual and tonal direction from *Menace II Society* (1993). 
 2. **Delia's aging:** Sequence 4 (Collapse) happens years after Sequence 1. Does she get a second, visibly-older design, or does costume/lighting alone carry the time jump?
 3. **Marcus's aging:** same question — early 30s (Seq 1) vs. mid-40s (Seq 4+). One design with styling changes, or two designs?
 4. **New characters not in the original roster:** classmates (Seq 1, extras), Judge (Seq 5), student-kids (Seq 6) — these need lightweight designs, likely simpler than the four principal characters since they're single-sequence-only.
-5. **Earl's "glitch" treatment (Seq 3):** is this the same character sprite with a shader/VFX glitch effect applied at render time, or a separately-drawn glitch-state sprite set? Affects whether this is an asset-creation task or a rendering-pipeline task.
+5. ~~**Earl's "glitch" treatment (Seq 3)**~~ — **Resolved:** a fully separate glitch-state design (not a shared sprite with a VFX overlay), built as a black-and-white CA-choppy thread mask — same underlying CA engine as the main render style, tuned to a chaotic rule instead of smooth dissolution. Full spec: `RENDER_STYLE.md`.
 
 Sequences 2–7 need their own beat-by-beat breakdowns (in the style of Sequence 1) authored before they can become `ScenePlan` resources. That authoring work is not yet scheduled — it's the next planning step after Phase A wraps.

@@ -124,7 +124,12 @@
       "role": "father_deceased",
       "age_states_needed": ["memory_single_design"],
       "age_states_confirmed": false,
-      "period_styled_states": ["memory_single_design"]
+      "period_styled_states": ["memory_single_design"],
+      "appearance_modes": {
+        "memory": "seq_01 Beat 1.14 flashback -- warm, sepia, soft-focus, tender. M2S period-styled (see visual_reference above).",
+        "glitch": "seq_03 on-screen warning -- full separate design, not a transition from the memory design. Black-and-white CA-choppy thread mask (chaotic-rule CA pattern, distinct from the smooth-dissolution rule used elsewhere). See RENDER_STYLE.md."
+      },
+      "appearance_modes_confirmed_by_user": true
     }
   }
 }
