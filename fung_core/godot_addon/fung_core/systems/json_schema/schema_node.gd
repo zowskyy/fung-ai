@@ -1,7 +1,7 @@
 class_name SchemaNode
 extends Node
 
-@export var schema: Variant
+@export var schema: Variant = null
 
 signal validation_failed(result: ValidationResult)
 
