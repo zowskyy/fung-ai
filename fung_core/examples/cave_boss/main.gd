@@ -52,44 +52,57 @@ func _ready() -> void:
 
 
 func _on_world_failed(error: String) -> void:
+	push_error("WorldGenerationJob failed: %s" % error)
 	notify_finished(false, "World generation failed: %s" % error)
 
 
 func _on_world_completed(result: Dictionary) -> void:
+	print("[main] World generation completed")
 	_replay_recorder.start(result.get("seed", _seed))
 	_replay_recorder.record_action("world_generated", {"world_id": result.get("id", "")})
 
+	print("[main] Loading world state...")
 	_world_state = WorldLoader.new().load_world(result, self)
 	if _world_state == null:
+		push_error("[main] WorldLoader failed")
 		notify_finished(false, "WorldLoader failed to build WorldState from generated result")
 		return
+	print("[main] World state loaded successfully")
 	_replay_recorder.advance_frame()
 	_replay_recorder.record_action("world_loaded")
 
+	print("[main] Loading entity and encounter data...")
 	_entity_data = _save_service.load_json(ENTITY_PATH)
 	_encounter_data = _save_service.load_json(ENCOUNTER_PATH)
 	if _entity_data.is_empty() or _encounter_data.is_empty():
+		push_error("[main] Failed to load entity or encounter data")
 		notify_finished(false, "Failed to load entity or encounter data")
 		return
+	print("[main] Entity and encounter data loaded")
 
 	# Validate loaded data against schemas
-	print("Validating loaded data against JSON Schema contracts...")
+	print("[main] Validating loaded data against JSON Schema contracts...")
 	var validation_result := _schema_validator.validate_world_data()
 	if not validation_result.success:
+		push_error("[main] Schema validation failed: %s" % validation_result.errors)
 		notify_finished(false, "Schema validation failed: %s" % ", ".join(validation_result.errors))
 		return
-	print("Schema validation passed for world data")
+	print("[main] Schema validation passed for world data")
 
+	print("[main] Loading animation manifest...")
 	var manifest_data := _save_service.load_json(ANIMATION_MANIFEST_PATH)
 	var manifest_index := AnimationManifestLoader.new().load_from_dict(manifest_data)
 	_animation_controller.load_manifest(manifest_index)
+	print("[main] Animation manifest loaded")
 
+	print("[main] Spawning encounter...")
 	var spawner := EncounterSpawner.new()
 	add_child(spawner)
 	spawner.encounter_triggered.connect(_on_encounter_triggered)
 	spawner.spawn(_encounter_data, _entity_data, _world_state, _entity_registry, _spawn_service, _archetype_db)
 	_replay_recorder.advance_frame()
 	_replay_recorder.record_action("encounter_spawned", {"encounter_id": _encounter_data.get("id", "")})
+	print("[main] Encounter spawned successfully")
 
 
 func _on_encounter_triggered(encounter_id: String, narrative_id: String) -> void:
