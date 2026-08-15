@@ -1,9 +1,9 @@
 """Typed request/result/error models for the bridge protocol."""
 from __future__ import annotations
 
-from dataclasses import dataclass, asdict, field
-from typing import Any, Optional
+from dataclasses import asdict, dataclass, field
 from datetime import datetime, timezone
+from typing import Any
 
 
 @dataclass

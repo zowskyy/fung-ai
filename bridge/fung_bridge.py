@@ -2,17 +2,21 @@
 from __future__ import annotations
 
 import argparse
-import json
-import sys
 import traceback
 from pathlib import Path
-from datetime import datetime, timezone
 
 from bridge.schemas import GenerationRequest, GenerationResult, StatusUpdate, BridgeError, Candidate
-from bridge.manifest_writer import atomic_write_json, atomic_write_text, read_json, ensure_dir, sanitize_filename
+from bridge.manifest_writer import atomic_write_json, read_json, ensure_dir
 
 
-def write_status(status_path: str | Path, request_id: str, state: str, progress: float, stage: str, message: str = "") -> None:
+def write_status(
+    status_path: str | Path,
+    request_id: str,
+    state: str,
+    progress: float,
+    stage: str,
+    message: str = "",
+) -> None:
     """Write status file atomically."""
     status_data = {
         "protocol_version": 1,
@@ -55,7 +59,15 @@ def generate_candidates(request: GenerationRequest) -> GenerationResult:
 
         # Write progress
         progress = 0.1 + (i / max(1, request.candidate_count)) * 0.8
-        write_status(request.status_path, request.request_id, "running", progress, "generating", f"Generated {i+1}/{request.candidate_count}")
+        msg = f"Generated {i + 1}/{request.candidate_count}"
+        write_status(
+            request.status_path,
+            request.request_id,
+            "running",
+            progress,
+            "generating",
+            msg,
+        )
 
         # Create candidate
         candidate = Candidate(
@@ -119,7 +131,14 @@ def main() -> int:
         # Check for cancellation
         if cancel_path.exists():
             write_status(status_path, request.request_id, "cancelled", 1.0, "cancelled")
-            atomic_write_json(response_path, {"request_id": request.request_id, "success": False, "candidates": [], "warnings": [], "errors": ["Generation was cancelled"]})
+            error_result = {
+                "request_id": request.request_id,
+                "success": False,
+                "candidates": [],
+                "warnings": [],
+                "errors": ["Generation was cancelled"],
+            }
+            atomic_write_json(response_path, error_result)
             return 2
 
         # Write result atomically
@@ -128,45 +147,55 @@ def main() -> int:
         return 0
 
     except BridgeError as exc:
-        write_status(status_path, request.request_id if 'request' in locals() else "unknown", "failed", 1.0, "error", exc.message)
-        atomic_write_json(response_path, exc.to_result_dict(request.request_id if 'request' in locals() else "unknown"))
+        req_id = request.request_id if "request" in locals() else "unknown"
+        write_status(status_path, req_id, "failed", 1.0, "error", exc.message)
+        atomic_write_json(response_path, exc.to_result_dict(req_id))
         return 1
 
-    except Exception as exc:
+    except Exception as exc:  # noqa: BLE001
         # Log full traceback
-        if 'request' in locals():
+        if "request" in locals():
             log_path = Path(request.job_dir) / "job.log"
             ensure_dir(log_path.parent)
             with open(log_path, "w") as f:
                 f.write(traceback.format_exc())
-            write_status(Path(request.status_path), request.request_id, "failed", 1.0, "error", str(exc))
-            atomic_write_json(response_path, {
+            write_status(
+                Path(request.status_path),
+                request.request_id,
+                "failed",
+                1.0,
+                "error",
+                str(exc),
+            )
+            error_result = {
                 "request_id": request.request_id,
                 "success": False,
                 "error": {
                     "code": "BRIDGE_ERROR",
                     "message": str(exc),
                     "details": {"type": type(exc).__name__},
-                    "action": "Check the job.log file for details"
+                    "action": "Check the job.log file for details",
                 },
                 "candidates": [],
                 "warnings": [],
                 "errors": [str(exc)],
-            })
+            }
+            atomic_write_json(response_path, error_result)
         else:
-            atomic_write_json(response_path, {
+            error_result = {
                 "request_id": "unknown",
                 "success": False,
                 "error": {
                     "code": "BRIDGE_ERROR",
                     "message": str(exc),
                     "details": {},
-                    "action": "Check the bridge logs"
+                    "action": "Check the bridge logs",
                 },
                 "candidates": [],
                 "warnings": [],
                 "errors": [str(exc)],
-            })
+            }
+            atomic_write_json(response_path, error_result)
         return 1
 
 
