@@ -43,14 +43,15 @@ NO SAND BEACH takes visual and tonal direction from *Menace II Society* (1993). 
 
 ---
 
-## Sequence 3: The App — beats not yet authored
+## Sequence 3: The App ✅ Beats authored (12 beats, 2:22)
 
-- **Story beats:** Pure builds "No Sand Beach" app, rewrites his background, gets hired, gets the corner office overlooking Newport Beach. App starts erasing real memories. Earl appears as a glitch on-screen warning him.
-- **Likely locations:** Home workspace/laptop, corner office (Newport Beach view), abstract "glitch"/UI space for Earl's appearances
-- **Characters:** Pure (age 27 design, contemporary wardrobe), Earl (glitch appearance — **confirmed as a full separate design from his Seq 1 memory design**, not a shared/transitioning one)
-- **Animation states (anticipated):** Pure — coding intently, triumphant (new office), unsettled/forgetting (glitch reactions); Earl — glitch materialize, speaking, glitch dissolve
-- **VFX:** UI/screen glitch effect, memory-erasure visual metaphor (this is a new VFX category beyond Sequence 1's sepia-memory treatment)
-- **Style note:** Earl's glitch design is locked — black-and-white, procedurally-generated "choppy" thread-mask pattern (reference: dense scratchy linework, hollow eyes, hands framing the face), built via the same CA engine as the main render style but tuned to a chaotic/non-convergent rule instead of the smooth dissolution rule. Full spec in `RENDER_STYLE.md`.
+- **Locations:** Pure's home workspace (night), corner office overlooking Newport Beach (day, then reframed at night)
+- **Characters:** Pure (age 27 design, contemporary — new business-wardrobe pass for the office beats), Earl (glitch design — CA-choppy thread mask, first full deployment)
+- **Animation states:** Pure — coding (confident, contrast to Seq 2's uncertain prison typing), exhaling, phone reactions, presenting, staring/still (memory failure), recoiling, closing the laptop, sitting alone; Earl — glitch materialize, speaking (distortion-textured), abrupt cut to black
+- **VFX:** CA-choppy glitch pattern (first full use), repeated-composition device (office window view reused across 3 beats with shifting emotional weight; the closing beat rhymes camera-for-camera with Seq 2's prison-cell stillness)
+- **Style note:** Fully contemporary throughout — no M2S period treatment (that ended with Seq 2). Earl's glitch design confirmed as a full separate design from his Seq 1 memory appearance.
+- **Key discipline:** the memory-loss beats (3.07, 3.08) deliberately show nothing where the memory should be — no illustrated "glitch" for Pure's own recollection, only for Earl's on-screen appearance.
+- Full detail: `scenes/sequence_03_the_app_breakdown.md`
 
 ---
 

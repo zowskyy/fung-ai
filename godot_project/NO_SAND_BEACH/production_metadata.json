@@ -27,10 +27,10 @@
       "id": "seq_03_the_app",
       "title": "The App",
       "order": 3,
-      "beats_authored": 0,
-      "duration_seconds": null,
-      "duration_status": "not_estimated",
-      "breakdown_path": null,
+      "beats_authored": 12,
+      "duration_seconds": 142,
+      "duration_status": "final",
+      "breakdown_path": "res://NO_SAND_BEACH/scenes/sequence_03_the_app_breakdown.md",
       "scene_plan_path": null
     },
     {
@@ -75,8 +75,8 @@
       "scene_plan_path": null
     }
   ],
-  "total_duration_seconds_known": 336,
-  "total_duration_seconds_note": "Sequences 1-2 have real durations (336s combined). Sequences 3-7 need beat breakdowns before total runtime can be estimated.",
+  "total_duration_seconds_known": 478,
+  "total_duration_seconds_note": "Sequences 1-3 have real durations (478s combined). Sequences 4-7 need beat breakdowns before total runtime can be estimated.",
   "target_fps": 24,
   "target_resolution": "1920x1440",
   "codec": "h264",
