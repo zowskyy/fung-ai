@@ -1,0 +1,60 @@
+name: Godot Scene Animator Gate
+
+on:
+  push:
+    branches: [scene-animator]
+  pull_request:
+  workflow_dispatch:
+
+env:
+  GODOT_VERSION: 4.7.1
+  GODOT_ASSET: Godot_v4.7.1-stable_linux.x86_64
+  GODOT_URL: https://github.com/godotengine/godot-builds/releases/download/4.7.1-stable/Godot_v4.7.1-stable_linux.x86_64.zip
+  GODOT_SHA256: c7ff14fd28472c8d4f193043de30278dcf7e5241a1dcf7566b02e27addaa33ba
+
+jobs:
+  headless-gate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Cache Godot binary
+        id: godot-cache
+        uses: actions/cache@v4
+        with:
+          path: ${{ runner.tool_cache }}/godot
+          key: godot-${{ env.GODOT_VERSION }}-linux-x86_64
+
+      - name: Download and verify Godot
+        if: steps.godot-cache.outputs.cache-hit != 'true'
+        run: |
+          mkdir -p "$RUNNER_TOOL_CACHE/godot"
+          curl -fsSL -o "$RUNNER_TOOL_CACHE/godot/$GODOT_ASSET.zip" "$GODOT_URL"
+          echo "$GODOT_SHA256  $RUNNER_TOOL_CACHE/godot/$GODOT_ASSET.zip" | sha256sum --check -
+          unzip -q -o "$RUNNER_TOOL_CACHE/godot/$GODOT_ASSET.zip" -d "$RUNNER_TOOL_CACHE/godot"
+
+      - name: Install Godot on PATH
+        run: |
+          chmod +x "$RUNNER_TOOL_CACHE/godot/$GODOT_ASSET"
+          sudo ln -s "$RUNNER_TOOL_CACHE/godot/$GODOT_ASSET" /usr/local/bin/godot
+
+      - name: Run canonical gate
+        run: bash godot_project/addons/scene_animator/tests/gate.sh
+
+      - name: Verify no tracked-file changes after import
+        run: |
+          DIRTY="$(git status --porcelain --untracked-files=no)"
+          if [ -n "$DIRTY" ]; then
+            echo "::error::Godot actions modified tracked files"
+            git status --porcelain --untracked-files=no
+            git diff
+            exit 1
+          fi
+
+      - name: Upload gate logs and result
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: scene-animator-gate-logs
+          path: godot_project/addons/scene_animator/tests/artifacts/

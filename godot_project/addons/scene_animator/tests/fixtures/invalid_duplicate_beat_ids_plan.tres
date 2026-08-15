@@ -1,0 +1,22 @@
+[gd_resource type="Resource" script_class="ScenePlan" load_steps=3 format=3]
+
+[ext_resource type="Script" path="res://addons/scene_animator/data/scene_plan.gd" id="1_plan"]
+[ext_resource type="Script" path="res://addons/scene_animator/data/beats/dialogue_beat.gd" id="2_dialogue"]
+
+[sub_resource type="Resource" id="Resource_dup_a"]
+script = ExtResource("2_dialogue")
+beat_id = &"same"
+speaker_actor_id = &"hero"
+dialogue_id = &"line_a"
+next_beat_id = &"same"
+
+[sub_resource type="Resource" id="Resource_dup_b"]
+script = ExtResource("2_dialogue")
+beat_id = &"same"
+speaker_actor_id = &"hero"
+dialogue_id = &"line_b"
+
+[resource]
+script = ExtResource("1_plan")
+plan_id = &"duplicate_beat_ids"
+beats = Array[Resource]([SubResource("Resource_dup_a"), SubResource("Resource_dup_b")])
