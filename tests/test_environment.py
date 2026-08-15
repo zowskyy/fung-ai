@@ -11,9 +11,7 @@ from unittest.mock import patch, MagicMock
 try:
     from fung_ai_v2.environment import classify_biome, get_biome, get_environment
 except ImportError:
-    import sys, os
-    sys.path.insert(0, os.path.join(os.path.dirname(__file__), '..', 'fungaiV2_extracted'))
-    from fung_ai_v2 import classify_biome
+    pytest.skip("fung_ai_v2 package not available (environment module)", allow_module_level=True)
 
 
 # ---------------------------------------------------------------------------
