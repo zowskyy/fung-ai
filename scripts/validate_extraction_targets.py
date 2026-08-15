@@ -78,7 +78,7 @@ def main():
     source_path = Path(__file__).parent.parent / 'fungaiV2_extracted' / 'fung_ai_v2.py'
 
     if not source_path.exists():
-        print(f"Using fallback source: fung_ai_v2.py in project root")
+        print("Using fallback source: fung_ai_v2.py in project root")
         source_path = Path(__file__).parent.parent / 'fung_ai_v2.py'
 
     success = validate_extraction_targets(source_path, ACTUAL_EXPORTS)
