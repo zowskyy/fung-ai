@@ -16,6 +16,15 @@ Adapted for NO SAND BEACH: black-and-white, higher resolution/fidelity than the 
 
 This repo's CA engine (`fung_ai_v2/ca_engine.py`) already does exactly this kind of transformation, just for cave geometry instead of rendered frames: `step_ca()` is a standard Moore-neighborhood birth/survival cellular automaton (`CARule`, `B{birth}/S{survival}` — Conway's Game of Life is literally the `B3/S23` special case of this same format), used elsewhere in the project to turn jagged random-noise grids into smooth, organic cave walls over a few iterations. Repurposing that as an image-space filter keeps the film's rendering technique consistent with its procedural-generation identity, rather than reaching for a generic post-process blur.
 
+## Asset sourcing & fidelity budget (added after real generation started)
+
+The "base render" seed images are produced via **ElevenLabs `creative_generate_image`** (model `flux-2-pro` for the first successful tests), not hand-drawn or algorithmically synthesized from geometric primitives — neither the user nor Claude can draw, and this is the path that actually works in this environment (see git history around the Marcus/Delia reference generations for the earlier investigation: local file access to user-pasted reference photos isn't available in this remote environment, and a different AI tool — Hugging Face Spaces — was blocked by a `gradio=none` session setting; ElevenLabs sidesteps both).
+
+**User-directed fidelity split (locked):**
+- **Characters get full generation quality.** Detailed prompts, full attention to matching each character's locked `design_reference_notes` (hairstyle, wardrobe, expression, setting). This is where quality investment pays off, since faces are the CA-dissolve technique's sharp focal point.
+- **Environments get minimal fidelity investment**, because the CA-dissolve pass is going to push them down toward abstraction anyway. Practical implication: don't spend generation effort or iteration on detailed/polished environment art. Push environment source images down in pixel/detail quality deliberately — as far as possible while still reading as an intentional stylistic choice, not a broken or accidentally blurry render. The CA dissolution pass (background/extremities, *N* ≈ 4–6+ iterations per the pipeline below) is expected to do most of the actual work of making an environment feel "right" for the film; the source art underneath it doesn't need to hold up on its own.
+- Practical tuning target: the dissolved environment should sit right at the edge of legibility — "bare," minimal, recognizable as a place but not detailed — one step before it would read as a technical failure (over-blurred, indistinct) rather than a deliberate soft-focus choice.
+
 ## Pipeline
 
 1. **Base render** — chunky pixel art, black-and-white palette, hard block edges. This is the "seed" image, deliberately low-fidelity, matching the reference image's blockiness minus color.

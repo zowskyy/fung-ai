@@ -121,6 +121,14 @@
       "age_lock_note": "User confirmed: single design used across the entire film, no visibly-older second pass for seq_04 (The Collapse) onward despite years of in-story time passing. Resolves SEQUENCE_BREAKDOWN.md open question #2.",
       "design_reference_notes": {
         "age_locked_generic": "User-supplied reference image (not stored in repo). Voluminous wavy dark hairstyle (70s-style blowout), warm smile, black top with a patterned orange/rust paisley scarf, gold hoop earrings -- retro glamour-photo styling, warm and elegant."
+      },
+      "realized_asset": {
+        "status": "first_reference_generated",
+        "path": "res://NO_SAND_BEACH/assets/characters/delia/delia_reference_v1.png",
+        "generation_method": "ElevenLabs creative_generate_image",
+        "model_id": "flux-2-pro",
+        "prompt": "Black-and-white hand-drawn animation character design reference. A warm, dignified Black woman in her 40s, working mother, voluminous wavy dark hair, gentle but tired eyes, wearing a simple dark blouse with a patterned scarf, small gold hoop earrings. Standing in a modest apartment kitchen. High-contrast ink illustration style, clean expressive linework, cinematic hardened-realism character register reminiscent of Menace II Society, plain neutral pose suitable as a character design reference sheet, no color, pure black and white.",
+        "note": "Adapted the retro-glamour reference photo's hair/warmth into her actual story context (tired working mother, not a glamour shot). Single reference/concept image (16:9, one pose), not yet a sprite sheet."
       }
     },
     "marcus": {
