@@ -5,7 +5,6 @@ extends RefCounted
 ## Pre-parses and optimizes schema for efficient validation.
 
 var _schema: Dictionary = {}
-var _compiled_regex_patterns: Dictionary = {}
 var _refs: Dictionary = {}
 
 
@@ -20,18 +19,19 @@ func _init(schema: Dictionary) -> void:
 func _compile_regex_patterns(schema: Dictionary, path: String = "") -> void:
 	if not schema is Dictionary:
 		return
-	
+
 	for key in schema:
 		var value = schema[key]
-		
+
 		if key == "pattern" and value is String:
-			var regex_key := path + ".pattern"
+			# Store compiled regex directly in the schema for easy access during validation
 			try:
-				_compiled_regex_patterns[regex_key] = RegEx.new()
-				_compiled_regex_patterns[regex_key].compile(value)
+				var regex = RegEx.new()
+				regex.compile(value)
+				schema["__compiled_pattern"] = regex
 			except:
 				push_error("Failed to compile regex pattern: %s" % value)
-		
+
 		# Recurse into nested objects
 		if value is Dictionary:
 			_compile_regex_patterns(value, path + "." + key if path else key)
@@ -114,11 +114,19 @@ func _validate_internal(data: Variant, schema: Dictionary, path: String, result:
 				result.add_error("String length %d is greater than maxLength %d" % [data.length(), schema["maxLength"]], path)
 		
 		if schema.has("pattern"):
-			var pattern_key := "$.pattern"
-			if _compiled_regex_patterns.has(pattern_key):
-				var regex = _compiled_regex_patterns[pattern_key]
+			if schema.has("__compiled_pattern"):
+				var regex = schema["__compiled_pattern"]
 				if not regex.search(data):
 					result.add_error("String does not match pattern: %s" % [schema["pattern"]], path)
+			else:
+				# Fallback: compile on the fly if not pre-compiled
+				try:
+					var regex = RegEx.new()
+					regex.compile(schema["pattern"])
+					if not regex.search(data):
+						result.add_error("String does not match pattern: %s" % [schema["pattern"]], path)
+				except:
+					result.add_error("Failed to compile pattern: %s" % [schema["pattern"]], path)
 	
 	# Array validations
 	if data is Array:

@@ -76,13 +76,8 @@ static func _canonicalize_array(arr: Array) -> String:
 static func _canonicalize_string(str_value: String) -> String:
 	var result := "\""
 
-	for char_code in str_value.unicode_at_pos(0) if str_value.length() == 1 else str_value.unicode_at_pos(0):
-		# Process each character
-		pass
-
-	# Use a simpler approach: iterate through the string
-	var i := 0
-	while i < str_value.length():
+	# Iterate through each character by index
+	for i in range(str_value.length()):
 		var char = str_value[i]
 		var char_code = str_value.unicode_at(i)
 
@@ -107,7 +102,6 @@ static func _canonicalize_string(str_value: String) -> String:
 					result += "\\u%04x" % char_code
 				else:
 					result += char
-		i += 1
 
 	result += "\""
 	return result

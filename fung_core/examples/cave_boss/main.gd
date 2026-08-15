@@ -24,6 +24,7 @@ var _entity_data: Dictionary
 var _encounter_data: Dictionary
 var _seed: int = 42
 var _finished_called := false
+var _schema_validator := SchemaValidationExample.new()
 
 
 func _ready() -> void:
@@ -70,6 +71,14 @@ func _on_world_completed(result: Dictionary) -> void:
 	if _entity_data.is_empty() or _encounter_data.is_empty():
 		notify_finished(false, "Failed to load entity or encounter data")
 		return
+
+	# Validate loaded data against schemas
+	print("Validating loaded data against JSON Schema contracts...")
+	var validation_result := _schema_validator.validate_world_data()
+	if not validation_result.success:
+		notify_finished(false, "Schema validation failed: %s" % ", ".join(validation_result.errors))
+		return
+	print("Schema validation passed for world data")
 
 	var manifest_data := _save_service.load_json(ANIMATION_MANIFEST_PATH)
 	var manifest_index := AnimationManifestLoader.new().load_from_dict(manifest_data)
