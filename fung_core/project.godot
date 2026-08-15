@@ -1,0 +1,20 @@
+; Fung Core vertical-slice test project.
+;
+; This makes fung_core/ itself a self-contained, headless-runnable Godot 4
+; project so tools/run_example.gd and tools/replay_check.gd can be invoked
+; directly via `godot --headless --path fung_core -s tools/run_example.gd`.
+; class_name scripts under godot_addon/fung_core/systems/ are indexed
+; project-wide regardless of the addons/ convention, so the plugin does not
+; need to be "enabled" for this to work.
+
+config_version=5
+
+[application]
+
+config/name="Fung Core Vertical Slice"
+config/features=PackedStringArray("4.3", "Forward Plus")
+run/main_scene="res://examples/cave_boss/main.tscn"
+
+[editor_plugins]
+
+enabled=PackedStringArray()
