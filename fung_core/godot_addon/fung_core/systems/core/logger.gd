@@ -11,7 +11,7 @@ const _LEVEL_NAMES := {
 }
 
 
-func log(level: Level, tag: String, message: String) -> void:
+func write_log(level: Level, tag: String, message: String) -> void:
 	var formatted := "[%s] [%s] %s" % [_LEVEL_NAMES[level], tag, message]
 	match level:
 		Level.WARN:
@@ -23,16 +23,16 @@ func log(level: Level, tag: String, message: String) -> void:
 
 
 func debug(tag: String, message: String) -> void:
-	log(Level.DEBUG, tag, message)
+	write_log(Level.DEBUG, tag, message)
 
 
 func info(tag: String, message: String) -> void:
-	log(Level.INFO, tag, message)
+	write_log(Level.INFO, tag, message)
 
 
 func warn(tag: String, message: String) -> void:
-	log(Level.WARN, tag, message)
+	write_log(Level.WARN, tag, message)
 
 
 func error(tag: String, message: String) -> void:
-	log(Level.ERROR, tag, message)
+	write_log(Level.ERROR, tag, message)

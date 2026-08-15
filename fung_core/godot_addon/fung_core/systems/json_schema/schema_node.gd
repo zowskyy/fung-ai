@@ -1,12 +1,12 @@
 class_name SchemaNode
 extends Node
 
-@export var schema: Resource
+@export var schema: Variant
 
 signal validation_failed(result: ValidationResult)
 
 
-func _init(p_schema: Resource = null) -> void:
+func _init(p_schema: Variant = null) -> void:
 	if p_schema:
 		schema = p_schema
 
