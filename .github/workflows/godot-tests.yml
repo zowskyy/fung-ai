@@ -2,7 +2,7 @@ name: Godot Scene Animator Gate
 
 on:
   push:
-    branches: [fungusaddons]
+    branches: [scene-animator]
   pull_request:
   workflow_dispatch:
 
