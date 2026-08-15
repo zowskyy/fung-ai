@@ -1,0 +1,107 @@
+{
+  "film_name": "NO SAND BEACH",
+  "format_version": 1,
+  "status": "sequence_01_only",
+  "sequences": [
+    {
+      "id": "seq_01_the_setup",
+      "title": "The Setup",
+      "order": 1,
+      "beats_authored": 17,
+      "duration_seconds": 165,
+      "duration_status": "final",
+      "breakdown_path": "res://NO_SAND_BEACH/scenes/sequence_01_setup_breakdown.md",
+      "scene_plan_path": null
+    },
+    {
+      "id": "seq_02_the_fall",
+      "title": "The Fall",
+      "order": 2,
+      "beats_authored": 0,
+      "duration_seconds": null,
+      "duration_status": "not_estimated",
+      "breakdown_path": null,
+      "scene_plan_path": null
+    },
+    {
+      "id": "seq_03_the_app",
+      "title": "The App",
+      "order": 3,
+      "beats_authored": 0,
+      "duration_seconds": null,
+      "duration_status": "not_estimated",
+      "breakdown_path": null,
+      "scene_plan_path": null
+    },
+    {
+      "id": "seq_04_the_collapse",
+      "title": "The Collapse",
+      "order": 4,
+      "beats_authored": 0,
+      "duration_seconds": null,
+      "duration_status": "not_estimated",
+      "breakdown_path": null,
+      "scene_plan_path": null
+    },
+    {
+      "id": "seq_05_the_courtroom",
+      "title": "The Courtroom",
+      "order": 5,
+      "beats_authored": 0,
+      "duration_seconds": null,
+      "duration_status": "not_estimated",
+      "breakdown_path": null,
+      "scene_plan_path": null
+    },
+    {
+      "id": "seq_06_the_sand",
+      "title": "The Sand",
+      "order": 6,
+      "beats_authored": 0,
+      "duration_seconds": null,
+      "duration_status": "not_estimated",
+      "breakdown_path": null,
+      "scene_plan_path": null
+    },
+    {
+      "id": "seq_07_the_lesson",
+      "title": "The Lesson",
+      "order": 7,
+      "beats_authored": 0,
+      "duration_seconds": null,
+      "duration_status": "not_estimated",
+      "note": "May be folded into seq_06_the_sand as a closing narration beat rather than a standalone sequence -- decide during Sequence 6 breakdown.",
+      "breakdown_path": null,
+      "scene_plan_path": null
+    }
+  ],
+  "total_duration_seconds_known": 165,
+  "total_duration_seconds_note": "Only Sequence 1 has a real duration. Sequences 2-7 need beat breakdowns before total runtime can be estimated.",
+  "target_fps": 24,
+  "target_resolution": "1920x1440",
+  "codec": "h264",
+  "determinism_seed": 42,
+  "visual_style": "black_and_white_hand_drawn",
+  "characters": {
+    "pure": {
+      "role": "protagonist",
+      "age_states_needed": ["7yo_flashback", "teen_15yo", "teen_arrest", "21yo_framed", "adult_30s"],
+      "age_states_confirmed": false
+    },
+    "delia": {
+      "role": "mother",
+      "age_states_needed": ["40s"],
+      "age_states_confirmed": false
+    },
+    "marcus": {
+      "role": "older_brother",
+      "age_states_needed": ["early_30s", "mid_40s"],
+      "age_states_confirmed": false
+    },
+    "earl": {
+      "role": "father_deceased",
+      "age_states_needed": ["memory_single_design"],
+      "age_states_confirmed": false
+    }
+  }
+}
