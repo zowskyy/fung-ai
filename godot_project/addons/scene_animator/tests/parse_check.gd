@@ -82,6 +82,7 @@ var _order: Array[String] = [
 	"tests/support/fake_mechanics_registry.gd",
 	"tests/test_runtime_execution.gd",
 	"tests/test_plugin_activation.gd",
+	"tests/test_validators.gd",
 	"tests/run_scene_animator_tests.gd",
 	"tests/parse_check.gd",
 ]
@@ -90,6 +91,8 @@ var _resources: Array[String] = [
 	"tests/fixtures/valid_linear_scene_plan.tres",
 	"tests/fixtures/invalid_missing_speaker_plan.tres",
 	"tests/fixtures/invalid_unknown_target_plan.tres",
+	"tests/fixtures/invalid_duplicate_beat_ids_plan.tres",
+	"tests/fixtures/invalid_dangling_next_plan.tres",
 ]
 
 var _ok := true

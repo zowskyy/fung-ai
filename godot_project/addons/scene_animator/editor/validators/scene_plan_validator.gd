@@ -235,9 +235,9 @@ static func _check_actor_id(
 		return
 	if not actor_ids.has(actor_id):
 		result.issues.append(ScenePlanValidationIssue.new(
-			ScenePlanValidationIssue.Severity.ERROR,
+			ScenePlanValidationIssue.Severity.WARNING,
 			CODE_UNKNOWN_ACTOR,
-			"Beat references an actor that is not declared in the plan.",
+			"Beat references an actor that is not declared in the plan. Runtime resolution comes from SceneBindings, so this is authoring metadata only.",
 			beat.beat_id,
 			actor_id
 		))
@@ -293,7 +293,7 @@ static func _validate_capabilities(plan: ScenePlan, registry: SceneCapabilityReg
 				))
 			else:
 				var action_def := registry.find_action(action.action_id)
-				var tags: Array[StringName] = actor_tags.get(action.actor_id, [])
+				var tags := _tags_for(actor_tags, action.actor_id)
 				if not action_def.matches_tags(tags, []):
 					result.issues.append(ScenePlanValidationIssue.new(
 						ScenePlanValidationIssue.Severity.WARNING,
@@ -360,3 +360,12 @@ static func _actor_tags(plan: ScenePlan) -> Dictionary:
 		if actor != null and actor.actor_id != &"":
 			tags[actor.actor_id] = actor.actor_tags
 	return tags
+
+
+static func _tags_for(actor_tags: Dictionary, actor_id: StringName) -> Array[StringName]:
+	var out: Array[StringName] = []
+	var stored: Variant = actor_tags.get(actor_id)
+	if stored is Array:
+		for tag: Variant in stored:
+			out.append(StringName(tag))
+	return out

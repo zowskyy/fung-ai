@@ -15,6 +15,7 @@ extends SceneTree
 const SUITE_PATHS: Array[String] = [
 	"res://addons/scene_animator/tests/test_runtime_execution.gd",
 	"res://addons/scene_animator/tests/test_plugin_activation.gd",
+	"res://addons/scene_animator/tests/test_validators.gd",
 ]
 
 const RESULT_PREFIX := "SCENE_ANIMATOR_RESULT: "
