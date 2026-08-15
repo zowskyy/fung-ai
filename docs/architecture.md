@@ -13,7 +13,7 @@ fung_dock.gd (UI shell: TabContainer)
   |-- fung_candidates_tab.gd (browses result.json + previews)
   |-- fung_export_tab.gd     (TileSet/profile selection, triggers export)
   |-- "Environment" (placeholder tab, added via _add_placeholder_tab())
-  |-- "Library"     (placeholder tab, added via _add_placeholder_tab())
+  |-- fung_library_tab.gd    (browses reproducibility manifests, "Regenerate from manifest")
        |
        v
 fung_backend_client.gd (job lifecycle state machine, subprocess launch, status polling)
@@ -35,21 +35,47 @@ Once a job finishes, the flow reverses on export:
 fung_export_tab.gd -> fung_export_service.gd -> decodes result.json + candidate payload JSON
                                                -> builds a Node2D/TileMapLayer scene
                                                -> ResourceSaver.save() to a .tscn file
+                                               -> fung_manifest.gd writes a reproducibility manifest
 ```
 
-As of this writing, there is no `fung_manifest.gd` or equivalent Godot-side
-manifest component — the only "manifest" code in the repo is
-`bridge/manifest_writer.py`, a small Python helper (`atomic_write_json`,
-`read_json`, `ensure_dir`, `sanitize_filename`) used by the bridge to write
-`status.json`/`result.json`/candidate payloads atomically (write to a
-`.tmp` file, then `os.replace`), not a scene-facing manifest format.
+And the Library tab reads that trail back out:
+
+```
+fung_library_tab.gd -> fung_manifest.gd.list_manifests() -> browse past exports
+                     -> "Regenerate from manifest" -> fung_generate_tab.gd.prefill(recipe_id, seed, map_size_tiles)
+```
+
+### `fung_manifest.gd` — reproducibility manifests
+
+`FungManifest` (`services/fung_manifest.gd`) writes one small JSON file per
+exported scene to `res://generated/fung/manifests/<scene_name>.fung.json`
+(note: `res://`, unlike the exported scene itself, which lands under
+`user://` — see `docs/quickstart.md`). `fung_export_service.gd` calls
+`write_manifest()` automatically at the end of a successful
+`export_candidate()`, recording `recipe_id`, `seed`, `map_size_tiles`,
+`tile_size_px`, `quality_metrics` (the candidate's metrics dict), and the
+scene/preview file paths, plus a `format_version` and version fields
+(`fung_version`, `recipe_version`, `export_profile_version` — the latter
+two are currently placeholder defaults, since no recipe- or
+export-profile-versioning system exists elsewhere in the codebase yet). A
+manifest write failure doesn't fail the export itself — it's a
+`push_error` alongside an otherwise-successful `export_completed` signal.
+`read_manifest()` and `list_manifests()` (sorted newest-first by
+`created_utc`) round out the read side, used by the Library tab.
 
 ### `fung_dock.gd` — UI
 
-Builds a `TabContainer` in code (`_ready()`), instantiates the three real
-tab scripts as children, and adds two placeholder panels for "Environment"
-and "Library" via `_add_placeholder_tab()`. It wires the Candidates tab's
-`candidate_selected` signal to push the selection into the Export tab.
+Builds a `TabContainer` in code (`_ready()`) and instantiates four real
+tab scripts as children — Generate, Candidates, Export, and Library — plus
+one placeholder panel for "Environment" via `_add_placeholder_tab()`. It
+wires the Candidates tab's `candidate_selected` signal to push the
+selection into the Export tab, and the Library tab's
+`manifest_regenerate_requested` signal to `generate_tab.prefill()`.
+
+The Library tab (`fung_library_tab.gd`) itself still has two inline
+placeholder sections — "Saved Recipes" and "Pinned Candidates" — since
+neither has a backend yet; only the manifest browsing and
+regenerate-from-manifest parts are functional.
 
 ### `fung_backend_client.gd` — job lifecycle + subprocess + polling
 

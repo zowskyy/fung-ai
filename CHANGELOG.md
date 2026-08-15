@@ -19,14 +19,21 @@ Python bridge process.
     with preview image, per-candidate metrics, and tags.
   - **Export** — exports a selected candidate to a `TileMapLayer` scene
     given a `TileSet` resource.
-  - "Environment" and "Library" tabs are present as placeholders, not yet
-    implemented.
+  - **Library** — browses reproducibility manifests written by past
+    exports, with a "Regenerate from manifest" button that pre-fills the
+    Generate tab. Its "Saved Recipes" and "Pinned Candidates" sections are
+    still placeholders (no backend yet).
+  - "Environment" remains a placeholder tab, not yet implemented.
 - **`FungBackendClient`** (`services/fung_backend_client.gd`) — job
   lifecycle state machine, Python subprocess invocation
   (`python -m bridge.fung_bridge`), and `status.json` polling.
 - **`FungExportService`** (`services/fung_export_service.gd`) — decodes a
   candidate's RLE-encoded grid and builds a `TileMapLayer` + spawn/exit/
   gameplay marker scene, saved via `ResourceSaver`.
+- **`FungManifest`** (`services/fung_manifest.gd`) — reproducibility
+  manifest system: writes a JSON manifest (recipe id, seed, map size,
+  metrics, file paths) to `res://generated/fung/manifests/` on every
+  successful export, and lists/reads them back for the Library tab.
 - **Local JSON-file bridge protocol** (`bridge/`) — `fung_bridge.py` CLI
   entry point, `bridge/schemas.py` typed request/result/error/status
   models, and `bridge/manifest_writer.py` for atomic JSON writes. See
@@ -36,8 +43,10 @@ Python bridge process.
   connectivity validation, gameplay-facing metrics (walkable ratio, path
   length, loop count, branch count, open space score, composite score),
   tag generation, RLE grid encoding, and preview PNG rendering.
-- **Three built-in recipes**: `compact_roguelike_rooms`, `open_exploration`,
-  `dense_maze`. See `docs/recipes.md` for their exact parameters.
+- **16 built-in recipes** spanning top-down cave layouts and side-view/
+  platformer-oriented caves, each with empirically-calibrated
+  `fitness_targets` (see `tests/test_recipes.py`). See `docs/recipes.md`
+  for the full list and their exact parameters.
 - **CI**: two GitHub Actions workflows —
   `.github/workflows/test.yml` (Python 3.11, `ruff` lint over
   `fung_ai_v2/`, `bridge/`, `scripts/`, and the `pytest` suite) and

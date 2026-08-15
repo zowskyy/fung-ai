@@ -108,3 +108,13 @@ you want it version-controlled.
 The `TileMapLayer` expects a `TileSet` with a source at atlas source id `0`
 providing tiles at atlas coordinates `(0, 0)` (floor) and `(1, 0)` (wall) —
 see `docs/troubleshooting.md` for details on setting this up correctly.
+
+A successful export also writes a small reproducibility manifest to
+`res://generated/fung/manifests/<candidate_id>.fung.json`, recording the
+recipe id, seed, map size, and metrics that produced the scene. The
+**Library tab** lists these manifests and has a "Regenerate from manifest"
+button that pre-fills the Generate tab's recipe/seed/map size from a past
+export (it only pre-fills the form — you still need to click Generate).
+The Library tab's "Saved Recipes" and "Pinned Candidates" sections are
+still placeholders; only manifest browsing is functional as of v0.1. The
+**Environment tab** remains a placeholder entirely.
