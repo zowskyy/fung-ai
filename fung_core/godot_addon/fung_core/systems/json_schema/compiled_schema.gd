@@ -74,7 +74,22 @@ func _validate_internal(data: Variant, schema: Dictionary, path: String, result:
 		if _refs.has(ref):
 			_validate_internal(data, _refs[ref], path, result)
 			return
-	
+
+	# Null validation - check null against schema type rules
+	if data == null:
+		if schema.has("type"):
+			if not _validate_type(data, schema["type"], path, result):
+				return
+		elif not schema.has("type"):
+			# If no type is specified and data is null, it's valid by default
+			pass
+		if schema.has("const"):
+			if data != schema["const"]:
+				result.add_error("Value must be %s" % [schema["const"]], path)
+				return
+		# Null has no other validations (no minLength, maximum, etc.)
+		return
+
 	# Type validation
 	if schema.has("type"):
 		if not _validate_type(data, schema["type"], path, result):
