@@ -1,0 +1,36 @@
+name: Fung Core
+on: [push, pull_request]
+jobs:
+  python-checks:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-python@v4
+        with:
+          python-version: '3.11'
+      - run: pip install -r requirements.txt
+      - run: python3 -m pytest fung_core/python/tests/ -v
+      - run: python3 fung_core/tools/validate_examples.py
+      - run: python3 fung_core/tools/gdscript_lint.py
+
+  godot-checks:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      # First real execution of this Godot code — never run in the dev sandbox that built it, verify carefully if this step fails.
+      - uses: chickensoft-games/setup-godot@v2
+        with:
+          version: 4.3.0
+          use-dotnet: false
+      - name: Narrative smoke test (CutsceneDirector)
+        run: godot --headless --path fung_core -s godot_addon/fung_core/tests/test_cutscene_director.gd
+      - name: Run example (cave_boss vertical slice)
+        run: godot --headless --path fung_core -s tools/run_example.gd --seed=42 --timeout=30
+      - name: Upload replay artifact
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: cave-boss-replay
+          path: fung_core/examples/cave_boss/replay.json
+      - name: Replay check
+        run: godot --headless --path fung_core -s tools/replay_check.gd
