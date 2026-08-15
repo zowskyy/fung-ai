@@ -6,6 +6,36 @@
 
 ---
 
+## Godot 4.3 Specific Requirements
+
+### @export Annotation MUST Have Initialization
+```gdscript
+# WRONG - Parse error in Godot 4.3
+@export var schema: Variant
+
+# CORRECT - Always initialize @export variables
+@export var schema: Variant = null
+@export var count: int = 0
+@export var list: Array = []
+```
+
+This is non-negotiable. Every @export variable needs explicit initialization or CI will fail.
+
+### Type Changes Require Full Review
+When changing a variable's type (Resource → Variant, etc.):
+1. Add explicit @export initialization immediately
+2. Review ALL usages of that variable
+3. Verify type guards (`is Dictionary`, `is CustomClass`) still work
+4. Check function signatures that accept/return that type
+5. Only commit after full file review
+
+### Function Naming
+Avoid names that conflict with Godot built-ins:
+- ❌ `func log(...)` - conflicts with `log(x)` (math function)
+- ✅ `func write_log(...)` or `func print_log(...)`
+
+Check Godot API docs before naming functions.
+
 ## GDScript Syntax Safeguards
 
 ### ❌ FORBIDDEN Patterns (Will cause CI failure)
