@@ -18,12 +18,13 @@ extends Node2D
 # via a pre-exported hand-authored scene.
 #
 # IMPORTANT CAVEAT: this is the one sample where the player's collisions
-# against terrain depend on tileset/fung_tileset.tres actually carrying a
-# working physics layer + collision polygon on the wall tile.
-# fung_export_service.gd's _build_scene() (and this script, which mirrors
-# it) only ever calls TileMapLayer.set_cell() - neither one configures any
-# collision itself. See tileset/fung_tileset.tres's header comment and
-# this project's README.md for the honest status of that setup.
+# against terrain depend on tileset_builder.gd's build(true) call actually
+# carrying a working physics layer + collision polygon on the wall tile.
+# fung_export_service.gd's _build_scene() only ever calls
+# TileMapLayer.set_cell() - it doesn't configure any collision itself, so
+# collision here comes entirely from the TileSet built by
+# tileset_builder.gd. See that file's header comment and this project's
+# README.md for the honest status of that setup.
 #
 # UNVERIFIED: authored with no Godot binary available in this environment.
 # Not run or tested by a real Godot engine - see repo root commit message.

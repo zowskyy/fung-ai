@@ -10,11 +10,11 @@ extends CharacterBody2D
 # sample doesn't need a hand-authored player.tscn.
 #
 # IMPORTANT CAVEAT: this controller's collisions against terrain only work
-# if tileset/fung_tileset.tres actually has a working physics layer +
-# collision polygon on the wall tile. That .tres was hand-written without
-# a Godot binary to verify it (see its own header comment and this
-# project's README.md) - if the player falls straight through the level,
-# start there, not here.
+# if tileset_builder.gd's build(true) call actually produces a working
+# physics layer + collision polygon on the wall tile. That was written
+# without a Godot binary to verify it (see tileset_builder.gd's header
+# comment and this project's README.md) - if the player falls straight
+# through the level, start there, not here.
 #
 # UNVERIFIED: authored with no Godot binary available in this environment.
 # Not run or tested by a real Godot engine - see repo root commit message.
