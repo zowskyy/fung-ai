@@ -5,18 +5,24 @@ extends SceneTree
 # client / export service helper methods behave correctly, and the RLE grid
 # encoding produced by bridge/generation.py's encode_grid_rle() decodes back
 # correctly in fung_export_service.gd (cross-language contract check).
+#
+# All setup and assertions run from _process(), not _initialize(): a node's
+# _ready() only fires synchronously on add_child() once the SceneTree is
+# actually running its frame loop, which _initialize() runs before (proven
+# empirically - a first version of this test that built nodes in
+# _initialize() saw every @onready-populated field come back null even
+# though the same code works correctly in-editor).
 
 var _passed: bool = true
+var _started: bool = false
 
 
-func _initialize() -> void:
-	_test_dock_builds_tab_tree()
-	_test_generate_tab_defaults()
-	_test_candidates_tab_defaults()
-	_test_export_tab_defaults()
-	_test_backend_client_json_helpers()
-	_test_export_service_rle_decode()
-	_test_export_service_scene_path()
+func _process(_delta: float) -> bool:
+	if _started:
+		return true
+	_started = true
+
+	_run_tests()
 
 	if _passed:
 		print("test_dock_smoke: PASS")
@@ -24,6 +30,17 @@ func _initialize() -> void:
 	else:
 		print("test_dock_smoke: FAIL")
 		quit(1)
+	return true
+
+
+func _run_tests() -> void:
+	_test_dock_builds_tab_tree()
+	_test_generate_tab_defaults()
+	_test_candidates_tab_defaults()
+	_test_export_tab_defaults()
+	_test_backend_client_json_helpers()
+	_test_export_service_rle_decode()
+	_test_export_service_scene_path()
 
 
 func _check(condition: bool, message: String) -> void:
@@ -41,11 +58,19 @@ func _test_dock_builds_tab_tree() -> void:
 	_check(dock.generate_tab != null, "dock.generate_tab should be instantiated")
 	_check(dock.candidates_tab != null, "dock.candidates_tab should be instantiated")
 	_check(dock.export_tab != null, "dock.export_tab should be instantiated")
-	_check(
-		dock.tab_container.get_child_count() == 5,
-		"dock should have 5 tabs (Generate, Candidates, Export, Environment, Library), got %d"
-		% dock.tab_container.get_child_count()
-	)
+
+	if dock.tab_container != null:
+		_check(
+			dock.tab_container.get_child_count() == 5,
+			"dock should have 5 tabs (Generate, Candidates, Export, Environment, Library), got %d"
+			% dock.tab_container.get_child_count()
+		)
+
+	if dock.generate_tab != null:
+		_check(
+			dock.generate_tab.recipe_selector != null,
+			"generate_tab.recipe_selector should be built by its own _ready(), nested under dock"
+		)
 
 	dock.queue_free()
 
