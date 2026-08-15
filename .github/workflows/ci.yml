@@ -1,0 +1,94 @@
+name: CI
+
+on:
+  push:
+    branches: [main, master]
+  pull_request:
+    branches: [main, master]
+
+jobs:
+  test:
+    runs-on: windows-latest
+    timeout-minutes: 30
+
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v4
+
+    - name: Set up Python 3.14
+      uses: actions/setup-python@v5
+      with:
+        python-version: '3.14'
+
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install pytest pytest-qt
+        pip install PySide6
+
+    - name: Run tests
+      env:
+        QT_QPA_PLATFORM: offscreen
+      run: |
+        python -m pytest tests/ \
+          --ignore=tests/test_30_providers_hello_world.py \
+          --ignore=tests/test_e2e_post_install.py \
+          --ignore=tests/test_ai_server.py \
+          --ignore=tests/test_kotlin_runner_stress.py \
+          --ignore=tests/test_cpp_runner_stress.py \
+          --ignore=tests/test_java_runner_stress.py \
+          --ignore=tests/test_rust_runner_stress.py \
+          --ignore=tests/test_js_runner_stress.py \
+          --ignore=tests/test_provider_live.py \
+          -v --tb=short
+
+    - name: Build executable
+      if: success()
+      run: |
+        python build_exe.py
+
+    - name: Verify executable exists
+      if: success()
+      run: |
+        if (Test-Path "dist/Creator/Creator.exe") {
+          Write-Host "Executable built successfully"
+        } else {
+          Write-Error "Executable not found"
+          exit 1
+        }
+
+  test-ubuntu:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v4
+
+    - name: Set up Python 3.14
+      uses: actions/setup-python@v5
+      with:
+        python-version: '3.14'
+
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install pytest pytest-qt
+        sudo apt-get update && sudo apt-get install -y python3-pyqt5.qtwebengine
+        pip install PySide6
+
+    - name: Run tests
+      env:
+        QT_QPA_PLATFORM: offscreen
+      run: |
+        python -m pytest tests/ \
+          --ignore=tests/test_30_providers_hello_world.py \
+          --ignore=tests/test_e2e_post_install.py \
+          --ignore=tests/test_ai_server.py \
+          --ignore=tests/test_kotlin_runner_stress.py \
+          --ignore=tests/test_cpp_runner_stress.py \
+          --ignore=tests/test_java_runner_stress.py \
+          --ignore=tests/test_rust_runner_stress.py \
+          --ignore=tests/test_js_runner_stress.py \
+          --ignore=tests/test_provider_live.py \
+          -v --tb=short
