@@ -10,8 +10,10 @@ signal generation_progress(progress: float, stage: String, message: String)
 signal generation_completed(success: bool, error_message: String)
 
 var _backend_client: FungBackendClient = null
+var _candidates_tab: FungCandidatesTab = null
 var _job_counter: int = 0
 var _current_request_id: String = ""
+var _current_response_path: String = ""
 
 @onready var recipe_selector: OptionButton = $RecipeSelector
 @onready var width_spin: SpinBox = $MapSizeContainer/WidthSpin
@@ -42,6 +44,11 @@ func set_backend_client(backend_client: FungBackendClient) -> void:
 		_backend_client.generation_progress.connect(_on_generation_progress)
 		_backend_client.generation_completed.connect(_on_generation_completed)
 		_backend_client.generation_cancelled.connect(_on_generation_cancelled)
+
+
+func set_candidates_tab(candidates_tab: FungCandidatesTab) -> void:
+	"""Set reference to candidates tab for auto-loading results."""
+	_candidates_tab = candidates_tab
 
 
 func _setup_ui() -> void:
@@ -110,6 +117,9 @@ func _on_generate_pressed() -> void:
 
 	# Ensure job directory exists
 	DirAccess.make_absolute_path(job_dir, "user://")
+
+	# Store response path for later loading
+	_current_response_path = response_path
 
 	# Build request JSON
 	var request: Dictionary = {
@@ -192,6 +202,14 @@ func _on_generation_completed(request_id: String, success: bool, error_message: 
 	if success:
 		status_label.text = "Generation complete - loading results..."
 		progress_bar.value = 100
+
+		# Auto-load results into candidates tab
+		if _candidates_tab:
+			var loaded: bool = _candidates_tab.load_results(_current_response_path)
+			if loaded:
+				status_label.text = "Results loaded - browse in Candidates tab"
+			else:
+				status_label.text = "Generation complete, but failed to load results"
 	else:
 		status_label.text = "Error: %s" % error_message
 		progress_bar.value = 0
