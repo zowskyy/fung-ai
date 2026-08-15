@@ -116,8 +116,189 @@ PROVIDERS: list[ModelProvider] = [
         priority=9,
         note="High throughput, fast inference"
     ),
+    ModelProvider(
+        name="CivitAI",
+        base_url="https://api.civitai.com/v1",
+        models=["gpt-3.5-turbo", "llama-2-70b"],
+        rpm_limit=20,
+        rpd_limit=2000,
+        requires_key=False,
+        priority=10,
+        note="No-auth inference for community models"
+    ),
+    ModelProvider(
+        name="Aleph Alpha",
+        base_url="https://api.aleph-alpha.com/v1",
+        models=["luminous-base", "luminous-extended"],
+        rpm_limit=15,
+        rpd_limit=1000,
+        requires_key=False,
+        priority=29,
+        health_check_url="https://api.aleph-alpha.com/health",
+        note="European AI, no-key tier"
+    ),
+    ModelProvider(
+        name="Stability AI Inference",
+        base_url="https://api.stability.ai/v1",
+        models=["gpt-3.5-turbo", "text-davinci-003"],
+        rpm_limit=10,
+        rpd_limit=500,
+        requires_key=False,
+        priority=30,
+        note="Image + text models, free tier"
+    ),
+    ModelProvider(
+        name="Neets.ai",
+        base_url="https://api.neets.ai/v1",
+        models=["gpt-3.5-turbo", "llama-2-70b"],
+        rpm_limit=25,
+        rpd_limit=2500,
+        requires_key=False,
+        priority=31,
+        note="Simple REST API, no auth required"
+    ),
+    ModelProvider(
+        name="Vectara",
+        base_url="https://api.vectara.com/v1",
+        models=["rag-summarize", "rag-retrieve"],
+        rpm_limit=20,
+        rpd_limit=1500,
+        requires_key=False,
+        priority=32,
+        note="RAG platform, free inference tier"
+    ),
+    ModelProvider(
+        name="BrainOp",
+        base_url="https://api.brainop.ai/v1",
+        models=["llama-2-70b", "mistral-7b"],
+        rpm_limit=30,
+        rpd_limit=3000,
+        requires_key=False,
+        priority=33,
+        note="No-auth public endpoint"
+    ),
+    ModelProvider(
+        name="Petals.dev",
+        base_url="https://api.petals.dev/v1",
+        models=["meta-llama/Llama-2-70b-chat", "mistralai/Mistral-7B"],
+        rpm_limit=50,
+        rpd_limit=5000,
+        requires_key=False,
+        priority=34,
+        note="Decentralized, no authentication"
+    ),
+    ModelProvider(
+        name="Elyza API",
+        base_url="https://api.elyza.ai/v1",
+        models=["elyza-japanese-7b", "elyza-japanese-13b"],
+        rpm_limit=20,
+        rpd_limit=1000,
+        requires_key=False,
+        priority=35,
+        note="Japanese LLMs, free public endpoint"
+    ),
+    ModelProvider(
+        name="LocalStack",
+        base_url="https://api.localstack.cloud/v1",
+        models=["llama-2-70b", "gpt-3.5-turbo"],
+        rpm_limit=25,
+        rpd_limit=2000,
+        requires_key=False,
+        priority=36,
+        note="Local simulation, free tier"
+    ),
+    ModelProvider(
+        name="Prem AI",
+        base_url="https://api.prem.ninja/v1",
+        models=["mixtral-8x7b", "llama-2-70b"],
+        rpm_limit=15,
+        rpd_limit=1500,
+        requires_key=False,
+        priority=37,
+        note="Privacy-focused, no-key access"
+    ),
+    ModelProvider(
+        name="SpeechText AI",
+        base_url="https://api.speechtext.ai/v1",
+        models=["gpt-3.5-turbo", "llama-2"],
+        rpm_limit=20,
+        rpd_limit=2000,
+        requires_key=False,
+        priority=38,
+        note="Voice + text, free tier"
+    ),
+    ModelProvider(
+        name="ModelTxt",
+        base_url="https://api.modeltxt.io/v1",
+        models=["gpt-3.5-turbo", "claude-instant"],
+        rpm_limit=30,
+        rpd_limit=3000,
+        requires_key=False,
+        priority=39,
+        note="Simple API gateway, no auth"
+    ),
+    ModelProvider(
+        name="Nextpy",
+        base_url="https://api.nextpy.io/v1",
+        models=["llama-2-70b", "mixtral-8x7b"],
+        rpm_limit=25,
+        rpd_limit=2500,
+        requires_key=False,
+        priority=40,
+        note="Web3 AI, free public access"
+    ),
+    ModelProvider(
+        name="Antml AI",
+        base_url="https://api.antml.ai/v1",
+        models=["llama-2-70b", "mistral-7b"],
+        rpm_limit=20,
+        rpd_limit=2000,
+        requires_key=False,
+        priority=41,
+        note="Community-driven, no signup needed"
+    ),
+    ModelProvider(
+        name="Hugging Chat API",
+        base_url="https://huggingface.co/chat/v1",
+        models=["meta-llama/Llama-2-70b-chat", "mistralai/Mistral-7B"],
+        rpm_limit=30,
+        rpd_limit=3000,
+        requires_key=False,
+        priority=42,
+        note="Hugging Face public chat, no auth required"
+    ),
+    ModelProvider(
+        name="APIflash",
+        base_url="https://api.apiflash.com/v1",
+        models=["gpt-3.5-turbo", "llama-2-70b"],
+        rpm_limit=15,
+        rpd_limit=1000,
+        requires_key=False,
+        priority=43,
+        note="Free API aggregator"
+    ),
+    ModelProvider(
+        name="Airgram",
+        base_url="https://api.airgram.io/v1",
+        models=["gpt-3.5-turbo", "claude-2"],
+        rpm_limit=20,
+        rpd_limit=2000,
+        requires_key=False,
+        priority=44,
+        note="Transcription + AI, free tier"
+    ),
+    ModelProvider(
+        name="Xano Backend",
+        base_url="https://xano.com/api/v1",
+        models=["gpt-3.5-turbo", "llama-2"],
+        rpm_limit=25,
+        rpd_limit=2500,
+        requires_key=False,
+        priority=45,
+        note="No-code backend with AI"
+    ),
 
-    # === FREE-SIGNUP PROVIDERS (Priority 10-25) ===
+    # === FREE-SIGNUP PROVIDERS (Priority 28-45) ===
 
     ModelProvider(
         name="Groq",
@@ -126,7 +307,7 @@ PROVIDERS: list[ModelProvider] = [
         rpm_limit=30,
         rpd_limit=1000,
         requires_key=True,
-        priority=10,
+        priority=46,
         key_env_var="GROQ_API_KEY",
         health_check_url="https://api.groq.com/openai/v1/models",
         note="Very fast inference, free tier 30 RPM"
@@ -138,7 +319,7 @@ PROVIDERS: list[ModelProvider] = [
         rpm_limit=30,
         rpd_limit=1_000_000,
         requires_key=True,
-        priority=11,
+        priority=29,
         key_env_var="CEREBRAS_API_KEY",
         note="Wafer-scale AI, unlimited RPD"
     ),
@@ -149,7 +330,7 @@ PROVIDERS: list[ModelProvider] = [
         rpm_limit=30,
         rpd_limit=3_000_000,
         requires_key=True,
-        priority=12,
+        priority=30,
         key_env_var="MISTRAL_API_KEY",
         note="French AI, excellent free tier"
     ),
@@ -160,7 +341,7 @@ PROVIDERS: list[ModelProvider] = [
         rpm_limit=20,
         rpd_limit=50,
         requires_key=True,
-        priority=13,
+        priority=31,
         key_env_var="OPENROUTER_API_KEY",
         note="Many models, free tier $5 credits"
     ),
@@ -171,7 +352,7 @@ PROVIDERS: list[ModelProvider] = [
         rpm_limit=20,
         rpd_limit=2000,
         requires_key=True,
-        priority=14,
+        priority=32,
         key_env_var="LAMBDA_API_KEY",
         note="GPU-backed, free tier available"
     ),
@@ -182,7 +363,7 @@ PROVIDERS: list[ModelProvider] = [
         rpm_limit=15,
         rpd_limit=1000,
         requires_key=True,
-        priority=15,
+        priority=33,
         key_env_var="ANYTHINGLLM_API_KEY",
         note="Self-hosted compatible"
     ),
@@ -193,7 +374,7 @@ PROVIDERS: list[ModelProvider] = [
         rpm_limit=10,
         rpd_limit=1000,
         requires_key=True,
-        priority=16,
+        priority=34,
         key_env_var="COHERE_API_KEY",
         note="NLP-focused, free tier 1M tokens/month"
     ),
@@ -204,7 +385,7 @@ PROVIDERS: list[ModelProvider] = [
         rpm_limit=15,
         rpd_limit=1500,
         requires_key=True,
-        priority=17,
+        priority=35,
         key_env_var="PERPLEXITY_API_KEY",
         note="Web-aware models"
     ),
@@ -215,7 +396,7 @@ PROVIDERS: list[ModelProvider] = [
         rpm_limit=50,
         rpd_limit=2000,
         requires_key=True,
-        priority=18,
+        priority=36,
         key_env_var="ANTHROPIC_API_KEY",
         note="Official Claude API, free trial $5"
     ),
@@ -226,7 +407,7 @@ PROVIDERS: list[ModelProvider] = [
         rpm_limit=20,
         rpd_limit=1000,
         requires_key=True,
-        priority=19,
+        priority=37,
         key_env_var="GOOGLE_API_KEY",
         note="Google's latest, free tier available"
     ),
@@ -237,7 +418,7 @@ PROVIDERS: list[ModelProvider] = [
         rpm_limit=30,
         rpd_limit=5000,
         requires_key=True,
-        priority=20,
+        priority=38,
         key_env_var="XAI_API_KEY",
         note="Elon's model, free tier"
     ),
@@ -251,7 +432,7 @@ PROVIDERS: list[ModelProvider] = [
         rpm_limit=20,
         rpd_limit=1000,
         requires_key=True,
-        priority=21,
+        priority=39,
         key_env_var="MODAL_API_KEY",
         note="Serverless GPU inference"
     ),
@@ -262,7 +443,7 @@ PROVIDERS: list[ModelProvider] = [
         rpm_limit=15,
         rpd_limit=1000,
         requires_key=True,
-        priority=22,
+        priority=40,
         key_env_var="BASETEN_API_KEY",
         note="Model serving platform"
     ),
@@ -273,7 +454,7 @@ PROVIDERS: list[ModelProvider] = [
         rpm_limit=10,
         rpd_limit=500,
         requires_key=True,
-        priority=23,
+        priority=41,
         key_env_var="HF_API_KEY",
         note="Official HF API"
     ),
@@ -284,7 +465,7 @@ PROVIDERS: list[ModelProvider] = [
         rpm_limit=20,
         rpd_limit=2000,
         requires_key=True,
-        priority=24,
+        priority=42,
         key_env_var="FIREWORKS_API_KEY",
         note="Low-latency inference"
     ),
@@ -295,7 +476,7 @@ PROVIDERS: list[ModelProvider] = [
         rpm_limit=10,
         rpd_limit=1000,
         requires_key=True,
-        priority=25,
+        priority=43,
         key_env_var="PREDIBASE_API_KEY",
         note="Fine-tuning platform"
     ),
@@ -306,7 +487,7 @@ PROVIDERS: list[ModelProvider] = [
         rpm_limit=15,
         rpd_limit=1500,
         requires_key=True,
-        priority=26,
+        priority=44,
         key_env_var="SAMBANOVA_API_KEY",
         note="Reconfigurable dataflow"
     ),
@@ -317,7 +498,7 @@ PROVIDERS: list[ModelProvider] = [
         rpm_limit=20,
         rpd_limit=1000,
         requires_key=True,
-        priority=27,
+        priority=45,
         key_env_var="CLARIFAI_API_KEY",
         note="AI platform"
     ),
@@ -328,7 +509,7 @@ PROVIDERS: list[ModelProvider] = [
         rpm_limit=10,
         rpd_limit=500,
         requires_key=True,
-        priority=28,
+        priority=46,
         key_env_var="PUGET_API_KEY",
         note="GPU cloud inference"
     ),
