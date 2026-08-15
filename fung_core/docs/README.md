@@ -77,7 +77,34 @@ godot --headless --path fung_core -s tools/run_example.gd --seed=42 --timeout=30
 godot --headless --path fung_core -s tools/replay_check.gd
 ```
 
-## Planned
+## Phase 9: Native JSON Schema Engine
 
-A native GDScript JSON Schema validation engine (no Python dependency at
-runtime) is a planned future addition and has not been started yet.
+**Status: In Progress**
+
+Fung Core now includes a native GDScript JSON Schema validation engine that
+validates game data at runtime without any Python dependencies. The engine
+supports JSON Schema Draft 2020-12 with full keyword support planned across
+future phases.
+
+**Key Components:**
+- `JsonSchemaAsset` — Resource-based schema storage with compilation caching
+- `CompiledSchema` — Runtime-optimized validation execution
+- `SchemaNode` — Node-based validator with signal-based error handling
+- `ValidationResult` — Detailed error tracking with JSON path information
+
+**Usage Example:**
+```gdscript
+var schema := JsonSchemaAsset.new(schema_dict)
+var result := schema.validate(world_data)
+if result.success:
+    print("Data is valid!")
+else:
+    print("Errors: %s" % result.errors)
+```
+
+**RFC 8785 Canonicalization:** Schemas use canonical JSON representation for
+deterministic validation and reproducible replay recording.
+
+**Documentation:** See [JSON_SCHEMA.md](JSON_SCHEMA.md) for comprehensive API
+reference, examples, integration patterns, performance notes, and migration
+guide for schema versioning.
