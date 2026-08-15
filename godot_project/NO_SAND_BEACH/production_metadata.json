@@ -93,9 +93,14 @@
   "characters": {
     "pure": {
       "role": "protagonist",
-      "age_states_needed": ["7yo_flashback", "teen_15yo", "teen_arrest", "21yo_framed", "adult_30s"],
-      "age_states_confirmed": false,
-      "period_styled_states": ["teen_arrest", "21yo_framed"]
+      "age_states_needed": ["age_7", "age_15", "age_27"],
+      "age_states_confirmed": true,
+      "age_state_coverage": {
+        "age_7": "Earl's Ghost flashback only (seq_01, Beat 1.14)",
+        "age_15": "The Setup present-day timeline (seq_01) + covers the teen-arrest beat opening seq_02",
+        "age_27": "Covers 21yo framing/prison through the rest of the film (seq_02 close through seq_07). Two wardrobe/environment passes needed within this single design: prison-era (period-styled, seq_02) and contemporary (seq_03 onward) -- same character sprite base, different costuming, not a separate age variant."
+      },
+      "period_styled_states": ["age_15_teen_arrest_beat", "age_27_prison_era_wardrobe"]
     },
     "delia": {
       "role": "mother",

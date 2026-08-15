@@ -19,7 +19,7 @@ NO SAND BEACH takes visual and tonal direction from *Menace II Society* (1993). 
 ## Sequence 1: The Setup ✅ Beats authored (17 beats, 2:45)
 
 - **Locations:** Santa Ana apartment (interior, night & morning), kitchen, bedroom, school playground, school building (establishing), aerial Santa Ana (drone/sunset)
-- **Characters:** Delia (40s), Pure (7yo memory + 15yo present), Marcus (early 30s), Earl (memory only), two classmates (extras)
+- **Characters:** Delia (40s), Pure (age 7 design — memory; age 15 design — present), Marcus (early 30s), Earl (memory only), two classmates (extras)
 - **Animation states:**
   - Delia: entering (tired), kissing (tender), changing (routine), leaving (resigned)
   - Pure: sleeping, waking, eating, sitting (alone), standing, walking, remembering
@@ -35,10 +35,10 @@ NO SAND BEACH takes visual and tonal direction from *Menace II Society* (1993). 
 
 - **Story beats (from script.md):** Pure arrested as a teenager → framed at 21 → 10 years in prison → teaches himself to code on a broken library computer → released, can't get hired (background check kills every interview)
 - **Likely locations:** Street/arrest location, courtroom (brief, framing), prison cell, prison library, a sequence of job-interview offices
-- **Characters:** Pure (teen at arrest, 21yo at framing/prison, ~30s at release)
+- **Characters:** Pure — age 15 design for the arrest beat, age 27 design (prison-era wardrobe) for framing/prison through release
 - **Animation states (anticipated):** Pure — handcuffed/arrested, sitting (cell), typing (library computer, focused/hopeful), interview (hopeful → crestfallen), walking out (rejected)
-- **Style note:** This entire sequence gets M2S-referenced period styling (see "Visual Style Reference" above) — the arrest, prison, and street setting should read early-90s in wardrobe, environment, and staging, distinct from the contemporary look of every other sequence. The job-interview beats at the sequence's end transition back to present-day styling as Pure re-enters contemporary life.
-- **Open question:** does teen-Pure's arrest get its own on-screen beat, or is it handled as a quick montage/VO before the 21yo framing takes over as the sequence's dramatic weight?
+- **Style note:** This entire sequence gets M2S-referenced period styling (see "Visual Style Reference" above) — the arrest, prison, and street setting should read early-90s in wardrobe, environment, and staging, distinct from the contemporary look of every other sequence. The job-interview beats at the sequence's end transition the age-27 design back to present-day wardrobe as Pure re-enters contemporary life.
+- **Open question:** does the age-15 arrest get its own on-screen beat, or is it handled as a quick montage/VO before the age-27 framing takes over as the sequence's dramatic weight?
 
 ---
 
@@ -46,7 +46,7 @@ NO SAND BEACH takes visual and tonal direction from *Menace II Society* (1993). 
 
 - **Story beats:** Pure builds "No Sand Beach" app, rewrites his background, gets hired, gets the corner office overlooking Newport Beach. App starts erasing real memories. Earl appears as a glitch on-screen warning him.
 - **Likely locations:** Home workspace/laptop, corner office (Newport Beach view), abstract "glitch"/UI space for Earl's appearances
-- **Characters:** Pure (~30s, adult), Earl (glitch/digital appearance — same design as memory Earl, possibly with a corrupted/glitched shader treatment)
+- **Characters:** Pure (age 27 design, contemporary wardrobe), Earl (glitch/digital appearance — same design as memory Earl, possibly with a corrupted/glitched shader treatment)
 - **Animation states (anticipated):** Pure — coding intently, triumphant (new office), unsettled/forgetting (glitch reactions); Earl — glitch materialize, speaking, glitch dissolve
 - **VFX:** UI/screen glitch effect, memory-erasure visual metaphor (this is a new VFX category beyond Sequence 1's sepia-memory treatment)
 
@@ -56,7 +56,7 @@ NO SAND BEACH takes visual and tonal direction from *Menace II Society* (1993). 
 
 - **Story beats:** Pure collapses. Hospital scene — Delia's speech ("I saved your body. I didn't save your heart."). Marcus arrives, they reconcile after 20 years of tension. Pure goes home, deletes the app, memories return.
 - **Likely locations:** Hospital room, home (app deletion)
-- **Characters:** Pure (~30s), Delia (40s, now with visible age/wear from years passed), Marcus (mid-40s)
+- **Characters:** Pure (age 27 design), Delia (40s, now with visible age/wear from years passed), Marcus (mid-40s)
 - **Animation states (anticipated):** Pure — collapsing, lying in hospital bed, listening, deleting app (relief); Delia — holding hand, speaking (raw/vulnerable, different register than Seq 1's tired-tender); Marcus — entering hospital, embracing (first hug in 20 years)
 - **Key emotional beat:** the Marcus/Pure hug — likely the sequence's visual and emotional centerpiece, deserves its own beat with a held camera composition
 
@@ -66,7 +66,7 @@ NO SAND BEACH takes visual and tonal direction from *Menace II Society* (1993). 
 
 - **Story beats:** Pure petitions for honest expungement. Judge denies him. Pure's response line: "The law doesn't respect me. But I'm not going to let that break me."
 - **Likely locations:** Courtroom (interior)
-- **Characters:** Pure (~30s), Judge (new minor character — not previously designed), possibly Delia/Marcus in gallery for support
+- **Characters:** Pure (age 27 design), Judge (new minor character — not previously designed), possibly Delia/Marcus in gallery for support
 - **Animation states (anticipated):** Pure — standing, speaking (resolve, not defeat), listening to denial; Judge — presiding, delivering ruling
 - **New asset needed:** Judge character design (not covered by existing roster)
 
@@ -76,7 +76,7 @@ NO SAND BEACH takes visual and tonal direction from *Menace II Society* (1993). 
 
 - **Story beats:** Pure brings his family to Huntington Beach, kneels and touches sand for the first time. Starts a free coding class for kids; one kid asks how he made it; Pure's answer ("I didn't make it. I came back.")
 - **Likely locations:** Huntington Beach (sand/ocean, first time this location appears in the film), coding classroom
-- **Characters:** Pure (~30s), Delia, Marcus, one or more student-kid extras
+- **Characters:** Pure (age 27 design), Delia, Marcus, one or more student-kid extras
 - **Animation states (anticipated):** Pure — kneeling, touching sand (the film's title payoff — deserves careful, unhurried animation), teaching, smiling
 - **Note:** this is the visual and thematic payoff of the whole film's title; treat as a priority sequence for polish even if shorter than Sequence 1
 
@@ -93,7 +93,7 @@ NO SAND BEACH takes visual and tonal direction from *Menace II Society* (1993). 
 
 ## Cross-Sequence Open Questions (asset budget decisions)
 
-1. **Pure's age variants:** the story implies 4–5 distinct visual states (7yo, teen, 21yo, adult 30s, possibly a distinct "post-collapse" pass). Confirm exact count before sprite production starts — each variant is a full pose/expression/animation-state set.
+1. ~~**Pure's age variants**~~ — **Resolved:** 3 age designs — age 7 (Earl's Ghost flashback only), age 15 (The Setup + the arrest beat opening Seq 2), age 27 (framing/prison through the rest of the film). The age-27 design needs two wardrobe/environment passes (prison-era for the M2S-styled portion of Seq 2, contemporary for Seq 3 onward) but that's costuming, not a fourth sprite base.
 2. **Delia's aging:** Sequence 4 (Collapse) happens years after Sequence 1. Does she get a second, visibly-older design, or does costume/lighting alone carry the time jump?
 3. **Marcus's aging:** same question — early 30s (Seq 1) vs. mid-40s (Seq 4+). One design with styling changes, or two designs?
 4. **New characters not in the original roster:** classmates (Seq 1, extras), Judge (Seq 5), student-kids (Seq 6) — these need lightweight designs, likely simpler than the four principal characters since they're single-sequence-only.
