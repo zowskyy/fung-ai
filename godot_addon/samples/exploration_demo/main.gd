@@ -146,7 +146,15 @@ func _spawn_player(payload: Dictionary) -> void:
 	camera.name = "Camera"
 	camera.zoom = Vector2(2.0, 2.0)
 	player.add_child(camera)
-	camera.current = true
+	# Camera2D.current can only be set once the camera is both inside the
+	# tree AND there's a real display server to attach it to - under
+	# --headless (Godot's dummy rendering driver, used by CI) setting it
+	# raises "Invalid assignment of property or key 'current'", discovered
+	# via this project's CI boot-check job. Real editor/gameplay use (a
+	# human pressing Play) always has a real DisplayServer, so this only
+	# skips activation in the headless CI environment.
+	if DisplayServer.get_name() != "headless":
+		camera.current = true
 
 
 func _build_debug_label(result: Dictionary, payload: Dictionary) -> void:
