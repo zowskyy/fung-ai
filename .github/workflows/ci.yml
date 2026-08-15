@@ -29,18 +29,23 @@ jobs:
     - name: Run tests
       env:
         QT_QPA_PLATFORM: offscreen
+      shell: python
       run: |
-        python -m pytest tests/ \
-          --ignore=tests/test_30_providers_hello_world.py \
-          --ignore=tests/test_e2e_post_install.py \
-          --ignore=tests/test_ai_server.py \
-          --ignore=tests/test_kotlin_runner_stress.py \
-          --ignore=tests/test_cpp_runner_stress.py \
-          --ignore=tests/test_java_runner_stress.py \
-          --ignore=tests/test_rust_runner_stress.py \
-          --ignore=tests/test_js_runner_stress.py \
-          --ignore=tests/test_provider_live.py \
-          -v --tb=short
+        import subprocess
+        result = subprocess.run([
+            "python", "-m", "pytest", "tests/",
+            "--ignore=tests/test_30_providers_hello_world.py",
+            "--ignore=tests/test_e2e_post_install.py",
+            "--ignore=tests/test_ai_server.py",
+            "--ignore=tests/test_kotlin_runner_stress.py",
+            "--ignore=tests/test_cpp_runner_stress.py",
+            "--ignore=tests/test_java_runner_stress.py",
+            "--ignore=tests/test_rust_runner_stress.py",
+            "--ignore=tests/test_js_runner_stress.py",
+            "--ignore=tests/test_provider_live.py",
+            "-v", "--tb=short"
+        ])
+        exit(result.returncode)
 
     - name: Build executable
       if: success()
