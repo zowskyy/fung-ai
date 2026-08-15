@@ -12,6 +12,7 @@ from PySide6.QtWidgets import (
 
 from app.screens.editor import EditorScreen
 from app.screens.home import HomeScreen
+from app.screens.playground import PlaygroundScreen
 from app.screens.settings import SettingsDialog
 from app.screens.wizard import WizardScreen
 from app.theme import APP_QSS
@@ -57,9 +58,11 @@ class MainWindow(QMainWindow):
         self.home = HomeScreen(self)
         self.wizard = WizardScreen(self)
         self.editor = EditorScreen(self)
+        self.playground = PlaygroundScreen(self)
         self.stack.addWidget(self.home)
         self.stack.addWidget(self.wizard)
         self.stack.addWidget(self.editor)
+        self.stack.addWidget(self.playground)
         body.addWidget(self.stack, stretch=1)
 
         root_layout.addLayout(body, stretch=1)
@@ -68,10 +71,11 @@ class MainWindow(QMainWindow):
         root_layout.addWidget(self.status_bar)
 
         self.sidebar.refresh()
-        self.show_home()
+        self.show_playground()
 
     def _open_palette(self) -> None:
         commands = [
+            ("Playground", self.show_playground),
             ("New project", self.show_wizard),
             ("Go home", self.show_home),
             ("Toggle sidebar", self._toggle_sidebar),
@@ -134,6 +138,11 @@ class MainWindow(QMainWindow):
         self.sidebar.refresh()
         self.status_bar.set_status("Home")
         self.stack.setCurrentWidget(self.home)
+
+    def show_playground(self) -> None:
+        self.status_bar.set_status("Playground")
+        self.stack.setCurrentWidget(self.playground)
+        self.playground.prompt_field.setFocus()
 
     def show_wizard(self) -> None:
         self.wizard.refresh()

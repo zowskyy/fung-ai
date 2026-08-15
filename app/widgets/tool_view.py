@@ -3,7 +3,6 @@ from __future__ import annotations
 import time
 from html import escape
 
-from PySide6.QtCore import Qt
 from PySide6.QtWidgets import (
     QHBoxLayout,
     QLabel,

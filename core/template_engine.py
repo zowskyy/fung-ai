@@ -1,13 +1,16 @@
 from __future__ import annotations
 
 import json
+import os
 import re
 from pathlib import Path
 from typing import Any
 
 from .field_models import Field, FieldValidationError
 
-TOKEN_RE = re.compile(r"\{\{\s*(\w+)\s*\}\}")
+# Match any content between {{ and }}, then validate field ID format
+TOKEN_RE = re.compile(r"\{\{\s*([^}]+)\s*\}\}")
+VALID_FIELD_RE = re.compile(r"^[a-zA-Z0-9_.-]+$")
 
 
 class TemplateError(ValueError):
@@ -53,18 +56,42 @@ class Template:
     def render(self, values: dict[str, Any]) -> dict[str, str]:
         validated = self.validate_values(values)
         rendered: dict[str, str] = {}
+        root_resolved = self.root.resolve()
         for entry in self.manifest.get("files", []):
-            src = self.root / entry["src"]
+            src_rel = entry.get("src")
+            dest = entry.get("dest")
+            if not src_rel or not dest:
+                raise TemplateError(
+                    f"Each file entry needs both 'src' and 'dest': {entry!r}"
+                )
+            if Path(dest).is_absolute() or ".." in Path(dest).parts:
+                raise TemplateError(f"Unsafe destination path: {dest!r}")
+            src = self.root / src_rel
+            try:
+                if not src.resolve().is_relative_to(root_resolved):
+                    raise TemplateError(
+                        f"Template source escapes template root: {src_rel!r}"
+                    )
+            except OSError:
+                raise TemplateError(
+                    f"Template source has invalid path: {src_rel!r}"
+                )
             if not src.exists():
-                raise TemplateError(f"Template file missing: {entry['src']}")
+                raise TemplateError(f"Template file missing: {src_rel}")
             text = src.read_text(encoding="utf-8")
             for name in TOKEN_RE.findall(text):
+                name = name.strip()
+                if not VALID_FIELD_RE.match(name):
+                    raise TemplateError(
+                        f"Invalid field name '{{{{{name}}}}}' in {src_rel}: "
+                        f"only letters, digits, underscores, hyphens, and dots allowed"
+                    )
                 if name not in validated:
                     raise TemplateError(
-                        f"Unknown field '{{{{{name}}}}}' used in {entry['src']}"
+                        f"Unknown field '{{{{{name}}}}}' used in {src_rel}"
                     )
-            rendered[entry["dest"]] = TOKEN_RE.sub(
-                lambda m: str(validated[m.group(1)]), text
+            rendered[dest] = TOKEN_RE.sub(
+                lambda m: str(validated[m.group(1).strip()]), text
             )
         return rendered
 

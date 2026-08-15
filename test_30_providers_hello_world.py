@@ -14,8 +14,8 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).parent))
 
 from ai.providers import PROVIDERS
+from ai.python_shim import OpenAICompatBackend
 import subprocess
-import time
 
 
 def get_no_key_providers():
@@ -27,21 +27,33 @@ def get_no_key_providers():
 
 
 def test_provider_hello_world(provider):
-    """Test a single provider with hello world request."""
+    """Test a single provider's configuration AND endpoint construction.
+
+    We do not hit the network (that would be slow/flaky), but we verify the
+    request URL is built correctly — in particular that it is NOT doubled to
+    '.../v1/v1/...' (a bug that 404'd every free-tier request).
+    """
     print(f"\n[TEST] {provider.name} (Priority {provider.priority})")
     print(f"  URL: {provider.base_url}")
     print(f"  Models: {provider.models[:1]}...")  # Show first model
     print(f"  RPM: {provider.rpm_limit}, RPD: {provider.rpd_limit}")
 
-    # This is where actual provider testing would happen
-    # For now, verify the provider is properly configured
-    assert provider.name, f"Provider missing name"
-    assert provider.base_url, f"Provider missing base_url"
-    assert provider.models, f"Provider missing models"
-    assert provider.rpm_limit > 0, f"Provider has invalid RPM limit"
-    assert provider.rpd_limit > 0, f"Provider has invalid RPD limit"
+    assert provider.name, "Provider missing name"
+    assert provider.base_url, "Provider missing base_url"
+    assert provider.models, "Provider missing models"
+    assert provider.rpm_limit > 0, "Provider has invalid RPM limit"
+    assert provider.rpd_limit > 0, "Provider has invalid RPD limit"
 
-    print(f"  [OK] Provider configuration verified")
+    # Endpoint regression check: base URLs already end in /v1, so the backend
+    # must add /v1 exactly once.
+    backend = OpenAICompatBackend(
+        provider.base_url, "", provider.models[0] if provider.models else ""
+    )
+    endpoint = backend._endpoint("/chat/completions")
+    assert endpoint.endswith("/v1/chat/completions"), f"Bad endpoint: {endpoint}"
+    assert "/v1/v1" not in endpoint, f"Double /v1 in endpoint: {endpoint}"
+
+    print(f"  [OK] Configuration and endpoint verified")
     return True
 
 

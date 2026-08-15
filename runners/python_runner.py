@@ -8,19 +8,52 @@ from pathlib import Path
 from typing import Callable
 
 
+def _is_real_python(path: str) -> bool:
+    """Validate that a Python executable is real (not Windows Store stub)."""
+    try:
+        result = subprocess.run(
+            [path, "-c", "print(1)"],
+            capture_output=True,
+            timeout=5,
+            text=True,
+            encoding="utf-8",
+            errors="replace",
+            creationflags=getattr(subprocess, "CREATE_NO_WINDOW", 0),
+        )
+        return result.returncode == 0 and "1" in result.stdout
+    except Exception:
+        return False
+
+
 def find_python() -> str:
-    """Locate a real Python interpreter on PATH.
+    """Locate a real Python interpreter to run user projects with.
+
+    When not frozen we are already running inside a working Python, so just use
+    ``sys.executable``. This also avoids the Windows Store ``python.exe``
+    app-execution alias, which ``shutil.which`` can resolve to a stub that prints
+    "Python was not found" and exits 9009 instead of running code.
 
     In a PyInstaller bundle ``sys.executable`` is the frozen ``.exe``; running it
-    again would re-launch the whole app, so we must resolve ``python``/``python3``
-    from the environment instead.
+    again would re-launch the whole app, so we resolve ``python``/``python3`` from
+    the environment instead.
     """
-    for name in ("python", "python3"):
-        found = shutil.which(name)
-        if found:
-            return found
     if not getattr(sys, "frozen", False):
         return sys.executable
+    for name in ("python", "python3"):
+        found = shutil.which(name)
+        if found and _is_real_python(found):
+            return found
+    # Fallback - try common install locations
+    for candidate in (
+        r"C:\Python314\python.exe",
+        r"C:\Python313\python.exe",
+        r"C:\Python312\python.exe",
+        r"C:\Program Files\Python314\python.exe",
+        r"C:\Program Files\Python313\python.exe",
+        r"C:\Program Files\Python312\python.exe",
+    ):
+        if _is_real_python(candidate):
+            return candidate
     return "python"
 
 

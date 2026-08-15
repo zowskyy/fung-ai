@@ -14,6 +14,7 @@ from runners.java_runner import JavaRunner
 from runners.cpp_runner import CppRunner
 from runners.kotlin_runner import KotlinRunner
 from runners.javascript_runner import JavaScriptRunner
+from runners.gguf_runner import GGUFRunner
 
 __all__ = [
     "Toolchain",
@@ -30,6 +31,7 @@ __all__ = [
     "CppRunner",
     "KotlinRunner",
     "JavaScriptRunner",
+    "GGUFRunner",
 ]
 
 

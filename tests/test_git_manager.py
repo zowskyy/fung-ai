@@ -41,6 +41,13 @@ class FakeGit:
             return self._ok(out)
         if cmd == "checkout":
             return self._restore(rest[1])
+        if cmd == "reset":
+            if "--hard" in rest:
+                rev = rest[rest.index("--hard") + 1]
+                return self._restore(rev)
+            return self._ok("")
+        if cmd == "clean":
+            return self._ok("")
         if cmd == "show":
             return self._show(rest[-1])
         if cmd == "rev-parse":

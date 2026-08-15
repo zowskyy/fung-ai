@@ -73,10 +73,16 @@ class RepoManager:
         return versions
 
     def restore(self, revision: str) -> None:
-        self._stage_all()
-        result = _run(["checkout", revision, "--", "."], self.dir)
-        if result.returncode != 0:
-            raise GitError(result.stderr.strip())
+        # Fully revert the working tree to the given revision: tracked files are
+        # reset to that revision and any files added afterwards are removed.
+        # `git checkout rev -- .` only overwrites existing paths and leaves
+        # post-revision files behind, so use reset + clean instead.
+        reset = _run(["reset", "--hard", revision], self.dir)
+        if reset.returncode != 0:
+            raise GitError(reset.stderr.strip())
+        clean = _run(["clean", "-fd"], self.dir)
+        if clean.returncode != 0:
+            raise GitError(clean.stderr.strip())
 
     def what_changed(self, revision: str) -> str:
         result = _run(["show", "--stat", "--format=%s", revision], self.dir)

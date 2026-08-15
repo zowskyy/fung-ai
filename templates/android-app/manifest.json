@@ -1,0 +1,60 @@
+{
+  "id": "android-app",
+  "name": "Android App",
+  "description": "Describe your app idea and AI builds it.\n\n   Student: Make a quiz app about space\n   AI: Scaffolding MainActivity, quiz\n       data, score tracker...\n   Result: Working Android project!\n\nLearn: Kotlin, Android Studio, Gradle.",
+  "language": "kotlin",
+  "icon": "smartphone",
+  "fields": [
+    {
+      "id": "app_idea",
+      "label": "Describe your app idea",
+      "type": "text",
+      "default": "A quiz app about space facts",
+      "required": true,
+      "help": "Describe in plain English what your app should do. The AI will build it."
+    },
+    {
+      "id": "app_name",
+      "label": "App name",
+      "type": "text",
+      "default": "MyApp",
+      "required": true,
+      "help": "The name shown on the phone screen."
+    },
+    {
+      "id": "package_name",
+      "label": "Package name",
+      "type": "text",
+      "default": "com.student.myapp",
+      "help": "Reverse domain, e.g. com.yourname.appname"
+    },
+    {
+      "id": "min_sdk",
+      "label": "Minimum Android version",
+      "type": "select",
+      "default": "24",
+      "options": ["21", "24", "26", "29", "31"],
+      "help": "24 covers ~90% of devices. Lower = more compatible."
+    },
+    {
+      "id": "theme_color",
+      "label": "Theme color",
+      "type": "select",
+      "default": "purple",
+      "options": ["purple", "blue", "green", "orange", "red"],
+      "help": "Main color for buttons and the top bar."
+    }
+  ],
+  "files": [
+    { "src": "settings.gradle.tmpl",           "dest": "settings.gradle" },
+    { "src": "build.gradle.tmpl",              "dest": "build.gradle" },
+    { "src": "app/build.gradle.tmpl",          "dest": "app/build.gradle" },
+    { "src": "app/src/main/AndroidManifest.xml.tmpl", "dest": "app/src/main/AndroidManifest.xml" },
+    { "src": "app/src/main/res/values/strings.xml.tmpl", "dest": "app/src/main/res/values/strings.xml" },
+    { "src": "app/src/main/res/values/colors.xml.tmpl",  "dest": "app/src/main/res/values/colors.xml" },
+    { "src": "app/src/main/res/layout/activity_main.xml.tmpl", "dest": "app/src/main/res/layout/activity_main.xml" },
+    { "src": "app/src/main/java/MainActivity.kt.tmpl",   "dest": "app/src/main/java/MainActivity.kt" },
+    { "src": "README.md.tmpl",                 "dest": "README.md" }
+  ],
+  "run": { "command": "gradlew", "args": ["assembleDebug"] }
+}

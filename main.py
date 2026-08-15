@@ -16,15 +16,21 @@ def _acquire_single_instance() -> bool:
     """
     if sys.platform != "win32":
         return True
-    kernel32 = ctypes.windll.kernel32
+    # use_last_error=True so GetLastError reflects the CreateMutexW call.
+    kernel32 = ctypes.WinDLL("kernel32", use_last_error=True)
+    kernel32.CreateMutexW.argtypes = [ctypes.c_void_p, ctypes.c_int, ctypes.c_wchar_p]
+    kernel32.CreateMutexW.restype = ctypes.c_void_p
+    kernel32.CloseHandle.argtypes = [ctypes.c_void_p]
+    kernel32.CloseHandle.restype = ctypes.c_int
     mutex = kernel32.CreateMutexW(None, 0, "Global\\fungai_single_instance")
-    if not mutex:
-        return False
+    last_error = ctypes.get_last_error()
     global _INSTANCE_MUTEX
     _INSTANCE_MUTEX = mutex
-    if kernel32.GetLastError() == 183:  # ERROR_ALREADY_EXISTS
+    if last_error == 183:  # ERROR_ALREADY_EXISTS
         kernel32.CloseHandle(mutex)
         _INSTANCE_MUTEX = None
+        return False
+    if not mutex:
         return False
     return True
 

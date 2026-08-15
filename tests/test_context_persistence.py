@@ -13,7 +13,7 @@ from ai.context_manager import (
     Message,
     ProviderHealthChecker,
 )
-from ai.providers import ModelProvider, get_providers_sorted
+from ai.providers import get_providers_sorted, count_providers, AuthMode, ProviderEntry
 
 
 def test_message_creation():
@@ -149,14 +149,14 @@ def test_context_windowing_fits_provider():
     conv.add_message("user", "Short message")
     conv.add_message("assistant", "Short response")
 
-    # Should fit in any provider
-    windowed = windowing.window_for_provider(conv, "BlockRun")
+    # Should fit in any provider - use ollama (no key needed)
+    windowed = windowing.window_for_provider(conv, "ollama")
     assert len(windowed) >= 2  # At least user and assistant message
 
 
 def test_context_windowing_truncates_long_conversation():
     """Test windowing truncates very long conversations."""
-    windowing = ContextWindowing({"TestProvider": 100})  # Very small limit
+    windowing = ContextWindowing({"ollama": 100})  # Very small limit
 
     conv = Conversation(id="long")
     for i in range(20):
@@ -164,7 +164,7 @@ def test_context_windowing_truncates_long_conversation():
         conv.add_message("assistant", "Long response " * 100)
 
     # Should be truncated
-    windowed = windowing.window_for_provider(conv, "TestProvider")
+    windowed = windowing.window_for_provider(conv, "ollama")
     # Should keep some messages but not all 40
     assert len(windowed) < 40
 
@@ -233,13 +233,12 @@ def test_provider_health_checker_uptime():
 
 
 def test_provider_count():
-    """Test that we have expanded provider ecosystem."""
-    from ai.providers import count_providers
-
+    """Test provider count with new 8-provider model."""
     counts = count_providers()
-    assert counts["total"] >= 20, "Should have 20+ providers"
-    assert counts["no_key"] >= 5, "Should have at least 5 no-key providers"
-    assert counts["requires_key"] >= 5, "Should have at least 5 key-required providers"
+    assert counts["total"] == 8
+    assert counts["none"] == 1
+    assert counts["api_key"] == 5
+    assert counts["token"] == 2
 
 
 def test_provider_sorting():
@@ -247,6 +246,8 @@ def test_provider_sorting():
     providers = get_providers_sorted()
     for i in range(len(providers) - 1):
         assert providers[i].priority <= providers[i + 1].priority
+    # First should be ollama
+    assert providers[0].id == "ollama"
 
 
 if __name__ == "__main__":

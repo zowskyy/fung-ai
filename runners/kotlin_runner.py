@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import os
+import shutil
 import subprocess
 import threading
 from pathlib import Path
@@ -10,17 +11,31 @@ if os.name == "nt":
     _CREATE_NO_WINDOW = getattr(subprocess, "CREATE_NO_WINDOW", 0)
 
 
+def find_kotlin() -> str:
+    """Locate the kotlinc compiler.
+
+    On Windows the compiler ships as ``kotlinc.bat``; ``CreateProcess`` will not
+    resolve the extension-less name, so resolve it explicitly via ``shutil.which``
+    (which honours ``PATHEXT``).
+    """
+    for name in ("kotlinc", "kotlinc.bat", "kotlinc.cmd"):
+        found = shutil.which(name)
+        if found:
+            return found
+    return "kotlinc"
+
+
 class KotlinRunner:
     """Runs Kotlin projects: compiles to a JAR with kotlinc, then executes via java."""
 
     def __init__(self, interpreter: str | None = None) -> None:
-        self.interpreter = interpreter
+        self.interpreter = interpreter or find_kotlin()
         self._process: subprocess.Popen | None = None
 
     def _compile(self, cwd: Path, script: str, on_line: Callable[[str], None]) -> str | None:
         jar_name = Path(script).stem + ".jar"
         result = subprocess.run(
-            ["kotlinc", script, "-include-runtime", "-d", jar_name],
+            [self.interpreter, script, "-include-runtime", "-d", jar_name],
             cwd=str(cwd),
             capture_output=True,
             text=True,

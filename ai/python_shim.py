@@ -17,9 +17,21 @@ class OpenAICompatBackend(AIBackend):
         self.api_key = api_key
         self.model = model or "default"
 
+    def _endpoint(self, suffix: str) -> str:
+        """Build an OpenAI-compatible endpoint, adding /v1 exactly once.
+
+        Provider base URLs already end in /v1 (e.g. https://api.blockrun.dev/v1),
+        while local servers like http://localhost:11434 do not. Appending
+        '/v1' blindly produced '.../v1/v1/...' and 404s for every request.
+        """
+        base = self.base_url.rstrip("/")
+        if base.endswith("/v1"):
+            return base + suffix
+        return base + "/v1" + suffix
+
     def is_available(self) -> bool:
         try:
-            with urllib.request.urlopen(self.base_url + "/v1/models", timeout=5) as resp:
+            with urllib.request.urlopen(self._endpoint("/models"), timeout=5) as resp:
                 return resp.status == 200
         except Exception:
             return False
@@ -36,7 +48,7 @@ class OpenAICompatBackend(AIBackend):
             "stream": True,
         }
         request = urllib.request.Request(
-            self.base_url + "/v1/chat/completions",
+            self._endpoint("/chat/completions"),
             data=json.dumps(payload).encode("utf-8"),
             headers={"Content-Type": "application/json"},
         )
@@ -56,7 +68,12 @@ class OpenAICompatBackend(AIBackend):
                     event = json.loads(data)
                 except json.JSONDecodeError:
                     continue
-                delta = event.get("choices", [{}])[0].get("delta", {}).get("content")
+                if "error" in event:
+                    raise RuntimeError(f"AI server returned an error: {event['error']}")
+                choices = event.get("choices") or []
+                if not choices:
+                    continue
+                delta = choices[0].get("delta", {}).get("content")
                 if delta:
                     chunks.append(delta)
                     if on_delta is not None:

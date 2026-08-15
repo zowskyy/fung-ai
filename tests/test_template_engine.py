@@ -166,3 +166,34 @@ def test_materialize_writes_files(tmp_path):
     written = template.materialize(files_dir, {"greeting": "Yo"})
     assert written
     assert (files_dir / "out.txt").read_text(encoding="utf-8") == "Hello Yo"
+
+
+def test_token_regex_allows_hyphens_and_underscores(tmp_path):
+    """TOKEN_RE should match field IDs with hyphens and underscores."""
+    root = _make_template(
+        tmp_path,
+        fields=[
+            {"id": "hero-name", "label": "Hero Name", "type": "text", "default": "Link"},
+            {"id": "player_name", "label": "Player Name", "type": "text", "default": "Ziggy"},
+        ],
+        file_text="Hero: {{hero-name}}, Player: {{player_name}}",
+    )
+    template = Template.load(root)
+    out = template.render({"hero-name": "Mario", "player_name": "Luigi"})
+    assert "Mario" in out["out.txt"]
+    assert "Luigi" in out["out.txt"]
+    assert "{{" not in out["out.txt"]
+
+
+def test_token_regex_rejects_invalid_chars(tmp_path):
+    """TOKEN_RE should NOT match field IDs with slashes, spaces, or angle brackets."""
+    root = _make_template(
+        tmp_path,
+        fields=[
+            {"id": "hero/name", "label": "Hero", "type": "text", "default": "Link"},
+        ],
+        file_text="Invalid: {{hero/name}}",
+    )
+    template = Template.load(root)
+    with pytest.raises(TemplateError, match="Invalid field name"):
+        template.render({"hero/name": "Mario"})

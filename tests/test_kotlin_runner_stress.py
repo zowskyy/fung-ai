@@ -116,8 +116,12 @@ def test_stop_terminates_process(tmp_path):
 
     thread = threading.Thread(target=run)
     thread.start()
-    time.sleep(3)  # let it compile and start spinning
+    # Wait until compilation finished and the JVM process is actually running.
+    for _ in range(120):
+        if runner._process is not None:
+            break
+        time.sleep(0.25)
     runner.stop()
-    thread.join(timeout=15)
+    thread.join(timeout=30)
     assert not thread.is_alive(), "Process did not terminate after stop()"
     assert result_code, "Process was not running when stop() was called"

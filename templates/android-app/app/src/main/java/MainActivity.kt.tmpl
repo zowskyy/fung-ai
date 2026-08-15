@@ -1,0 +1,27 @@
+package {{package_name}}
+
+import androidx.appcompat.app.AppCompatActivity
+import android.os.Bundle
+import android.widget.Button
+import android.widget.TextView
+
+// {{app_name}} — built with Creator
+// App idea: {{app_idea}}
+
+class MainActivity : AppCompatActivity() {
+
+    private var tapCount = 0
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_main)
+
+        val startButton = findViewById<Button>(R.id.startButton)
+        val statusText = findViewById<TextView>(R.id.statusText)
+
+        startButton.setOnClickListener {
+            tapCount++
+            statusText.text = "Tapped $tapCount time${if (tapCount == 1) "" else "s"}! Keep going..."
+        }
+    }
+}

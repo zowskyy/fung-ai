@@ -67,14 +67,21 @@ class AIWorker(QThread):
         self.user = user
 
     def run(self) -> None:
+        if self.isInterruptionRequested():
+            self.done.emit("")
+            return
         try:
             reply = self.backend.complete(
                 self.system, [{"role": "user", "content": self.user}], self.delta.emit
             )
         except Exception as exc:
-            reply = f"Error: {exc}"
-            self.delta.emit(reply)
-        self.done.emit(reply)
+            if not self.isInterruptionRequested():
+                reply = f"Error: {exc}"
+                self.delta.emit(reply)
+            else:
+                reply = ""
+        if not self.isInterruptionRequested():
+            self.done.emit(reply)
 
 
 class InsightsWorker(QThread):
@@ -95,14 +102,21 @@ class InsightsWorker(QThread):
         self.user = user
 
     def run(self) -> None:
+        if self.isInterruptionRequested():
+            self.done.emit("")
+            return
         try:
             reply = self.backend.complete(
                 self.system, [{"role": "user", "content": self.user}], self.delta.emit
             )
         except Exception as exc:
-            self.delta.emit(f"(ideas unavailable: {exc})")
-            reply = ""
-        self.done.emit(reply)
+            if not self.isInterruptionRequested():
+                self.delta.emit(f"(ideas unavailable: {exc})")
+                reply = ""
+            else:
+                reply = ""
+        if not self.isInterruptionRequested():
+            self.done.emit(reply)
 
 
 EDIT_RE = re.compile(r"%%EDIT\s+([^\n]+)\n(.*?)%%END", re.DOTALL)
@@ -125,6 +139,9 @@ class EditorScreen(QWidget):
         self._tab_counter = 0
         self._undo_stack: list[dict] = []
         self._redo_stack: list[dict] = []
+        self._session_undo: dict = {}
+        self._session_redo: dict = {}
+        self._chat_by_root: dict = {}
         self._attached_files: set[str] = set()
         self._thinking = False
 
@@ -188,19 +205,28 @@ class EditorScreen(QWidget):
         layout.addWidget(content, stretch=1)
 
     def set_project(self, project: Project) -> None:
-        for idx, proj in self._open_tabs.items():
-            if proj.root == project.root:
-                self.session_tabs.setCurrentIndex(idx)
+        # Switch to the tab if this project is already open.
+        for i in range(self.session_tabs.count()):
+            if self.session_tabs.tabData(i) == project.root:
+                self.session_tabs.setCurrentIndex(i)
                 return
         self._tab_counter += 1
-        idx = self._tab_counter
-        self._open_tabs[idx] = project
-        self.session_tabs.addTab(project.name)
+        stable_id = self._tab_counter
+        self._open_tabs[stable_id] = project
+        idx = self.session_tabs.addTab(project.name)
         self.session_tabs.setTabData(idx, project.root)
         self.session_tabs.setCurrentIndex(idx)
         self._load_project(project)
 
     def _load_project(self, project: Project) -> None:
+        # Persist the state of the project we are leaving so it can be restored
+        # when its tab is reopened. This keeps undo/redo history and the chat
+        # isolated per session instead of bleeding across open projects.
+        if self.project is not None and self.project.root != project.root:
+            self._session_undo[self.project.root] = self._undo_stack
+            self._session_redo[self.project.root] = self._redo_stack
+            self._chat_by_root[self.project.root] = self.chat_log.toPlainText()
+
         self.project = project
         self.title_label.setText(project.name)
         for template in discover_templates(templates_dir()):
@@ -221,25 +247,37 @@ class EditorScreen(QWidget):
             self.window.sidebar.highlight_project(project)
         self._set_status_mode("build" if self.mode_btn.isChecked() else "plan")
 
-    def _close_tab(self, idx: int) -> None:
-        if idx not in self._open_tabs:
-            return
-        del self._open_tabs[idx]
-        self.session_tabs.removeTab(idx)
-        remaining = list(self._open_tabs.values())
-        if remaining:
-            new_idx = self.session_tabs.currentIndex()
-            if new_idx >= 0 and new_idx in self._open_tabs:
-                self._load_project(self._open_tabs[new_idx])
+        # Restore this project's per-session state.
+        self._undo_stack = self._session_undo.setdefault(project.root, [])
+        self._redo_stack = self._session_redo.setdefault(project.root, [])
+        if project.root in self._chat_by_root:
+            self.chat_log.set_markdown(self._chat_by_root[project.root])
         else:
+            self.chat_log.clear()
+        self._update_undo_redo_buttons()
+
+    def _close_tab(self, idx: int) -> None:
+        root = self.session_tabs.tabData(idx)
+        sid = next((k for k, p in self._open_tabs.items() if p.root == root), None)
+        if sid is not None:
+            del self._open_tabs[sid]
+        self.session_tabs.removeTab(idx)
+        if self.session_tabs.count() == 0:
             self.project = None
             self.template = None
             self.title_label.setText("")
             self.window.show_home()
+        # Otherwise currentChanged (emitted by removeTab) reloads the new tab.
 
     def _on_tab_changed(self, idx: int) -> None:
-        if idx >= 0 and idx in self._open_tabs:
-            self._load_project(self._open_tabs[idx])
+        if idx < 0:
+            return
+        root = self.session_tabs.tabData(idx)
+        if root is None:
+            return
+        project = next((p for p in self._open_tabs.values() if p.root == root), None)
+        if project is not None:
+            self._load_project(project)
 
     def _build_edit_tab(self) -> QWidget:
         tab = QWidget()
@@ -500,10 +538,13 @@ class EditorScreen(QWidget):
                 return
             for filename in changed_files:
                 try:
-                    old_text = repo.show_file(revision + "~1", filename) if revision != list(RepoManager(self.project.files_dir).list_versions())[0]["hash"] else ""
+                    old_text = repo.show_file(revision + "~1", filename)
+                except GitError:
+                    old_text = ""
+                try:
                     new_text = repo.show_file(revision, filename)
                     self.diff_view.show_diff(filename, old_text, new_text)
-                except (GitError, IndexError):
+                except GitError:
                     pass
         except GitError as exc:
             self.version_status.setStyleSheet("color: #c62828;")
@@ -761,10 +802,25 @@ class EditorScreen(QWidget):
             window.status_bar.set_status(f"Renamed to {new_name}")
 
     def shutdown(self) -> None:
-        for attr in ("ai_worker", "insights_worker", "run_worker"):
+        # Cooperative cancellation for AI workers (requestInterruption + bounded wait).
+        # For run_worker, stop the subprocess then wait.
+        for attr in ("ai_worker", "insights_worker"):
             worker = getattr(self, attr, None)
             if worker is not None and worker.isRunning():
-                worker.quit()
+                worker.requestInterruption()
+                worker.wait(3000)
+                if worker.isRunning():
+                    worker.terminate()
+                    worker.wait(1000)
+        worker = getattr(self, "run_worker", None)
+        if worker is not None and worker.isRunning():
+            runner = getattr(worker, "runner", None)
+            if runner is not None:
+                try:
+                    runner.stop()
+                except Exception:
+                    pass
+            worker.wait(2000)
 
     def _on_allow_edits_toggled(self, checked: bool) -> None:
         settings.set_allow_edits(bool(checked))
@@ -839,7 +895,7 @@ class EditorScreen(QWidget):
         self.prompt_edit.clear()
         self.ai_send_btn.setEnabled(False)
         self._ai_raw = ""
-        self._ai_edit_mode = settings.allow_ai_edits()
+        self._ai_edit_mode = self.mode_btn.isChecked() and settings.allow_ai_edits()
         self._pending = 2
 
         self.insights_view.clear()
@@ -848,6 +904,9 @@ class EditorScreen(QWidget):
         self.ai_worker.done.connect(self._ai_done)
         self.ai_worker.start()
 
+        # Insights shares the active backend. complete() is called with a fresh
+        # message list each time, so there is no conversation state to bleed
+        # between the main chat and the insights stream.
         self.insights_worker = InsightsWorker(backend, self._insights_system(), user, self)
         self.insights_worker.delta.connect(self._insights_delta)
         self.insights_worker.done.connect(self._insights_done)
@@ -918,7 +977,7 @@ class EditorScreen(QWidget):
             if cleaned:
                 self.chat_log.append_markdown(cleaned)
             self._apply_edits(reply)
-        self.chat_log.appendPlainText("")
+        self.chat_log.append_markdown("")
         self._pending -= 1
         self._maybe_finish()
 
@@ -947,9 +1006,15 @@ class EditorScreen(QWidget):
         for match in EDIT_RE.finditer(reply):
             rel = match.group(1).strip().lstrip("/\\")
             content = match.group(2).strip("\n")
-            target = (files_dir / rel).resolve()
-            base = files_dir.resolve()
-            if target != base and base not in target.parents:
+            try:
+                target = (files_dir / rel).resolve()
+                base = files_dir.resolve()
+            except OSError:
+                self.chat_log.append_markdown(
+                    f"Refused an edit to {rel} (invalid path)."
+                )
+                continue
+            if not target.is_relative_to(base):
                 self.chat_log.append_markdown(
                     f"Refused an edit to {rel} (it is outside the project)."
                 )
@@ -1041,21 +1106,16 @@ class EditorScreen(QWidget):
             if hasattr(window, "status_bar"):
                 window.status_bar.set_model("no backend")
         elif isinstance(backend, CyclingBackend):
-            providers = backend._get_available_providers()
-            if providers:
-                current = providers[0] if backend._current_index == 0 else providers[-1]
-                self.ai_status.setText(
-                    f"AI is on — auto-cycling through {len(providers)} free models. "
-                    f"Current: {current.name}"
-                )
-                if hasattr(window, "status_bar"):
-                    window.status_bar.set_model(f"cycling: {current.name}")
-            else:
-                self.ai_status.setText(
-                    "AI cycling enabled but no providers available (check API keys)."
-                )
-                if hasattr(window, "status_bar"):
-                    window.status_bar.set_model("cycling: none")
+            from ai.providers import PROVIDERS, AuthMode
+            no_key_count = sum(1 for p in PROVIDERS if p.auth_mode == AuthMode.NONE)
+            providers = backend._get_eligible_providers()
+            label = f"cycling ({no_key_count} free)"
+            self.ai_status.setText(
+                f"The fungus is alive — {no_key_count} free AI providers ready. "
+                f"No sign-up needed. Just ask."
+            )
+            if hasattr(window, "status_bar"):
+                window.status_bar.set_model(label)
             self.allow_edits_check.setEnabled(True)
         else:
             self.ai_status.setText(f"AI is on \u2014 connected via {backend.name}.")

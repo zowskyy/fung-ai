@@ -1,15 +1,16 @@
 #!/usr/bin/env bash
 # One-line installer for Creator (the no-code app builder), opencode-style.
 #
-#   curl -fsSL https://example.com/install.sh | sh
+#   curl -fsSL https://raw.githubusercontent.com/thewi/Creator/main/install.sh | sh
 #
 # Downloads the latest standalone Creator binary from GitHub Releases and
-# installs it to a folder on your PATH. No Python required.
+# installs it to $HOME/.local/bin (added to your PATH). No Python required.
 
 set -euo pipefail
 
 REPO="${CREATOR_REPO:-thewi/Creator}"
 INSTALL_DIR="${CREATOR_INSTALL_DIR:-$HOME/.local/bin}"
+PROFILE="${CREATOR_PROFILE:-$HOME/.bashrc}"
 
 echo "Installing Creator from $REPO ..."
 
@@ -37,7 +38,11 @@ chmod +x "$INSTALL_DIR/Creator"
 
 case ":$PATH:" in
   *":$INSTALL_DIR:"*) ;;
-  *) echo "Add this to your shell profile:  export PATH=\"$INSTALL_DIR:\$PATH\"" ;;
+  *)
+    echo "export PATH=\"$INSTALL_DIR:\$PATH\"" >> "$PROFILE"
+    echo "Added $INSTALL_DIR to your PATH in $PROFILE."
+    echo "Restart your shell, or run:  export PATH=\"$INSTALL_DIR:\$PATH\""
+    ;;
 esac
 
 echo ""

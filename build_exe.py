@@ -27,15 +27,15 @@ TEMPLATES = ROOT / "templates"
 DIST = ROOT / "dist"
 BUILD = ROOT / "build"
 
-# Keep build artifacts out of the final binary's working dir.
-shutil.rmtree(BUILD, ignore_errors=True)
-shutil.rmtree(DIST, ignore_errors=True)
-
 HIDDEN = [
     "ai.opencode",
     "ai.python_shim",
     "ai.cycling",
+    "ai.context_manager",
+    "ai.settings",
     "ai.providers",
+    "ai.llm_setup",
+    "ai.executor",
     "core.template_engine",
     "core.field_models",
     "repo.git_manager",
@@ -46,17 +46,22 @@ HIDDEN = [
     "runners.cpp_runner",
     "runners.kotlin_runner",
     "runners.javascript_runner",
+    "runners.gguf_runner",
     "sandbox.workspace",
     "sandbox.snapshots",
     "app.main_window",
     "app.screens.home",
     "app.screens.wizard",
     "app.screens.editor",
+    "app.screens.playground",
+    "app.screens.settings",
     "app.widgets.sidebar",
     "app.widgets.markdown",
     "app.widgets.diff_view",
     "app.widgets.tool_view",
     "app.widgets.context_panel",
+    "app.widgets.command_palette",
+    "app.widgets.status_bar",
     "app.notifications",
     "app.paths",
     "app.utils",
@@ -69,7 +74,9 @@ cmd: list[str] = [
     "--windowed",
     "--noconfirm",
     "--clean",
-    "--add-data", f"{TEMPLATES}:templates",
+    # os.pathsep is ';' on Windows, ':' on POSIX — the add-data separator
+    # must match the platform or the templates are not bundled correctly.
+    "--add-data", f"{TEMPLATES}{os.pathsep}templates",
     # Exclude problematic PySide6 modules that Creator doesn't use
     "--exclude-module", "PySide6.QtMultimedia",
     "--exclude-module", "PySide6.QtNetworkAuth",
@@ -79,5 +86,9 @@ for module in HIDDEN:
     cmd += ["--hidden-import", module]
 
 if __name__ == "__main__":
+    # Keep build artifacts out of the final binary's working dir. Doing this
+    # only when invoked as a script avoids wiping build/dist on a mere import.
+    shutil.rmtree(BUILD, ignore_errors=True)
+    shutil.rmtree(DIST, ignore_errors=True)
     pyinstaller_run(cmd)
     print(f"\nBuilt standalone executable at {DIST / 'Creator' / 'Creator.exe'}")

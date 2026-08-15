@@ -17,7 +17,7 @@ def test_main_window_smoke(app, tmp_path):
     window.workspace = tmp_path / "ws"
     window.workspace.mkdir(parents=True)
     window.show_home()
-    assert window.stack.count() == 3
+    assert window.stack.count() == 4
     window.close()
 
 

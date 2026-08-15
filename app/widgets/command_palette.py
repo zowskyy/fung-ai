@@ -66,7 +66,7 @@ class CommandPalette(QDialog):
     def keyPressEvent(self, event):
         if event.key() == Qt.Key.Key_Escape:
             self.reject()
-        elif event.key() == Qt.Key.Key_Down and self.list.hasFocus() is False:
+        elif event.key() == Qt.Key.Key_Down and not self.list.hasFocus():
             self.list.setFocus()
         super().keyPressEvent(event)
 

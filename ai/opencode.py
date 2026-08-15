@@ -9,6 +9,7 @@ import time
 import urllib.request
 from pathlib import Path
 from typing import Callable
+from urllib.parse import urlparse
 
 from .backend import AIBackend
 
@@ -35,7 +36,7 @@ class OpenCodeBackend(AIBackend):
         external = base_url or os.environ.get("OPENCODE_BASE_URL")
         if external:
             self.base_url = external.rstrip("/")
-            self.port = int(self.base_url.rsplit(":", 1)[-1]) if ":" in self.base_url else 0
+            self.port = urlparse(self.base_url).port or 0
             self.proc: subprocess.Popen | None = None
             self._external = True
         else:
