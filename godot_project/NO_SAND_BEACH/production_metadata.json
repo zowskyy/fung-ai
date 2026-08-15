@@ -110,18 +110,27 @@
       },
       "period_styled_states": ["age_15_teen_arrest_beat", "age_27_prison_era_wardrobe"],
       "design_reference_notes": {
-        "age_7": "User-supplied personal photo reference (not stored in repo -- real identifiable individual, kept out of version control). Style notes for the age-7 design: tight cornrows/braided hairstyle, light blue/grey pullover hoodie, casual everyday streetwear, direct wide-eyed candid expression, slim youthful build. Note: reference photo's subject looks visually older than 7 -- user directed this look apply to the age-7 design regardless; treat as an intentional stylistic choice, not a literal age match."
+        "age_7": "User-supplied personal photo reference (not stored in repo -- real identifiable individual, kept out of version control). Style notes for the age-7 design: tight cornrows/braided hairstyle, light blue/grey pullover hoodie, casual everyday streetwear, direct wide-eyed candid expression, slim youthful build. Note: reference photo's subject looks visually older than 7 -- user directed this look apply to the age-7 design regardless; treat as an intentional stylistic choice, not a literal age match.",
+        "age_27": "User-supplied reference images (not stored in repo). Two moods identified: (1) intense/serious close-up -- short low natural haircut, blue crew-neck shirt, gold/silver cross necklace, stud earrings both ears, direct unflinching eye contact; (2) prayerful/vulnerable -- same wardrobe, hands clasped near chin in a contemplative/anxious gesture, eyes closed or downcast, framed 'Last Supper' print visible in the background setting -- fits the redemption-arc emotional register (Collapse/Courtroom/Sand sequences). A third image (two men greeting/handshaking outdoors) is assumed to be a joint Pure(27)+Marcus rapport/relationship reference rather than a distinct third mood -- flag if that reading is wrong."
       }
     },
     "delia": {
       "role": "mother",
-      "age_states_needed": ["40s"],
-      "age_states_confirmed": false
+      "age_states_needed": ["age_locked_generic"],
+      "age_states_confirmed": true,
+      "age_lock_note": "User confirmed: single design used across the entire film, no visibly-older second pass for seq_04 (The Collapse) onward despite years of in-story time passing. Resolves SEQUENCE_BREAKDOWN.md open question #2.",
+      "design_reference_notes": {
+        "age_locked_generic": "User-supplied reference image (not stored in repo). Voluminous wavy dark hairstyle (70s-style blowout), warm smile, black top with a patterned orange/rust paisley scarf, gold hoop earrings -- retro glamour-photo styling, warm and elegant."
+      }
     },
     "marcus": {
       "role": "older_brother",
-      "age_states_needed": ["early_30s", "mid_40s"],
-      "age_states_confirmed": false
+      "age_states_needed": ["age_locked_generic"],
+      "age_states_confirmed": true,
+      "age_lock_note": "User confirmed: single design used across the entire film, no visibly-older second pass for seq_04 (The Collapse) onward despite years of in-story time passing. Resolves SEQUENCE_BREAKDOWN.md open question #3. Supersedes the earlier early_30s/mid_40s two-design plan.",
+      "design_reference_notes": {
+        "age_locked_generic": "User-supplied reference image (not stored in repo), explicitly labeled by user as this character. Shoulder-length braids/twists, white ribbed tank top, small stud earring, mouth open mid-speech/candid reaction, convenience-store interior setting. A second image (two men greeting outdoors) is assumed to be a joint Pure(27)+Marcus rapport reference -- see pure.design_reference_notes.age_27."
+      }
     },
     "earl": {
       "role": "father_deceased",

@@ -19,7 +19,7 @@ NO SAND BEACH takes visual and tonal direction from *Menace II Society* (1993). 
 ## Sequence 1: The Setup ✅ Beats authored (17 beats, 2:45)
 
 - **Locations:** Santa Ana apartment (interior, night & morning), kitchen, bedroom, school playground, school building (establishing), aerial Santa Ana (drone/sunset)
-- **Characters:** Delia (40s), Pure (age 7 design — memory; age 15 design — present), Marcus (early 30s), Earl (memory only), two classmates (extras)
+- **Characters:** Delia (age-locked generic design), Pure (age 7 design — memory; age 15 design — present), Marcus (age-locked generic design), Earl (memory only), two classmates (extras)
 - **Animation states:**
   - Delia: entering (tired), kissing (tender), changing (routine), leaving (resigned)
   - Pure: sleeping, waking, eating, sitting (alone), standing, walking, remembering
@@ -57,7 +57,7 @@ NO SAND BEACH takes visual and tonal direction from *Menace II Society* (1993). 
 
 - **Story beats:** Pure collapses. Hospital scene — Delia's speech ("I saved your body. I didn't save your heart."). Marcus arrives, they reconcile after 20 years of tension. Pure goes home, deletes the app, memories return.
 - **Likely locations:** Hospital room, home (app deletion)
-- **Characters:** Pure (age 27 design), Delia (40s, now with visible age/wear from years passed), Marcus (mid-40s)
+- **Characters:** Pure (age 27 design), Delia (age-locked generic design — no visible-aging pass, per user decision), Marcus (age-locked generic design — same)
 - **Animation states (anticipated):** Pure — collapsing, lying in hospital bed, listening, deleting app (relief); Delia — holding hand, speaking (raw/vulnerable, different register than Seq 1's tired-tender); Marcus — entering hospital, embracing (first hug in 20 years)
 - **Key emotional beat:** the Marcus/Pure hug — likely the sequence's visual and emotional centerpiece, deserves its own beat with a held camera composition
 
@@ -95,8 +95,8 @@ NO SAND BEACH takes visual and tonal direction from *Menace II Society* (1993). 
 ## Cross-Sequence Open Questions (asset budget decisions)
 
 1. ~~**Pure's age variants**~~ — **Resolved:** 3 age designs — age 7 (Earl's Ghost flashback only), age 15 (The Setup + the arrest beat opening Seq 2), age 27 (framing/prison through the rest of the film). The age-27 design needs two wardrobe/environment passes (prison-era for the M2S-styled portion of Seq 2, contemporary for Seq 3 onward) but that's costuming, not a fourth sprite base.
-2. **Delia's aging:** Sequence 4 (Collapse) happens years after Sequence 1. Does she get a second, visibly-older design, or does costume/lighting alone carry the time jump?
-3. **Marcus's aging:** same question — early 30s (Seq 1) vs. mid-40s (Seq 4+). One design with styling changes, or two designs?
+2. ~~**Delia's aging**~~ — **Resolved:** single age-locked, generic design used throughout the entire film. No second visibly-older design for Seq 4+; Sequence 4's emotional weight comes from performance/staging, not a costume-and-lighting or redesign time-jump.
+3. ~~**Marcus's aging**~~ — **Resolved:** same as Delia — single age-locked, generic design throughout. Supersedes the earlier early-30s/mid-40s two-design plan.
 4. **New characters not in the original roster:** classmates (Seq 1, extras), Judge (Seq 5), student-kids (Seq 6) — these need lightweight designs, likely simpler than the four principal characters since they're single-sequence-only.
 5. ~~**Earl's "glitch" treatment (Seq 3)**~~ — **Resolved:** a fully separate glitch-state design (not a shared sprite with a VFX overlay), built as a black-and-white CA-choppy thread mask — same underlying CA engine as the main render style, tuned to a chaotic rule instead of smooth dissolution. Full spec: `RENDER_STYLE.md`.
 
