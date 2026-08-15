@@ -31,14 +31,15 @@ NO SAND BEACH takes visual and tonal direction from *Menace II Society* (1993). 
 
 ---
 
-## Sequence 2: The Fall — beats not yet authored
+## Sequence 2: The Fall ✅ Beats authored (13 beats, 2:51)
 
-- **Story beats (from script.md):** Pure arrested as a teenager → framed at 21 → 10 years in prison → teaches himself to code on a broken library computer → released, can't get hired (background check kills every interview)
-- **Likely locations:** Street/arrest location, courtroom (brief, framing), prison cell, prison library, a sequence of job-interview offices
-- **Characters:** Pure — age 15 design for the arrest beat, age 27 design (prison-era wardrobe) for framing/prison through release
-- **Animation states (anticipated):** Pure — handcuffed/arrested, sitting (cell), typing (library computer, focused/hopeful), interview (hopeful → crestfallen), walking out (rejected)
-- **Style note:** This entire sequence gets M2S-referenced period styling (see "Visual Style Reference" above) — the arrest, prison, and street setting should read early-90s in wardrobe, environment, and staging, distinct from the contemporary look of every other sequence. The job-interview beats at the sequence's end transition the age-27 design back to present-day wardrobe as Pure re-enters contemporary life.
-- **Open question:** does the age-15 arrest get its own on-screen beat, or is it handled as a quick montage/VO before the age-27 framing takes over as the sequence's dramatic weight?
+- **Locations:** Santa Ana street corner (period-styled), frame-up street/storefront exterior (period-styled), courtroom (period-styled), prison cell (period-styled), prison library (period-styled), prison exterior gate (period → contemporary pivot point), contemporary office interiors (job interviews), anonymous transitional closing space
+- **Characters:** Pure — age 15 design (opening arrest beat only), age 27 design in prison-era wardrobe (frame-up through release), age 27 design in contemporary wardrobe (job-interview beats onward)
+- **Animation states:** Pure — cuffed/still (x2, deliberately echoed staging), standing (verdict), sitting (cell stillness), typing (uncertain → confident across the coding montage), closing a notebook, walking (release), sitting (interviews), posture-deflating across the rejection montage, sitting alone (closing beat)
+- **Style note:** Entire sequence is M2S-period-styled except the job-interview beats (2.11–2.13), which pivot to contemporary styling exactly at Beat 2.10 (the prison gate) — the style pivot is staged as a deliberate lighting/palette shift, not just a wardrobe swap.
+- **Resolved:** the age-15 arrest (Beat 2.01) does get its own brief on-screen beat, staged to visually echo the age-27 arrest later in the sequence (Beat 2.04) — the repetition itself carries meaning, so both got a beat rather than compressing the teen arrest into pure VO.
+- **New technique:** repeated-window time-compression device (Beat 2.09) — identical camera framing held across the ten-year span, only the light changes, making years pass without a calendar graphic.
+- Full detail: `scenes/sequence_02_the_fall_breakdown.md`
 
 ---
 

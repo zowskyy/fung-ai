@@ -1,7 +1,7 @@
 {
   "film_name": "NO SAND BEACH",
   "format_version": 1,
-  "status": "sequence_01_only",
+  "status": "sequences_01_02_authored",
   "sequences": [
     {
       "id": "seq_01_the_setup",
@@ -17,10 +17,10 @@
       "id": "seq_02_the_fall",
       "title": "The Fall",
       "order": 2,
-      "beats_authored": 0,
-      "duration_seconds": null,
-      "duration_status": "not_estimated",
-      "breakdown_path": null,
+      "beats_authored": 13,
+      "duration_seconds": 171,
+      "duration_status": "final",
+      "breakdown_path": "res://NO_SAND_BEACH/scenes/sequence_02_the_fall_breakdown.md",
       "scene_plan_path": null
     },
     {
@@ -75,8 +75,8 @@
       "scene_plan_path": null
     }
   ],
-  "total_duration_seconds_known": 165,
-  "total_duration_seconds_note": "Only Sequence 1 has a real duration. Sequences 2-7 need beat breakdowns before total runtime can be estimated.",
+  "total_duration_seconds_known": 336,
+  "total_duration_seconds_note": "Sequences 1-2 have real durations (336s combined). Sequences 3-7 need beat breakdowns before total runtime can be estimated.",
   "target_fps": 24,
   "target_resolution": "1920x1440",
   "codec": "h264",
