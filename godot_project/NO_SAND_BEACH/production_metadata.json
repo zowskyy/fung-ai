@@ -112,6 +112,32 @@
       "design_reference_notes": {
         "age_7": "User-supplied personal photo reference (not stored in repo -- real identifiable individual, kept out of version control). Style notes for the age-7 design: tight cornrows/braided hairstyle, light blue/grey pullover hoodie, casual everyday streetwear, direct wide-eyed candid expression, slim youthful build. Note: reference photo's subject looks visually older than 7 -- user directed this look apply to the age-7 design regardless; treat as an intentional stylistic choice, not a literal age match.",
         "age_27": "User-supplied reference images (not stored in repo). Two moods identified: (1) intense/serious close-up -- short low natural haircut, blue crew-neck shirt, gold/silver cross necklace, stud earrings both ears, direct unflinching eye contact; (2) prayerful/vulnerable -- same wardrobe, hands clasped near chin in a contemplative/anxious gesture, eyes closed or downcast, framed 'Last Supper' print visible in the background setting -- fits the redemption-arc emotional register (Collapse/Courtroom/Sand sequences). A third image (two men greeting/handshaking outdoors) is assumed to be a joint Pure(27)+Marcus rapport/relationship reference rather than a distinct third mood -- flag if that reading is wrong."
+      },
+      "realized_assets": {
+        "age_27": {
+          "status": "first_reference_generated",
+          "path": "res://NO_SAND_BEACH/assets/characters/pure/pure_age27_reference_v1.png",
+          "generation_method": "ElevenLabs creative_generate_image",
+          "model_id": "flux-2-pro",
+          "prompt": "Black-and-white hand-drawn animation character design reference. A Black man, 27 years old, short low natural haircut, gold cross necklace, small stud earrings in both ears, direct unflinching intense gaze, wearing a simple crew-neck shirt. Contemporary setting, plain neutral standing pose. High-contrast ink illustration style, clean expressive linework, cinematic hardened-realism character register reminiscent of Menace II Society, suitable as a character design reference sheet, no color, pure black and white.",
+          "note": "Used the intense/serious mood as the default reference; the prayerful/vulnerable mood is a separate expression-state pose to generate later for the specific Collapse/Courtroom/Sand beats. Model produced a two-panel sheet (full body + face close-up) unprompted -- a useful format, worth requesting deliberately for future generations."
+        },
+        "age_15": {
+          "status": "first_reference_generated",
+          "path": "res://NO_SAND_BEACH/assets/characters/pure/pure_age15_reference_v1.png",
+          "generation_method": "ElevenLabs creative_generate_image",
+          "model_id": "flux-2-pro",
+          "prompt": "Black-and-white hand-drawn animation character design reference sheet. A Black teenage boy, 15 years old, slim build, short natural haircut, wearing a plain clean but slightly worn t-shirt and jeans, quiet watchful expression -- a kid who has learned to observe before speaking. Contemporary school setting. High-contrast ink illustration style, clean expressive linework, cinematic hardened-realism character register reminiscent of Menace II Society, full body reference pose plus a face close-up detail, no color, pure black and white.",
+          "note": "Model produced a full turnaround sheet (front/3-4/profile angles plus close-ups) unprompted -- even more useful than the age_27 result for downstream sprite work."
+        },
+        "age_7": {
+          "status": "first_reference_generated",
+          "path": "res://NO_SAND_BEACH/assets/characters/pure/pure_age7_reference_v1.png",
+          "generation_method": "ElevenLabs creative_generate_image",
+          "model_id": "flux-2-pro",
+          "prompt": "Black-and-white hand-drawn animation character design reference sheet. A young Black boy, 7 years old, tight cornrows/braided hairstyle, slim youthful build, wearing a light pullover hoodie, direct wide-eyed candid expression. Casual everyday setting. High-contrast ink illustration style, clean expressive linework, cinematic hardened-realism character register reminiscent of Menace II Society, full body reference pose plus a face close-up detail, no color, pure black and white.",
+          "note": "Most complete sheet of the three: includes a silhouette, back view, full body, and face close-up. Directly matches the locked design notes (cornrows, hoodie, wide-eyed candid expression)."
+        }
       }
     },
     "delia": {
