@@ -76,12 +76,8 @@ invalid, which can look like "export succeeded but the level is blank."
 at id `0`, containing at minimum two tiles side by side at atlas
 coordinates `(0, 0)` and `(1, 0)`.
 
-Two related things worth knowing about the current Export tab:
+One related thing worth knowing about the current Export tab:
 
-- The **"Scene name"** and **"Export folder"** fields in the UI are not
-  actually read by `export_candidate()` — the real save path is always
-  `user://generated/fung/levels/<candidate_id>.tscn`
-  (`_get_export_scene_path()`), regardless of what those fields say.
 - The **profile selector** (Top-Down / Platformer / Debug Visualization)
   and the four **layer toggle checkboxes** (Terrain, Collision, Navigation,
   Preview) are UI state only — `_build_scene()` ignores the `export_profile`

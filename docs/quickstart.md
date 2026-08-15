@@ -94,16 +94,14 @@ The export service (`fung_export_service.gd`) writes a scene containing a
 `GameplayMarkers` group with arena/loot candidate markers, to:
 
 ```
-user://generated/fung/levels/<candidate_id>.tscn
+res://generated/fung/levels/<candidate_id>.tscn
 ```
 
-Note this is a fixed path built from `_export_root` ("user://generated/fung/")
-plus `levels/<candidate_id>.tscn" — the Export tab's "Scene name" and
-"Export folder" text fields are not currently wired to the actual save
-location (see `docs/troubleshooting.md`). Because it's under `user://`, the
-exported scene lives in the editor's per-project user data directory, not
-under your project's `res://` tree — copy or move it into your project if
-you want it version-controlled.
+The Export tab's "Export folder" and "Scene name" fields control the
+destination and file name directly (they default to
+`res://generated/fung/levels` and the candidate's id) — leave them as-is to
+use the default location, or point them elsewhere (another `res://`
+subfolder, or `user://` if you don't want the scene under version control).
 
 The `TileMapLayer` expects a `TileSet` with a source at atlas source id `0`
 providing tiles at atlas coordinates `(0, 0)` (floor) and `(1, 0)` (wall) —

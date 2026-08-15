@@ -196,6 +196,21 @@ func _test_export_service_scene_path() -> void:
 		scene_path.ends_with("levels/candidate_001.tscn"),
 		"export scene path should end with levels/candidate_001.tscn: %s" % scene_path
 	)
+	_check(
+		scene_path.begins_with("res://"),
+		"default export path should live under res:// (inside the project), not user://: %s"
+		% scene_path
+	)
+
+	# The Export tab's folder/name fields should actually override the
+	# default destination, not just be decorative.
+	var overridden_path: String = service._get_export_scene_path(
+		"candidate_001", "res://my_levels", "custom_name"
+	)
+	_check(
+		overridden_path == "res://my_levels/custom_name.tscn",
+		"folder/name overrides should be honored: got %s" % overridden_path
+	)
 
 	service.queue_free()
 

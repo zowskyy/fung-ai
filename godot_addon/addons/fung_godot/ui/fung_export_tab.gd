@@ -163,6 +163,8 @@ func _on_export_pressed() -> void:
 		_selected_candidate_id,
 		tileset_path_edit.text,
 		profile_name,
+		export_folder_edit.text,
+		export_name_edit.text,
 	)
 
 

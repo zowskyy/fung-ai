@@ -9,7 +9,7 @@ signal export_started(candidate_id: String)
 signal export_progress(candidate_id: String, progress: float, message: String)
 signal export_completed(candidate_id: String, success: bool, scene_path: String)
 
-var _export_root: String = "user://generated/fung/"
+var _export_root: String = "res://generated/fung/"
 var _manifest: FungManifest = null
 
 
@@ -24,12 +24,18 @@ func set_manifest_service(manifest: FungManifest) -> void:
 #   candidate_id: candidate ID to export (e.g. "candidate_001")
 #   tileset_path: path to TileSet resource (res://...)
 #   export_profile: export profile name (top_down_default, platformer_default, etc.)
+#   output_folder: destination folder (res:// or user://); falls back to
+#     "<export_root>/levels" when empty.
+#   output_name: scene file base name (no extension); falls back to
+#     candidate_id when empty.
 # Returns true if the scene was written successfully.
 func export_candidate(
 	result_path: String,
 	candidate_id: String,
 	tileset_path: String,
 	export_profile: String = "top_down_default",
+	output_folder: String = "",
+	output_name: String = "",
 ) -> bool:
 	if not ResourceLoader.exists(tileset_path):
 		push_error("TileSet not found: %s" % tileset_path)
@@ -70,7 +76,7 @@ func export_candidate(
 		export_completed.emit(candidate_id, false, "")
 		return false
 
-	var scene_path: String = _get_export_scene_path(candidate_id)
+	var scene_path: String = _get_export_scene_path(candidate_id, output_folder, output_name)
 	DirAccess.make_dir_recursive_absolute(scene_path.get_base_dir())
 
 	var packed_scene: PackedScene = PackedScene.new()
@@ -238,6 +244,12 @@ func _read_json_safe(path: String) -> Dictionary:
 	return {}
 
 
-func _get_export_scene_path(candidate_id: String) -> String:
-	"""Get export path for a candidate scene."""
-	return _export_root.path_join("levels").path_join(candidate_id + ".tscn")
+func _get_export_scene_path(
+	candidate_id: String,
+	output_folder: String = "",
+	output_name: String = "",
+) -> String:
+	"""Get export path for a candidate scene, honoring optional folder/name overrides."""
+	var folder: String = output_folder if not output_folder.is_empty() else _export_root.path_join("levels")
+	var name: String = output_name if not output_name.is_empty() else candidate_id
+	return folder.path_join(name + ".tscn")
