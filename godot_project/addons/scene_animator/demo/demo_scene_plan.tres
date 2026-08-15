@@ -1,0 +1,49 @@
+[gd_resource type="Resource" script_class="ScenePlan" load_steps=5 format=3]
+
+[ext_resource type="Script" path="res://addons/scene_animator/data/scene_plan.gd" id="1_plan"]
+[ext_resource type="Script" path="res://addons/scene_animator/data/scene_actor_binding.gd" id="2_actor"]
+[ext_resource type="Script" path="res://addons/scene_animator/data/beats/dialogue_beat.gd" id="3_dialogue"]
+
+[sub_resource type="Resource" id="Resource_hero"]
+script = ExtResource("2_actor")
+actor_id = &"hero"
+display_name = "Hero"
+actor_tags = Array[StringName](["protagonist"])
+
+[sub_resource type="Resource" id="Resource_villain"]
+script = ExtResource("2_actor")
+actor_id = &"villain"
+display_name = "Keeper"
+actor_tags = Array[StringName](["antagonist"])
+
+[sub_resource type="Resource" id="Resource_open"]
+script = ExtResource("3_dialogue")
+beat_id = &"demo_open"
+speaker_actor_id = &"hero"
+target_actor_id = &""
+dialogue_id = &"demo_open"
+next_beat_id = &"demo_intro"
+
+[sub_resource type="Resource" id="Resource_intro"]
+script = ExtResource("3_dialogue")
+beat_id = &"demo_intro"
+speaker_actor_id = &"hero"
+target_actor_id = &"villain"
+dialogue_id = &"demo_intro"
+next_beat_id = &"demo_outro"
+
+[sub_resource type="Resource" id="Resource_outro"]
+script = ExtResource("3_dialogue")
+beat_id = &"demo_outro"
+speaker_actor_id = &"villain"
+target_actor_id = &"hero"
+dialogue_id = &"demo_outro"
+next_beat_id = &""
+
+[resource]
+script = ExtResource("1_plan")
+plan_id = &"demo_cave"
+display_name = "Quiet Cave Demo"
+description = "A three-line dialogue demo driven by PlaceholderActorAdapters."
+actors = Array[Resource]([SubResource("Resource_hero"), SubResource("Resource_villain")])
+beats = Array[Resource]([SubResource("Resource_open"), SubResource("Resource_intro"), SubResource("Resource_outro")])

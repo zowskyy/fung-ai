@@ -65,6 +65,8 @@ var _order: Array[String] = [
 	"runtime/runners/end_beat_runner.gd",
 	# director (refs plan/bindings/registry/beat runner types)
 	"runtime/scene_director.gd",
+	# runnable demo (refs director/bindings/registry/placeholder actors/plan)
+	"demo/demo_scene.gd",
 	# editor validation core (pure RefCounted, no editor deps)
 	"editor/validators/validation_issue.gd",
 	"editor/validators/scene_plan_validation_result.gd",
@@ -83,11 +85,15 @@ var _order: Array[String] = [
 	"tests/test_runtime_execution.gd",
 	"tests/test_plugin_activation.gd",
 	"tests/test_validators.gd",
+	"tests/test_demo_execution.gd",
 	"tests/run_scene_animator_tests.gd",
 	"tests/parse_check.gd",
 ]
 
 var _resources: Array[String] = [
+	"templates/starter_scene_plan.tres",
+	"demo/demo_scene_plan.tres",
+	"demo/demo_scene.tscn",
 	"tests/fixtures/valid_linear_scene_plan.tres",
 	"tests/fixtures/invalid_missing_speaker_plan.tres",
 	"tests/fixtures/invalid_unknown_target_plan.tres",
