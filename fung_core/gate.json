@@ -1,0 +1,48 @@
+{
+  "godot_version": "4.3",
+  "python_version": "3.11",
+  "commands": {
+    "validate": {
+      "description": "Validate all example JSON content against the fung_core contracts/*.schema.json schemas.",
+      "command": "python3 fung_core/tools/validate_examples.py",
+      "working_directory": "."
+    },
+    "run_example": {
+      "description": "Run the cave_boss vertical-slice scene headlessly to completion via the SceneTree runner, using a fixed seed for reproducibility.",
+      "command": "godot --headless --path fung_core -s tools/run_example.gd --seed=42 --timeout=30",
+      "working_directory": "."
+    },
+    "replay_check": {
+      "description": "Structurally validate that fung_core/examples/cave_boss/replay.json exists, parses, and has the required seed and final_hash fields. Does not yet perform full deterministic re-simulation.",
+      "command": "godot --headless --path fung_core -s tools/replay_check.gd",
+      "working_directory": "."
+    },
+    "gdscript_lint": {
+      "description": "Static structural checks over GDScript files (no Godot engine required).",
+      "command": "python3 fung_core/tools/gdscript_lint.py",
+      "working_directory": "."
+    },
+    "python_tests": {
+      "description": "Run the Python tooling test suite (schemas, validators, exporters).",
+      "command": "python3 -m pytest fung_core/python/tests/ -v",
+      "working_directory": "."
+    },
+    "narrative_smoke_test": {
+      "description": "Standalone headless smoke test for the CutsceneDirector narrative system.",
+      "command": "godot --headless --path fung_core -s godot_addon/fung_core/tests/test_cutscene_director.gd",
+      "working_directory": "."
+    }
+  },
+  "budgets": {
+    "world_generation_ms": 100,
+    "frame_time_ms": 16.6,
+    "note": "Soft budgets, not hard-enforced by CI yet. Match FungProjectSettings.get_default_budgets() in fung_core/godot_addon/fung_core/systems/core/project_settings.gd."
+  },
+  "artifacts": [
+    "fung_core/examples/cave_boss/replay.json"
+  ],
+  "status": {
+    "godot_commands_verified": false,
+    "note": "The godot_version-tagged commands (run_example, replay_check, narrative_smoke_test) have never been executed in any environment. No Godot 4.x binary was obtainable in the sandbox that built this addon (apt only has Godot 3, GitHub releases were network-blocked, no snap/flatpak/working Docker). They will be proven for the first time by the godot-checks job in .github/workflows/fung_core.yml. Until that job has gone green at least once, treat these commands as reviewed but unexecuted."
+  }
+}

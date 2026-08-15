@@ -1,0 +1,28 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://fung.us/schemas/animation_manifest.schema.json",
+  "title": "AnimationManifest",
+  "type": "object",
+  "required": ["version", "id", "clips"],
+  "properties": {
+    "version": { "type": "integer", "const": 1 },
+    "id": { "type": "string", "minLength": 1 },
+    "clips": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": ["id", "sprite_sheet", "frame_count", "fps"],
+        "properties": {
+          "id": { "type": "string", "minLength": 1 },
+          "sprite_sheet": { "type": "string", "minLength": 1 },
+          "frame_count": { "type": "integer", "minimum": 1 },
+          "fps": { "type": "number", "exclusiveMinimum": 0 },
+          "loop": { "type": "boolean", "default": false }
+        },
+        "additionalProperties": false
+      }
+    }
+  },
+  "additionalProperties": false
+}

@@ -1,0 +1,30 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://fung.us/schemas/replay.schema.json",
+  "title": "Replay",
+  "type": "object",
+  "required": ["version", "seed", "input_sequence", "final_hash"],
+  "properties": {
+    "version": { "type": "integer", "const": 1 },
+    "seed": { "type": "integer" },
+    "input_sequence": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["frame", "action"],
+        "properties": {
+          "frame": { "type": "integer", "minimum": 0 },
+          "action": { "type": "string", "minLength": 1 },
+          "params": { "type": "object" }
+        },
+        "additionalProperties": false
+      }
+    },
+    "final_hash": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$",
+      "description": "SHA-256 hex digest of the final serialized state"
+    }
+  },
+  "additionalProperties": false
+}

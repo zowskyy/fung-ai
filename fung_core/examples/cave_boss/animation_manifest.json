@@ -1,0 +1,20 @@
+{
+  "version": 1,
+  "id": "cave_boss_animset",
+  "clips": [
+    {
+      "id": "boss_idle",
+      "sprite_sheet": "res://addons/fung_core/examples/cave_boss/art/boss_idle.png",
+      "frame_count": 4,
+      "fps": 6,
+      "loop": true
+    },
+    {
+      "id": "boss_attack",
+      "sprite_sheet": "res://addons/fung_core/examples/cave_boss/art/boss_attack.png",
+      "frame_count": 6,
+      "fps": 12,
+      "loop": false
+    }
+  ]
+}

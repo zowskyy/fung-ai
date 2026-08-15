@@ -1,0 +1,55 @@
+{
+  "version": 1,
+  "sequence_id": "cave_boss_intro",
+  "beats": [
+    {
+      "id": "intro_line",
+      "type": "dialogue",
+      "speaker": "boss",
+      "text": "You dare enter my cave?",
+      "target": "cave_boss_01",
+      "duration": 2.0
+    },
+    {
+      "id": "intro_attack_cue",
+      "type": "animation_cue",
+      "target": "cave_boss_01",
+      "animation_id": "boss_attack",
+      "duration": 1.0
+    },
+    {
+      "id": "player_choice",
+      "type": "choice",
+      "options": [
+        { "id": "fight", "label": "Fight", "next": "battle_branch" },
+        { "id": "flee", "label": "Flee", "next": "battle_branch" }
+      ]
+    },
+    {
+      "id": "battle_branch",
+      "type": "branch",
+      "when": { "flag": "chose_fight", "equals": true },
+      "then": "battle_start",
+      "else": "flee_start"
+    },
+    {
+      "id": "flee_start",
+      "type": "dialogue",
+      "speaker": "boss",
+      "text": "Coward!",
+      "duration": 1.5
+    },
+    {
+      "id": "battle_start",
+      "type": "dialogue",
+      "speaker": "boss",
+      "text": "Then die!",
+      "duration": 1.5
+    },
+    {
+      "id": "outro_wait",
+      "type": "wait",
+      "duration": 1.0
+    }
+  ]
+}

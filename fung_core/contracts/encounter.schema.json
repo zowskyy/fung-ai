@@ -1,0 +1,27 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://fung.us/schemas/encounter.schema.json",
+  "title": "Encounter",
+  "type": "object",
+  "required": ["version", "id", "entity", "spawn_point"],
+  "properties": {
+    "version": { "type": "integer", "const": 1 },
+    "id": { "type": "string", "minLength": 1 },
+    "entity": {
+      "type": "string",
+      "description": "Reference to an entity id (archetype instance) to spawn.",
+      "minLength": 1
+    },
+    "spawn_point": {
+      "type": "string",
+      "description": "Must match a world.json spawns[].id",
+      "minLength": 1
+    },
+    "narrative_id": {
+      "type": "string",
+      "description": "narrative.json sequence_id to play when this encounter triggers"
+    },
+    "difficulty": { "type": "number", "minimum": 0 }
+  },
+  "additionalProperties": false
+}
