@@ -119,13 +119,11 @@ func _validate_internal(data: Variant, schema: Dictionary, path: String, result:
 					result.add_error("String does not match pattern: %s" % [schema["pattern"]], path)
 			else:
 				# Fallback: compile on the fly if not pre-compiled
-				try:
-					var regex = RegEx.new()
-					regex.compile(schema["pattern"])
-					if not regex.search(data):
-						result.add_error("String does not match pattern: %s" % [schema["pattern"]], path)
-				except:
+				var regex = RegEx.new()
+				if regex.compile(schema["pattern"]) != OK:
 					result.add_error("Failed to compile pattern: %s" % [schema["pattern"]], path)
+				elif not regex.search(data):
+					result.add_error("String does not match pattern: %s" % [schema["pattern"]], path)
 	
 	# Array validations
 	if data is Array:
