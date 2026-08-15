@@ -189,16 +189,19 @@ func _validate_internal(data: Variant, schema: Dictionary, path: String, result:
 ## Validate a value against a type specification.
 func _validate_type(data: Variant, type_spec: Variant, path: String, result: ValidationResult) -> bool:
 	if type_spec is String:
-		return _validate_single_type(data, type_spec, path, result)
+		if not _validate_single_type(data, type_spec, path, result):
+			result.add_error("Value type is not %s" % [type_spec], path)
+			return false
+		return true
 	elif type_spec is Array:
 		# Multiple allowed types
 		for type_name in type_spec:
 			if _validate_single_type(data, type_name, path, result):
 				return true
-		
+
 		result.add_error("Value type is not one of: %s" % [type_spec], path)
 		return false
-	
+
 	return true
 
 

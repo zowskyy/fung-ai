@@ -7,12 +7,12 @@ extends RefCounted
 
 var from_version: String = ""
 var to_version: String = ""
-var patch: Dictionary = {}  # Array of patch operations
+var patch: Variant = {}
 var _pre_migration_hash: String = ""
 var _post_migration_hash: String = ""
 
 
-func _init(p_from_version: String = "", p_to_version: String = "", p_patch: Dictionary = {}) -> void:
+func _init(p_from_version: String = "", p_to_version: String = "", p_patch: Variant = {}) -> void:
 	from_version = p_from_version
 	to_version = p_to_version
 	patch = p_patch

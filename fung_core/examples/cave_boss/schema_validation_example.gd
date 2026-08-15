@@ -183,4 +183,4 @@ func print_schema_info() -> void:
 		var description = prop.get("description", "")
 		print("  - %s: %s%s" % [prop_name, prop_type, " (%s)" % description if description else ""])
 
-	print("=" * 27)
+	print("===========================================================")  # 27 equals

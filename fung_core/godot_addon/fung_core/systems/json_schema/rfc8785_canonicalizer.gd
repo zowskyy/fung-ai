@@ -109,8 +109,4 @@ static func _canonicalize_string(str_value: String) -> String:
 
 ## Internal: compute SHA-256 hash of bytes and return as hex string.
 static func _sha256_hex(data: PackedByteArray) -> String:
-	var hash = data.sha256_buffer()
-	var hex := ""
-	for byte in hash:
-		hex += "%02x" % byte
-	return hex
+	return data.sha256()
