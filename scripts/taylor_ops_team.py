@@ -14,8 +14,7 @@ Invocation:
 import subprocess
 import sys
 from pathlib import Path
-from typing import Dict, List, Any
-import json
+from typing import Dict, Any
 from datetime import datetime
 
 # Project root
@@ -76,7 +75,9 @@ WORKERS: Dict[str, Dict[str, Any]] = {
         "commands": [
             "python security/cursor_gate.py fung_ai_v2/ --report security_report.txt || true",
             "grep -r 'eval\\|exec\\|pickle' fung_ai_v2/ || echo 'No dangerous functions found'",
-            "python -c 'from fung_ai_v2 import validators; validators.validate_cli_args(50, 50, 12, 2026, 10, 20); print(\"Validation OK\")'",
+            ("python -c 'from fung_ai_v2 import validators; "
+             "validators.validate_cli_args(50, 50, 12, 2026, 10, 20); "
+             "print(\"Validation OK\")'"),
         ],
         "apply_commands": [
             "git add security/ fung_ai_v2/validators.py",
@@ -92,7 +93,8 @@ WORKERS: Dict[str, Dict[str, Any]] = {
         "description": "Unit tests for CA engine core logic (20 tests)",
         "scripts": ["tests/test_ca_engine.py", "fung_ai_v2/ca_engine.py"],
         "commands": [
-            "pytest tests/test_ca_engine.py -v --cov=fung_ai_v2.ca_engine --cov-report=term-missing --tb=short",
+            ("pytest tests/test_ca_engine.py -v --cov=fung_ai_v2.ca_engine "
+             "--cov-report=term-missing --tb=short"),
         ],
         "apply_commands": [
             "git add tests/test_ca_engine.py",
@@ -105,9 +107,10 @@ WORKERS: Dict[str, Dict[str, Any]] = {
         "group": "logic_tests",
         "order": 2,
         "description": "Unit tests for connectivity/pathfinding (15 tests)",
-        "scripts": ["tests/test_connectivity.py", "fung_ai_v2/connectivity.py"],
+        "scripts": ["tests/test_connectivity.py", "fung_ai_v2/fitness.py"],
         "commands": [
-            "pytest tests/test_connectivity.py -v --cov=fung_ai_v2.connectivity --cov-report=term-missing --tb=short",
+            ("pytest tests/test_connectivity.py -v --cov=fung_ai_v2.fitness "
+             "--cov-report=term-missing --tb=short"),
         ],
         "apply_commands": [
             "git add tests/test_connectivity.py",
@@ -122,7 +125,8 @@ WORKERS: Dict[str, Dict[str, Any]] = {
         "description": "Unit tests for environment/biome integration (10 tests)",
         "scripts": ["tests/test_environment.py", "fung_ai_v2/environment.py"],
         "commands": [
-            "pytest tests/test_environment.py -v --cov=fung_ai_v2.environment --cov-report=term-missing --tb=short",
+            ("pytest tests/test_environment.py -v --cov=fung_ai_v2.environment "
+             "--cov-report=term-missing --tb=short"),
         ],
         "apply_commands": [
             "git add tests/test_environment.py",
@@ -137,7 +141,8 @@ WORKERS: Dict[str, Dict[str, Any]] = {
         "description": "Unit tests for MAP-Elites fitness/diversity (5 tests)",
         "scripts": ["tests/test_map_elites.py", "fung_ai_v2/fitness.py"],
         "commands": [
-            "pytest tests/test_map_elites.py -v --cov=fung_ai_v2.fitness --cov-report=term-missing --tb=short",
+            ("pytest tests/test_map_elites.py -v --cov=fung_ai_v2.fitness "
+             "--cov-report=term-missing --tb=short"),
         ],
         "apply_commands": [
             "git add tests/test_map_elites.py",
@@ -153,7 +158,8 @@ WORKERS: Dict[str, Dict[str, Any]] = {
         "description": "Build Godot subprocess bridge for CA generation",
         "scripts": ["godot_project/ca_bridge.gd"],
         "commands": [
-            "test -f godot_project/ca_bridge.gd && echo 'ca_bridge.gd exists' || echo 'Building ca_bridge.gd...'",
+            ("test -f godot_project/ca_bridge.gd && echo 'ca_bridge.gd exists' "
+             "|| echo 'Building ca_bridge.gd...'"),
         ],
         "apply_commands": [
             "git add godot_project/ca_bridge.gd",
@@ -168,7 +174,8 @@ WORKERS: Dict[str, Dict[str, Any]] = {
         "description": "Build TileMapLayer renderer (replaces ColorRect)",
         "scripts": ["godot_project/tilemap_painter.gd"],
         "commands": [
-            "test -f godot_project/tilemap_painter.gd && echo 'tilemap_painter.gd exists' || echo 'Building tilemap_painter.gd...'",
+            ("test -f godot_project/tilemap_painter.gd && echo 'tilemap_painter.gd exists' "
+             "|| echo 'Building tilemap_painter.gd...'"),
         ],
         "apply_commands": [
             "git add godot_project/tilemap_painter.gd",
@@ -189,7 +196,8 @@ WORKERS: Dict[str, Dict[str, Any]] = {
         "apply_commands": [
             "git add README.md LICENSE examples/ VERSION.txt",
             "git commit -m 'v0.1.0: Production-ready CA engine' || true",
-            "git tag -a v0.1.0 -m 'Core CA engine hardened: 100% test coverage, security audit pass, portable, scales to 50x50+' || true",
+            ("git tag -a v0.1.0 -m 'Core CA engine hardened: 100% test coverage, "
+             "security audit pass, portable, scales to 50x50+' || true"),
         ],
         "issue_numbers": [15, 16],
         "allow_nonzero": True,
@@ -395,7 +403,8 @@ def run_swarm(mode: str = "daily", apply: bool = False, sequential: bool = False
     # Execute remaining groups (parallel if not sequential)
     for group_name in ["logic_tests", "integration"]:
         if group_name in groups:
-            print(f"\n📍 {group_name.upper().replace('_', ' ')} GROUP ({'Parallel' if not sequential else 'Sequential'})")
+            parallel_or_seq = "Parallel" if not sequential else "Sequential"
+            print(f"\n📍 {group_name.upper().replace('_', ' ')} GROUP ({parallel_or_seq})")
             group_workers = groups[group_name]
 
             if sequential:

@@ -25,7 +25,11 @@
       "Bash(python3 -m fung_ai_v2.cli benchmark --seed 42 --evals 2000)",
       "Bash(gh run *)",
       "Bash(git commit -m 'Fix ruff violations: remove unused variables and imports, break long lines *)",
-      "Bash(git commit -m 'Fix all remaining ruff violations: unused vars, long lines, ambiguous names *)"
+      "Bash(git commit -m 'Fix all remaining ruff violations: unused vars, long lines, ambiguous names *)",
+      "Bash(awk 'length > 100 {print NR\": \"substr\\($0,1,100\\)\"...\"}' scripts/taylor_ops_team.py)",
+      "Bash(awk 'length > 140 {print NR\": length=\"length\\($0\\)}' scripts/taylor_ops_team.py)",
+      "Bash(awk 'length > 100 {print NR}' scripts/taylor_ops_team.py)",
+      "Bash(awk 'length > 100 {print NR\": \"$0}' scripts/taylor_ops_team.py)"
     ]
   }
 }
