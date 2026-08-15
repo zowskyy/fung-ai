@@ -54,6 +54,23 @@ func get_current_response_path() -> String:
 	return _current_response_path
 
 
+func prefill(recipe_id: String, seed: int, map_size_tiles: Array) -> void:
+	# Pre-fill recipe/seed/map size from a manifest (Library tab's
+	# "Regenerate from manifest"). Does not start generation by itself.
+	for i in range(recipe_selector.item_count):
+		if recipe_selector.get_item_text(i) == recipe_id:
+			recipe_selector.select(i)
+			break
+
+	seed_spin.value = float(seed)
+
+	if map_size_tiles.size() >= 2:
+		width_spin.value = float(map_size_tiles[0])
+		height_spin.value = float(map_size_tiles[1])
+
+	status_label.text = "Prefilled from manifest: %s (seed %d)" % [recipe_id, seed]
+
+
 func _build_ui() -> void:
 	# Construct the control tree and set initial values.
 	var layout: VBoxContainer = VBoxContainer.new()

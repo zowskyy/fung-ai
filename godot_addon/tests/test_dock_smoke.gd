@@ -38,9 +38,11 @@ func _run_tests() -> void:
 	_test_generate_tab_defaults()
 	_test_candidates_tab_defaults()
 	_test_export_tab_defaults()
+	_test_library_tab_defaults()
 	_test_backend_client_json_helpers()
 	_test_export_service_rle_decode()
 	_test_export_service_scene_path()
+	_test_manifest_service_round_trip()
 
 
 func _check(condition: bool, message: String) -> void:
@@ -70,6 +72,13 @@ func _test_dock_builds_tab_tree() -> void:
 		_check(
 			dock.generate_tab.recipe_selector != null,
 			"generate_tab.recipe_selector should be built by its own _ready(), nested under dock"
+		)
+
+	_check(dock.library_tab != null, "dock.library_tab should be instantiated")
+	if dock.library_tab != null:
+		_check(
+			dock.library_tab.manifest_list != null,
+			"library_tab.manifest_list should be built by its own _ready(), nested under dock"
 		)
 
 	dock.queue_free()
@@ -115,6 +124,19 @@ func _test_export_tab_defaults() -> void:
 	_check(
 		tab.export_name_edit.text == "candidate_001",
 		"selecting a candidate should populate the export name field"
+	)
+
+	tab.queue_free()
+
+
+func _test_library_tab_defaults() -> void:
+	var tab: FungLibraryTab = FungLibraryTab.new()
+	root.add_child(tab)
+
+	_check(tab.manifest_list != null, "manifest_list should exist")
+	_check(
+		tab.regenerate_btn.disabled,
+		"regenerate_btn should start disabled with no manifest selected"
 	)
 
 	tab.queue_free()
@@ -174,5 +196,64 @@ func _test_export_service_scene_path() -> void:
 		scene_path.ends_with("levels/candidate_001.tscn"),
 		"export scene path should end with levels/candidate_001.tscn: %s" % scene_path
 	)
+
+	service.queue_free()
+
+
+func _test_manifest_service_round_trip() -> void:
+	var service: FungManifest = FungManifest.new()
+	root.add_child(service)
+
+	# Point the service at a scratch directory under user:// so this test
+	# never writes into the checked-out res:// tree - matches
+	# _test_backend_client_json_helpers' pattern of writing/reading a real
+	# file under user:// and cleaning it up after.
+	var tmp_root: String = "user://fung_smoke_manifests/"
+	service._manifest_root = tmp_root
+	DirAccess.make_dir_recursive_absolute(tmp_root)
+
+	var candidate_data: Dictionary = {
+		"seed": 12345,
+		"recipe_id": "compact_roguelike_rooms",
+		"fung_version": "0.1.0",
+		"map_size_tiles": [96, 96],
+		"metrics": {"walkable_ratio": 0.43, "path_length": 67, "loop_count": 3},
+		"preview_path": "previews/candidate_001.png",
+	}
+
+	var wrote: bool = service.write_manifest(
+		"smoke_test_scene",
+		candidate_data,
+		"top_down_default",
+		"res://generated/fung/levels/smoke_test_scene.tscn",
+	)
+	_check(wrote, "write_manifest should return true on success")
+
+	var read_back: Dictionary = service.read_manifest("smoke_test_scene")
+	_check(not read_back.is_empty(), "read_manifest should return a non-empty dict after writing")
+	_check(
+		read_back.get("recipe_id", "") == "compact_roguelike_rooms",
+		"read_manifest should round-trip recipe_id"
+	)
+	_check(int(read_back.get("seed", -1)) == 12345, "read_manifest should round-trip seed")
+	_check(
+		int(read_back.get("format_version", 0)) == 1,
+		"read_manifest should round-trip format_version"
+	)
+	_check(
+		String(read_back.get("created_utc", "")).ends_with("Z"),
+		"created_utc should end with a Z (UTC marker)"
+	)
+
+	var listed: Array[Dictionary] = service.list_manifests()
+	_check(
+		listed.size() == 1,
+		"list_manifests should find the manifest just written, got %d" % listed.size()
+	)
+
+	# Clean up: remove the manifest file and the scratch directory.
+	var manifest_path: String = tmp_root.path_join("smoke_test_scene.fung.json")
+	DirAccess.remove_absolute(ProjectSettings.globalize_path(manifest_path))
+	DirAccess.remove_absolute(ProjectSettings.globalize_path(tmp_root))
 
 	service.queue_free()

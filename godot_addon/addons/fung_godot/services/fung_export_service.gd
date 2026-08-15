@@ -10,6 +10,13 @@ signal export_progress(candidate_id: String, progress: float, message: String)
 signal export_completed(candidate_id: String, success: bool, scene_path: String)
 
 var _export_root: String = "user://generated/fung/"
+var _manifest: FungManifest = null
+
+
+# Wire in the manifest service (see fung_editor_plugin.gd for wiring order -
+# services must be wired up after add_control_to_dock(), not before).
+func set_manifest_service(manifest: FungManifest) -> void:
+	_manifest = manifest
 
 
 # Export a single candidate to a TileMapLayer scene.
@@ -81,6 +88,17 @@ func export_candidate(
 		push_error("Failed to save scene: %s (error code %d)" % [scene_path, save_error])
 		export_completed.emit(candidate_id, false, "")
 		return false
+
+	if _manifest:
+		var manifest_input: Dictionary = candidate.duplicate(true)
+		manifest_input["recipe_id"] = result_data.get("recipe_id", "")
+		manifest_input["fung_version"] = result_data.get("generator_version", "0.1.0")
+		manifest_input["map_size_tiles"] = payload.get("grid_size", [96, 96])
+		var wrote_manifest: bool = _manifest.write_manifest(
+			candidate_id, manifest_input, export_profile, scene_path
+		)
+		if not wrote_manifest:
+			push_error("Scene exported but manifest write failed for %s" % candidate_id)
 
 	export_progress.emit(candidate_id, 1.0, "Scene exported")
 	export_completed.emit(candidate_id, true, scene_path)

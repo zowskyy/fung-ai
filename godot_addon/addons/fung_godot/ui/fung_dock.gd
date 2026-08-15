@@ -7,6 +7,7 @@ var tab_container: TabContainer = null
 var generate_tab: FungGenerateTab = null
 var candidates_tab: FungCandidatesTab = null
 var export_tab: FungExportTab = null
+var library_tab: FungLibraryTab = null
 
 
 func _ready() -> void:
@@ -36,9 +37,17 @@ func _ready() -> void:
 	# Connect candidates tab to export tab
 	candidates_tab.candidate_selected.connect(_on_candidate_selected)
 
-	# Add placeholder tabs for other features
+	# Add placeholder tab for other unbuilt features
 	_add_placeholder_tab("Environment", "Biome presets, offline defaults")
-	_add_placeholder_tab("Library", "Saved recipes, history")
+
+	# Add actual Library tab (replaces the old placeholder Library tab)
+	library_tab = preload("res://addons/fung_godot/ui/fung_library_tab.gd").new()
+	library_tab.name = "Library"
+	tab_container.add_child(library_tab)
+	tab_container.set_tab_title(4, "Library")
+
+	# Connect library tab to generate tab (regenerate-from-manifest)
+	library_tab.manifest_regenerate_requested.connect(_on_manifest_regenerate_requested)
 
 
 func set_backend_client(backend_client: FungBackendClient) -> void:
@@ -55,11 +64,23 @@ func set_export_service(export_service: FungExportService) -> void:
 		export_tab.set_export_service(export_service)
 
 
+func set_manifest_service(manifest_service: FungManifest) -> void:
+	"""Pass manifest service to Library tab."""
+	if library_tab:
+		library_tab.set_manifest_service(manifest_service)
+
+
 func _on_candidate_selected(candidate_id: String, candidate_data: Dictionary) -> void:
 	"""Handle candidate selection from Candidates tab."""
 	if export_tab:
 		var result_path: String = generate_tab.get_current_response_path() if generate_tab else ""
 		export_tab.set_selected_candidate(candidate_id, result_path)
+
+
+func _on_manifest_regenerate_requested(recipe_id: String, seed: int, map_size_tiles: Array) -> void:
+	"""Handle 'Regenerate from manifest' request from Library tab."""
+	if generate_tab:
+		generate_tab.prefill(recipe_id, seed, map_size_tiles)
 
 
 func _add_placeholder_tab(tab_name: String, placeholder_text: String) -> void:
