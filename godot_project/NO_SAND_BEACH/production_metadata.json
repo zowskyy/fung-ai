@@ -82,11 +82,20 @@
   "codec": "h264",
   "determinism_seed": 42,
   "visual_style": "black_and_white_hand_drawn",
+  "visual_reference": {
+    "film": "Menace II Society (1993)",
+    "scope": "homage_plus_period_beats",
+    "applies_throughout": "Cinematography and character-archetype homage only -- tight hardened-realism framing, high-contrast compositions favoring faces/body language, weighted staging, moral-weight-of-choices character register. Story stays contemporary, stays in Santa Ana.",
+    "literal_period_styling_sequences": ["seq_01_the_setup", "seq_02_the_fall"],
+    "literal_period_styling_note": "seq_01: only Beat 1.14 (Earl's Ghost flashback). seq_02: the full sequence (arrest through prison), reverting to contemporary styling for the sequence's closing job-interview beats. Period styling is a deliberate stylistic choice, not literal in-story chronology.",
+    "confirmed_by_user": true
+  },
   "characters": {
     "pure": {
       "role": "protagonist",
       "age_states_needed": ["7yo_flashback", "teen_15yo", "teen_arrest", "21yo_framed", "adult_30s"],
-      "age_states_confirmed": false
+      "age_states_confirmed": false,
+      "period_styled_states": ["teen_arrest", "21yo_framed"]
     },
     "delia": {
       "role": "mother",
@@ -101,7 +110,8 @@
     "earl": {
       "role": "father_deceased",
       "age_states_needed": ["memory_single_design"],
-      "age_states_confirmed": false
+      "age_states_confirmed": false,
+      "period_styled_states": ["memory_single_design"]
     }
   }
 }

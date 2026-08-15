@@ -4,6 +4,18 @@ Maps each of the 7 sequences to the characters, locations, and animation states 
 
 ---
 
+## Visual Style Reference: Menace II Society
+
+NO SAND BEACH takes visual and tonal direction from *Menace II Society* (1993). This applies at two levels:
+
+**1. Throughout the whole film (homage, not literal setting):** NO SAND BEACH stays contemporary and stays in Santa Ana — the app, the background checks, the modern courtroom all remain as written. What carries over from M2S is *cinematography and character archetype*: tight, hardened-realism framing; high-contrast black-and-white compositions that favor faces and body language over wide spectacle; unhurried, weighted staging (characters occupy space like the environment costs them something); the sense that every character is carrying consequence, not just reacting to plot. Marcus's "I had to be perfect" resentment and Earl's "loved the street more" tragedy are exactly the moral-weight-of-choices register M2S's Caine/O-Dog/Pernell dynamic operates in — lean into that when staging their scenes, not just their dialogue.
+
+**2. Literal early-90s period styling for two specific beats:** Earl's flashback (Sequence 1, Beat 1.14) and all of Sequence 2 ("The Fall" — arrest, prison) get period-accurate wardrobe, environment, and staging referencing M2S directly, since these are the film's street-life-and-incarceration beats. This is a deliberate stylized choice, not literal chronology — the flashback's real in-story date (Pure would have been 7 sometime in the last ~20-25 years relative to his present-day 30s) doesn't necessarily land in the actual early 90s. Treat it the way many contemporary films treat a "timeless slum aesthetic": intentional, not a continuity error to fix.
+
+**Production implication:** Earl's design and Pure's teen/21yo prison-era designs need two passes each if strict continuity ever matters later — but for this production, one M2S-styled design per character/beat is sufficient unless a future sequence needs to show the same character in both a contemporary and period context side by side (not currently the case).
+
+---
+
 ## Sequence 1: The Setup ✅ Beats authored (17 beats, 2:45)
 
 - **Locations:** Santa Ana apartment (interior, night & morning), kitchen, bedroom, school playground, school building (establishing), aerial Santa Ana (drone/sunset)
@@ -14,6 +26,7 @@ Maps each of the 7 sequences to the characters, locations, and animation states 
   - Marcus: entering (checking), looking (resentful), paying (reluctant care), leaving
   - Earl: kneeling, holding, promising, vanishing (memory only)
 - **VFX:** memory transition (wavy/sepia), clock time distortion, gunshot (audio), final silhouette, title card
+- **Style note:** Beat 1.14 (Earl's Ghost flashback) gets M2S-referenced period styling — see "Visual Style Reference" above. Earl's wardrobe, the street setting, and staging should read early-90s; the rest of Sequence 1 stays contemporary.
 - Full detail: `scenes/sequence_01_setup_breakdown.md`
 
 ---
@@ -24,6 +37,7 @@ Maps each of the 7 sequences to the characters, locations, and animation states 
 - **Likely locations:** Street/arrest location, courtroom (brief, framing), prison cell, prison library, a sequence of job-interview offices
 - **Characters:** Pure (teen at arrest, 21yo at framing/prison, ~30s at release)
 - **Animation states (anticipated):** Pure — handcuffed/arrested, sitting (cell), typing (library computer, focused/hopeful), interview (hopeful → crestfallen), walking out (rejected)
+- **Style note:** This entire sequence gets M2S-referenced period styling (see "Visual Style Reference" above) — the arrest, prison, and street setting should read early-90s in wardrobe, environment, and staging, distinct from the contemporary look of every other sequence. The job-interview beats at the sequence's end transition back to present-day styling as Pure re-enters contemporary life.
 - **Open question:** does teen-Pure's arrest get its own on-screen beat, or is it handled as a quick montage/VO before the 21yo framing takes over as the sequence's dramatic weight?
 
 ---
