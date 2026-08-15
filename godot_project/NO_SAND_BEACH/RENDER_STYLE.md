@@ -1,0 +1,37 @@
+# NO SAND BEACH — Render Style: CA-Dissolved Pixel Focus
+
+**Status:** Design locked, not yet implemented. This is Phase D (Headless Rendering) work — no sprite assets exist yet and no Godot binary is available in this environment, so this document exists to preserve the decision until Phase D actually starts.
+
+## Concept
+
+Reference: a chunky, hard-edged pixel-art scene (color, Scarface-style gangster interior — the visual density and staging of the reference is the target, not its content or palette).
+
+Adapted for NO SAND BEACH: black-and-white, higher resolution/fidelity than the reference, with faces as the sharp focal point and everything else falling off into soft, organic dissolution — achieved through **cellular automata edge-relaxation**, not a conventional Gaussian depth-of-field blur.
+
+## Why CA instead of blur
+
+This repo's CA engine (`fung_ai_v2/ca_engine.py`) already does exactly this kind of transformation, just for cave geometry instead of rendered frames: `step_ca()` is a standard Moore-neighborhood birth/survival cellular automaton (`CARule`, `B{birth}/S{survival}` — Conway's Game of Life is literally the `B3/S23` special case of this same format), used elsewhere in the project to turn jagged random-noise grids into smooth, organic cave walls over a few iterations. Repurposing that as an image-space filter keeps the film's rendering technique consistent with its procedural-generation identity, rather than reaching for a generic post-process blur.
+
+## Pipeline
+
+1. **Base render** — chunky pixel art, black-and-white palette, hard block edges. This is the "seed" image, deliberately low-fidelity, matching the reference image's blockiness minus color.
+2. **Face-focus map** — per frame, per character, mark face region(s) as the sharp-focus target. Everything else (body, background, environment) falls off in focus based on distance from the nearest face region.
+3. **CA dissolution pass** — reuse `step_ca()` as an edge-relaxation filter:
+   - Threshold the black-and-white render into a binary grid (1 = ink/dark, 0 = paper/light), per region.
+   - Run `step_ca()` for *N* iterations, where *N* scales with distance-from-face ("out-of-focus-ness"):
+     - Faces: *N* ≈ 0–1 (stays crisp, pixel-art-sharp — this is the focal point).
+     - Body/midground: *N* ≈ 2–3 (light smoothing).
+     - Background/extremities: *N* ≈ 4–6+ (heavy dissolution into soft, organic shapes — the depth-of-field stand-in).
+   - This is the same neighbor-majority smoothing the CA engine already uses for cave walls (`BIOME_RULE`-driven), just applied to rendered pixels instead of terrain cells.
+4. **Upscale** — CA-smoothed edges lose 1:1 alignment with the original pixel grid, so the output resolution is higher than the base pixel-art render: supersample the base grid before the CA pass (or run the CA pass at 2–4x scale). This is what delivers "more resolution and fidelity" while keeping the hand-crafted, procedurally-smoothed look instead of a naive photo blur.
+
+## Open items (need Phase D, real sprites, and a Godot/image-processing test pass to resolve)
+
+- **Face-region tagging**: does `character_animator`'s `character_rig.gd` / `character_skeleton.gd` already support tagging a bone/region as "face," or does this need a new marker convention on top of the existing rig system?
+- **CA iteration curve**: linear falloff from face distance, or discrete depth bands (face / body / background)? First real visual test (once sprites exist) should tune this rather than guessing further now.
+- **Where this runs**: as a Godot shader (real-time, GPU-side CA iteration per frame) vs. an offline Python post-process pass on captured PNG frames (reusing `fung_ai_v2/ca_engine.py` directly, no reimplementation needed). Offline is simpler to build first and matches the project's existing headless-rendering-then-ffmpeg-compile pipeline; a shader version would be a later optimization if per-frame Python processing is too slow across ~4000 frames/sequence.
+
+## Reference
+
+- Reference image: user-supplied concept art (style reference only — composition/blockiness/staging, not content or palette).
+- CA technical basis: `fung_ai_v2/ca_engine.py` — `step_ca()`, `CARule` (Moore-neighborhood birth/survival; Conway's Game of Life is the `B3/S23` special case).

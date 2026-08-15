@@ -90,6 +90,14 @@
     "literal_period_styling_note": "seq_01: only Beat 1.14 (Earl's Ghost flashback). seq_02: the full sequence (arrest through prison), reverting to contemporary styling for the sequence's closing job-interview beats. Period styling is a deliberate stylistic choice, not literal in-story chronology.",
     "confirmed_by_user": true
   },
+  "render_technique": {
+    "name": "ca_dissolved_pixel_focus",
+    "status": "design_locked_not_implemented",
+    "summary": "Chunky black-and-white pixel-art base render, upscaled and edge-relaxed via the project's existing cellular automata engine (fung_ai_v2/ca_engine.py step_ca) as a depth-of-field stand-in: near-zero CA iterations on face regions (stays crisp/focal), progressively more iterations with distance from faces (dissolves into soft organic shapes). Reuses the same CA smoothing already used for cave-wall generation, applied to rendered pixels instead of terrain.",
+    "doc_path": "res://NO_SAND_BEACH/RENDER_STYLE.md",
+    "phase": "phase_d_headless_rendering",
+    "confirmed_by_user": true
+  },
   "characters": {
     "pure": {
       "role": "protagonist",
