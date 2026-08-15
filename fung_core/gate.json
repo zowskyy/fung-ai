@@ -31,6 +31,12 @@
       "description": "Standalone headless smoke test for the CutsceneDirector narrative system.",
       "command": "godot --headless --path fung_core -s godot_addon/fung_core/tests/test_cutscene_director.gd",
       "working_directory": "."
+    },
+    "json_schema_conformance": {
+      "description": "JSON Schema engine conformance tests. Validates that the native GDScript schema validator conforms to Draft 2020-12 and correctly validates example data against contract schemas.",
+      "command": "godot --headless --path fung_core -s tools/conformance_runner.gd",
+      "working_directory": ".",
+      "timeout_seconds": 5
     }
   },
   "budgets": {
