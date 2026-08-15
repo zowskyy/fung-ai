@@ -1,0 +1,198 @@
+{
+  "tests": [
+    {
+      "description": "items schema - all integers valid",
+      "schema": {
+        "type": "array",
+        "items": {"type": "integer"}
+      },
+      "data": [1, 2, 3],
+      "valid": true
+    },
+    {
+      "description": "items schema - mixed types invalid",
+      "schema": {
+        "type": "array",
+        "items": {"type": "string"}
+      },
+      "data": [1, 2, 3],
+      "valid": false
+    },
+    {
+      "description": "items schema - string array valid",
+      "schema": {
+        "type": "array",
+        "items": {"type": "string"}
+      },
+      "data": ["a", "b", "c"],
+      "valid": true
+    },
+    {
+      "description": "items schema - empty array valid",
+      "schema": {
+        "type": "array",
+        "items": {"type": "integer"}
+      },
+      "data": [],
+      "valid": true
+    },
+    {
+      "description": "items schema - object items valid",
+      "schema": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "id": {"type": "integer"},
+            "name": {"type": "string"}
+          }
+        }
+      },
+      "data": [
+        {"id": 1, "name": "Alice"},
+        {"id": 2, "name": "Bob"}
+      ],
+      "valid": true
+    },
+    {
+      "description": "minItems - valid",
+      "schema": {
+        "type": "array",
+        "minItems": 2
+      },
+      "data": [1, 2, 3],
+      "valid": true
+    },
+    {
+      "description": "minItems - boundary valid",
+      "schema": {
+        "type": "array",
+        "minItems": 2
+      },
+      "data": [1, 2],
+      "valid": true
+    },
+    {
+      "description": "minItems - too few",
+      "schema": {
+        "type": "array",
+        "minItems": 2
+      },
+      "data": [1],
+      "valid": false
+    },
+    {
+      "description": "maxItems - valid",
+      "schema": {
+        "type": "array",
+        "maxItems": 5
+      },
+      "data": [1, 2, 3],
+      "valid": true
+    },
+    {
+      "description": "maxItems - boundary valid",
+      "schema": {
+        "type": "array",
+        "maxItems": 3
+      },
+      "data": [1, 2, 3],
+      "valid": true
+    },
+    {
+      "description": "maxItems - too many",
+      "schema": {
+        "type": "array",
+        "maxItems": 2
+      },
+      "data": [1, 2, 3],
+      "valid": false
+    },
+    {
+      "description": "minItems and maxItems - valid",
+      "schema": {
+        "type": "array",
+        "minItems": 2,
+        "maxItems": 5
+      },
+      "data": [1, 2, 3],
+      "valid": true
+    },
+    {
+      "description": "uniqueItems - all unique valid",
+      "schema": {
+        "type": "array",
+        "uniqueItems": true
+      },
+      "data": [1, 2, 3],
+      "valid": true
+    },
+    {
+      "description": "uniqueItems - duplicates invalid",
+      "schema": {
+        "type": "array",
+        "uniqueItems": true
+      },
+      "data": [1, 2, 2, 3],
+      "valid": false
+    },
+    {
+      "description": "uniqueItems - strings with duplicates",
+      "schema": {
+        "type": "array",
+        "uniqueItems": true
+      },
+      "data": ["a", "b", "a"],
+      "valid": false
+    },
+    {
+      "description": "uniqueItems - empty array valid",
+      "schema": {
+        "type": "array",
+        "uniqueItems": true
+      },
+      "data": [],
+      "valid": true
+    },
+    {
+      "description": "uniqueItems false - duplicates allowed",
+      "schema": {
+        "type": "array",
+        "uniqueItems": false
+      },
+      "data": [1, 2, 2, 3],
+      "valid": true
+    },
+    {
+      "description": "contains schema - at least one matches",
+      "schema": {
+        "type": "array",
+        "contains": {"type": "string"}
+      },
+      "data": [1, 2, "hello"],
+      "valid": true
+    },
+    {
+      "description": "contains schema - none match",
+      "schema": {
+        "type": "array",
+        "contains": {"type": "string"}
+      },
+      "data": [1, 2, 3],
+      "valid": false
+    },
+    {
+      "description": "prefixItems schema - tuple validation",
+      "schema": {
+        "type": "array",
+        "prefixItems": [
+          {"type": "string"},
+          {"type": "integer"},
+          {"type": "boolean"}
+        ]
+      },
+      "data": ["hello", 42, true],
+      "valid": true
+    }
+  ]
+}

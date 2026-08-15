@@ -5,7 +5,6 @@ extends RefCounted
 ## Pre-parses and optimizes schema for efficient validation.
 
 var _schema: Dictionary = {}
-var _compiled_regex_patterns: Dictionary = {}
 var _refs: Dictionary = {}
 
 
@@ -20,25 +19,25 @@ func _init(schema: Dictionary) -> void:
 func _compile_regex_patterns(schema: Dictionary, path: String = "") -> void:
 	if not schema is Dictionary:
 		return
-	
+
 	for key in schema:
 		var value = schema[key]
-		
+
 		if key == "pattern" and value is String:
-			var regex_key := path + ".pattern"
-			try:
-				_compiled_regex_patterns[regex_key] = RegEx.new()
-				_compiled_regex_patterns[regex_key].compile(value)
-			except:
-				push_error("Failed to compile regex pattern: %s" % value)
-		
+			# Store compiled regex directly in the schema for easy access during validation
+			var regex = RegEx.new()
+			if regex.compile(value) != OK:
+				push_error("Failed to compile regex pattern: %s" % [value])
+			else:
+				schema["__compiled_pattern"] = regex
+
 		# Recurse into nested objects
 		if value is Dictionary:
 			_compile_regex_patterns(value, path + "." + key if path else key)
 		elif value is Array:
 			for i in range(value.size()):
 				if value[i] is Dictionary:
-					_compile_regex_patterns(value[i], path + "." + key + "[%d]" % i if path else key + "[%d]" % i)
+					_compile_regex_patterns(value[i], path + "." + key + ("[%d]" % [i]) if path else key + ("[%d]" % [i]))
 
 
 ## Extract all $ref definitions for offline resolution.
@@ -57,7 +56,7 @@ func _extract_refs(schema: Dictionary, path: String = "") -> void:
 		elif value is Array:
 			for i in range(value.size()):
 				if value[i] is Dictionary:
-					_extract_refs(value[i], path + "." + key + "[%d]" % i if path else key + "[%d]" % i)
+					_extract_refs(value[i], path + "." + key + ("[%d]" % [i]) if path else key + ("[%d]" % [i]))
 
 
 ## Main validation entry point.
@@ -75,7 +74,22 @@ func _validate_internal(data: Variant, schema: Dictionary, path: String, result:
 		if _refs.has(ref):
 			_validate_internal(data, _refs[ref], path, result)
 			return
-	
+
+	# Null validation - check null against schema type rules
+	if data == null:
+		if schema.has("type"):
+			if not _validate_type(data, schema["type"], path, result):
+				return
+		elif not schema.has("type"):
+			# If no type is specified and data is null, it's valid by default
+			pass
+		if schema.has("const"):
+			if data != schema["const"]:
+				result.add_error("Value must be %s" % [schema["const"]], path)
+				return
+		# Null has no other validations (no minLength, maximum, etc.)
+		return
+
 	# Type validation
 	if schema.has("type"):
 		if not _validate_type(data, schema["type"], path, result):
@@ -114,10 +128,16 @@ func _validate_internal(data: Variant, schema: Dictionary, path: String, result:
 				result.add_error("String length %d is greater than maxLength %d" % [data.length(), schema["maxLength"]], path)
 		
 		if schema.has("pattern"):
-			var pattern_key := "$.pattern"
-			if _compiled_regex_patterns.has(pattern_key):
-				var regex = _compiled_regex_patterns[pattern_key]
+			if schema.has("__compiled_pattern"):
+				var regex = schema["__compiled_pattern"]
 				if not regex.search(data):
+					result.add_error("String does not match pattern: %s" % [schema["pattern"]], path)
+			else:
+				# Fallback: compile on the fly if not pre-compiled
+				var regex = RegEx.new()
+				if regex.compile(schema["pattern"]) != OK:
+					result.add_error("Failed to compile pattern: %s" % [schema["pattern"]], path)
+				elif not regex.search(data):
 					result.add_error("String does not match pattern: %s" % [schema["pattern"]], path)
 	
 	# Array validations
@@ -169,16 +189,19 @@ func _validate_internal(data: Variant, schema: Dictionary, path: String, result:
 ## Validate a value against a type specification.
 func _validate_type(data: Variant, type_spec: Variant, path: String, result: ValidationResult) -> bool:
 	if type_spec is String:
-		return _validate_single_type(data, type_spec, path, result)
+		if not _validate_single_type(data, type_spec, path, result):
+			result.add_error("Value type is not %s" % [type_spec], path)
+			return false
+		return true
 	elif type_spec is Array:
 		# Multiple allowed types
 		for type_name in type_spec:
 			if _validate_single_type(data, type_name, path, result):
 				return true
-		
+
 		result.add_error("Value type is not one of: %s" % [type_spec], path)
 		return false
-	
+
 	return true
 
 
@@ -198,11 +221,17 @@ func _validate_single_type(data: Variant, type_name: String, path: String, resul
 		"number":
 			return data_type == TYPE_INT or data_type == TYPE_FLOAT
 		"integer":
-			return data_type == TYPE_INT
+			if data_type == TYPE_INT:
+				return true
+			# JSON.parse_string() deserializes all JSON numbers as TYPE_FLOAT
+			# (JSON has no separate integer grammar). Per Draft 2020-12, "integer"
+			# means "a number with a zero fractional part", so a whole-valued
+			# float (5.0) must validate as an integer.
+			if data_type == TYPE_FLOAT:
+				return float(data) == floor(float(data))
+			return false
 		"string":
 			return data_type == TYPE_STRING
 		_:
-			push_error("Unknown type: %s" % type_name)
+			push_error("Unknown type: %s" % [type_name])
 			return false
-	
-	return false

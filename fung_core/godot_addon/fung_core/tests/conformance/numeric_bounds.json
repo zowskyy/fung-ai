@@ -1,0 +1,124 @@
+{
+  "tests": [
+    {
+      "description": "minimum - valid",
+      "schema": {"type": "number", "minimum": 10.0},
+      "data": 15.0,
+      "valid": true
+    },
+    {
+      "description": "minimum - boundary valid",
+      "schema": {"type": "number", "minimum": 10.0},
+      "data": 10.0,
+      "valid": true
+    },
+    {
+      "description": "minimum - below fails",
+      "schema": {"type": "number", "minimum": 10.0},
+      "data": 5.0,
+      "valid": false
+    },
+    {
+      "description": "maximum - valid",
+      "schema": {"type": "number", "maximum": 100.0},
+      "data": 50.0,
+      "valid": true
+    },
+    {
+      "description": "maximum - boundary valid",
+      "schema": {"type": "number", "maximum": 100.0},
+      "data": 100.0,
+      "valid": true
+    },
+    {
+      "description": "maximum - above fails",
+      "schema": {"type": "number", "maximum": 100.0},
+      "data": 150.0,
+      "valid": false
+    },
+    {
+      "description": "minimum and maximum - valid",
+      "schema": {"type": "number", "minimum": 0.0, "maximum": 100.0},
+      "data": 50.0,
+      "valid": true
+    },
+    {
+      "description": "minimum and maximum - below minimum",
+      "schema": {"type": "number", "minimum": 0.0, "maximum": 100.0},
+      "data": -10.0,
+      "valid": false
+    },
+    {
+      "description": "minimum and maximum - above maximum",
+      "schema": {"type": "number", "minimum": 0.0, "maximum": 100.0},
+      "data": 150.0,
+      "valid": false
+    },
+    {
+      "description": "exclusiveMinimum - valid",
+      "schema": {"type": "number", "exclusiveMinimum": 0.0},
+      "data": 0.1,
+      "valid": true
+    },
+    {
+      "description": "exclusiveMinimum - boundary fails",
+      "schema": {"type": "number", "exclusiveMinimum": 0.0},
+      "data": 0.0,
+      "valid": false
+    },
+    {
+      "description": "exclusiveMinimum - below fails",
+      "schema": {"type": "number", "exclusiveMinimum": 0.0},
+      "data": -0.1,
+      "valid": false
+    },
+    {
+      "description": "exclusiveMaximum - valid",
+      "schema": {"type": "number", "exclusiveMaximum": 100.0},
+      "data": 99.9,
+      "valid": true
+    },
+    {
+      "description": "exclusiveMaximum - boundary fails",
+      "schema": {"type": "number", "exclusiveMaximum": 100.0},
+      "data": 100.0,
+      "valid": false
+    },
+    {
+      "description": "exclusiveMaximum - above fails",
+      "schema": {"type": "number", "exclusiveMaximum": 100.0},
+      "data": 100.1,
+      "valid": false
+    },
+    {
+      "description": "exclusiveMinimum and exclusiveMaximum - valid",
+      "schema": {"type": "number", "exclusiveMinimum": 0.0, "exclusiveMaximum": 100.0},
+      "data": 50.0,
+      "valid": true
+    },
+    {
+      "description": "exclusiveMinimum and exclusiveMaximum - boundaries fail",
+      "schema": {"type": "number", "exclusiveMinimum": 0.0, "exclusiveMaximum": 100.0},
+      "data": 0.0,
+      "valid": false
+    },
+    {
+      "description": "multipleOf - valid",
+      "schema": {"type": "integer", "multipleOf": 5},
+      "data": 15,
+      "valid": true
+    },
+    {
+      "description": "multipleOf - zero valid",
+      "schema": {"type": "integer", "multipleOf": 5},
+      "data": 0,
+      "valid": true
+    },
+    {
+      "description": "multipleOf - invalid",
+      "schema": {"type": "integer", "multipleOf": 5},
+      "data": 7,
+      "valid": false
+    }
+  ]
+}

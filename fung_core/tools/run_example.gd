@@ -15,20 +15,24 @@ func _initialize() -> void:
 	# only re-parsed here so the runner can log what generation mode is used.
 	print("run_example: seed=%s timeout=%.1fs" % [_parse_seed_arg(), _timeout_s])
 
+	print("run_example: loading scene from %s" % MAIN_SCENE_PATH)
 	var packed_scene: PackedScene = load(MAIN_SCENE_PATH)
 	if packed_scene == null:
 		printerr("run_example: failed to load scene at %s" % MAIN_SCENE_PATH)
 		quit(1)
 		return
 
+	print("run_example: scene loaded, instantiating...")
 	var main_instance := packed_scene.instantiate()
 	if not main_instance.has_signal("scene_finished"):
 		printerr("run_example: main scene root has no 'scene_finished' signal")
 		quit(1)
 		return
 
+	print("run_example: connecting signal and adding to scene tree...")
 	main_instance.scene_finished.connect(_on_scene_finished)
 	root.add_child(main_instance)
+	print("run_example: scene added to tree, waiting for completion...")
 
 
 func _parse_timeout_arg() -> float:

@@ -1,0 +1,106 @@
+{
+  "tests": [
+    {
+      "description": "minLength - valid",
+      "schema": {"type": "string", "minLength": 3},
+      "data": "hello",
+      "valid": true
+    },
+    {
+      "description": "minLength - boundary valid",
+      "schema": {"type": "string", "minLength": 3},
+      "data": "abc",
+      "valid": true
+    },
+    {
+      "description": "minLength - too short",
+      "schema": {"type": "string", "minLength": 3},
+      "data": "ab",
+      "valid": false
+    },
+    {
+      "description": "maxLength - valid",
+      "schema": {"type": "string", "maxLength": 10},
+      "data": "hello",
+      "valid": true
+    },
+    {
+      "description": "maxLength - boundary valid",
+      "schema": {"type": "string", "maxLength": 5},
+      "data": "hello",
+      "valid": true
+    },
+    {
+      "description": "maxLength - too long",
+      "schema": {"type": "string", "maxLength": 5},
+      "data": "hello world",
+      "valid": false
+    },
+    {
+      "description": "minLength and maxLength - valid",
+      "schema": {"type": "string", "minLength": 3, "maxLength": 10},
+      "data": "hello",
+      "valid": true
+    },
+    {
+      "description": "minLength and maxLength - too short",
+      "schema": {"type": "string", "minLength": 3, "maxLength": 10},
+      "data": "ab",
+      "valid": false
+    },
+    {
+      "description": "minLength and maxLength - too long",
+      "schema": {"type": "string", "minLength": 3, "maxLength": 10},
+      "data": "this is too long",
+      "valid": false
+    },
+    {
+      "description": "pattern - lowercase letters match",
+      "schema": {"type": "string", "pattern": "^[a-z]+$"},
+      "data": "abc",
+      "valid": true
+    },
+    {
+      "description": "pattern - uppercase letters no match",
+      "schema": {"type": "string", "pattern": "^[a-z]+$"},
+      "data": "ABC",
+      "valid": false
+    },
+    {
+      "description": "pattern - numbers match",
+      "schema": {"type": "string", "pattern": "^[0-9]+$"},
+      "data": "12345",
+      "valid": true
+    },
+    {
+      "description": "pattern - letters don't match numbers",
+      "schema": {"type": "string", "pattern": "^[0-9]+$"},
+      "data": "abc",
+      "valid": false
+    },
+    {
+      "description": "pattern - email-like",
+      "schema": {"type": "string", "pattern": "^[a-z0-9]+@[a-z]+\\.[a-z]+$"},
+      "data": "user@example.com",
+      "valid": true
+    },
+    {
+      "description": "pattern - email-like no match",
+      "schema": {"type": "string", "pattern": "^[a-z0-9]+@[a-z]+\\.[a-z]+$"},
+      "data": "not-an-email",
+      "valid": false
+    },
+    {
+      "description": "empty string - valid for any string schema",
+      "schema": {"type": "string"},
+      "data": "",
+      "valid": true
+    },
+    {
+      "description": "unicode string - valid",
+      "schema": {"type": "string"},
+      "data": "hello 世界 🌍",
+      "valid": true
+    }
+  ]
+}

@@ -1,0 +1,154 @@
+{
+  "tests": [
+    {
+      "description": "null type accepts null",
+      "schema": {"type": "null"},
+      "data": null,
+      "valid": true
+    },
+    {
+      "description": "null type rejects other types",
+      "schema": {"type": "null"},
+      "data": "string",
+      "valid": false
+    },
+    {
+      "description": "boolean type accepts true",
+      "schema": {"type": "boolean"},
+      "data": true,
+      "valid": true
+    },
+    {
+      "description": "boolean type accepts false",
+      "schema": {"type": "boolean"},
+      "data": false,
+      "valid": true
+    },
+    {
+      "description": "boolean type rejects non-boolean",
+      "schema": {"type": "boolean"},
+      "data": 1,
+      "valid": false
+    },
+    {
+      "description": "integer type accepts integer",
+      "schema": {"type": "integer"},
+      "data": 42,
+      "valid": true
+    },
+    {
+      "description": "integer type accepts zero",
+      "schema": {"type": "integer"},
+      "data": 0,
+      "valid": true
+    },
+    {
+      "description": "integer type accepts negative",
+      "schema": {"type": "integer"},
+      "data": -5,
+      "valid": true
+    },
+    {
+      "description": "integer type rejects float",
+      "schema": {"type": "integer"},
+      "data": 3.14,
+      "valid": false
+    },
+    {
+      "description": "number type accepts integer",
+      "schema": {"type": "number"},
+      "data": 42,
+      "valid": true
+    },
+    {
+      "description": "number type accepts float",
+      "schema": {"type": "number"},
+      "data": 3.14,
+      "valid": true
+    },
+    {
+      "description": "number type accepts negative",
+      "schema": {"type": "number"},
+      "data": -2.5,
+      "valid": true
+    },
+    {
+      "description": "number type rejects string",
+      "schema": {"type": "number"},
+      "data": "42",
+      "valid": false
+    },
+    {
+      "description": "string type accepts string",
+      "schema": {"type": "string"},
+      "data": "hello",
+      "valid": true
+    },
+    {
+      "description": "string type accepts empty string",
+      "schema": {"type": "string"},
+      "data": "",
+      "valid": true
+    },
+    {
+      "description": "string type rejects number",
+      "schema": {"type": "string"},
+      "data": 42,
+      "valid": false
+    },
+    {
+      "description": "array type accepts array",
+      "schema": {"type": "array"},
+      "data": [1, 2, 3],
+      "valid": true
+    },
+    {
+      "description": "array type accepts empty array",
+      "schema": {"type": "array"},
+      "data": [],
+      "valid": true
+    },
+    {
+      "description": "array type rejects object",
+      "schema": {"type": "array"},
+      "data": {"key": "value"},
+      "valid": false
+    },
+    {
+      "description": "object type accepts object",
+      "schema": {"type": "object"},
+      "data": {"key": "value"},
+      "valid": true
+    },
+    {
+      "description": "object type accepts empty object",
+      "schema": {"type": "object"},
+      "data": {},
+      "valid": true
+    },
+    {
+      "description": "object type rejects array",
+      "schema": {"type": "object"},
+      "data": [1, 2, 3],
+      "valid": false
+    },
+    {
+      "description": "multi-type schema accepts first type",
+      "schema": {"type": ["string", "number"]},
+      "data": "hello",
+      "valid": true
+    },
+    {
+      "description": "multi-type schema accepts second type",
+      "schema": {"type": ["string", "number"]},
+      "data": 42,
+      "valid": true
+    },
+    {
+      "description": "multi-type schema rejects other type",
+      "schema": {"type": ["string", "number"]},
+      "data": true,
+      "valid": false
+    }
+  ]
+}

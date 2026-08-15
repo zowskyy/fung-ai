@@ -7,12 +7,12 @@ extends RefCounted
 
 var from_version: String = ""
 var to_version: String = ""
-var patch: Dictionary = {}  # Array of patch operations
+var patch: Variant = {}
 var _pre_migration_hash: String = ""
 var _post_migration_hash: String = ""
 
 
-func _init(p_from_version: String = "", p_to_version: String = "", p_patch: Dictionary = {}) -> void:
+func _init(p_from_version: String = "", p_to_version: String = "", p_patch: Variant = {}) -> void:
 	from_version = p_from_version
 	to_version = p_to_version
 	patch = p_patch
@@ -78,7 +78,7 @@ static func _apply_operation(data: Dictionary, operation: Dictionary) -> Diction
 			var from_path = operation.get("from", "")
 			return _apply_copy(data, from_path, path)
 		_:
-			push_error("Unknown patch operation: %s" % op_type)
+			push_error("Unknown patch operation: %s" % [op_type])
 			return data
 
 
@@ -146,7 +146,7 @@ static func _apply_replace(data: Dictionary, path: String, value: Variant) -> Di
 static func _apply_copy(data: Dictionary, from_path: String, to_path: String) -> Dictionary:
 	var source_value = _get_value_at_path(data, from_path)
 	if source_value == null:
-		push_warning("Copy source path not found: %s" % from_path)
+		push_warning("Copy source path not found: %s" % [from_path])
 		return data
 
 	# Deep copy the value
