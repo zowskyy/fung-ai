@@ -10,4 +10,4 @@ jobs:
           python-version: '3.11'
       - run: pip install -r requirements.txt && pip install pytest pytest-cov ruff
       - run: ruff check fung_ai_v2/ scripts/ --select=E,W,F
-      - run: pytest --tb=short
+      - run: python -m pytest --tb=short

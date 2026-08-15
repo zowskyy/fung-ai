@@ -15,21 +15,41 @@ The JSON Schema engine uses RFC 8785 canonical JSON representation for determini
 
 Canonicalization sorts object keys lexicographically and removes whitespace, making validation results independent of data formatting variations.
 
-### Phase 9 Status
+### Status (Phase 9–10)
 
 **Implemented:**
 - Core schema asset system (`JsonSchemaAsset`, `SchemaNode`)
 - Validation result tracking (`ValidationResult`)
-- Schema compilation framework (`CompiledSchema`)
-- Basic type checking (null validation)
+- Schema compilation framework (`CompiledSchema`), with regex pre-compilation
+- Type checking for all Draft 2020-12 primitive types (`null`, `boolean`,
+  `object`, `array`, `number`, `integer`, `string`), including union types
+  (`"type": ["string", "null"]`)
+- `const` and `enum` validation
+- Numeric constraints: `minimum`, `maximum`
+- String constraints: `minLength`, `maxLength`, `pattern`
+- Array validation: `items` (single-schema form)
+- Object validation: `required`, `properties`, `additionalProperties`
+  (boolean and schema forms)
+- Offline `$ref` resolution (inline references only, no remote fetch)
+- RFC 8785 canonicalization for deterministic hashing
 
-**Planned (Future Phases):**
-- Full Draft 2020-12 keyword support (type, enum, properties, etc.)
-- Array item validation
-- Nested object validation
-- Constraint keywords (minLength, maximum, pattern, etc.)
-- Complex combinators (allOf, anyOf, oneOf)
-- Custom keyword extensions
+**Known engine-specific behavior:** `JSON.parse_string()` deserializes all
+JSON numbers as `TYPE_FLOAT` in Godot 4.3 — there is no separate integer
+grammar in JSON, and Godot doesn't infer one from the literal's formatting.
+The `"integer"` type check accounts for this and accepts whole-valued
+floats, per Draft 2020-12's actual definition of integer ("a number with a
+zero fractional part"). See `PHASE_10_FINDINGS.md` for the full
+investigation. If you ever add a new numeric type check to this engine,
+remember that `typeof(data) == TYPE_INT` alone will reject valid
+JSON-sourced integers.
+
+**Not yet implemented:**
+- `minItems` / `maxItems` / `uniqueItems` / `contains` / `prefixItems`
+- `minProperties` / `maxProperties` / `patternProperties` / `dependentRequired`
+- `exclusiveMinimum` / `exclusiveMaximum` / `multipleOf`
+- `format` (email, uri, uuid, etc.)
+- Combinators (`allOf`, `anyOf`, `oneOf`, `not`)
+- Remote `$ref` resolution
 
 ---
 
