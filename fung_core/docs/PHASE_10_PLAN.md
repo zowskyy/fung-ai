@@ -1,5 +1,12 @@
 # Phase 10: Data Validation & Integration - Planning
 
+> **Status: Core blocker resolved.** See `PHASE_10_FINDINGS.md` for the root
+> cause, the fix, and CI verification. Tasks 1–3 below are complete. Task 4
+> (platform verification) is addressed at the source-code level in the
+> findings doc; Task 5 (documentation) is addressed by this update and the
+> revised `JSON_SCHEMA.md`. The plan below is kept as-written for historical
+> record of the investigation approach.
+
 ## Overview
 
 Phase 9 delivered a working JSON Schema validation engine. Phase 10 focuses on ensuring example data fully conforms to schemas and investigating type preservation during JSON loading.

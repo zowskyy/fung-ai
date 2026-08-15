@@ -79,12 +79,15 @@ godot --headless --path fung_core -s tools/replay_check.gd
 
 ## Phase 9: Native JSON Schema Engine
 
-**Status: In Progress**
+**Status: Complete** (see `PHASE_9_COMPLETION.md`, `PHASE_10_FINDINGS.md`)
 
 Fung Core now includes a native GDScript JSON Schema validation engine that
 validates game data at runtime without any Python dependencies. The engine
-supports JSON Schema Draft 2020-12 with full keyword support planned across
-future phases.
+supports the core of JSON Schema Draft 2020-12 (types, const/enum, numeric
+and string constraints, array/object validation, offline `$ref`); see
+`JSON_SCHEMA.md` for the full implemented/not-yet-implemented keyword list.
+Validation is fatal in the cave_boss example: it fails if loaded data
+doesn't conform to its schema.
 
 **Key Components:**
 - `JsonSchemaAsset` — Resource-based schema storage with compilation caching
