@@ -1,0 +1,24 @@
+{
+  "protocol_version": 1,
+  "request_id": "sample_roguelike_demo",
+  "generator_version": "0.1.0",
+  "recipe_id": "compact_roguelike_rooms",
+  "seed": 42,
+  "map_size_tiles": [
+    48,
+    48
+  ],
+  "tile_size_px": [
+    16,
+    16
+  ],
+  "generation_budget": "fast",
+  "environment_mode": "manual_preset",
+  "environment_preset": "limestone_cave",
+  "overrides": {},
+  "candidate_count": 3,
+  "job_dir": "<job_dir>",
+  "result_path": "<job_dir>/result.json",
+  "status_path": "<job_dir>/status.json",
+  "cancel_path": "<job_dir>/cancel.request"
+}

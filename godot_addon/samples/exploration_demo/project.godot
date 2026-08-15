@@ -1,0 +1,9 @@
+; Fung Godot Toolkit - exploration_demo sample project
+; Minimal Godot 4.3 project.godot - see README.md in this folder.
+config_version=5
+
+[application]
+
+config/name="Fung Exploration Demo"
+run/main_scene="res://main.tscn"
+config/features=PackedStringArray("4.3")
