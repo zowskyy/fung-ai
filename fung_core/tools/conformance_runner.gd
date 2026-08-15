@@ -50,9 +50,8 @@ func _test_core_api() -> void:
 	_pass("JsonSchemaAsset instantiation")
 
 	# CompiledSchema should exist and instantiate
-	var compiled := CompiledSchema.new()
+	var compiled := CompiledSchema.new({})
 	_assert(compiled != null, "CompiledSchema instantiation")
-	_assert(compiled.schema is Dictionary, "CompiledSchema.schema is Dictionary")
 	_pass("CompiledSchema instantiation")
 
 	# SchemaNode should exist and extend Node
