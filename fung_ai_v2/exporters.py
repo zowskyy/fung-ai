@@ -78,7 +78,7 @@ class GodotExporter:
         labeled, num_features = ndimage.label(passable)
         if num_features > 0:
             largest_label = max(range(1, num_features + 1),
-                               key=lambda l: np.sum(labeled == l))
+                                key=lambda label_id: np.sum(labeled == label_id))
             largest_region = np.argwhere(labeled == largest_label)
 
             # Player spawn: center of largest region

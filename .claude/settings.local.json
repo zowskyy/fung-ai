@@ -24,7 +24,8 @@
       "Bash(where python *)",
       "Bash(python3 -m fung_ai_v2.cli benchmark --seed 42 --evals 2000)",
       "Bash(gh run *)",
-      "Bash(git commit -m 'Fix ruff violations: remove unused variables and imports, break long lines *)"
+      "Bash(git commit -m 'Fix ruff violations: remove unused variables and imports, break long lines *)",
+      "Bash(git commit -m 'Fix all remaining ruff violations: unused vars, long lines, ambiguous names *)"
     ]
   }
 }

@@ -164,8 +164,8 @@ def run_held_out_benchmark(
         if verbose:
             print(f"\n  Training on {rule_str} (20x20, {len(list(train_seeds))} seeds)")
 
-        archive = algorithm.run(grid_size=(20, 20), ticks=100,
-                                max_evals=max_evals, seed=42, verbose=verbose)
+        algorithm.run(grid_size=(20, 20), ticks=100,
+                      max_evals=max_evals, seed=42, verbose=verbose)
         results["train"][rule_str] = algorithm.get_results()
 
     if verbose:
@@ -175,8 +175,8 @@ def run_held_out_benchmark(
         if verbose:
             print(f"\n  Validating on {rule_str} (40x40, {len(list(val_seeds))} seeds)")
 
-        archive = algorithm.run(grid_size=(40, 40), ticks=100,
-                                max_evals=max_evals, seed=1042, verbose=verbose)
+        algorithm.run(grid_size=(40, 40), ticks=100,
+                      max_evals=max_evals, seed=1042, verbose=verbose)
         results["val"][rule_str] = algorithm.get_results()
 
     if verbose:

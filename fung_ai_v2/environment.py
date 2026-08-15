@@ -168,9 +168,8 @@ def classify_biome(temp_c: float, precip_mm: float) -> str:
 def get_biome(lat: float, lon: float) -> dict:
     normals = get_climate_normals(lat, lon)
     temp_c, precip_mm = normals["annual_temp_c"], normals["annual_precip_mm"]
-    classification = (
-        classify_biome(temp_c, precip_mm) if temp_c is not None and precip_mm is not None else "unknown"
-    )
+    has_data = temp_c is not None and precip_mm is not None
+    classification = classify_biome(temp_c, precip_mm) if has_data else "unknown"
     return {
         "classification": classification,
         "annual_temp_c": temp_c,
@@ -191,7 +190,9 @@ def _haversine_km(lat1, lon1, lat2, lon2) -> float:
     return 2 * r * math.asin(math.sqrt(a))
 
 
-def get_settlements(lat: float, lon: float, radius_km: float = _DEFAULT_SETTLEMENT_RADIUS_KM) -> list:
+def get_settlements(
+    lat: float, lon: float, radius_km: float = _DEFAULT_SETTLEMENT_RADIUS_KM
+) -> list:
     key = f"settlements:{_round_key(lat, lon)}:{radius_km}"
     cached = cache_get(key)
     if cached is not None:
@@ -240,7 +241,9 @@ def get_settlements(lat: float, lon: float, radius_km: float = _DEFAULT_SETTLEME
 # ---------------------------------------------------------------------------
 
 @functools.lru_cache(maxsize=256)
-def get_environment(lat: float, lon: float, settlement_radius_km: float = _DEFAULT_SETTLEMENT_RADIUS_KM) -> dict:
+def get_environment(
+    lat: float, lon: float, settlement_radius_km: float = _DEFAULT_SETTLEMENT_RADIUS_KM
+) -> dict:
     """Aggregate a full environmental snapshot for (lat, lon).
 
     Cheap to call repeatedly within one process (lru_cache); cheap to call
