@@ -17,6 +17,12 @@ func _enter_tree() -> void:
 
 	# Create the dock UI
 	dock = preload("res://addons/fung_godot/ui/fung_dock.tscn").instantiate()
+	if dock:
+		# Connect backend client to dock
+		var dock_script: FungDock = dock.get_script()
+		if dock_script and dock.has_method("set_backend_client"):
+			dock.set_backend_client(backend_client)
+
 	add_control_to_dock(DOCK_SLOT_LEFT_BR, dock)
 
 
