@@ -16,6 +16,7 @@ jobs:
 
   godot-checks:
     runs-on: ubuntu-latest
+    timeout-minutes: 10
     steps:
       - uses: actions/checkout@v3
       # First real execution of this Godot code — never run in the dev sandbox that built it, verify carefully if this step fails.
@@ -30,13 +31,13 @@ jobs:
       # with "Could not find type ... in the current scope" even though the
       # script itself is correct (found by running this workflow for real).
       - name: Import project (build class cache)
-        run: godot --headless --editor --quit --path fung_core
+        run: timeout 60 godot --headless --editor --quit --path fung_core
       - name: Narrative smoke test (CutsceneDirector)
-        run: godot --headless --path fung_core -s godot_addon/fung_core/tests/test_cutscene_director.gd
+        run: timeout 60 godot --headless --path fung_core -s godot_addon/fung_core/tests/test_cutscene_director.gd
       - name: JSON Schema conformance tests
-        run: godot --headless --path fung_core -s tools/conformance_runner.gd
+        run: timeout 120 godot --headless --path fung_core -s tools/conformance_runner.gd
       - name: Run example (cave_boss vertical slice)
-        run: godot --headless --path fung_core -s tools/run_example.gd --seed=42 --timeout=30
+        run: timeout 60 godot --headless --path fung_core -s tools/run_example.gd --seed=42 --timeout=30
       - name: Upload replay artifact
         if: always()
         uses: actions/upload-artifact@v4
@@ -44,4 +45,4 @@ jobs:
           name: cave-boss-replay
           path: fung_core/examples/cave_boss/replay.json
       - name: Replay check
-        run: godot --headless --path fung_core -s tools/replay_check.gd
+        run: timeout 60 godot --headless --path fung_core -s tools/replay_check.gd

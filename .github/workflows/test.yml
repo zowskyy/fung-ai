@@ -3,11 +3,14 @@ on: [push, pull_request]
 jobs:
   test:
     runs-on: ubuntu-latest
+    timeout-minutes: 5
     steps:
       - uses: actions/checkout@v3
       - uses: actions/setup-python@v4
         with:
           python-version: '3.11'
       - run: pip install -r requirements.txt && pip install pytest pytest-cov ruff
-      - run: ruff check fung_ai_v2/ scripts/ --select=E,W,F
-      - run: python -m pytest --tb=short
+      - name: Lint check (ruff)
+        run: ruff check fung_ai_v2/ bridge/ scripts/ --select=E,W,F
+      - name: Python tests (pytest)
+        run: python -m pytest --tb=short

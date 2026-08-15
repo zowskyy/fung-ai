@@ -1,0 +1,32 @@
+{
+  "request_id": "sample_roguelike_demo",
+  "success": true,
+  "generator_version": "0.1.0",
+  "recipe_id": "compact_roguelike_rooms",
+  "seed": 42,
+  "candidates": [
+    {
+      "candidate_id": "candidate_001",
+      "seed": 42,
+      "valid": true,
+      "preview_path": "previews/candidate_001.png",
+      "payload_path": "candidates/candidate_001.json",
+      "metrics": {
+        "walkable_ratio": 0.65234375,
+        "path_length": 84.0,
+        "loop_count": 410.0,
+        "branch_count": 757.0,
+        "open_space_score": 0.48547348380088806,
+        "score": 0.9944444444444445
+      },
+      "tags": [
+        "Long Route",
+        "Many Loops",
+        "Branching",
+        "Arena-Friendly"
+      ]
+    }
+  ],
+  "warnings": [],
+  "errors": []
+}

@@ -1,0 +1,64 @@
+name: Fung Godot Toolkit Addon
+on: [push, pull_request]
+jobs:
+  godot-checks:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v3
+      # First real execution of this GDScript — there is no Godot binary in
+      # the sandbox that authored it. Any failure here is the first real
+      # signal on this code; investigate carefully rather than assuming the
+      # workflow itself is at fault.
+      - uses: chickensoft-games/setup-godot@v2
+        with:
+          version: 4.3.0
+          use-dotnet: false
+      # A fresh checkout has no .godot/ cache, so class_name scripts (e.g.
+      # FungDock, FungBackendClient) aren't registered in Godot's global
+      # class list yet. Running once in headless editor mode performs that
+      # initial import; skipping this makes the smoke test below fail with
+      # "Could not find type ... in the current scope" even when the
+      # script itself is correct.
+      - name: Import project (build class cache)
+        run: timeout 60 godot --headless --editor --quit --path godot_addon
+      - name: Addon smoke test (dock UI tree, backend client, export service)
+        run: timeout 60 godot --headless --path godot_addon -s tests/test_dock_smoke.gd
+
+  sample-projects-checks:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    strategy:
+      fail-fast: false
+      matrix:
+        sample: [roguelike_demo, exploration_demo, metroidvania_demo]
+    steps:
+      - uses: actions/checkout@v3
+      - uses: chickensoft-games/setup-godot@v2
+        with:
+          version: 4.3.0
+          use-dotnet: false
+      # Each sample project's scripts reference each other via preload() by
+      # path, not by class_name, so no separate "import project" step is
+      # needed to build a global class cache first (unlike the main addon).
+      #
+      # --quit-after N actually runs the main scene for N frames before
+      # quitting, exercising _ready() end to end: JSON loading, RLE grid
+      # decode, TileMapLayer construction, the procedurally-built TileSet
+      # (Image/TileSetAtlasSource/physics-layer API calls), and player
+      # spawn. This is the first real execution any of this code has ever
+      # had - it was authored with no Godot binary available to check it.
+      #
+      # Godot logs script/parse errors as plain output but does not always
+      # fail its own exit code on them (this exact pitfall broke a version
+      # of the main addon's dock scene earlier - see git history), so this
+      # step greps the captured output for error-level lines and fails
+      # explicitly if any appear, rather than trusting the exit code alone.
+      - name: Boot ${{ matrix.sample }} for real (headless, ${{ matrix.sample }})
+        run: |
+          set -o pipefail
+          timeout 90 godot --headless --path "godot_addon/samples/${{ matrix.sample }}" --quit-after 30 2>&1 | tee /tmp/run.log
+          if grep -qE "SCRIPT ERROR|PARSE ERROR|^ERROR:" /tmp/run.log; then
+            echo "::error::Godot logged errors while running godot_addon/samples/${{ matrix.sample }} - see log above"
+            exit 1
+          fi

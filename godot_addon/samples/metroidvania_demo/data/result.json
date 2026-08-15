@@ -1,0 +1,32 @@
+{
+  "request_id": "sample_metroidvania_demo",
+  "success": true,
+  "generator_version": "0.1.0",
+  "recipe_id": "vertical_metroidvania_cavern",
+  "seed": 3,
+  "candidates": [
+    {
+      "candidate_id": "candidate_001",
+      "seed": 3,
+      "valid": true,
+      "preview_path": "previews/candidate_001.png",
+      "payload_path": "candidates/candidate_001.json",
+      "metrics": {
+        "walkable_ratio": 0.7553571428571428,
+        "path_length": 136.0,
+        "loop_count": 2587.0,
+        "branch_count": 3271.0,
+        "open_space_score": 0.7159180641174316,
+        "score": 1.0
+      },
+      "tags": [
+        "Long Route",
+        "Open Chambers",
+        "Many Loops",
+        "Branching"
+      ]
+    }
+  ],
+  "warnings": [],
+  "errors": []
+}

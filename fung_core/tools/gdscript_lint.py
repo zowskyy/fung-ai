@@ -14,6 +14,13 @@ SCAN_DIRS = [
     ROOT / "godot_addon" / "fung_core",
     ROOT / "examples" / "cave_boss",
     ROOT / "tools",
+    # Fung Godot Toolkit (v0.1) addon - separate project sharing this checker
+    # since the mechanical checks (bracket balance, naming, signal.emit
+    # matching) are generic, not fung_core-specific.
+    REPO_ROOT / "godot_addon" / "addons" / "fung_godot",
+    REPO_ROOT / "godot_addon" / "tests",
+    # v0.1 sample projects demonstrating the addon in a playable context.
+    REPO_ROOT / "godot_addon" / "samples",
 ]
 
 DELIMITER_PAIRS = {")": "(", "}": "{", "]": "["}

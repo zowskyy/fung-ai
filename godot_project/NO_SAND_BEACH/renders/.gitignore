@@ -1,0 +1,10 @@
+# Rendered output is derived and regenerable from scenes/ + assets/ + scripts/.
+# Frame sequences and compiled video are large and reproducible on demand
+# (see determinism_verifier.gd) -- do not commit them.
+*.png
+*.mp4
+*.mov
+determinism_hashes_*.txt
+
+!.gitignore
+!.gitkeep

@@ -29,7 +29,8 @@
       "Bash(awk 'length > 100 {print NR\": \"substr\\($0,1,100\\)\"...\"}' scripts/taylor_ops_team.py)",
       "Bash(awk 'length > 140 {print NR\": length=\"length\\($0\\)}' scripts/taylor_ops_team.py)",
       "Bash(awk 'length > 100 {print NR}' scripts/taylor_ops_team.py)",
-      "Bash(awk 'length > 100 {print NR\": \"$0}' scripts/taylor_ops_team.py)"
+      "Bash(awk 'length > 100 {print NR\": \"$0}' scripts/taylor_ops_team.py)",
+      "mcp__Claude_Code_Remote__send_later"
     ]
   }
 }

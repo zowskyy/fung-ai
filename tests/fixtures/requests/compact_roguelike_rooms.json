@@ -1,0 +1,24 @@
+{
+  "protocol_version": 1,
+  "request_id": "fixture_compact_roguelike_rooms",
+  "generator_version": "0.1.0",
+  "recipe_id": "compact_roguelike_rooms",
+  "seed": 0,
+  "map_size_tiles": [
+    80,
+    80
+  ],
+  "tile_size_px": [
+    16,
+    16
+  ],
+  "generation_budget": "fast",
+  "environment_mode": "manual_preset",
+  "environment_preset": "limestone_cave",
+  "overrides": {},
+  "candidate_count": 3,
+  "job_dir": "/tmp/fung_fixture_job",
+  "result_path": "/tmp/fung_fixture_job/result.json",
+  "status_path": "/tmp/fung_fixture_job/status.json",
+  "cancel_path": "/tmp/fung_fixture_job/cancel.request"
+}
