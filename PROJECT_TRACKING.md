@@ -88,6 +88,77 @@ Core engine (ca_engine, archive, algorithms, fitness, emitters, validators) effe
 
 ---
 
+## Scene Animator addon: `godot_project/addons/scene_animator/`
+
+**Purpose:** Deterministic, data-driven cutscene/scene sequencer for Godot 4.7.1.
+A `ScenePlan` resource describes a sequence of beats (dialogue, movement,
+actions, camera, encounters, branching); a headless-safe `SceneDirector` drives
+the plan against the scene through a `SceneActorAdapter` layer. Ships an editor
+plugin (dock + inspector), an authoring validator, a runnable demo, and a
+headless test/CI gate. Delivered in phases 0–6, each gated green.
+
+### File inventory (`godot_project/addons/scene_animator/`)
+
+| File / dir | Purpose | Status |
+|------------|---------|--------|
+| `plugin.cfg`, `plugin.gd` | Editor plugin (dock + inspector), idempotent add/remove | complete |
+| `data/scene_plan.gd` | `ScenePlan` root resource (beats, actors, capability registry) | complete |
+| `data/scene_beat.gd` | `SceneBeat` base (`next_beat_id`, `failure_beat_id`, `enabled`) | complete |
+| `data/scene_actor_binding.gd` | `SceneActorBinding` authoring metadata (id, tags, path) | complete |
+| `data/scene_capability_registry.gd` | Registered actions/cameras/encounters/conditions | complete |
+| `data/action_definition.gd` | Action def + tag matching | complete |
+| `data/camera_mode_definition.gd` | Camera mode def (focus requirement) | complete |
+| `data/encounter_definition.gd` | Encounter def | complete |
+| `data/condition_definition.gd` | Condition def | complete |
+| `data/interaction_definition.gd` | Interaction def | complete |
+| `data/beats/*.gd` | 12 beat subtypes (dialogue, move_to, look_at, action, camera, wait, wait_for_event, set_state, spawn_encounter, branch, end) | complete |
+| `runtime/scene_director.gd` | Deterministic sequencer (`scene_started/finished/failed`) | complete |
+| `runtime/scene_bindings.gd` | Actor/named-node resolver (`actor_nodes`, `named_nodes`) | complete |
+| `runtime/scene_actor_adapter.gd` | Actor contract + deadline defaults | complete |
+| `runtime/placeholder_actor_adapter.gd` | Drop-in actor with Marker3D body for demos | complete |
+| `runtime/scene_camera_adapter.gd` | Camera contract | complete |
+| `runtime/scene_mechanics_registry.gd` | Effect/encounter/camera/state/condition hooks by ID | complete |
+| `runtime/beat_runner.gd` + `runtime/runners/*.gd` | Per-beat runners (12) | complete |
+| `editor/scene_plan_dock.gd` | Dock UI: load plan, actors/beats tree, validate, issues | complete |
+| `editor/inspectors/scene_plan_inspector.gd` | Inspector "Validate Scene Plan" button | complete |
+| `editor/validators/validation_issue.gd` | `ScenePlanValidationIssue` (severity/code/details) | complete |
+| `editor/validators/scene_plan_validation_result.gd` | Validation result (is_valid, issue_codes) | complete |
+| `editor/validators/scene_plan_validator.gd` | All `scene_animator.validation.*` rules | complete |
+| `demo/demo_scene.gd`, `demo_scene.tscn`, `demo_scene_plan.tres` | Runnable 3-line dialogue demo | complete |
+| `templates/starter_scene_plan.tres` | Blank starter plan | complete |
+| `tests/gate.sh` | Canonical gate: import -> parse_check -> runner | complete |
+| `tests/parse_check.gd` | Loads every addon script/resource; manifest coverage guard | complete |
+| `tests/run_scene_animator_tests.gd` | Suite runner, prints `SCENE_ANIMATOR_RESULT: {json}`, exit 0/1/2 | complete |
+| `tests/test_runtime_execution.gd` | Runtime contract suite (fixtures + programmatic plans) | complete |
+| `tests/test_plugin_activation.gd` | Editor-boot activation subprocess test | complete |
+| `tests/test_validators.gd` | Validator rule coverage (programmatic + fixtures) | complete |
+| `tests/test_demo_execution.gd` | Demo end-to-end + template validity | complete |
+| `tests/fixtures/*.tres` | valid_linear + 4 invalid plans (missing speaker, unknown target, duplicate beat ids, dangling next) | complete |
+| `tests/support/*.gd` | Test harness (context/result) + fakes (actor, camera, mechanics) | complete |
+| `README.md` | Addon documentation | complete |
+
+### Success contract (all verified green)
+
+- Canonical gate (headless, Godot 4.7.1): import + parse check (59 scripts +
+  8 resources) + 4 suites / 99 assertions, exit 0. CI on `origin/scene-animator`
+  green (SHA-256-pinned Godot 4.7.1, artifact upload, hygiene check).
+- Editor boot (`--headless --editor --quit-after 3`) exits 0; `project.godot`
+  stays at features 4.3 (import does not rewrite it); `.godot/` is gitignored.
+
+### Open dependencies
+
+None — all wired-in modules exist and pass the gate.
+
+### Known gaps
+
+- BranchBeat / camera / encounter / action runner behaviors are covered at the
+  authoring-validator level; full runtime smoke for every beat type is future
+  work (dialogue is the exercised end-to-end path).
+- The plugin dock/inspector are covered by structure + activation checks, not
+  pixel assertions; interactive usability is verified by launching the editor.
+
+---
+
 ## Open Dependencies
 
 None — all referenced modules exist and tests pass.
