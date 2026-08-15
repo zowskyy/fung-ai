@@ -1,0 +1,25 @@
+name: Fung Godot Toolkit Addon
+on: [push, pull_request]
+jobs:
+  godot-checks:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      # First real execution of this GDScript — there is no Godot binary in
+      # the sandbox that authored it. Any failure here is the first real
+      # signal on this code; investigate carefully rather than assuming the
+      # workflow itself is at fault.
+      - uses: chickensoft-games/setup-godot@v2
+        with:
+          version: 4.3.0
+          use-dotnet: false
+      # A fresh checkout has no .godot/ cache, so class_name scripts (e.g.
+      # FungDock, FungBackendClient) aren't registered in Godot's global
+      # class list yet. Running once in headless editor mode performs that
+      # initial import; skipping this makes the smoke test below fail with
+      # "Could not find type ... in the current scope" even when the
+      # script itself is correct.
+      - name: Import project (build class cache)
+        run: godot --headless --editor --quit --path godot_addon
+      - name: Addon smoke test (dock UI tree, backend client, export service)
+        run: godot --headless --path godot_addon -s tests/test_dock_smoke.gd

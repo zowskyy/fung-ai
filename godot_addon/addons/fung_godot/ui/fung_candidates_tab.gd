@@ -3,33 +3,32 @@ extends Control
 
 class_name FungCandidatesTab
 
-## Candidates tab: browse generated candidates with metrics and tags.
+# Candidates tab: browse generated candidates with metrics and tags.
+# Builds its own child controls in code (no backing .tscn).
 
 signal candidate_selected(candidate_id: String, candidate_data: Dictionary)
 signal candidate_export_requested(candidate_id: String)
 
-var _candidates: Array[Dictionary] = []
+var _candidates: Array = []
 var _selected_candidate_idx: int = -1
 var _result_path: String = ""
 
-@onready var candidate_list: ItemList = $CandidateList
-@onready var preview_rect: TextureRect = $PreviewRect
-@onready var metrics_label: Label = $MetricsLabel
-@onready var tags_label: Label = $TagsLabel
-@onready var export_btn: Button = $ExportBtn
+var candidate_list: ItemList
+var preview_rect: TextureRect
+var metrics_label: Label
+var tags_label: Label
+var export_btn: Button
 
 
 func _ready() -> void:
-	if not Engine.is_editor_hint():
-		return
-
+	_build_ui()
 	_setup_signals()
 	_update_empty_state()
 
 
 func load_results(result_path: String) -> bool:
-	"""Load candidates from result.json file."""
-	if not ResourceLoader.exists(result_path):
+	# Load candidates from result.json file.
+	if not FileAccess.file_exists(result_path):
 		_clear_candidates()
 		metrics_label.text = "No results found"
 		return false
@@ -57,20 +56,54 @@ func load_results(result_path: String) -> bool:
 		_update_empty_state()
 		return false
 
-	# Select first candidate by default
 	candidate_list.select(0)
 	_on_candidate_selected(0)
 	return true
 
 
+func _build_ui() -> void:
+	var layout: HBoxContainer = HBoxContainer.new()
+	layout.name = "Layout"
+	layout.anchor_right = 1.0
+	layout.anchor_bottom = 1.0
+	add_child(layout)
+
+	candidate_list = ItemList.new()
+	candidate_list.name = "CandidateList"
+	candidate_list.custom_minimum_size = Vector2(200, 0)
+	layout.add_child(candidate_list)
+
+	var detail_column: VBoxContainer = VBoxContainer.new()
+	detail_column.name = "DetailColumn"
+	layout.add_child(detail_column)
+
+	preview_rect = TextureRect.new()
+	preview_rect.name = "PreviewRect"
+	preview_rect.custom_minimum_size = Vector2(128, 128)
+	detail_column.add_child(preview_rect)
+
+	metrics_label = Label.new()
+	metrics_label.name = "MetricsLabel"
+	metrics_label.text = "No candidates loaded"
+	detail_column.add_child(metrics_label)
+
+	tags_label = Label.new()
+	tags_label.name = "TagsLabel"
+	detail_column.add_child(tags_label)
+
+	export_btn = Button.new()
+	export_btn.name = "ExportBtn"
+	export_btn.text = "Export"
+	export_btn.disabled = true
+	detail_column.add_child(export_btn)
+
+
 func _setup_signals() -> void:
-	"""Connect control signals."""
 	candidate_list.item_selected.connect(_on_candidate_selected)
 	export_btn.pressed.connect(_on_export_pressed)
 
 
 func _on_candidate_selected(index: int) -> void:
-	"""Handle candidate selection."""
 	if index < 0 or index >= _candidates.size():
 		_update_empty_state()
 		return
@@ -78,7 +111,6 @@ func _on_candidate_selected(index: int) -> void:
 	_selected_candidate_idx = index
 	var candidate: Dictionary = _candidates[index]
 
-	# Update display
 	_update_metrics_display(candidate)
 	_load_preview(candidate)
 
@@ -87,14 +119,12 @@ func _on_candidate_selected(index: int) -> void:
 
 
 func _on_export_pressed() -> void:
-	"""Request export of selected candidate."""
 	if _selected_candidate_idx >= 0 and _selected_candidate_idx < _candidates.size():
 		var candidate: Dictionary = _candidates[_selected_candidate_idx]
 		candidate_export_requested.emit(candidate.get("candidate_id", ""))
 
 
 func _update_metrics_display(candidate: Dictionary) -> void:
-	"""Update metrics and tags display."""
 	var metrics: Dictionary = candidate.get("metrics", {})
 	var tags: Array = candidate.get("tags", [])
 
@@ -112,19 +142,30 @@ func _update_metrics_display(candidate: Dictionary) -> void:
 
 
 func _load_preview(candidate: Dictionary) -> void:
-	"""Load preview image for candidate."""
-	var preview_path: String = candidate.get("preview_path", "")
-	if preview_path.is_empty():
+	# Load preview image for candidate, resolved relative to the job dir
+	# (the parent of result.json).
+	var preview_rel_path: String = candidate.get("preview_path", "")
+	if preview_rel_path.is_empty() or _result_path.is_empty():
 		preview_rect.texture = null
 		return
 
-	# Construct full path from job_dir (we'd need to pass this from parent)
-	# For now, just show a placeholder
-	preview_rect.texture = null
+	var job_dir: String = _result_path.get_base_dir()
+	var preview_abs_path: String = job_dir.path_join(preview_rel_path)
+
+	if not FileAccess.file_exists(preview_abs_path):
+		preview_rect.texture = null
+		return
+
+	var image: Image = Image.new()
+	var error: Error = image.load(preview_abs_path)
+	if error != OK:
+		preview_rect.texture = null
+		return
+
+	preview_rect.texture = ImageTexture.create_from_image(image)
 
 
 func _update_empty_state() -> void:
-	"""Show empty state UI."""
 	candidate_list.clear()
 	preview_rect.texture = null
 	metrics_label.text = "No candidates loaded"
@@ -133,15 +174,13 @@ func _update_empty_state() -> void:
 
 
 func _clear_candidates() -> void:
-	"""Clear all candidates."""
 	_candidates.clear()
 	_selected_candidate_idx = -1
 	_update_empty_state()
 
 
 func _read_json_safe(path: String) -> Dictionary:
-	"""Safely read and parse JSON file."""
-	if not ResourceLoader.exists(path):
+	if not FileAccess.file_exists(path):
 		return {}
 
 	var file: FileAccess = FileAccess.open(path, FileAccess.READ)

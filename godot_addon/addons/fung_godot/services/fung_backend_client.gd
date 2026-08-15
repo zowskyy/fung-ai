@@ -116,7 +116,7 @@ func _poll_status() -> void:
 		return
 
 	var status_path: String = _job_dir.path_join("status.json")
-	if not ResourceLoader.exists(status_path):
+	if not FileAccess.file_exists(status_path):
 		return
 
 	var status_data: Dictionary = _read_json_safe(status_path)
@@ -164,8 +164,9 @@ func _resolve_python_executable() -> String:
 
 	# Try standard commands
 	for cmd: String in ["python3", "python"]:
-		var result: int = OS.execute_to_string(cmd, ["-c", "import sys; print(1)"])
-		if result == 0:
+		var output: Array = []
+		var exit_code: int = OS.execute(cmd, ["-c", "import sys"], output, true)
+		if exit_code == 0:
 			return cmd
 
 	return ""

@@ -12,36 +12,29 @@ signal export_completed(candidate_id: String, success: bool, scene_path: String)
 var _export_root: String = "user://generated/fung/"
 
 
+# Export a single candidate to a TileMapLayer scene.
+#   result_path: path to result.json from generation
+#   candidate_id: candidate ID to export (e.g. "candidate_001")
+#   tileset_path: path to TileSet resource (res://...)
+#   export_profile: export profile name (top_down_default, platformer_default, etc.)
+# Returns true if the scene was written successfully.
 func export_candidate(
 	result_path: String,
 	candidate_id: String,
 	tileset_path: String,
 	export_profile: String = "top_down_default",
 ) -> bool:
-	"""Export a single candidate to TileMapLayer scene.
-
-	Args:
-		result_path: Path to result.json from generation
-		candidate_id: Candidate ID to export (e.g., "candidate_001")
-		tileset_path: Path to TileSet resource (res://...)
-		export_profile: Export profile name (top_down_default, platformer_default, etc.)
-
-	Returns:
-		true if export started successfully
-	"""
 	if not ResourceLoader.exists(tileset_path):
 		push_error("TileSet not found: %s" % tileset_path)
 		return false
 
 	export_started.emit(candidate_id)
 
-	# Load result.json
 	var result_data: Dictionary = _read_json_safe(result_path)
 	if result_data.is_empty():
 		export_completed.emit(candidate_id, false, "")
 		return false
 
-	# Find candidate in results
 	var candidate: Dictionary = {}
 	for cand in result_data.get("candidates", []):
 		if cand.get("candidate_id") == candidate_id:
@@ -53,8 +46,10 @@ func export_candidate(
 		export_completed.emit(candidate_id, false, "")
 		return false
 
-	# Load candidate payload
-	var job_dir: String = result_data.get("job_dir", "")
+	# result.json has no job_dir field; the job directory is always the
+	# parent directory of result.json itself, and candidate paths (payload,
+	# preview) are stored relative to it.
+	var job_dir: String = result_path.get_base_dir()
 	var payload_path: String = job_dir.path_join(candidate.get("payload_path", ""))
 	var payload: Dictionary = _read_json_safe(payload_path)
 
@@ -63,18 +58,27 @@ func export_candidate(
 		export_completed.emit(candidate_id, false, "")
 		return false
 
-	# Build scene
 	var scene: Node2D = _build_scene(candidate, payload, tileset_path, export_profile)
 	if scene == null:
 		export_completed.emit(candidate_id, false, "")
 		return false
 
-	# Save scene
 	var scene_path: String = _get_export_scene_path(candidate_id)
-	var error: Error = ResourceSaver.save(scene, scene_path)
+	DirAccess.make_dir_recursive_absolute(scene_path.get_base_dir())
 
-	if error != OK:
-		push_error("Failed to save scene: %s (error code %d)" % [scene_path, error])
+	var packed_scene: PackedScene = PackedScene.new()
+	var pack_error: Error = packed_scene.pack(scene)
+	if pack_error != OK:
+		push_error("Failed to pack scene: %s (error code %d)" % [scene_path, pack_error])
+		scene.queue_free()
+		export_completed.emit(candidate_id, false, "")
+		return false
+
+	var save_error: Error = ResourceSaver.save(packed_scene, scene_path)
+	scene.queue_free()
+
+	if save_error != OK:
+		push_error("Failed to save scene: %s (error code %d)" % [scene_path, save_error])
 		export_completed.emit(candidate_id, false, "")
 		return false
 
@@ -195,7 +199,7 @@ func _decode_grid(encoded: String, width: int, height: int) -> PackedByteArray:
 
 func _read_json_safe(path: String) -> Dictionary:
 	"""Safely read and parse JSON file."""
-	if not ResourceLoader.exists(path):
+	if not FileAccess.file_exists(path):
 		return {}
 
 	var file: FileAccess = FileAccess.open(path, FileAccess.READ)
@@ -218,4 +222,4 @@ func _read_json_safe(path: String) -> Dictionary:
 
 func _get_export_scene_path(candidate_id: String) -> String:
 	"""Get export path for a candidate scene."""
-	return "%s/levels/%s.tscn" % [_export_root, candidate_id]
+	return _export_root.path_join("levels").path_join(candidate_id + ".tscn")

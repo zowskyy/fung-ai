@@ -1,0 +1,16 @@
+; Engine configuration file.
+; Minimal project so CI can boot the fung_godot addon headlessly and run
+; the smoke test in tests/test_dock_smoke.gd. Not meant to be a playable
+; project - the addon itself ships from addons/fung_godot/ into a user's
+; own Godot project.
+
+config_version=5
+
+[application]
+
+config/name="Fung Godot Toolkit (CI harness)"
+config/features=PackedStringArray("4.3", "GL Compatibility")
+
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/fung_godot/plugin.cfg")

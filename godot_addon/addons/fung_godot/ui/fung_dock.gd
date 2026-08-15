@@ -10,29 +10,25 @@ var export_tab: FungExportTab = null
 
 
 func _ready() -> void:
-	if not Engine.is_editor_hint():
-		return
-
-	print("[Fung Dock] Ready")
 	tab_container = TabContainer.new()
 	tab_container.anchor_right = 1.0
 	tab_container.anchor_bottom = 1.0
 	add_child(tab_container)
 
 	# Add actual Generate tab
-	generate_tab = preload("res://addons/fung_godot/ui/generate_tab.gd").new()
+	generate_tab = preload("res://addons/fung_godot/ui/fung_generate_tab.gd").new()
 	generate_tab.name = "Generate"
 	tab_container.add_child(generate_tab)
 	tab_container.set_tab_title(0, "Generate")
 
 	# Add actual Candidates tab
-	candidates_tab = preload("res://addons/fung_godot/ui/candidates_tab.gd").new()
+	candidates_tab = preload("res://addons/fung_godot/ui/fung_candidates_tab.gd").new()
 	candidates_tab.name = "Candidates"
 	tab_container.add_child(candidates_tab)
 	tab_container.set_tab_title(1, "Candidates")
 
 	# Add actual Export tab
-	export_tab = preload("res://addons/fung_godot/ui/export_tab.gd").new()
+	export_tab = preload("res://addons/fung_godot/ui/fung_export_tab.gd").new()
 	export_tab.name = "Export"
 	tab_container.add_child(export_tab)
 	tab_container.set_tab_title(2, "Export")
@@ -62,8 +58,7 @@ func set_export_service(export_service: FungExportService) -> void:
 func _on_candidate_selected(candidate_id: String, candidate_data: Dictionary) -> void:
 	"""Handle candidate selection from Candidates tab."""
 	if export_tab:
-		# Get result path from the last generation (stored in generate_tab)
-		var result_path: String = generate_tab._current_response_path if generate_tab else ""
+		var result_path: String = generate_tab.get_current_response_path() if generate_tab else ""
 		export_tab.set_selected_candidate(candidate_id, result_path)
 
 

@@ -21,16 +21,18 @@ func _enter_tree() -> void:
 	export_service.name = "FungExportService"
 	add_child(export_service)
 
-	# Create the dock UI
+	# Create the dock UI. add_control_to_dock() is what actually adds this
+	# node to the live tree and triggers its _ready() (instantiate() alone
+	# does not) - so the dock's child tabs only exist after this call.
+	# Service wiring must happen after, not before.
 	dock = preload("res://addons/fung_godot/ui/fung_dock.tscn").instantiate()
+	add_control_to_dock(DOCK_SLOT_LEFT_BR, dock)
+
 	if dock:
-		# Connect services to dock
 		if dock.has_method("set_backend_client"):
 			dock.set_backend_client(backend_client)
 		if dock.has_method("set_export_service"):
 			dock.set_export_service(export_service)
-
-	add_control_to_dock(DOCK_SLOT_LEFT_BR, dock)
 
 
 func _exit_tree() -> void:
