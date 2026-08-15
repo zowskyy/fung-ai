@@ -103,7 +103,16 @@ class GenerationResult:
             errors=data.get("errors", []),
         )
         for cand_data in data.get("candidates", []):
-            result.candidates.append(Candidate(**{k: v for k, v in cand_data.items() if hasattr(Candidate, k)}))
+            candidate = Candidate(
+                candidate_id=cand_data.get("candidate_id", ""),
+                seed=cand_data.get("seed", 0),
+                valid=cand_data.get("valid", False),
+                preview_path=cand_data.get("preview_path", ""),
+                payload_path=cand_data.get("payload_path", ""),
+                metrics=cand_data.get("metrics", {}),
+                tags=cand_data.get("tags", []),
+            )
+            result.candidates.append(candidate)
         return result
 
 
