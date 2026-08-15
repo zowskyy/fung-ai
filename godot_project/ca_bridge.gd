@@ -18,11 +18,11 @@
 extends RefCounted
 class_name CaBridge
 
-const PYTHON_EXE := "C:/Users/thewi/AppData/Local/Programs/Python/Python314/python.exe"
-const PROJECT_ROOT := "C:/Users/thewi/OneDrive/Desktop/fung.us"
-
 # Required keys that must be present in a valid CA engine JSON response.
 const REQUIRED_KEYS := ["grid", "rule", "playable", "width", "height"]
+
+# Cached Python executable — lazily initialized on first use.
+static var _python_exe_cache: String = ""
 
 
 # --------------------------------------------------------------------------- #
@@ -80,7 +80,7 @@ func generate(
 
 ## Return the Python executable path.
 func get_python_exe() -> String:
-	return PYTHON_EXE
+	return _get_python_exe()
 
 
 ## Return the path that will be used for the CA CLI on the next generate() call.
@@ -98,13 +98,14 @@ func get_ca_script_path() -> String:
 ##   "<abs_path>.py"   — legacy script absolute path
 ##   ""                — nothing found
 func _find_cli() -> String:
+	var root := ProjectSettings.globalize_path("res://")
 	# --- try package-style: fung_ai_v2/cli.py ---------------------------------
-	var pkg_cli := PROJECT_ROOT.path_join("fung_ai_v2/cli.py")
+	var pkg_cli := root.path_join("fung_ai_v2/cli.py")
 	if FileAccess.file_exists(pkg_cli):
 		return "fung_ai_v2.cli"
 
 	# --- fall back to legacy monolith ------------------------------------------
-	var legacy := PROJECT_ROOT.path_join("fungaiV2_extracted/fung_ai_v2.py")
+	var legacy := root.path_join("fungaiV2_extracted/fung_ai_v2.py")
 	if FileAccess.file_exists(legacy):
 		return legacy
 
@@ -116,10 +117,14 @@ func _find_cli() -> String:
 ## Returns {} on subprocess error or JSON parse failure.
 func _run_python(args: PackedStringArray) -> Dictionary:
 	var output := []   # OS.execute fills this with stdout as a single String
+	var python_exe := _get_python_exe()
+	if python_exe.is_empty():
+		push_error("CaBridge: no Python interpreter available")
+		return {}
 
-	# OS.execute blocks until the child exits.  The working directory is
-	# PROJECT_ROOT so that `python -m fung_ai_v2.cli` can find its package.
-	var exit_code := OS.execute(PYTHON_EXE, args, output, false, false)
+	# OS.execute blocks until the child exits.  Working directory defaults to the
+	# Godot project root via ProjectSettings.globalize_path("res://").
+	var exit_code := OS.execute(python_exe, args, output, false, false)
 
 	if exit_code != 0:
 		push_error("CaBridge: python exited with code %d. args=%s" % [exit_code, str(args)])
@@ -164,3 +169,20 @@ func _run_python(args: PackedStringArray) -> Dictionary:
 		return {}
 
 	return result
+
+
+## Auto-detect Python executable on PATH.
+## Tries "python3", "python", "py" in order; caches the result.
+## Returns the executable name (not a full path) if found, or "" on failure.
+func _get_python_exe() -> String:
+	if not _python_exe_cache.is_empty():
+		return _python_exe_cache
+
+	for candidate in ["python3", "python", "py"]:
+		var out := []
+		if OS.execute(candidate, ["--version"], out, false, false) == 0:
+			_python_exe_cache = candidate
+			return candidate
+
+	push_error("CaBridge: no Python 3.10+ interpreter found on PATH. Install Python and ensure it is in your system PATH.")
+	return ""

@@ -16,7 +16,15 @@
       "Bash(gh auth *)",
       "Bash(git init *)",
       "Bash(git add *)",
-      "Bash(git commit -m 'Initial commit: fung-ai v0.1.0 core engine + Godot integration *)"
+      "Bash(git commit -m 'Initial commit: fung-ai v0.1.0 core engine + Godot integration *)",
+      "Bash(gh repo *)",
+      "Bash(git branch *)",
+      "Bash(git push *)",
+      "Bash(python -m fung_ai_v2.cli benchmark --seed 42 --evals 2000)",
+      "Bash(where python *)",
+      "Bash(python3 -m fung_ai_v2.cli benchmark --seed 42 --evals 2000)",
+      "Bash(gh run *)",
+      "Bash(git commit -m 'Fix ruff violations: remove unused variables and imports, break long lines *)"
     ]
   }
 }

@@ -161,7 +161,6 @@ def run_held_out_benchmark(
         print("\n[TRAINING PHASE]")
 
     for rule_str in train_rules:
-        rule = CARule.from_string(rule_str)
         if verbose:
             print(f"\n  Training on {rule_str} (20x20, {len(list(train_seeds))} seeds)")
 
@@ -190,8 +189,8 @@ def run_held_out_benchmark(
                 print(f"\n  Testing on {rule_str} ({grid_size[0]}x{grid_size[1]}, "
                       f"{len(list(test_seeds))} seeds)")
 
-            archive = algorithm.run(grid_size=grid_size, ticks=100,
-                                    max_evals=max_evals, seed=2042, verbose=verbose)
+            algorithm.run(grid_size=grid_size, ticks=100,
+                          max_evals=max_evals, seed=2042, verbose=verbose)
             results["test"][key] = algorithm.get_results()
 
     train_success = np.mean([r["success_at_10k"] for r in results["train"].values()])

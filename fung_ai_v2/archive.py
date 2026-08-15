@@ -13,7 +13,7 @@ Contains:
 """
 
 import random
-from dataclasses import dataclass, field
+from dataclasses import dataclass
 from typing import Dict, List, Optional, Tuple
 
 import numpy as np
@@ -132,9 +132,12 @@ class GridArchive:
         for idx in np.ndindex(self.shape):
             cell = self.grid[idx]
             if cell.elite is not None:
+                def _descriptor_i(i):
+                    min_val, max_val, num_bins = self.dims[i]
+                    bin_width = (max_val - min_val) / num_bins
+                    return min_val + (idx[i] + 0.5) * bin_width
                 descriptors = np.array([
-                    self.dims[i][0] + (idx[i] + 0.5) * (self.dims[i][1] - self.dims[i][0]) / self.dims[i][2]
-                    for i in range(self.num_dims)
+                    _descriptor_i(i) for i in range(self.num_dims)
                 ], dtype=np.float32)
                 elites.append((cell.elite.copy(), cell.fitness, descriptors))
         return elites

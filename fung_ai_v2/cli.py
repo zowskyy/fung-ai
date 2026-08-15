@@ -59,12 +59,14 @@ def main():
         print("Fung-AI v2.0 - Game-Design-Aware QD Cave Generator (MAP-Elites)")
         print()
         print("Usage:")
-        print("  python -m fung_ai_v2.cli generate --rule B3/S23 --width 100 --height 100 --ticks 50")
-        print("  python -m fung_ai_v2.cli generate --lat 10.46 --lon -84.70 --multi-biome --width 99 --height 99")
-        print("  python -m fung_ai_v2.cli benchmark --algorithm map_elites --evals 10000")
-        print("  python -m fung_ai_v2.cli compare --evals 10000")
-        print("  python -m fung_ai_v2.cli export --input cave.json --output godot_scene.json")
-        print("  python -m fung_ai_v2.cli query --style branching --algorithm map_elites --evals 10000")
+        print("  fung-ai-v2 generate --rule B3/S23 --width 100 --height 100 --ticks 50")
+        print("  fung-ai-v2 generate --lat 10.46 --lon -84.70 --multi-biome "
+              "--width 99 --height 99")
+        print("  fung-ai-v2 benchmark --algorithm map_elites --evals 10000")
+        print("  fung-ai-v2 compare --evals 10000")
+        print("  fung-ai-v2 export --input cave.json --output godot_scene.json")
+        print("  fung-ai-v2 query --style branching --algorithm map_elites "
+              "--evals 10000")
         print()
         print("Algorithms: map_elites, random")
         print("Styles: linear, branching, open")
@@ -295,7 +297,9 @@ def main():
         print("\n" + "=" * 60)
         print("COMPARISON TABLE")
         print("=" * 60)
-        print(f"{'Algorithm':<20} {'Coverage':<12} {'QD-Score':<12} {'Max Fit':<12} {'Success@10k':<12}")
+        header = (f"{'Algorithm':<20} {'Coverage':<12} {'QD-Score':<12} "
+                  f"{'Max Fit':<12} {'Success@10k':<12}")
+        print(header)
         print("-" * 60)
         for name, res in comparison.items():
             print(f"{name:<20} {res['coverage']:<12.1%} {res['qd_score']:<12.1f} "

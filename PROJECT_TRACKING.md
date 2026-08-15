@@ -83,16 +83,14 @@ Core engine (ca_engine, archive, algorithms, fitness, emitters, validators) effe
 
 | File | Purpose | Status |
 |------|---------|--------|
-| `ca_bridge.gd` | Subprocess bridge: calls fung-ai-v2 CLI, reads JSON scene output | not started — W8 |
-| `tilemap_painter.gd` | TileMapLayer renderer (replaces ColorRect prototype) | not started — W9 |
+| `ca_bridge.gd` | Subprocess bridge: calls fung-ai-v2 CLI, reads JSON scene output (portable Python detection) | complete |
+| `tilemap_painter.gd` | TileMapLayer renderer (replaces ColorRect prototype) | complete |
 
 ---
 
 ## Open Dependencies
 
-- `tests/test_map_elites.py` — referenced by W7 in taylor_ops_team.py; does not exist yet. W7 should populate it before running.
-- `fung_ai_v2/connectivity.py` — referenced by W5 worker config; connectivity functions live in `fitness.py`. Either redirect W5 or create a thin re-export module.
-- `tests/__init__.py` — referenced by W1's apply_commands; currently absent (pytest discovers tests without it; add if namespace conflicts arise).
+None — all referenced modules exist and tests pass.
 
 ---
 
@@ -116,6 +114,6 @@ Core engine (ca_engine, archive, algorithms, fitness, emitters, validators) effe
 | W5 ConnectivityTester | 15 connectivity/pathfinding tests | complete |
 | W6 BiomeTester | 16 environment/biome tests | complete |
 | W7 FitnessTester | 17 MAP-Elites/RandomSearch/benchmark tests | complete |
-| W8 GodotBridge | ca_bridge.gd | not started |
-| W9 TileMapRenderer | tilemap_painter.gd | not started |
-| W10 GitHubRelease | README, license, examples, v0.1.0 tag | not started |
+| W8 GodotBridge | ca_bridge.gd (portable Python detection) | complete |
+| W9 TileMapRenderer | tilemap_painter.gd | complete |
+| W10 GitHubRelease | README, license, examples, v0.1.0 tag | in-progress |
