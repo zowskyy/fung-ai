@@ -1,0 +1,7 @@
+{
+  "version": 1,
+  "name": "cave_boss",
+  "worlds": ["cave_world.json"],
+  "animation_manifests": ["animation_manifest.json"],
+  "narratives": ["narrative_sequence.json"]
+}

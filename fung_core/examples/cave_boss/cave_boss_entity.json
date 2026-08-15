@@ -1,0 +1,9 @@
+{
+  "version": 1,
+  "id": "cave_boss_01",
+  "archetype": "cave_boss",
+  "position": { "x": 3, "y": 3 },
+  "health": 100,
+  "animation_id": "boss_idle",
+  "tags": ["boss"]
+}

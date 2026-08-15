@@ -1,0 +1,19 @@
+{
+  "version": 1,
+  "id": "cave_boss_world",
+  "seed": 42,
+  "width": 5,
+  "height": 5,
+  "tiles": [
+    1, 1, 1, 1, 1,
+    1, 0, 0, 0, 1,
+    1, 0, 0, 0, 1,
+    1, 0, 0, 0, 1,
+    1, 1, 1, 1, 1
+  ],
+  "spawns": [
+    { "id": "player_spawn", "x": 1, "y": 1, "type": "player" },
+    { "id": "boss_spawn", "x": 3, "y": 3, "type": "boss" },
+    { "id": "exit_spawn", "x": 1, "y": 3, "type": "exit" }
+  ]
+}

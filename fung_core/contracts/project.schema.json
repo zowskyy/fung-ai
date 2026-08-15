@@ -1,0 +1,15 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://fung.us/schemas/project.schema.json",
+  "title": "Project",
+  "type": "object",
+  "required": ["version", "name"],
+  "properties": {
+    "version": { "type": "integer", "const": 1 },
+    "name": { "type": "string", "minLength": 1 },
+    "worlds": { "type": "array", "items": { "type": "string" } },
+    "animation_manifests": { "type": "array", "items": { "type": "string" } },
+    "narratives": { "type": "array", "items": { "type": "string" } }
+  },
+  "additionalProperties": false
+}

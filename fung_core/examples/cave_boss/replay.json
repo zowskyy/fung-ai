@@ -1,0 +1,10 @@
+{
+  "version": 1,
+  "seed": 42,
+  "input_sequence": [
+    { "frame": 0, "action": "start" },
+    { "frame": 12, "action": "choice", "params": { "beat_id": "player_choice", "option_id": "fight" } },
+    { "frame": 60, "action": "finish" }
+  ],
+  "final_hash": "0f931d503071360fd8ca551f437fce5556e6f0c725e0dd1696c03a110a6fabb4"
+}

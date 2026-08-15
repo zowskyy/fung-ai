@@ -1,0 +1,8 @@
+{
+  "version": 1,
+  "id": "cave_boss_encounter",
+  "entity": "cave_boss_01",
+  "spawn_point": "boss_spawn",
+  "narrative_id": "cave_boss_intro",
+  "difficulty": 3.0
+}
