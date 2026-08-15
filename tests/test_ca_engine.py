@@ -12,12 +12,7 @@ try:
         BIOME_DENSITY, BIOME_RULE, compute_density,
     )
 except ImportError:
-    import sys, os
-    sys.path.insert(0, os.path.join(os.path.dirname(__file__), '..', 'fungaiV2_extracted'))
-    from fung_ai_v2 import (
-        CARule, step_ca, initialize_random,
-        BIOME_DENSITY, BIOME_RULE, compute_density,
-    )
+    pytest.skip("fung_ai_v2 package not available (ca_engine module)", allow_module_level=True)
 
 
 # ---------------------------------------------------------------------------

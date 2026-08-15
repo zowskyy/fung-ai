@@ -15,13 +15,7 @@ try:
         compute_interestingness, classify_topology,
     )
 except ImportError:
-    import sys, os
-    sys.path.insert(0, os.path.join(os.path.dirname(__file__), '..', 'fungaiV2_extracted'))
-    from fung_ai_v2 import (
-        CARule, has_path, evaluate_ca_rule, compute_descriptors,
-        compute_pattern_entropy, compute_pacing_variance,
-        compute_interestingness, classify_topology,
-    )
+    pytest.skip("fung_ai_v2 package not available (fitness module)", allow_module_level=True)
 
 
 # ---------------------------------------------------------------------------

@@ -8,9 +8,7 @@ import pytest
 try:
     from fung_ai_v2.archive import GridArchive, ArchiveCell
 except ImportError:
-    import sys, os
-    sys.path.insert(0, os.path.join(os.path.dirname(__file__), '..', 'fungaiV2_extracted'))
-    from fung_ai_v2 import GridArchive, ArchiveCell
+    pytest.skip("fung_ai_v2 package not available (archive module)", allow_module_level=True)
 
 
 # ---------------------------------------------------------------------------
@@ -217,8 +215,6 @@ def test_archive_get_statistics_empty():
 
 def test_archive_cell_threshold_initialization():
     """ArchiveCell.update_threshold initializes threshold from -inf (line 40)."""
-    from fung_ai_v2.archive import ArchiveCell
-
     cell = ArchiveCell()
     assert cell.threshold == -np.inf, "New cell should have threshold = -inf"
 

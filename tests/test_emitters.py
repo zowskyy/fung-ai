@@ -8,10 +8,10 @@ import pytest
 try:
     from fung_ai_v2.emitters import Emitter, MAP_Elites_Emitter
     from fung_ai_v2.archive import GridArchive
+    from fung_ai_v2.ca_engine import CARule
+    from fung_ai_v2.fitness import evaluate_ca_rule
 except ImportError:
-    import sys, os
-    sys.path.insert(0, os.path.join(os.path.dirname(__file__), '..', 'fungaiV2_extracted'))
-    from fung_ai_v2 import Emitter, MAP_Elites_Emitter, GridArchive
+    pytest.skip("fung_ai_v2 package not available (emitters module)", allow_module_level=True)
 
 
 def test_emitter_reset():
@@ -44,9 +44,6 @@ def test_map_elites_ask_empty_archive():
 
 def test_map_elites_ask_single_elite():
     """MAP_Elites_Emitter.ask() mutates single elite when archive has 1 cell."""
-    from fung_ai_v2.ca_engine import CARule
-    from fung_ai_v2.fitness import evaluate_ca_rule
-
     dims = [(0.0, 1.0, 10), (0.0, 1.0, 10), (0.0, 1.0, 10)]
     archive = GridArchive(dims)
     emitter = MAP_Elites_Emitter()

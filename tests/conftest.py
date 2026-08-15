@@ -6,14 +6,8 @@ import numpy as np
 # ---------------------------------------------------------------------------
 
 def _import_carule():
-    try:
-        from fung_ai_v2.ca_engine import CARule
-        return CARule
-    except ImportError:
-        import sys, os
-        sys.path.insert(0, os.path.join(os.path.dirname(__file__), '..', 'fungaiV2_extracted'))
-        from fung_ai_v2 import CARule
-        return CARule
+    from fung_ai_v2.ca_engine import CARule
+    return CARule
 
 
 @pytest.fixture

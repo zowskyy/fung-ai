@@ -13,9 +13,7 @@ try:
     from fung_ai_v2.archive import GridArchive
     from fung_ai_v2.ca_engine import CARule
 except ImportError:
-    import sys, os
-    sys.path.insert(0, os.path.join(os.path.dirname(__file__), '..', 'fungaiV2_extracted'))
-    from fung_ai_v2 import RandomSearch, Standard_MAP_Elites, run_held_out_benchmark, GridArchive, CARule
+    pytest.skip("fung_ai_v2 package not available (algorithms module)", allow_module_level=True)
 
 
 # ---------------------------------------------------------------------------

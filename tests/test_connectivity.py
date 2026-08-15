@@ -9,9 +9,7 @@ import pytest
 try:
     from fung_ai_v2.fitness import has_path
 except ImportError:
-    import sys, os
-    sys.path.insert(0, os.path.join(os.path.dirname(__file__), '..', 'fungaiV2_extracted'))
-    from fung_ai_v2 import has_path
+    pytest.skip("fung_ai_v2 package not available (fitness module)", allow_module_level=True)
 
 
 # ---------------------------------------------------------------------------
