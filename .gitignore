@@ -2,8 +2,50 @@
 godot_engine/
 libresprite/
 
-# Generated/scratch outputs from verification runs
-*.png
-!research/**/*.png
+# Python
 __pycache__/
 *.pyc
+*.pyo
+*.pyd
+*.egg-info/
+dist/
+build/
+.eggs/
+*.egg
+.pytest_cache/
+.mypy_cache/
+htmlcov/
+.coverage
+
+# Python virtual environments
+venv/
+env/
+ENV/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+
+# Godot
+.godot/
+godot_project/user/
+
+# Fung bridge job state
+.fung/
+
+# Generated outputs (but keep tracked recipe/demo content)
+*.png
+!research/**/*.png
+*.jpg
+*.jpeg
+.coverage
+*.log
+
+# Build artifacts
+dist/
+build/
+*.egg-info
