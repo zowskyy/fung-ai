@@ -33,17 +33,17 @@
       "else": "flee_start"
     },
     {
-      "id": "battle_start",
-      "type": "dialogue",
-      "speaker": "boss",
-      "text": "Then die!",
-      "duration": 1.5
-    },
-    {
       "id": "flee_start",
       "type": "dialogue",
       "speaker": "boss",
       "text": "Coward!",
+      "duration": 1.5
+    },
+    {
+      "id": "battle_start",
+      "type": "dialogue",
+      "speaker": "boss",
+      "text": "Then die!",
       "duration": 1.5
     },
     {

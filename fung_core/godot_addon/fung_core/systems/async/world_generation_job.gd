@@ -138,6 +138,11 @@ func _generate_world(config: Dictionary) -> Dictionary:
 		excluded.append(exit_pos)
 		spawns.append({"id": "exit_spawn", "x": exit_pos.x, "y": exit_pos.y, "type": "exit"})
 
+	var boss_pos = _find_floor_tile(tiles, width, height, excluded)
+	if boss_pos != null:
+		excluded.append(boss_pos)
+		spawns.append({"id": "boss_spawn", "x": boss_pos.x, "y": boss_pos.y, "type": "boss"})
+
 	return {
 		"version": 1,
 		"id": "generated_world_%d" % seed_value,
