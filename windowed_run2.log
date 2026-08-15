@@ -1,0 +1,7 @@
+Godot Engine v4.7.1.stable.official.a13da4feb - https://godotengine.org
+OpenGL API 3.3.0 Core Profile Context 26.7.1.260713 - Compatibility - Using Device: ATI Technologies Inc. - AMD Radeon(TM) 660M
+
+Loading scene JSON from: C:/Users/thewi/OneDrive/Desktop/fung.us/fungaiV2_extracted/godot_scene.json
+Tile count: 2500
+Built visuals: 2500 tiles, player_spawn={ "x": 912.0, "y": 816.0 }, enemy_spawns=5
+Screenshot saved to: C:/Users/thewi/OneDrive/Desktop/fung.us/godot_project/screenshot_windowed.png

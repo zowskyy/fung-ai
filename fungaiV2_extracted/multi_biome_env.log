@@ -1,0 +1,9 @@
+[env] tile (0,0) @ (10.9631,-85.2033): biome=tropical_rainforest rule=B3/S23 base_density=0.6 settlement_adj=-0.0345 (nearest=7.7km) wind_adj=-0.0115 (4.6km/h) -> final_density=0.554
+[env] tile (0,1) @ (10.9631,-84.7033): biome=tropical_rainforest rule=B3/S23 base_density=0.6 settlement_adj=-0.0315 (nearest=7.9km) wind_adj=-0.0425 (17.0km/h) -> final_density=0.526
+[env] tile (0,2) @ (10.9631,-84.2033): biome=tropical_rainforest rule=B3/S23 base_density=0.6 settlement_adj=-0.0 (nearest=19.8km) wind_adj=-0.0358 (14.3km/h) -> final_density=0.5642
+[env] tile (1,0) @ (10.4631,-85.2033): biome=tropical_seasonal_forest rule=B36/S23 base_density=0.52 settlement_adj=-0.015 (nearest=9.0km) wind_adj=-0.0537 (21.5km/h) -> final_density=0.4512
+[env] tile (1,1) @ (10.4631,-84.7033): biome=temperate_rainforest rule=B3/S23 base_density=0.55 settlement_adj=-0.0525 (nearest=6.5km) wind_adj=-0.0395 (15.8km/h) -> final_density=0.458
+[env] tile (1,2) @ (10.4631,-84.2033): biome=tropical_rainforest rule=B3/S23 base_density=0.6 settlement_adj=-0.144 (nearest=0.4km) wind_adj=-0.033 (13.2km/h) -> final_density=0.423
+[env] tile (2,0) @ (9.9631,-85.2033): biome=tropical_rainforest rule=B3/S23 base_density=0.6 settlement_adj=-0.0555 (nearest=6.3km) wind_adj=-0.0283 (11.3km/h) -> final_density=0.5162
+[env] tile (2,1) @ (9.9631,-84.7033): biome=tropical_rainforest rule=B3/S23 base_density=0.6 settlement_adj=-0.1065 (nearest=2.9km) wind_adj=-0.031 (12.4km/h) -> final_density=0.4625
+[env] tile (2,2) @ (9.9631,-84.2033): biome=tropical_rainforest rule=B3/S23 base_density=0.6 settlement_adj=-0.126 (nearest=1.6km) wind_adj=-0.029 (11.6km/h) -> final_density=0.445

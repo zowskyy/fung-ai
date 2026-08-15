@@ -1,0 +1,9 @@
+# Third-party installed tools (large binaries, not project source)
+godot_engine/
+libresprite/
+
+# Generated/scratch outputs from verification runs
+*.png
+!research/**/*.png
+__pycache__/
+*.pyc

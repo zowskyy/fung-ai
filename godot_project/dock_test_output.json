@@ -1,0 +1,55 @@
+{
+  "camera": {
+    "keyframes": [
+      {
+        "t": 0.0,
+        "x": 0.0,
+        "y": 0.0,
+        "zoom": 1.0
+      },
+      {
+        "t": 4.0,
+        "x": 220.0,
+        "y": 0.0,
+        "zoom": 1.15
+      },
+      {
+        "t": 8.0,
+        "x": 0.0,
+        "y": 0.0,
+        "zoom": 1.0
+      }
+    ],
+    "loop": true
+  },
+  "duration_s": 8.0,
+  "layers": [
+    {
+      "depth": 0.1,
+      "image": "placeholder_layers/sky.png",
+      "name": "sky",
+      "sway": {
+        "amplitude_deg": 0.0,
+        "speed": 0.0
+      }
+    },
+    {
+      "depth": 0.4,
+      "image": "placeholder_layers/hills.png",
+      "name": "hills",
+      "sway": {
+        "amplitude_deg": 1.5,
+        "speed": 0.4
+      }
+    },
+    {
+      "depth": 1.0,
+      "image": "placeholder_layers/foreground.png",
+      "name": "foreground",
+      "sway": {
+        "amplitude_deg": 3.0,
+        "speed": 1.1
+      }
+    }
+  ]
+}

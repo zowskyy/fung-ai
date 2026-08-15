@@ -1,0 +1,4 @@
+[env] fetched real environment snapshot for (23.4162, 25.6628):
+[env]   biome=desert (annual_temp_c=21.0, annual_precip_mm=0.3) -> density=0.2
+[env]   elevation_m=962.0, wind_speed_kmh=10.2 (informational only, not wired into generation)
+[env]   settlements nearby: [] (informational only)

@@ -1,0 +1,102 @@
+{
+  "duration_s": 8,
+  "layers": [
+    {
+      "name": "sky",
+      "image": "placeholder_layers/sky.png",
+      "depth": 0.1,
+      "sway": {
+        "amplitude_deg": 0,
+        "speed": 0
+      }
+    },
+    {
+      "name": "hills",
+      "image": "placeholder_layers/hills.png",
+      "depth": 0.4,
+      "sway": {
+        "amplitude_deg": 1.5,
+        "speed": 0.4
+      }
+    },
+    {
+      "name": "foreground",
+      "image": "placeholder_layers/foreground.png",
+      "depth": 1.0,
+      "sway": {
+        "amplitude_deg": 3,
+        "speed": 1.1
+      }
+    },
+    {
+      "name": "torch",
+      "depth": 0.9,
+      "spritesheet": "imported_assets/torch_sheet.png",
+      "cels": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 16,
+          "h": 16,
+          "duration_ms": 80
+        },
+        {
+          "x": 16,
+          "y": 0,
+          "w": 16,
+          "h": 16,
+          "duration_ms": 100
+        },
+        {
+          "x": 32,
+          "y": 0,
+          "w": 16,
+          "h": 16,
+          "duration_ms": 120
+        },
+        {
+          "x": 48,
+          "y": 0,
+          "w": 16,
+          "h": 16,
+          "duration_ms": 140
+        }
+      ],
+      "tags": [
+        {
+          "name": "flicker",
+          "from": 0,
+          "to": 3,
+          "direction": "ping_pong",
+          "repeat": 0
+        }
+      ],
+      "blend_mode": "normal",
+      "godot_blend_mode": 0,
+      "is_indexed": false
+    }
+  ],
+  "camera": {
+    "loop": true,
+    "keyframes": [
+      {
+        "t": 0,
+        "x": 0,
+        "y": 0,
+        "zoom": 1.0
+      },
+      {
+        "t": 4,
+        "x": 220,
+        "y": 0,
+        "zoom": 1.15
+      },
+      {
+        "t": 8,
+        "x": 0,
+        "y": 0,
+        "zoom": 1.0
+      }
+    ]
+  }
+}

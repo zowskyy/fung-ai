@@ -1,0 +1,53 @@
+{ "frames": [
+   {
+    "filename": "cycle_tagged 0.ase",
+    "frame": { "x": 0, "y": 0, "w": 16, "h": 16 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 16, "h": 16 },
+    "sourceSize": { "w": 16, "h": 16 },
+    "duration": 80
+   },
+   {
+    "filename": "cycle_tagged 1.ase",
+    "frame": { "x": 16, "y": 0, "w": 16, "h": 16 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 16, "h": 16 },
+    "sourceSize": { "w": 16, "h": 16 },
+    "duration": 100
+   },
+   {
+    "filename": "cycle_tagged 2.ase",
+    "frame": { "x": 32, "y": 0, "w": 16, "h": 16 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 16, "h": 16 },
+    "sourceSize": { "w": 16, "h": 16 },
+    "duration": 120
+   },
+   {
+    "filename": "cycle_tagged 3.ase",
+    "frame": { "x": 48, "y": 0, "w": 16, "h": 16 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 16, "h": 16 },
+    "sourceSize": { "w": 16, "h": 16 },
+    "duration": 140
+   }
+ ],
+ "meta": {
+  "app": "https://github.com/LibreSprite/LibreSprite/",
+  "version": "1.2-dev",
+  "image": "testsrc/cycle_tagged_sheet.png",
+  "format": "RGBA8888",
+  "size": { "w": 64, "h": 16 },
+  "scale": "1",
+  "frameTags": [
+   { "name": "flicker", "from": 0, "to": 3, "direction": "pingpong" }
+  ],
+  "layers": [
+   { "name": "torch", "opacity": 255, "blendMode": "normal" }
+  ]
+ }
+}

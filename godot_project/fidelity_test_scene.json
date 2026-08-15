@@ -1,0 +1,84 @@
+{
+  "duration_s": 4,
+  "layers": [
+    {
+      "name": "sky",
+      "image": "placeholder_layers/sky.png",
+      "depth": 0.1,
+      "sway": {
+        "amplitude_deg": 0,
+        "speed": 0
+      }
+    },
+    {
+      "name": "multiply_layer",
+      "depth": 0.5,
+      "spritesheet": "imported_assets/fidelity_sheet.png",
+      "cels": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 16,
+          "h": 16,
+          "duration_ms": 100
+        }
+      ],
+      "tags": [
+        {
+          "name": "default",
+          "from": 0,
+          "to": 0,
+          "direction": "forward",
+          "repeat": 0
+        }
+      ],
+      "blend_mode": "multiply",
+      "godot_blend_mode": 3,
+      "is_indexed": true,
+      "palette": [
+        [
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          255,
+          0,
+          0,
+          255
+        ],
+        [
+          0,
+          255,
+          0,
+          255
+        ],
+        [
+          0,
+          0,
+          255,
+          255
+        ],
+        [
+          255,
+          255,
+          255,
+          255
+        ]
+      ],
+      "group": "effects/overlays"
+    }
+  ],
+  "camera": {
+    "loop": false,
+    "keyframes": [
+      {
+        "t": 0,
+        "x": 0,
+        "y": 0,
+        "zoom": 1.0
+      }
+    ]
+  }
+}

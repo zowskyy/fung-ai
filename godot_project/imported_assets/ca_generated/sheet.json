@@ -1,0 +1,25 @@
+{ "frames": [
+   {
+    "filename": "ca_pattern.ase",
+    "frame": { "x": 0, "y": 0, "w": 40, "h": 30 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 40, "h": 30 },
+    "sourceSize": { "w": 40, "h": 30 },
+    "duration": 100
+   }
+ ],
+ "meta": {
+  "app": "https://github.com/LibreSprite/LibreSprite/",
+  "version": "1.2-dev",
+  "image": "C:/Users/thewi/OneDrive/Desktop/fung.us/godot_project/imported_assets/ca_generated/sheet.png",
+  "format": "RGBA8888",
+  "size": { "w": 40, "h": 30 },
+  "scale": "1",
+  "frameTags": [
+  ],
+  "layers": [
+   { "name": "Layer", "opacity": 255, "blendMode": "normal" }
+  ]
+ }
+}

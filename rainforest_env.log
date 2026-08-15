@@ -1,0 +1,4 @@
+[env] fetched real environment snapshot for (10.4631, -84.7033):
+[env]   biome=temperate_rainforest (annual_temp_c=16.2, annual_precip_mm=3727.6) -> density=0.55
+[env]   elevation_m=1625.0, wind_speed_kmh=16.7 (informational only, not wired into generation)
+[env]   settlements nearby: ['La Fortuna', 'Venado', 'Santo Domingo', 'San Isidro', 'La Tigra', 'Tonjibe', 'Santa Elena', 'Cabeceras', 'Valle Azul', 'Cabanga', 'Arenal', 'Tronadora'] (informational only)
