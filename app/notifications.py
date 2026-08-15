@@ -4,7 +4,14 @@ import json
 from pathlib import Path
 
 from PySide6.QtCore import QUrl
-from PySide6.QtMultimedia import QSoundEffect
+
+# Optional: QtMultimedia may not be available in frozen exe
+try:
+    from PySide6.QtMultimedia import QSoundEffect
+    HAS_MULTIMEDIA = True
+except ImportError:
+    HAS_MULTIMEDIA = False
+    QSoundEffect = None
 
 
 _NOTIFICATIONS_FILE = Path.home() / ".creator" / "notifications.json"
@@ -61,7 +68,7 @@ def notify_complete(parent=None) -> None:
 
 
 def play_sound(event: str = "done") -> None:
-    if not sounds_enabled():
+    if not sounds_enabled() or not HAS_MULTIMEDIA:
         return
     try:
         effect = QSoundEffect()
