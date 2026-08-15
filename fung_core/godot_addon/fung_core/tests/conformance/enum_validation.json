@@ -1,0 +1,106 @@
+{
+  "tests": [
+    {
+      "description": "enum with string values - valid",
+      "schema": {"enum": ["red", "green", "blue"]},
+      "data": "red",
+      "valid": true
+    },
+    {
+      "description": "enum with string values - another valid",
+      "schema": {"enum": ["red", "green", "blue"]},
+      "data": "blue",
+      "valid": true
+    },
+    {
+      "description": "enum with string values - invalid",
+      "schema": {"enum": ["red", "green", "blue"]},
+      "data": "yellow",
+      "valid": false
+    },
+    {
+      "description": "enum with numeric values - valid",
+      "schema": {"enum": [1, 2, 3]},
+      "data": 2,
+      "valid": true
+    },
+    {
+      "description": "enum with numeric values - invalid",
+      "schema": {"enum": [1, 2, 3]},
+      "data": 4,
+      "valid": false
+    },
+    {
+      "description": "enum with boolean values - valid",
+      "schema": {"enum": [true, false]},
+      "data": true,
+      "valid": true
+    },
+    {
+      "description": "enum with null - valid",
+      "schema": {"enum": [null, "none"]},
+      "data": null,
+      "valid": true
+    },
+    {
+      "description": "enum with null - invalid",
+      "schema": {"enum": [null, "none"]},
+      "data": 0,
+      "valid": false
+    },
+    {
+      "description": "enum with mixed types - string match",
+      "schema": {"enum": [1, "two", null, true]},
+      "data": "two",
+      "valid": true
+    },
+    {
+      "description": "enum with mixed types - number match",
+      "schema": {"enum": [1, "two", null, true]},
+      "data": 1,
+      "valid": true
+    },
+    {
+      "description": "enum with mixed types - null match",
+      "schema": {"enum": [1, "two", null, true]},
+      "data": null,
+      "valid": true
+    },
+    {
+      "description": "enum with mixed types - boolean match",
+      "schema": {"enum": [1, "two", null, true]},
+      "data": true,
+      "valid": true
+    },
+    {
+      "description": "enum with mixed types - no match",
+      "schema": {"enum": [1, "two", null, true]},
+      "data": "three",
+      "valid": false
+    },
+    {
+      "description": "enum with arrays - valid",
+      "schema": {"enum": [[1, 2], [3, 4]]},
+      "data": [1, 2],
+      "valid": true
+    },
+    {
+      "description": "enum with arrays - different order invalid",
+      "schema": {"enum": [[1, 2], [3, 4]]},
+      "data": [2, 1],
+      "valid": false
+    },
+    {
+      "description": "enum with single value",
+      "schema": {"enum": ["only"]},
+      "data": "only",
+      "valid": true
+    },
+    {
+      "description": "enum with single value - invalid",
+      "schema": {"enum": ["only"]},
+      "data": "not",
+      "valid": false
+    }
+  ]
+}
