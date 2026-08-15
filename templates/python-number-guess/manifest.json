@@ -1,0 +1,35 @@
+{
+  "id": "python-number-guess",
+  "name": "Python Number Guess",
+  "description": "Guess a number in Python — the classic beginner project, no dependencies needed.",
+  "language": "python",
+  "icon": "terminal",
+  "fields": [
+    {
+      "id": "player_name",
+      "label": "Your name",
+      "type": "text",
+      "default": "Player",
+      "required": true,
+      "help": "Shown in the welcome and victory messages."
+    },
+    {
+      "id": "difficulty",
+      "label": "Difficulty",
+      "type": "select",
+      "default": "normal",
+      "options": ["easy", "normal", "hard"],
+      "help": "Easy: 1-50 with 10 guesses. Normal: 1-100 with 7 guesses. Hard: 1-200 with 5 guesses."
+    },
+    {
+      "id": "win_emoji",
+      "label": "Win emoji",
+      "type": "text",
+      "default": "🎉"
+    }
+  ],
+  "files": [
+    { "src": "game.py.tmpl", "dest": "game.py" }
+  ],
+  "run": { "command": "python", "args": ["game.py"] }
+}

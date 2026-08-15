@@ -1,0 +1,164 @@
+"""A tiny platformer made by Creator. Runs with nothing but the standard library."""
+
+import tkinter as tk
+
+PLAYER_NAME = "{{player_name}}"
+SKY_COLOR = "{{sky_color}}"
+GROUND_COLOR = "{{ground_color}}"
+PLAYER_COLOR = "{{player_color}}"
+DIFFICULTY = "{{difficulty}}"
+GRAVITY_FEEL = "{{gravity}}"
+
+WIDTH, HEIGHT = 800, 520
+PLAYER_W, PLAYER_H = 30, 40
+
+GRAVITY = {"floaty": 0.22, "normal": 0.5, "heavy": 0.85}[GRAVITY_FEEL]
+JUMP_SPEED = {"floaty": -8.5, "normal": -10.5, "heavy": -13.0}[GRAVITY_FEEL]
+ENEMY_SPEED = {"easy": 1.2, "normal": 2.2, "hard": 3.4}[DIFFICULTY]
+ENEMY_COUNT = {"easy": 1, "normal": 2, "hard": 4}[DIFFICULTY]
+
+GROUND = (0, HEIGHT - 40, WIDTH, HEIGHT - 40)
+PLATFORMS = [
+    GROUND,
+    (120, 380, 230, 380),
+    (420, 320, 540, 320),
+    (650, 240, 760, 240),
+    (180, 230, 280, 230),
+]
+GOAL = (700, 200, 740, 240)
+START = (120, GROUND[1] - PLAYER_H)
+
+
+class Game:
+    def __init__(self, root):
+        self.root = root
+        self.root.title(f"{PLAYER_NAME}'s Adventure")
+        self.canvas = tk.Canvas(
+            root, width=WIDTH, height=HEIGHT, bg=SKY_COLOR, highlightthickness=0
+        )
+        self.canvas.pack()
+
+        self.px, self.py = START
+        self.vx, self.vy = 0.0, 0.0
+        self.on_ground = False
+        self.keys = set()
+        self.finished = False
+
+        self.enemies = []
+        for i in range(ENEMY_COUNT):
+            start_x = 350 + i * 120
+            self.enemies.append([start_x, GROUND[1] - 25, ENEMY_SPEED, start_x, start_x + 240])
+
+        self.canvas.create_text(
+            12, 12, anchor="nw", fill="white",
+            text=f"{PLAYER_NAME}  |  Move: A/D or arrows  |  Jump: Space  |  Goal: the coin!",
+            font=("Segoe UI", 12, "bold"),
+        )
+        self.root.bind("<KeyPress>", self._key_down)
+        self.root.bind("<KeyRelease>", self._key_up)
+        self._loop()
+
+    def _key_down(self, event):
+        self.keys.add(event.keysym.lower())
+
+    def _key_up(self, event):
+        self.keys.discard(event.keysym.lower())
+
+    def _draw(self):
+        self.canvas.delete("world")
+        self.canvas.create_rectangle(*GROUND, fill=GROUND_COLOR, tags="world")
+        for x1, y1, x2, y2 in PLATFORMS[1:]:
+            self.canvas.create_rectangle(x1, y1, x2, y2, fill=GROUND_COLOR, outline="", tags="world")
+        self.canvas.create_oval(
+            GOAL[0], GOAL[1], GOAL[2], GOAL[3],
+            fill="#FFD700", outline="#B8860B", width=2, tags="world",
+        )
+        for e in self.enemies:
+            self.canvas.create_rectangle(e[0], e[1], e[0] + 30, e[1] + 25, fill="#E53935", outline="", tags="world")
+        self.canvas.create_rectangle(
+            self.px, self.py, self.px + PLAYER_W, self.py + PLAYER_H,
+            fill=PLAYER_COLOR, outline="black", tags="world",
+        )
+
+    @staticmethod
+    def _hit(a, b):
+        return a[0] < b[2] and a[2] > b[0] and a[1] < b[3] and a[3] > b[1]
+
+    def _rect(self):
+        return (self.px, self.py, self.px + PLAYER_W, self.py + PLAYER_H)
+
+    def _loop(self):
+        if self.finished:
+            return
+        self._update()
+        self._draw()
+        self.root.after(16, self._loop)
+
+    def _update(self):
+        move = 0
+        if "a" in self.keys or "left" in self.keys:
+            move -= 1
+        if "d" in self.keys or "right" in self.keys:
+            move += 1
+        self.vx = move * 4.2
+
+        if ("space" in self.keys or "up" in self.keys) and self.on_ground:
+            self.vy = JUMP_SPEED
+            self.on_ground = False
+
+        self.vy = min(self.vy + GRAVITY, 14)
+        self.px += self.vx
+        self.py += self.vy
+        self.px = max(0, min(self.px, WIDTH - PLAYER_W))
+
+        player = self._rect()
+        self.on_ground = False
+        for platform in PLATFORMS:
+            if self._hit(player, platform) and self.vy >= 0:
+                if player[3] - self.vy <= platform[1] + 6:
+                    self.py = platform[1] - PLAYER_H
+                    self.vy = 0
+                    self.on_ground = True
+
+        for enemy in self.enemies:
+            enemy[0] += enemy[2]
+            if enemy[0] <= enemy[3] or enemy[0] + 30 >= enemy[4]:
+                enemy[2] = -enemy[2]
+            if self._hit(self._rect(), (enemy[0], enemy[1], enemy[0] + 30, enemy[1] + 25)):
+                self._reset()
+
+        if self.py > HEIGHT + 40:
+            self._reset()
+
+        if self._hit(self._rect(), GOAL):
+            self._win()
+
+    def _reset(self):
+        self.px, self.py = START
+        self.vx, self.vy = 0.0, 0.0
+        self.on_ground = False
+
+    def _win(self):
+        self.finished = True
+        self.canvas.delete("all")
+        self.canvas.create_rectangle(0, 0, WIDTH, HEIGHT, fill=SKY_COLOR)
+        self.canvas.create_text(
+            WIDTH // 2, HEIGHT // 2 - 20, fill=PLAYER_COLOR,
+            text=f"You win, {PLAYER_NAME}!",
+            font=("Segoe UI", 34, "bold"),
+        )
+        self.canvas.create_text(
+            WIDTH // 2, HEIGHT // 2 + 30, fill="white",
+            text="Close this window to go back to Creator.",
+            font=("Segoe UI", 13),
+        )
+
+
+def main():
+    root = tk.Tk()
+    Game(root)
+    root.mainloop()
+
+
+if __name__ == "__main__":
+    main()

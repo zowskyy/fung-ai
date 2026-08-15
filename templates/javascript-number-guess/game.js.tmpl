@@ -1,0 +1,59 @@
+const readline = require("readline");
+
+const PLAYER_NAME = "{{player_name}}";
+const WIN_EMOJI = "{{win_emoji}}";
+const DIFFICULTY = "{{difficulty}}";
+
+let RANGE_MAX, MAX_GUESSES;
+if (DIFFICULTY === "easy") {
+    RANGE_MAX = 50;
+    MAX_GUESSES = 10;
+} else if (DIFFICULTY === "hard") {
+    RANGE_MAX = 200;
+    MAX_GUESSES = 5;
+} else {
+    RANGE_MAX = 100;
+    MAX_GUESSES = 7;
+}
+
+const secret = Math.floor(Math.random() * RANGE_MAX) + 1;
+let guesses = 0;
+
+const rl = readline.createInterface({
+    input: process.stdin,
+    output: process.stdout,
+});
+
+function askGuess() {
+    if (guesses >= MAX_GUESSES) {
+        console.log(`\nGame over! The number was ${secret}. Better luck next time!`);
+        rl.close();
+        return;
+    }
+    rl.question(`Your guess (1-${RANGE_MAX}): `, (answer) => {
+        const guess = parseInt(answer.trim(), 10);
+        if (isNaN(guess)) {
+            console.log("Please enter a valid number!");
+            askGuess();
+            return;
+        }
+        guesses++;
+        if (guess < secret) {
+            console.log(`Higher! 🔺  (${guesses}/${MAX_GUESSES} guesses used)`);
+            askGuess();
+        } else if (guess > secret) {
+            console.log(`Lower! 🔻  (${guesses}/${MAX_GUESSES} guesses used)`);
+            askGuess();
+        } else {
+            console.log(`\n${WIN_EMOJI}  Congratulations, ${PLAYER_NAME}!  ${WIN_EMOJI}  You got it in ${guesses} guesses!`);
+            rl.close();
+        }
+    });
+}
+
+console.log(`\n🎲  Welcome, ${PLAYER_NAME}!  🎲`);
+console.log(`I'm thinking of a number between 1 and ${RANGE_MAX}.`);
+console.log(`You have ${MAX_GUESSES} guesses.`);
+console.log("Type your guess and press Enter.\n");
+
+askGuess();

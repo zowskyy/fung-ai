@@ -1,0 +1,2 @@
+[console_scripts]
+creator = main:main

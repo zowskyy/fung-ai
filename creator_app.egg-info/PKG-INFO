@@ -1,0 +1,95 @@
+Metadata-Version: 2.4
+Name: creator-app
+Version: 0.1.0
+Summary: Build things without code. Pick a kit, answer a few questions, and Creator writes, runs, and versions your project.
+Author: Creator contributors
+License: MIT
+Keywords: no-code,gui,pyside6,templates,ai
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Classifier: Topic :: Software Development :: Code Generators
+Requires-Python: >=3.10
+Description-Content-Type: text/markdown
+Requires-Dist: PySide6>=6.6
+Provides-Extra: dev
+Requires-Dist: pytest>=8.0; extra == "dev"
+Provides-Extra: test
+Requires-Dist: pytest>=8.0; extra == "test"
+
+# Creator
+
+Build things without code. Pick a kit, answer a few plain-language
+questions, and Creator writes the files, runs them, and keeps a version
+history for you.
+
+No AI is required. AI is an optional add-on that works exactly like
+opencode: bring your own key, or point it at a local model.
+
+## Run it
+
+Double-click `start.bat`, or:
+
+```
+python run.py            start the app
+python run.py --learn    guided tour of the codebase
+python run.py --test     run the automated tests
+```
+
+First run creates `.venv` and installs PySide6 + pytest automatically.
+
+## What's inside
+
+| Piece | Purpose |
+|---|---|
+| `app/` | PySide6 desktop interface (home, wizard, editor, run, versions) |
+| `core/` | Template engine + field models (the no-AI brain) |
+| `sandbox/` | Safe per-project workspace with version snapshots |
+| `repo/` | Git-based history in plain words: Save / Restore / What changed |
+| `runners/` | Toolchain detection + running your creations |
+| `ai/` | Optional AI backends (opencode engine or any OpenAI-style server) |
+| `templates/` | The starter kits (2d-platformer included) |
+| `tests/` | Automated checks |
+
+## Using AI (optional)
+
+1. In the editor, open the "Ask AI" tab.
+2. Either connect an OpenAI-compatible server (local Ollama/LM Studio or
+   a cloud key) or let Creator use the real opencode engine.
+3. Your key is stored locally in `~/.creator/auth.json` — never uploaded.
+
+While your answer loads, the right-hand **"Ideas you might not have thought
+of"** panel streams a few related feature and improvement suggestions — a
+helpful distraction that sparks new directions while the AI thinks.
+
+### Letting the AI edit files (experimental, off by default)
+
+Tick **"Let the AI edit my files"** in the Ask AI tab to enable the agent
+loop (option C). When on, the AI may propose edits as `%%EDIT` blocks; Creator
+snapshots your project first, applies the change, and every change is undoable
+from the **Versions** tab. This stays off unless you opt in, so the default
+experience is a conversational helper that never touches your files.
+
+Works offline with no AI at all. The template + wizard + run + versions
+path is fully functional without any AI.
+
+### Testing the opencode adapter without installing opencode
+
+`tools/opencode_mock_server.py` is a dependency-free server that speaks the
+subset of opencode's API Creator uses. Run it, then point the adapter at it:
+
+```
+python tools/opencode_mock_server.py --port 8765
+set OPENCODE_BASE_URL=http://127.0.0.1:8765
+python run.py
+```
+
+## Tests
+
+```
+python run.py --test
+```
+
+The git history wrapper is tested with an in-memory git stand-in so the suite
+runs anywhere without spawning a real `git` process. Both AI adapters are tested
+against real local HTTP servers (see `tests/test_ai_server.py`).

@@ -1,0 +1,47 @@
+import java.util.Scanner;
+import java.util.Random;
+
+public class Game {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        Random random = new Random();
+
+        String playerName = "{{player_name}}";
+        String winEmoji = "{{win_emoji}}";
+        String diff = "{{difficulty}}";
+
+        int range;
+        int maxGuesses;
+        switch (diff) {
+            case "easy" -> { range = 50; maxGuesses = 10; }
+            case "hard" -> { range = 200; maxGuesses = 5; }
+            default -> { range = 100; maxGuesses = 7; }
+        }
+
+        int secret = random.nextInt(range) + 1;
+
+        System.out.println("\uD83C\uDFB2  Welcome, " + playerName + "!  \uD83C\uDFB2");
+        System.out.println("I'm thinking of a number between 1 and " + range + ". You have " + maxGuesses + " guesses.");
+        System.out.println("Type your guess and press Enter.\n");
+
+        int guesses = 0;
+        while (guesses < maxGuesses) {
+            System.out.print("Your guess (1-" + range + "): ");
+            int guess = scanner.nextInt();
+            guesses++;
+
+            if (guess < secret) {
+                System.out.println("Higher! \uD83D\uDD3A  (" + guesses + "/" + maxGuesses + " guesses used)");
+            } else if (guess > secret) {
+                System.out.println("Lower! \uD83D\uDD3B  (" + guesses + "/" + maxGuesses + " guesses used)");
+            } else {
+                System.out.println("\n" + winEmoji + "  Congratulations, " + playerName + "!  " + winEmoji + "  You got it in " + guesses + " guesses!");
+                scanner.close();
+                return;
+            }
+        }
+
+        System.out.println("\nGame over! The number was " + secret + ". Better luck next time!");
+        scanner.close();
+    }
+}

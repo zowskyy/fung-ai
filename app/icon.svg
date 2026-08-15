@@ -1,0 +1,45 @@
+<svg viewBox="0 0 256 256" xmlns="http://www.w3.org/2000/svg">
+  <!-- Black background -->
+  <rect width="256" height="256" fill="#050805"/>
+
+  <!-- Neon green border glow -->
+  <defs>
+    <filter id="neon-glow">
+      <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+
+  <!-- Outer neon square frame -->
+  <rect x="40" y="40" width="176" height="176"
+        fill="none" stroke="#00ff66" stroke-width="3"
+        filter="url(#neon-glow)"/>
+
+  <!-- Inner neon square frame -->
+  <rect x="60" y="60" width="136" height="136"
+        fill="none" stroke="#00ff66" stroke-width="2"
+        filter="url(#neon-glow)"/>
+
+  <!-- Center neon diamond/crystal -->
+  <polygon points="128,80 160,128 128,176 96,128"
+           fill="none" stroke="#00ff66" stroke-width="2"
+           filter="url(#neon-glow)"/>
+
+  <!-- Center filled diamond (smaller) -->
+  <polygon points="128,95 145,128 128,161 111,128"
+           fill="#00ff66" opacity="0.7"
+           filter="url(#neon-glow)"/>
+
+  <!-- Text: FUNGAI (in neon style) -->
+  <text x="128" y="215"
+        text-anchor="middle"
+        font-family="Consolas, monospace"
+        font-size="18" font-weight="bold"
+        fill="#00ff66"
+        filter="url(#neon-glow)">
+    FUNGAI
+  </text>
+</svg>

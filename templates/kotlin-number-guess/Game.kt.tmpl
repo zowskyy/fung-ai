@@ -1,0 +1,41 @@
+import kotlin.random.Random
+
+fun main() {
+    val playerName = "{{player_name}}"
+    val winEmoji = "{{win_emoji}}"
+    val diff = "{{difficulty}}"
+
+    val (range, maxGuesses) = when (diff) {
+        "easy" -> 50 to 10
+        "hard" -> 200 to 5
+        else -> 100 to 7
+    }
+
+    val secret = Random.nextInt(range) + 1
+
+    println("\uD83C\uDFB2  Welcome, $playerName!  \uD83C\uDFB2")
+    println("I'm thinking of a number between 1 and $range. You have $maxGuesses guesses.")
+    println("Type your guess and press Enter.\n")
+
+    var guesses = 0
+    while (guesses < maxGuesses) {
+        print("Your guess (1-$range): ")
+        val input = readLine() ?: break
+        val guess = input.trim().toIntOrNull()
+        if (guess == null) {
+            println("Please enter a valid number!")
+            continue
+        }
+        guesses++
+        when {
+            guess < secret -> println("Higher! \uD83D\uDD3A  ($guesses/$maxGuesses guesses used)")
+            guess > secret -> println("Lower! \uD83D\uDD3B  ($guesses/$maxGuesses guesses used)")
+            else -> {
+                println("\n$winEmoji  Congratulations, $playerName!  $winEmoji  You got it in $guesses guesses!")
+                return
+            }
+        }
+    }
+
+    println("\nGame over! The number was $secret. Better luck next time!")
+}

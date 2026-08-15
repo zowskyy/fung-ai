@@ -1,0 +1,35 @@
+{
+  "id": "cpp-number-guess",
+  "name": "C++ Number Guess",
+  "description": "Guess a number in C++ — compiled to native code, runs at machine speed.",
+  "language": "cpp",
+  "icon": "terminal",
+  "fields": [
+    {
+      "id": "player_name",
+      "label": "Your name",
+      "type": "text",
+      "default": "Player",
+      "required": true,
+      "help": "Shown in the welcome and victory messages."
+    },
+    {
+      "id": "difficulty",
+      "label": "Difficulty",
+      "type": "select",
+      "default": "normal",
+      "options": ["easy", "normal", "hard"],
+      "help": "Easy: 1-50 with 10 guesses. Normal: 1-100 with 7 guesses. Hard: 1-200 with 5 guesses."
+    },
+    {
+      "id": "win_emoji",
+      "label": "Win emoji",
+      "type": "text",
+      "default": "🎉"
+    }
+  ],
+  "files": [
+    { "src": "game.cpp.tmpl", "dest": "game.cpp" }
+  ],
+  "run": { "command": "cpp", "args": ["game.cpp"] }
+}

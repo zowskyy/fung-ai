@@ -1,0 +1,56 @@
+{
+  "id": "2d-platformer",
+  "name": "2D Platformer Game",
+  "description": "A jump-and-run game you customize with a few plain-language answers. No code needed.",
+  "language": "python",
+  "icon": "game",
+  "fields": [
+    {
+      "id": "player_name",
+      "label": "Your hero's name",
+      "type": "text",
+      "default": "Hero",
+      "required": true,
+      "help": "Shown on screen and in the win message."
+    },
+    {
+      "id": "sky_color",
+      "label": "Sky color",
+      "type": "color",
+      "default": "#87CEEB",
+      "help": "Click the color button to pick a sky color."
+    },
+    {
+      "id": "ground_color",
+      "label": "Ground color",
+      "type": "color",
+      "default": "#8B5A2B"
+    },
+    {
+      "id": "player_color",
+      "label": "Hero color",
+      "type": "color",
+      "default": "#FF6B35"
+    },
+    {
+      "id": "difficulty",
+      "label": "Difficulty",
+      "type": "select",
+      "default": "normal",
+      "options": ["easy", "normal", "hard"],
+      "help": "Easy has one slow enemy, hard has four fast ones."
+    },
+    {
+      "id": "gravity",
+      "label": "Jump feel",
+      "type": "select",
+      "default": "normal",
+      "options": ["floaty", "normal", "heavy"],
+      "help": "Floaty = gentle jumps, heavy = quick falls."
+    }
+  ],
+  "files": [
+    { "src": "game.py.tmpl", "dest": "game.py" }
+  ],
+  "run": { "command": "python", "args": ["game.py"] }
+}

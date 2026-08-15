@@ -1,0 +1,46 @@
+#include <iostream>
+#include <cstdlib>
+#include <ctime>
+#include <string>
+
+int main() {
+    srand(static_cast<unsigned int>(time(nullptr)));
+
+    std::string playerName = "{{player_name}}";
+    std::string winEmoji = "{{win_emoji}}";
+    std::string diff = "{{difficulty}}";
+
+    int range;
+    int maxGuesses;
+    if (diff == "easy") { range = 50; maxGuesses = 10; }
+    else if (diff == "hard") { range = 200; maxGuesses = 5; }
+    else { range = 100; maxGuesses = 7; }
+
+    int secret = rand() % range + 1;
+    int guesses = 0;
+
+    std::cout << "\xF0\x9F\x8E\xB2  Welcome, " << playerName << "!  \xF0\x9F\x8E\xB2" << std::endl;
+    std::cout << "I'm thinking of a number between 1 and " << range
+              << ". You have " << maxGuesses << " guesses." << std::endl;
+    std::cout << "Type your guess and press Enter.\n" << std::endl;
+
+    while (guesses < maxGuesses) {
+        int guess;
+        std::cout << "Your guess (1-" << range << "): ";
+        std::cin >> guess;
+        guesses++;
+
+        if (guess < secret) {
+            std::cout << "Higher! \xF0\x9F\x94\xBA  (" << guesses << "/" << maxGuesses << " guesses used)" << std::endl;
+        } else if (guess > secret) {
+            std::cout << "Lower! \xF0\x9F\x94\xBB  (" << guesses << "/" << maxGuesses << " guesses used)" << std::endl;
+        } else {
+            std::cout << "\n" << winEmoji << "  Congratulations, " << playerName
+                      << "!  " << winEmoji << "  You got it in " << guesses << " guesses!" << std::endl;
+            return 0;
+        }
+    }
+
+    std::cout << "\nGame over! The number was " << secret << ". Better luck next time!" << std::endl;
+    return 0;
+}

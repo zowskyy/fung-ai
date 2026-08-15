@@ -1,0 +1,14 @@
+# Python
+__pycache__/
+*.pyc
+.venv/
+.pytest_tmp/
+build/
+dist/
+*.spec
+
+# Crash / temp logs
+hs_err_pid*.log
+
+# Snapshots
+.snapshots/

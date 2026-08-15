@@ -1,0 +1,156 @@
+{
+  "project": "Creator-opencode-Parity",
+  "phase": "frontend-features",
+  "save_point": ".snapshots/savepoint-20260814-070418",
+  "start_time": "2026-08-14T00:00:00Z",
+  "tracking_version": "2.0",
+  "summary": "8/14 frontend features complete. Model Cycling system is the final major feature.",
+  "items": [
+    {
+      "id": "LANG-PHASES",
+      "title": "Language support (Phases 0-6)",
+      "status": "COMPLETE",
+      "artifacts": ["runners/", "templates/", "tests/"],
+      "evidence": ["46 passed, 4 skipped"],
+      "validation": "PASSED",
+      "updated_at": "2026-08-14T07:00:00Z"
+    },
+    {
+      "id": "FEAT-1-SIDEBAR",
+      "title": "Sidebar layout refactor",
+      "status": "COMPLETE",
+      "artifacts": ["app/widgets/sidebar.py", "app/main_window.py", "app/screens/home.py"],
+      "evidence": ["Tests pass, sidebar displays projects + toolchains"],
+      "validation": "PASSED",
+      "updated_at": "2026-08-14T07:01:00Z"
+    },
+    {
+      "id": "FEAT-2-TABS",
+      "title": "Multi-session tabs",
+      "status": "COMPLETE",
+      "artifacts": ["app/screens/editor.py"],
+      "evidence": ["Tests pass, multiple projects open in tabs"],
+      "validation": "PASSED",
+      "updated_at": "2026-08-14T07:01:30Z"
+    },
+    {
+      "id": "FEAT-3-BUILD-PLAN",
+      "title": "Build/Plan mode toggle",
+      "status": "COMPLETE",
+      "artifacts": ["app/screens/editor.py"],
+      "evidence": ["Tests pass, mode toggle changes system prompt"],
+      "validation": "PASSED",
+      "updated_at": "2026-08-14T07:02:00Z"
+    },
+    {
+      "id": "FEAT-4-MARKDOWN",
+      "title": "Markdown rendering in chat",
+      "status": "COMPLETE",
+      "artifacts": ["app/widgets/markdown.py"],
+      "evidence": ["Tests pass, chat renders headers/code/bold/lists"],
+      "validation": "PASSED",
+      "updated_at": "2026-08-14T07:02:30Z"
+    },
+    {
+      "id": "FEAT-5-DIFF",
+      "title": "Inline diff viewer",
+      "status": "COMPLETE",
+      "artifacts": ["app/widgets/diff_view.py", "repo/git_manager.py"],
+      "evidence": ["Tests pass, diffs show color-coded changes"],
+      "validation": "PASSED",
+      "updated_at": "2026-08-14T07:03:00Z"
+    },
+    {
+      "id": "FEAT-6-SEARCH",
+      "title": "Session management (search)",
+      "status": "COMPLETE",
+      "artifacts": ["app/widgets/sidebar.py"],
+      "evidence": ["Tests pass, search filters projects in real-time"],
+      "validation": "PASSED",
+      "updated_at": "2026-08-14T07:03:30Z"
+    },
+    {
+      "id": "FEAT-7-TOOL-VIEW",
+      "title": "Tool execution views",
+      "status": "COMPLETE",
+      "artifacts": ["app/widgets/tool_view.py"],
+      "evidence": ["Tests pass, collapsible cards with status indicators"],
+      "validation": "PASSED",
+      "updated_at": "2026-08-14T07:04:00Z"
+    },
+    {
+      "id": "FEAT-8-UNDO-REDO",
+      "title": "Undo/redo for AI edits",
+      "status": "COMPLETE",
+      "artifacts": ["app/screens/editor.py"],
+      "evidence": ["Tests pass, undo/redo buttons restore file content"],
+      "validation": "PASSED",
+      "updated_at": "2026-08-14T07:04:18Z"
+    },
+    {
+      "id": "FEAT-9-CYCLING",
+      "title": "Model Cycling system",
+      "status": "COMPLETE",
+      "depends_on": [],
+      "acceptance_criteria": [
+        {"criterion": "8 providers registered in ai/providers.py", "verification": "ls ai/providers.py"},
+        {"criterion": "CyclingBackend rotates on 80% rate limit", "verification": "Unit test for UsageTracker"},
+        {"criterion": "Handoff packages full context", "verification": "Integration test with mock providers"},
+        {"criterion": "Editor uses CyclingBackend transparently", "verification": "End-to-end test"},
+        {"criterion": "No model selector UI shown to user", "verification": "Manual test"}
+      ],
+      "artifacts": ["ai/providers.py (create)", "ai/cycling.py (create)", "ai/__init__.py (modify)", "ai/settings.py (modify)"],
+      "evidence": ["Tests pass, 8 providers registered, 5 available without keys"],
+      "validation": "PASSED",
+      "updated_at": "2026-08-14T07:10:00Z",
+      "notes": "Final major feature. Auto-rotates through free-tier AI models with seamless context handoffs."
+    },
+    {
+      "id": "FEAT-10-ATTENTION",
+      "title": "Attention system (sounds + notifications)",
+      "status": "COMPLETE",
+      "artifacts": ["app/notifications.py"],
+      "evidence": ["notify_complete() integrated into _run_finished()"],
+      "validation": "PASSED",
+      "updated_at": "2026-08-14T07:04:18Z"
+    },
+    {
+      "id": "FEAT-11-EXPORT",
+      "title": "Session export",
+      "status": "COMPLETE",
+      "artifacts": ["app/screens/editor.py"],
+      "evidence": ["Export button in Versions tab, _export_session() writes JSON"],
+      "validation": "PASSED",
+      "updated_at": "2026-08-14T07:04:18Z"
+    },
+    {
+      "id": "FEAT-12-MODEL-SELECTOR",
+      "title": "Model selector (REMOVED)",
+      "status": "CANCELLED",
+      "notes": "Replaced by auto-cycling system. No manual model selection needed."
+    },
+    {
+      "id": "FEAT-13-ATTACHMENTS",
+      "title": "File attachments",
+      "status": "COMPLETE",
+      "depends_on": ["FEAT-9-CYCLING"],
+      "artifacts": ["app/screens/editor.py", "app/widgets/context_panel.py"],
+      "evidence": ["Attach button in AI tab, double-click files in context panel, attached contents in system prompt"],
+      "validation": "PASSED",
+      "updated_at": "2026-08-14T07:20:00Z",
+      "notes": "Users can attach project files via button or context panel double-click."
+    },
+    {
+      "id": "FEAT-14-CONTEXT-PANEL",
+      "title": "Context panel",
+      "status": "COMPLETE",
+      "depends_on": ["FEAT-9-CYCLING"],
+      "artifacts": ["app/widgets/context_panel.py", "app/screens/editor.py"],
+      "evidence": ["Context panel shows active fields, project files, and recent suggestions"],
+      "validation": "PASSED",
+      "updated_at": "2026-08-14T07:20:00Z",
+      "notes": "Right-side panel in AI tab showing project context and recent AI suggestions."
+    }
+  ],
+  "validator_assignments": {}
+}

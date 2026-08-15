@@ -1,0 +1,47 @@
+import random
+
+PLAYER_NAME = "{{player_name}}"
+WIN_EMOJI = "{{win_emoji}}"
+DIFFICULTY = "{{difficulty}}"
+
+if DIFFICULTY == "easy":
+    RANGE_MAX = 50
+    MAX_GUESSES = 10
+elif DIFFICULTY == "hard":
+    RANGE_MAX = 200
+    MAX_GUESSES = 5
+else:
+    RANGE_MAX = 100
+    MAX_GUESSES = 7
+
+
+def main():
+    secret = random.randint(1, RANGE_MAX)
+    guesses = 0
+
+    print(f"\n🎲  Welcome, {PLAYER_NAME}!  🎲")
+    print(f"I'm thinking of a number between 1 and {RANGE_MAX}.")
+    print(f"You have {MAX_GUESSES} guesses.")
+    print("Type your guess and press Enter.\n")
+
+    while guesses < MAX_GUESSES:
+        try:
+            guess = int(input(f"Your guess (1-{RANGE_MAX}): "))
+        except ValueError:
+            print("Please enter a valid number!")
+            continue
+        guesses += 1
+
+        if guess < secret:
+            print(f"Higher! 🔺  ({guesses}/{MAX_GUESSES} guesses used)")
+        elif guess > secret:
+            print(f"Lower! 🔻  ({guesses}/{MAX_GUESSES} guesses used)")
+        else:
+            print(f"\n{WIN_EMOJI}  Congratulations, {PLAYER_NAME}!  {WIN_EMOJI}  You got it in {guesses} guesses!")
+            return
+
+    print(f"\nGame over! The number was {secret}. Better luck next time!")
+
+
+if __name__ == "__main__":
+    main()

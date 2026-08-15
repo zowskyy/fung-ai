@@ -1,0 +1,36 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "creator-app"
+version = "0.1.0"
+description = "Build things without code. Pick a kit, answer a few questions, and Creator writes, runs, and versions your project."
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "MIT" }
+authors = [{ name = "Creator contributors" }]
+dependencies = ["PySide6>=6.6"]
+
+[project.optional-dependencies]
+dev = ["pytest>=8.0"]
+
+[project.scripts]
+creator = "main:main"
+
+[tool.setuptools]
+py-modules = ["main"]
+packages = [
+    "app",
+    "app.screens",
+    "app.widgets",
+    "ai",
+    "core",
+    "repo",
+    "runners",
+    "sandbox",
+]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "--basetemp=.pytest_tmp"
