@@ -212,5 +212,3 @@ func _validate_single_type(data: Variant, type_name: String, path: String, resul
 		_:
 			push_error("Unknown type: %s" % type_name)
 			return false
-	
-	return false
