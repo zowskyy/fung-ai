@@ -3,6 +3,7 @@ on: [push, pull_request]
 jobs:
   godot-checks:
     runs-on: ubuntu-latest
+    timeout-minutes: 5
     steps:
       - uses: actions/checkout@v3
       # First real execution of this GDScript — there is no Godot binary in
@@ -20,12 +21,13 @@ jobs:
       # "Could not find type ... in the current scope" even when the
       # script itself is correct.
       - name: Import project (build class cache)
-        run: godot --headless --editor --quit --path godot_addon
+        run: timeout 60 godot --headless --editor --quit --path godot_addon
       - name: Addon smoke test (dock UI tree, backend client, export service)
-        run: godot --headless --path godot_addon -s tests/test_dock_smoke.gd
+        run: timeout 60 godot --headless --path godot_addon -s tests/test_dock_smoke.gd
 
   sample-projects-checks:
     runs-on: ubuntu-latest
+    timeout-minutes: 5
     strategy:
       fail-fast: false
       matrix:
@@ -55,7 +57,7 @@ jobs:
       - name: Boot ${{ matrix.sample }} for real (headless, ${{ matrix.sample }})
         run: |
           set -o pipefail
-          godot --headless --path "godot_addon/samples/${{ matrix.sample }}" --quit-after 30 2>&1 | tee /tmp/run.log
+          timeout 90 godot --headless --path "godot_addon/samples/${{ matrix.sample }}" --quit-after 30 2>&1 | tee /tmp/run.log
           if grep -qE "SCRIPT ERROR|PARSE ERROR|^ERROR:" /tmp/run.log; then
             echo "::error::Godot logged errors while running godot_addon/samples/${{ matrix.sample }} - see log above"
             exit 1
