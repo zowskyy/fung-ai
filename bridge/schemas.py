@@ -1,7 +1,7 @@
 """Typed request/result/error models for the bridge protocol."""
 from __future__ import annotations
 
-from dataclasses import asdict, dataclass, field
+from dataclasses import asdict, dataclass, field, fields
 from datetime import datetime, timezone
 from typing import Any
 
@@ -29,7 +29,8 @@ class GenerationRequest:
     @staticmethod
     def from_dict(data: dict[str, Any]) -> GenerationRequest:
         """Construct from dictionary (JSON-deserialized)."""
-        return GenerationRequest(**{k: v for k, v in data.items() if hasattr(GenerationRequest, k)})
+        valid_fields = {f.name for f in fields(GenerationRequest)}
+        return GenerationRequest(**{k: v for k, v in data.items() if k in valid_fields})
 
     def to_dict(self) -> dict[str, Any]:
         """Convert to dictionary for JSON serialization."""
@@ -117,16 +118,24 @@ class GenerationResult:
 
 
 @dataclass
-class BridgeError:
-    """Structured error response."""
+class BridgeError(Exception):
+    """Structured error response. Also a raisable exception."""
     code: str = ""
     message: str = ""
     details: dict[str, Any] = field(default_factory=dict)
     action: str = ""
 
+    def __post_init__(self) -> None:
+        Exception.__init__(self, self.message)
+
     def to_dict(self) -> dict[str, Any]:
         """Convert to dictionary for JSON serialization."""
-        return asdict(self)
+        return {
+            "code": self.code,
+            "message": self.message,
+            "details": self.details,
+            "action": self.action,
+        }
 
     def to_result_dict(self, request_id: str) -> dict[str, Any]:
         """Convert to a result dictionary for error responses."""

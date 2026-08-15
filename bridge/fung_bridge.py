@@ -9,6 +9,9 @@ from bridge.generation import (
     RECIPES,
     generate_candidate_grid,
     compute_candidate_metrics,
+    compute_generation_inputs_hash,
+    encode_grid_rle,
+    render_preview_png,
     tags_from_metrics,
 )
 from bridge.schemas import GenerationRequest, GenerationResult, StatusUpdate, BridgeError, Candidate
@@ -70,6 +73,7 @@ def generate_candidates(request: GenerationRequest) -> GenerationResult:
     )
 
     # Generate candidates
+    map_size = tuple(request.map_size_tiles)
     valid_count = 0
     for i in range(actual_count):
         candidate_seed = request.seed + i
@@ -77,9 +81,9 @@ def generate_candidates(request: GenerationRequest) -> GenerationResult:
 
         # Generate grid
         progress = 0.1 + (i / max(1, actual_count)) * 0.7
-        grid = generate_candidate_grid(
+        candidate_grid = generate_candidate_grid(
             candidate_seed,
-            tuple(request.map_size_tiles),
+            map_size,
             recipe,
             lambda p, msg: write_status(
                 request.status_path,
@@ -91,19 +95,46 @@ def generate_candidates(request: GenerationRequest) -> GenerationResult:
             ),
         )
 
-        if grid is None:
+        if candidate_grid is None:
             continue  # Invalid candidate, skip
 
         valid_count += 1
-        metrics = compute_candidate_metrics(grid)
+        metrics = compute_candidate_metrics(candidate_grid, recipe)
         tags = tags_from_metrics(metrics)
+
+        payload_rel_path = f"candidates/{candidate_id}.json"
+        payload_abs_path = Path(request.job_dir) / payload_rel_path
+        payload = {
+            "candidate_id": candidate_id,
+            "seed": candidate_seed,
+            "grid_encoding": "rle-v1",
+            "grid_size": list(map_size),
+            "grid": encode_grid_rle(candidate_grid.grid),
+            "spawn_cell": list(candidate_grid.spawn_cell),
+            "exit_cell": list(candidate_grid.exit_cell),
+            "markers": {
+                key: [list(cell) for cell in cells]
+                for key, cells in candidate_grid.markers.items()
+            },
+            "metrics": metrics,
+            "generation_inputs_hash": compute_generation_inputs_hash(
+                recipe, candidate_seed, map_size, request.overrides
+            ),
+        }
+        ensure_dir(payload_abs_path.parent)
+        atomic_write_json(payload_abs_path, payload)
+
+        preview_rel_path = f"previews/{candidate_id}.png"
+        preview_abs_path = Path(request.job_dir) / preview_rel_path
+        ensure_dir(preview_abs_path.parent)
+        render_preview_png(candidate_grid.grid, str(preview_abs_path))
 
         candidate = Candidate(
             candidate_id=candidate_id,
             seed=candidate_seed,
             valid=True,
-            preview_path=f"previews/{candidate_id}.png",
-            payload_path=f"candidates/{candidate_id}.json",
+            preview_path=preview_rel_path,
+            payload_path=payload_rel_path,
             metrics=metrics,
             tags=tags,
         )
