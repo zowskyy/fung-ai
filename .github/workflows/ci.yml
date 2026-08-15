@@ -98,3 +98,28 @@ jobs:
           --ignore=tests/test_js_runner_stress.py \
           --ignore=tests/test_provider_live.py \
           -v --tb=short
+
+  godot-plugin:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+
+    defaults:
+      run:
+        working-directory: godot_project
+
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v4
+
+    - name: Setup Godot 4.4
+      uses: chickensoft-games/setup-godot@v2
+      with:
+        version: '4.4.1'
+
+    - name: Import project resources
+      run: |
+        $GODOT4 --headless --path . --import
+
+    - name: Run plugin headless tests
+      run: |
+        $GODOT4 --headless --path . --script res://tests/run_tests.gd

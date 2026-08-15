@@ -12,3 +12,7 @@ hs_err_pid*.log
 
 # Snapshots
 .snapshots/
+
+# Godot project
+godot_project/.godot/
+godot_project/.import/
