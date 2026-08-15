@@ -43,14 +43,14 @@ A complete native GDScript implementation of JSON Schema Draft 2020-12 validator
 
 ## Known Issues & Workarounds
 
-### Schema Validation Non-Blocking
-The cave_boss example data validation logs warnings but doesn't fail execution. This allows the vertical slice to complete successfully while we debug data type handling.
+### Resolved: Integer Type Validation (Phase 10)
+The cave_boss example previously logged `"Value type is not integer"` warnings for fields like `version`, `seed`, `width`, and `height`, with validation set to non-fatal as a workaround.
 
-**Impact:** The example completes and validates core functionality. Schema validation warnings are logged to stderr.
+**Root Cause:** Godot's `JSON.parse_string()` deserializes all JSON numbers as `TYPE_FLOAT` (JSON has no separate integer grammar), but `compiled_schema.gd`'s `"integer"` type check required strict `TYPE_INT`, so every JSON integer field failed.
 
-**Root Cause:** JSON data loading preserves Godot types correctly (verified), but schema validation may have edge cases with certain numeric constraints or field combinations. Full investigation pending next phase.
+**Fix:** The `"integer"` type check now also accepts whole-valued floats (`float(data) == floor(float(data))`), matching the Draft 2020-12 definition of integer as "a number with a zero fractional part." Verified in CI: `world.schema.json` validation against `cave_world.json` now reports `✅ VALIDATION PASSED` with no warnings.
 
-**Mitigation:** Validation errors are logged but non-fatal, allowing example execution while maintaining data integrity checks.
+**Status:** Validation is fatal again — the example now fails if data does not conform to its schema.
 
 ## Project Structure
 

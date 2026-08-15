@@ -86,10 +86,9 @@ func _on_world_completed(result: Dictionary) -> void:
 	if not validation_result.success:
 		for error in validation_result.errors:
 			push_error("[main] Validation error: %s" % error)
-		# Allow execution to continue with warning instead of failing
-		print("[main] WARNING: Schema validation failed but continuing anyway")
-	else:
-		print("[main] Schema validation passed")
+		notify_finished(false, "World data failed schema validation")
+		return
+	print("[main] Schema validation passed")
 
 	print("[main] Loading animation manifest...")
 	var manifest_data := _save_service.load_json(ANIMATION_MANIFEST_PATH)
