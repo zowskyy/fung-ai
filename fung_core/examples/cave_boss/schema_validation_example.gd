@@ -8,6 +8,7 @@
 ## Example: var validator := SchemaValidationExample.new()
 ##          var result := validator.validate_world_data()
 
+class_name SchemaValidationExample
 extends RefCounted
 
 const WORLD_SCHEMA_PATH := "res://contracts/world.schema.json"

@@ -25,12 +25,11 @@ func _compile_regex_patterns(schema: Dictionary, path: String = "") -> void:
 
 		if key == "pattern" and value is String:
 			# Store compiled regex directly in the schema for easy access during validation
-			try:
-				var regex = RegEx.new()
-				regex.compile(value)
-				schema["__compiled_pattern"] = regex
-			except:
+			var regex = RegEx.new()
+			if regex.compile(value) != OK:
 				push_error("Failed to compile regex pattern: %s" % value)
+			else:
+				schema["__compiled_pattern"] = regex
 
 		# Recurse into nested objects
 		if value is Dictionary:
