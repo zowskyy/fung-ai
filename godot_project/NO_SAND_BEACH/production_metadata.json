@@ -214,5 +214,86 @@
       },
       "note": "Lightweight, single-sequence-only designs -- no age-variant treatment, no period styling, no reference photos needed."
     }
+  },
+  "environments": {
+    "generation_policy": "Low-fidelity chunky pixel art references only -- the CA-dissolve pass (RENDER_STYLE.md) softens them further at render time, so source art only needs to read as a recognizable place. 4 variants generated per environment via ElevenLabs flux-2-pro; best variant locked as reference_v1. User-supplied B&W illustration references included per-folder where style overlap exists.",
+    "beach": {
+      "sequences": ["seq_06_the_sand", "seq_07_the_lesson"],
+      "story_context": "Pure's first time seeing the ocean -- wide open expanse, the first horizon he's ever stood in front of. Transformative contemplative moment.",
+      "realized_asset": {
+        "status": "first_reference_generated",
+        "path": "res://NO_SAND_BEACH/assets/environments/beach/beach_reference_v1.png",
+        "generation_method": "ElevenLabs creative_generate_image",
+        "model_id": "flux-2-pro",
+        "prompt": "Black-and-white chunky pixel art environment reference. Southern California beach shoreline — empty sand, dark ocean horizon, overcast grey sky, a pier and lifeguard tower silhouette visible in the distance. Empty, vast, contemplative. Deliberately sparse and low-fidelity. Hard-edged pixel blocks, high contrast ink style. No color, pure black and white.",
+        "selected_variant": "v3 of 4",
+        "note": "v3 selected: dark halftone sky at top band, minimal ocean horizon, pier/lifeguard tower silhouette at far right -- the most cinematically weighted of the four. Matches user style ref 3.png (beach pier, high-contrast woodblock print). All 4 variants committed as beach_generated_v1-v4.png. User ref 3.png committed as user_style_ref_1.png."
+      }
+    },
+    "car": {
+      "sequences": ["seq_01_the_setup", "seq_02_the_fall", "seq_03_the_app"],
+      "story_context": "Santa Ana street corner -- the neighborhood exterior, parked cars, storefronts. Primary recurring exterior environment across multiple sequences.",
+      "realized_asset": {
+        "status": "first_reference_generated",
+        "path": "res://NO_SAND_BEACH/assets/environments/car/car_reference_v1.png",
+        "generation_method": "ElevenLabs creative_generate_image",
+        "model_id": "flux-2-pro",
+        "prompt": "Black-and-white chunky pixel art environment reference. Early 1990s Santa Ana street corner, period-styled -- a storefront or stucco wall, concrete sidewalk, a parked older-model car at the curb, a streetlight above. Urban, working-class, slightly gritty. Cinematic Menace II Society hardened-realism framing. Deliberately sparse and low-fidelity. Hard-edged pixel blocks, high contrast ink style. No color, pure black and white.",
+        "selected_variant": "v1 of 4",
+        "note": "v1 selected: night scene with pure-black sky, dark sedan under a streetlight, crumbling stucco corner building -- strongest M2S framing of the set. Partial 'SANT-A' sign visible on building, period correct vehicle. All 4 variants committed. User style refs committed: user_style_ref_1.png (clean line art storefront), _2.png (manga-style storefront), _3.png (gritty graffiti wall night), _4.png (cinematic letterboxed period street -- closest M2S ref)."
+      }
+    },
+    "forest": {
+      "sequences": ["seq_01_the_setup"],
+      "story_context": "The concrete drainage ditch where Earl (Pure's father) was shot -- referenced in VO: 'Shot in a drainage ditch with seventeen dollars in his pocket.' Liminal, forgotten, threatening. Named 'forest' in the asset folder by legacy convention.",
+      "realized_asset": {
+        "status": "first_reference_generated",
+        "path": "res://NO_SAND_BEACH/assets/environments/forest/forest_reference_v1.png",
+        "generation_method": "ElevenLabs creative_generate_image",
+        "model_id": "flux-2-pro",
+        "prompt": "Black-and-white chunky pixel art environment reference. A concrete drainage channel overgrown at the edges -- Southern California urban flood control ditch, cracked concrete walls, a trickle of water at the bottom, wild scrub brush growing along the banks, a chain-link fence visible above. Liminal, forgotten, slightly threatening. Deliberately sparse and low-fidelity. Hard-edged pixel blocks, high contrast ink style. No color, pure black and white.",
+        "selected_variant": "v1 of 4",
+        "note": "v1 selected: elevated POV looking down the full length of the canal -- cracked angled concrete walls with chain-link fence along both banks, thin trickle of dark water in the center. Most cinematically readable as 'place someone could die unnoticed.' All 4 variants committed. No user style refs matched this environment specifically."
+      }
+    },
+    "kitchen": {
+      "sequences": ["seq_02_the_fall", "seq_03_the_app", "seq_04_the_collapse"],
+      "story_context": "Delia's apartment kitchen -- site of domestic arguments, late-night confrontations, and quiet family moments across multiple sequences.",
+      "realized_asset": {
+        "status": "first_reference_generated",
+        "path": "res://NO_SAND_BEACH/assets/environments/kitchen/kitchen_reference_v1.png",
+        "generation_method": "ElevenLabs creative_generate_image",
+        "model_id": "flux-2-pro",
+        "prompt": "Black-and-white chunky pixel art environment reference. A cramped 1990s apartment kitchen -- refrigerator, gas stove, worn linoleum tile floor, cracked walls, overhead pendant lamp casting a circle of harsh light, a wall clock. Working-class household, lived-in and worn. Deliberately sparse and low-fidelity. Hard-edged pixel blocks, high contrast ink style. No color, pure black and white.",
+        "selected_variant": "v3 of 4",
+        "note": "v3 selected: clock explicitly reads '3:47 AM' -- perfect story-detail specificity for late-night argument scenes. Pendant lamp pool of light in a very dark room is the most oppressive and cinematically weighted of the set. All 4 variants committed. No user style refs matched this interior environment."
+      }
+    },
+    "park": {
+      "sequences": ["seq_03_the_app", "seq_06_the_sand"],
+      "story_context": "Santa Ana community park -- humble neighborhood green space, site of recurring outdoor beats in the contemporary timeline.",
+      "realized_asset": {
+        "status": "first_reference_generated",
+        "path": "res://NO_SAND_BEACH/assets/environments/park/park_reference_v1.png",
+        "generation_method": "ElevenLabs creative_generate_image",
+        "model_id": "flux-2-pro",
+        "prompt": "Black-and-white chunky pixel art environment reference. Santa Ana community park -- a concrete path through patchy grass, a bench, a few sparse trees in the background, low chain-link fencing. Humble urban green space. Deliberately sparse and low-fidelity. Hard-edged pixel blocks, high contrast ink style. No color, pure black and white.",
+        "selected_variant": "v3 of 4",
+        "note": "v3 selected: dark silhouette cityscape on the horizon, bench on a concrete path, chain-link fence visible at right -- most cinematically dramatic of the set, the neighborhood presence is strongest. All 4 variants committed. User style refs: user_style_ref_1.png (Santa Ana station/plaza civic scale), user_style_ref_2.png (Downtown Santa Ana sign, clean line art)."
+      }
+    },
+    "schoolyard": {
+      "sequences": ["seq_01_the_setup", "seq_06_the_sand"],
+      "story_context": "Pure's school -- the institution that both confines and eventually channels him. Cracked asphalt blacktop, chain-link fencing, institutional school buildings.",
+      "realized_asset": {
+        "status": "first_reference_generated",
+        "path": "res://NO_SAND_BEACH/assets/environments/schoolyard/schoolyard_reference_v1.png",
+        "generation_method": "ElevenLabs creative_generate_image",
+        "model_id": "flux-2-pro",
+        "prompt": "Black-and-white chunky pixel art environment reference. An inner-city school yard -- flat cracked asphalt blacktop with chain-link fencing, institutional school buildings visible in background, a lone concrete bench, harsh California sun. Institutional and bleached. Deliberately sparse and low-fidelity. Hard-edged pixel blocks, high contrast ink style. No color, pure black and white.",
+        "selected_variant": "v2 of 3",
+        "note": "v2 selected: dark building silhouette looming over the blacktop, isolated concrete bench, debris on cracked asphalt -- most oppressive and institutional of the three available (v4 URL expired from previous session before download, so v1-v3 only). All 3 available variants committed. User style ref: user_style_ref_1.png (mural exterior wall, school aesthetic)."
+      }
+    }
   }
 }
