@@ -1,0 +1,230 @@
+{
+  "plan_id": "nsb_seq_06_the_sand",
+  "display_name": "Sequence 6: The Sand",
+  "description": "Huntington Beach; Pure touches the sand for the first time; the coding class; the closing narration. Incorporates Sequence 7 (The Lesson) as beats 6.07-6.08. Source breakdown: scenes/sequence_06_the_sand_breakdown.md (8 film beats, 1:41).",
+
+  "_comment": "The film's only exterior sequence. s06_02_touch is the title payoff and the highest-polish beat in the film -- see RENDER_STYLE.md on shifting the CA dissolve focus_center_frac onto the hand rather than the face for the sand insert.",
+
+  "actors": [
+    {"actor_id": "pure", "display_name": "Pure (27, casual)", "actor_tags": ["protagonist", "human"], "required": true},
+    {"actor_id": "delia", "display_name": "Delia", "actor_tags": ["family", "human"], "required": true},
+    {"actor_id": "marcus", "display_name": "Marcus", "actor_tags": ["family", "human"], "required": true},
+    {"actor_id": "student_kid", "display_name": "Student (generic extra)", "actor_tags": ["extra", "human"], "required": false},
+    {"actor_id": "narrator", "display_name": "Adult Pure (V.O.)", "actor_tags": ["voiceover"], "required": false}
+  ],
+
+  "beats": [
+    {
+      "type": "camera", "beat_id": "s06_01_cam", "display_name": "6.01 Wide -- ocean at scale",
+      "camera_mode_id": "wide_static", "blend_seconds": 0.0,
+      "note": "First coastal exterior in the film. The three of them small against the water. After five sequences of interiors, this is the film breathing out.",
+      "next_beat_id": "s06_01_walk"
+    },
+    {
+      "type": "move_to", "beat_id": "s06_01_walk", "display_name": "6.01 The family walks to the sand",
+      "actor_id": "pure", "locomotion_mode": "walk", "arrival_radius": 0.5, "timeout_seconds": 8.0,
+      "next_beat_id": "s06_01_look"
+    },
+    {
+      "type": "action", "beat_id": "s06_01_look", "display_name": "6.01 Pure looks out",
+      "actor_id": "pure", "action_id": "look_out", "wait_for_completion": false,
+      "next_beat_id": "s06_01_vo"
+    },
+    {
+      "type": "dialogue", "beat_id": "s06_01_vo", "display_name": "6.01 V.O. 'Ten miles from this.'",
+      "dialogue_id": "nsb_s06_vo_01", "speaker_actor_id": "narrator",
+      "timeout_seconds": 6.0,
+      "note": "\"I grew up ten miles from this.\"",
+      "next_beat_id": "s06_02_cam"
+    },
+
+    {
+      "type": "camera", "beat_id": "s06_02_cam", "display_name": "6.02 Medium, slow push",
+      "camera_mode_id": "slow_push", "blend_seconds": 4.0,
+      "note": "Slow but not precious. The moment should feel actual, not symbolic.",
+      "next_beat_id": "s06_02_kneel"
+    },
+    {
+      "type": "action", "beat_id": "s06_02_kneel", "display_name": "6.02 Pure kneels",
+      "actor_id": "pure", "action_id": "kneel", "wait_for_completion": true, "timeout_seconds": 6.0,
+      "note": "Not ceremonially -- he just kneels down, the way you would if you wanted to feel something.",
+      "next_beat_id": "s06_02_insert"
+    },
+    {
+      "type": "camera", "beat_id": "s06_02_insert", "display_name": "6.02 Insert: the hand in the sand",
+      "camera_mode_id": "insert", "blend_seconds": 1.0,
+      "note": "HIGHEST-POLISH FRAME IN THE FILM. Light the sand so texture reads in black-and-white. Apply the CA dissolve gently here with the focus centre on the hand, not the face.",
+      "next_beat_id": "s06_02_touch"
+    },
+    {
+      "type": "action", "beat_id": "s06_02_touch", "display_name": "6.02 THE KNEELING -- touches the sand",
+      "actor_id": "pure", "action_id": "touch_sand", "wait_for_completion": true, "timeout_seconds": 8.0,
+      "note": "Takes a handful. Lets some fall. Holds the rest. Stays there a moment of actual presence, then the hand relaxes and the rest falls.",
+      "next_beat_id": "s06_02_face"
+    },
+    {
+      "type": "camera", "beat_id": "s06_02_face", "display_name": "6.02 Close on his face, held",
+      "camera_mode_id": "close_hold", "blend_seconds": 1.0,
+      "next_beat_id": "s06_02_vo"
+    },
+    {
+      "type": "dialogue", "beat_id": "s06_02_vo", "display_name": "6.02 V.O. 'Just as sand.'",
+      "dialogue_id": "nsb_s06_vo_02", "speaker_actor_id": "narrator",
+      "timeout_seconds": 6.0,
+      "note": "Three words, after the silence of the action. Let the words and the image sit together -- do not rush to the next beat.",
+      "next_beat_id": "s06_02_hold"
+    },
+    {
+      "type": "wait", "beat_id": "s06_02_hold", "display_name": "6.02 Let it land",
+      "duration_seconds": 3.0,
+      "next_beat_id": "s06_03_cam"
+    },
+
+    {
+      "type": "camera", "beat_id": "s06_03_cam", "display_name": "6.03 Medium wide -- all three, equal weight",
+      "camera_mode_id": "two_shot", "blend_seconds": 1.0,
+      "note": "The film's only peaceful family image. Static, held. No one looming, no one at the edge.",
+      "next_beat_id": "s06_03_stand"
+    },
+    {
+      "type": "action", "beat_id": "s06_03_stand", "display_name": "6.03 Pure rises; the others come alongside",
+      "actor_id": "pure", "action_id": "stand_up", "wait_for_completion": true, "timeout_seconds": 3.0,
+      "next_beat_id": "s06_03_look_d"
+    },
+    {
+      "type": "action", "beat_id": "s06_03_look_d", "display_name": "6.03 Delia looks out",
+      "actor_id": "delia", "action_id": "look_out", "wait_for_completion": false,
+      "next_beat_id": "s06_03_look_m"
+    },
+    {
+      "type": "action", "beat_id": "s06_03_look_m", "display_name": "6.03 Marcus looks out",
+      "actor_id": "marcus", "action_id": "look_out", "wait_for_completion": false,
+      "next_beat_id": "s06_03_hold"
+    },
+    {
+      "type": "wait", "beat_id": "s06_03_hold", "display_name": "6.03 THE FAMILY -- hold, no dialogue",
+      "duration_seconds": 6.0,
+      "note": "No gesture, no embrace, no dialogue. They're just at a beach looking at water. That's the point.",
+      "next_beat_id": "s06_04_cam"
+    },
+
+    {
+      "type": "camera", "beat_id": "s06_04_cam", "display_name": "6.04 Classroom wide",
+      "camera_mode_id": "wide_static", "blend_seconds": 0.0,
+      "note": "Deliberately rhymes with the prison library (2.07): a small room, a few computers, someone learning because code gives them what they can't get elsewhere. Pure is now on the other side of that.",
+      "next_beat_id": "s06_04_teach"
+    },
+    {
+      "type": "action", "beat_id": "s06_04_teach", "display_name": "6.04 Pure teaching, circling",
+      "actor_id": "pure", "action_id": "teach", "wait_for_completion": false,
+      "next_beat_id": "s06_04_vo"
+    },
+    {
+      "type": "dialogue", "beat_id": "s06_04_vo", "display_name": "6.04 V.O. 'It's yours if you want it.'",
+      "dialogue_id": "nsb_s06_vo_03", "speaker_actor_id": "narrator",
+      "timeout_seconds": 10.0,
+      "note": "\"I started a free coding class. Nothing formal. Just -- here's what I know. It's yours if you want it.\"",
+      "next_beat_id": "s06_05_cam"
+    },
+
+    {
+      "type": "camera", "beat_id": "s06_05_cam", "display_name": "6.05 Close on the kid asking",
+      "camera_mode_id": "close_hold", "blend_seconds": 0.5,
+      "note": "Genuine, unselfconscious. The kid means it as a simple question -- the weight is what Pure brings to it.",
+      "next_beat_id": "s06_05_question"
+    },
+    {
+      "type": "dialogue", "beat_id": "s06_05_question", "display_name": "6.05 'Pure, how did you make it?'",
+      "dialogue_id": "nsb_s06_kid_01", "speaker_actor_id": "student_kid", "target_actor_id": "pure",
+      "timeout_seconds": 6.0,
+      "next_beat_id": "s06_05_cut"
+    },
+    {
+      "type": "camera", "beat_id": "s06_05_cut", "display_name": "6.05 Cut to Pure -- the only cut here",
+      "camera_mode_id": "close_hold", "blend_seconds": 0.0,
+      "next_beat_id": "s06_05_beat"
+    },
+    {
+      "type": "wait", "beat_id": "s06_05_beat", "display_name": "6.05 The beat before the answer",
+      "duration_seconds": 2.0,
+      "note": "Don't fill it. Let it breathe. He already knows this answer.",
+      "next_beat_id": "s06_06_smile"
+    },
+
+    {
+      "type": "action", "beat_id": "s06_06_smile", "display_name": "6.06 The first unguarded smile in the film",
+      "actor_id": "pure", "action_id": "smile", "wait_for_completion": true, "timeout_seconds": 3.0,
+      "note": "Small and real, not cinematic. A man who has finally stopped managing his presentation.",
+      "next_beat_id": "s06_06_answer"
+    },
+    {
+      "type": "dialogue", "beat_id": "s06_06_answer", "display_name": "6.06 'I didn't make it. I came back.'",
+      "dialogue_id": "nsb_s06_pure_01", "speaker_actor_id": "pure", "target_actor_id": "student_kid",
+      "timeout_seconds": 10.0,
+      "note": "\"I didn't make it. I came back. That's the only thing that matters.\" The film's thesis, delivered casually, to a child. The understatement is the point.",
+      "next_beat_id": "s06_06_hold"
+    },
+    {
+      "type": "wait", "beat_id": "s06_06_hold", "display_name": "6.06 Hold a beat after",
+      "duration_seconds": 2.0,
+      "next_beat_id": "s06_07_cam"
+    },
+
+    {
+      "type": "camera", "beat_id": "s06_07_cam", "display_name": "6.07 Slow pull back from the beach",
+      "camera_mode_id": "slow_pull_back", "blend_seconds": 6.0,
+      "note": "One of the film's few camera movements -- pushes are for emphasis, this pull-back is for release. Ends wider than the film started.",
+      "next_beat_id": "s06_07_vo"
+    },
+    {
+      "type": "dialogue", "beat_id": "s06_07_vo", "display_name": "6.07 V.O. 'The sand under your feet.'",
+      "dialogue_id": "nsb_s06_vo_04", "speaker_actor_id": "narrator",
+      "timeout_seconds": 16.0,
+      "note": "\"...love isn't a subscription... It's the sand under your feet -- the ground you've been standing on your whole life. You just never looked down.\"",
+      "next_beat_id": "s06_08_line1"
+    },
+
+    {
+      "type": "dialogue", "beat_id": "s06_08_line1", "display_name": "6.08 'She needed him to be present.'",
+      "dialogue_id": "nsb_s06_vo_05", "speaker_actor_id": "narrator",
+      "timeout_seconds": 8.0,
+      "note": "\"His mother didn't need him to be successful. She needed him to be present.\"",
+      "next_beat_id": "s06_08_line2"
+    },
+    {
+      "type": "dialogue", "beat_id": "s06_08_line2", "display_name": "6.08 'He needed him to be real.'",
+      "dialogue_id": "nsb_s06_vo_06", "speaker_actor_id": "narrator",
+      "timeout_seconds": 8.0,
+      "note": "\"His brother didn't need him to be perfect. He needed him to be real.\"",
+      "next_beat_id": "s06_08_beat"
+    },
+    {
+      "type": "wait", "beat_id": "s06_08_beat", "display_name": "6.08 Beat",
+      "duration_seconds": 2.0,
+      "next_beat_id": "s06_08_line3"
+    },
+    {
+      "type": "dialogue", "beat_id": "s06_08_line3", "display_name": "6.08 'Love yourself. Love others.'",
+      "dialogue_id": "nsb_s06_vo_07", "speaker_actor_id": "narrator",
+      "timeout_seconds": 8.0,
+      "note": "\"Love yourself. Love others. Anything can happen.\" The fade begins on this line.",
+      "next_beat_id": "s06_08_fade"
+    },
+    {
+      "type": "camera", "beat_id": "s06_08_fade", "display_name": "6.08 Fade to black -- do not cut",
+      "camera_mode_id": "fade_to_black", "blend_seconds": 8.0,
+      "note": "Fade, never cut. Completes in silence. The final sensation is wide, then black, then nothing.",
+      "next_beat_id": "s06_08_silence"
+    },
+    {
+      "type": "wait", "beat_id": "s06_08_silence", "display_name": "6.08 Black, silent",
+      "duration_seconds": 8.0,
+      "next_beat_id": "s06_end"
+    },
+    {
+      "type": "end", "beat_id": "s06_end", "display_name": "End of film",
+      "completion_signal": "scene_finished",
+      "note": "End of NO SAND BEACH. Sequence 7 (The Lesson) is folded into beats 6.07-6.08 above."
+    }
+  ]
+}

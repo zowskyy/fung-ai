@@ -1,0 +1,606 @@
+[gd_resource type="Resource" script_class="ScenePlan" load_steps=72 format=3]
+
+[ext_resource type="Script" path="res://addons/scene_animator/data/scene_plan.gd" id="1_plan"]
+[ext_resource type="Script" path="res://addons/scene_animator/data/scene_actor_binding.gd" id="2_actor"]
+[ext_resource type="Script" path="res://addons/scene_animator/data/beats/camera_beat.gd" id="3_camera"]
+[ext_resource type="Script" path="res://addons/scene_animator/data/beats/action_beat.gd" id="4_action"]
+[ext_resource type="Script" path="res://addons/scene_animator/data/beats/dialogue_beat.gd" id="5_dialogue"]
+[ext_resource type="Script" path="res://addons/scene_animator/data/beats/wait_beat.gd" id="6_wait"]
+[ext_resource type="Script" path="res://addons/scene_animator/data/beats/end_beat.gd" id="7_end"]
+
+[sub_resource type="Resource" id="Resource_actor_delia"]
+script = ExtResource("2_actor")
+actor_id = &"delia"
+display_name = "Delia"
+required = true
+actor_tags = Array[StringName](["family", "human"])
+
+[sub_resource type="Resource" id="Resource_actor_pure"]
+script = ExtResource("2_actor")
+actor_id = &"pure"
+display_name = "Pure (age 15 design)"
+required = true
+actor_tags = Array[StringName](["protagonist", "human"])
+
+[sub_resource type="Resource" id="Resource_actor_pure_child"]
+script = ExtResource("2_actor")
+actor_id = &"pure_child"
+display_name = "Pure (age 7 design, flashback only)"
+required = false
+actor_tags = Array[StringName](["protagonist", "human", "flashback"])
+
+[sub_resource type="Resource" id="Resource_actor_marcus"]
+script = ExtResource("2_actor")
+actor_id = &"marcus"
+display_name = "Marcus"
+required = true
+actor_tags = Array[StringName](["family", "human"])
+
+[sub_resource type="Resource" id="Resource_actor_earl"]
+script = ExtResource("2_actor")
+actor_id = &"earl"
+display_name = "Earl (memory design, period-styled)"
+required = false
+actor_tags = Array[StringName](["family", "human", "flashback"])
+
+[sub_resource type="Resource" id="Resource_actor_classmate_a"]
+script = ExtResource("2_actor")
+actor_id = &"classmate_a"
+display_name = "Classmate A (generic extra)"
+required = false
+actor_tags = Array[StringName](["extra", "human"])
+
+[sub_resource type="Resource" id="Resource_actor_classmate_b"]
+script = ExtResource("2_actor")
+actor_id = &"classmate_b"
+display_name = "Classmate B (generic extra)"
+required = false
+actor_tags = Array[StringName](["extra", "human"])
+
+[sub_resource type="Resource" id="Resource_actor_narrator"]
+script = ExtResource("2_actor")
+actor_id = &"narrator"
+display_name = "Adult Pure (V.O.)"
+required = false
+actor_tags = Array[StringName](["voiceover"])
+
+[sub_resource type="Resource" id="Resource_actor_narrator_child"]
+script = ExtResource("2_actor")
+actor_id = &"narrator_child"
+display_name = "Young Pure (V.O.)"
+required = false
+actor_tags = Array[StringName](["voiceover"])
+
+[sub_resource type="Resource" id="Resource_beat_s01_01_cam"]
+script = ExtResource("3_camera")
+beat_id = &"s01_01_cam"
+display_name = "1.01 Apartment door, 3AM"
+next_beat_id = &"s01_01_enter"
+note = "Delia comes home at 3AM. The apartment is dark except one lamp."
+camera_mode_id = &"wide_static"
+blend_seconds = 0.0
+
+[sub_resource type="Resource" id="Resource_beat_s01_01_enter"]
+script = ExtResource("4_action")
+beat_id = &"s01_01_enter"
+display_name = "1.01 Delia returns"
+next_beat_id = &"s01_01_vo"
+note = "Exhaustion carried in the body, not performed on the face."
+actor_id = &"delia"
+action_id = &"enter"
+wait_for_completion = true
+timeout_seconds = 6.0
+
+[sub_resource type="Resource" id="Resource_beat_s01_01_vo"]
+script = ExtResource("5_dialogue")
+beat_id = &"s01_01_vo"
+display_name = "1.01 V.O. 'Twenty-three clients today.'"
+next_beat_id = &"s01_02_cam"
+note = "Internal monologue -- the day's ledger. \"...Still got to do Hilton prep at 6.\""
+dialogue_id = &"nsb_s01_delia_vo_01"
+speaker_actor_id = &"delia"
+timeout_seconds = 14.0
+
+[sub_resource type="Resource" id="Resource_beat_s01_02_cam"]
+script = ExtResource("3_camera")
+beat_id = &"s01_02_cam"
+display_name = "1.02 Pure's room, close"
+next_beat_id = &"s01_02_sleep"
+camera_mode_id = &"close_hold"
+blend_seconds = 1.0
+
+[sub_resource type="Resource" id="Resource_beat_s01_02_sleep"]
+script = ExtResource("4_action")
+beat_id = &"s01_02_sleep"
+display_name = "1.02 Pure asleep"
+next_beat_id = &"s01_02_kiss"
+actor_id = &"pure"
+action_id = &"sleep"
+wait_for_completion = false
+
+[sub_resource type="Resource" id="Resource_beat_s01_02_kiss"]
+script = ExtResource("4_action")
+beat_id = &"s01_02_kiss"
+display_name = "1.02 THE RITUAL -- forehead kiss"
+next_beat_id = &"s01_02_vo"
+note = "The tenderness she has no time to show him awake."
+actor_id = &"delia"
+action_id = &"kiss_forehead"
+wait_for_completion = true
+timeout_seconds = 5.0
+
+[sub_resource type="Resource" id="Resource_beat_s01_02_vo"]
+script = ExtResource("5_dialogue")
+beat_id = &"s01_02_vo"
+display_name = "1.02 V.O. 'You're gonna make it, baby.'"
+next_beat_id = &"s01_03_cam"
+note = "\"You're gonna have better than this. Better than me.\""
+dialogue_id = &"nsb_s01_delia_vo_02"
+speaker_actor_id = &"delia"
+target_actor_id = &"pure"
+timeout_seconds = 10.0
+
+[sub_resource type="Resource" id="Resource_beat_s01_03_cam"]
+script = ExtResource("3_camera")
+beat_id = &"s01_03_cam"
+display_name = "1.03 Kitchen, medium"
+next_beat_id = &"s01_03_coffee"
+camera_mode_id = &"medium_static"
+blend_seconds = 0.5
+
+[sub_resource type="Resource" id="Resource_beat_s01_03_coffee"]
+script = ExtResource("4_action")
+beat_id = &"s01_03_coffee"
+display_name = "1.03 Coffee machine"
+next_beat_id = &"s01_03_vo"
+actor_id = &"delia"
+action_id = &"pour_coffee"
+wait_for_completion = true
+timeout_seconds = 5.0
+
+[sub_resource type="Resource" id="Resource_beat_s01_03_vo"]
+script = ExtResource("5_dialogue")
+beat_id = &"s01_03_vo"
+display_name = "1.03 V.O. 'No time. Never time.'"
+next_beat_id = &"s01_04_change"
+note = "\"No time. Never time. Just make it to 6 AM.\""
+dialogue_id = &"nsb_s01_delia_vo_03"
+speaker_actor_id = &"delia"
+timeout_seconds = 8.0
+
+[sub_resource type="Resource" id="Resource_beat_s01_04_change"]
+script = ExtResource("4_action")
+beat_id = &"s01_04_change"
+display_name = "1.04 The uniform change"
+next_beat_id = &"s01_04_vo"
+note = "Home health aide out, hotel housekeeper in. Three jobs made visible as costume."
+actor_id = &"delia"
+action_id = &"change_clothes"
+wait_for_completion = true
+timeout_seconds = 5.0
+
+[sub_resource type="Resource" id="Resource_beat_s01_04_vo"]
+script = ExtResource("5_dialogue")
+beat_id = &"s01_04_vo"
+display_name = "1.04 V.O. 'Just keep moving.'"
+next_beat_id = &"s01_05_cam"
+note = "\"Hilton pays better. Hotel housekeeper, 6 to 2. Then cafeteria at 3. Just keep moving.\""
+dialogue_id = &"nsb_s01_delia_vo_04"
+speaker_actor_id = &"delia"
+timeout_seconds = 8.0
+
+[sub_resource type="Resource" id="Resource_beat_s01_05_cam"]
+script = ExtResource("3_camera")
+beat_id = &"s01_05_cam"
+display_name = "1.05 The door again -- rhymes with 1.01"
+next_beat_id = &"s01_05_vo"
+note = "Same framing as her return. Three hours later she's leaving again."
+camera_mode_id = &"wide_static"
+blend_seconds = 0.5
+
+[sub_resource type="Resource" id="Resource_beat_s01_05_vo"]
+script = ExtResource("5_dialogue")
+beat_id = &"s01_05_vo"
+display_name = "1.05 V.O. 'I love you so much it scares me.'"
+next_beat_id = &"s01_05_exit"
+dialogue_id = &"nsb_s01_delia_vo_05"
+speaker_actor_id = &"delia"
+target_actor_id = &"pure"
+timeout_seconds = 8.0
+
+[sub_resource type="Resource" id="Resource_beat_s01_05_exit"]
+script = ExtResource("4_action")
+beat_id = &"s01_05_exit"
+display_name = "1.05 The departure"
+next_beat_id = &"s01_06_cam"
+actor_id = &"delia"
+action_id = &"exit"
+wait_for_completion = true
+timeout_seconds = 5.0
+
+[sub_resource type="Resource" id="Resource_beat_s01_06_cam"]
+script = ExtResource("3_camera")
+beat_id = &"s01_06_cam"
+display_name = "1.06 The empty apartment"
+next_beat_id = &"s01_06_vo"
+note = "No actor on screen. The apartment holds her absence."
+camera_mode_id = &"wide_static"
+blend_seconds = 0.0
+
+[sub_resource type="Resource" id="Resource_beat_s01_06_vo"]
+script = ExtResource("5_dialogue")
+beat_id = &"s01_06_vo"
+display_name = "1.06 V.O. 'She never stopped.'"
+next_beat_id = &"s01_07_wake"
+note = "Adult Pure, retrospective: \"Her knees ached. Her back was shot. But she never stopped.\""
+dialogue_id = &"nsb_s01_vo_01"
+speaker_actor_id = &"narrator"
+timeout_seconds = 10.0
+
+[sub_resource type="Resource" id="Resource_beat_s01_07_wake"]
+script = ExtResource("4_action")
+beat_id = &"s01_07_wake"
+display_name = "1.07 Pure wakes alone"
+next_beat_id = &"s01_07_vo"
+actor_id = &"pure"
+action_id = &"wake"
+wait_for_completion = true
+timeout_seconds = 4.0
+
+[sub_resource type="Resource" id="Resource_beat_s01_07_vo"]
+script = ExtResource("5_dialogue")
+beat_id = &"s01_07_vo"
+display_name = "1.07 V.O. 'I learned not to ask where.'"
+next_beat_id = &"s01_08_cam"
+note = "\"Mom was always already gone when I woke up. I learned not to ask where. I learned to make myself breakfast.\""
+dialogue_id = &"nsb_s01_vo_child_01"
+speaker_actor_id = &"narrator_child"
+timeout_seconds = 8.0
+
+[sub_resource type="Resource" id="Resource_beat_s01_08_cam"]
+script = ExtResource("3_camera")
+beat_id = &"s01_08_cam"
+display_name = "1.08 Breakfast alone, wide"
+next_beat_id = &"s01_08_eat"
+note = "The kitchen scaled to make one kid at a table look small."
+camera_mode_id = &"wide_static"
+blend_seconds = 0.5
+
+[sub_resource type="Resource" id="Resource_beat_s01_08_eat"]
+script = ExtResource("4_action")
+beat_id = &"s01_08_eat"
+display_name = "1.08 Pure eats alone"
+next_beat_id = &"s01_08_vo"
+actor_id = &"pure"
+action_id = &"eat"
+wait_for_completion = false
+
+[sub_resource type="Resource" id="Resource_beat_s01_08_vo"]
+script = ExtResource("5_dialogue")
+beat_id = &"s01_08_vo"
+display_name = "1.08 V.O. 'I didn't know it was supposed to be different.'"
+next_beat_id = &"s01_09_enter"
+dialogue_id = &"nsb_s01_vo_child_02"
+speaker_actor_id = &"narrator_child"
+timeout_seconds = 12.0
+
+[sub_resource type="Resource" id="Resource_beat_s01_09_enter"]
+script = ExtResource("4_action")
+beat_id = &"s01_09_enter"
+display_name = "1.09 Marcus arrives"
+next_beat_id = &"s01_09_cam"
+actor_id = &"marcus"
+action_id = &"enter"
+wait_for_completion = true
+timeout_seconds = 4.0
+
+[sub_resource type="Resource" id="Resource_beat_s01_09_cam"]
+script = ExtResource("3_camera")
+beat_id = &"s01_09_cam"
+display_name = "1.09 Two-shot, brothers"
+next_beat_id = &"s01_09_line1"
+camera_mode_id = &"two_shot"
+blend_seconds = 0.5
+
+[sub_resource type="Resource" id="Resource_beat_s01_09_line1"]
+script = ExtResource("5_dialogue")
+beat_id = &"s01_09_line1"
+display_name = "1.09 'Pure, it's 7:15.'"
+next_beat_id = &"s01_09_line2"
+dialogue_id = &"nsb_s01_marcus_01"
+speaker_actor_id = &"marcus"
+target_actor_id = &"pure"
+timeout_seconds = 5.0
+
+[sub_resource type="Resource" id="Resource_beat_s01_09_line2"]
+script = ExtResource("5_dialogue")
+beat_id = &"s01_09_line2"
+display_name = "1.09 'I know.'"
+next_beat_id = &"s01_09_line3"
+dialogue_id = &"nsb_s01_pure_01"
+speaker_actor_id = &"pure"
+target_actor_id = &"marcus"
+timeout_seconds = 4.0
+
+[sub_resource type="Resource" id="Resource_beat_s01_09_line3"]
+script = ExtResource("5_dialogue")
+beat_id = &"s01_09_line3"
+display_name = "1.09 'Did Mom leave money for lunch?'"
+next_beat_id = &"s01_09_line4"
+dialogue_id = &"nsb_s01_marcus_02"
+speaker_actor_id = &"marcus"
+target_actor_id = &"pure"
+timeout_seconds = 5.0
+
+[sub_resource type="Resource" id="Resource_beat_s01_09_line4"]
+script = ExtResource("5_dialogue")
+beat_id = &"s01_09_line4"
+display_name = "1.09 'Yeah. On the counter.'"
+next_beat_id = &"s01_09_vo"
+dialogue_id = &"nsb_s01_pure_02"
+speaker_actor_id = &"pure"
+target_actor_id = &"marcus"
+timeout_seconds = 4.0
+
+[sub_resource type="Resource" id="Resource_beat_s01_09_vo"]
+script = ExtResource("5_dialogue")
+beat_id = &"s01_09_vo"
+display_name = "1.09 V.O. 'He shouldn't have to know about money yet.'"
+next_beat_id = &"s01_10_cam"
+note = "Internal. \"He shouldn't have to know she's not coming back today.\""
+dialogue_id = &"nsb_s01_marcus_vo_01"
+speaker_actor_id = &"marcus"
+timeout_seconds = 10.0
+
+[sub_resource type="Resource" id="Resource_beat_s01_10_cam"]
+script = ExtResource("3_camera")
+beat_id = &"s01_10_cam"
+display_name = "1.10 Close on Marcus"
+next_beat_id = &"s01_10_vo"
+note = "Silent beat. The resentment is entirely on his face and in the V.O."
+camera_mode_id = &"close_hold"
+blend_seconds = 0.5
+
+[sub_resource type="Resource" id="Resource_beat_s01_10_vo"]
+script = ExtResource("5_dialogue")
+beat_id = &"s01_10_vo"
+display_name = "1.10 V.O. 'I had to be perfect.'"
+next_beat_id = &"s01_11_cam"
+note = "\"I did everything right... He can fail and she'll still love him... Me? I had to be perfect.\" This line is the seed Sequence 4's hospital confrontation pays off."
+dialogue_id = &"nsb_s01_marcus_vo_02"
+speaker_actor_id = &"marcus"
+timeout_seconds = 14.0
+
+[sub_resource type="Resource" id="Resource_beat_s01_11_cam"]
+script = ExtResource("3_camera")
+beat_id = &"s01_11_cam"
+display_name = "1.11 Wide -- Marcus at the counter"
+next_beat_id = &"s01_11_money"
+note = "His sacrifice made visible: he's adding his own money to what Delia left."
+camera_mode_id = &"wide_static"
+blend_seconds = 0.5
+
+[sub_resource type="Resource" id="Resource_beat_s01_11_money"]
+script = ExtResource("4_action")
+beat_id = &"s01_11_money"
+display_name = "1.11 Marcus adds lunch money"
+next_beat_id = &"s01_11_line1"
+note = "Care masked as obligation. He will never say what this is."
+actor_id = &"marcus"
+action_id = &"set_down"
+wait_for_completion = true
+timeout_seconds = 4.0
+
+[sub_resource type="Resource" id="Resource_beat_s01_11_line1"]
+script = ExtResource("5_dialogue")
+beat_id = &"s01_11_line1"
+display_name = "1.11 'If Mom calls, tell her I came by.'"
+next_beat_id = &"s01_11_line2"
+dialogue_id = &"nsb_s01_marcus_03"
+speaker_actor_id = &"marcus"
+target_actor_id = &"pure"
+timeout_seconds = 5.0
+
+[sub_resource type="Resource" id="Resource_beat_s01_11_line2"]
+script = ExtResource("5_dialogue")
+beat_id = &"s01_11_line2"
+display_name = "1.11 'Okay.'"
+next_beat_id = &"s01_11_line3"
+dialogue_id = &"nsb_s01_pure_03"
+speaker_actor_id = &"pure"
+target_actor_id = &"marcus"
+timeout_seconds = 3.0
+
+[sub_resource type="Resource" id="Resource_beat_s01_11_line3"]
+script = ExtResource("5_dialogue")
+beat_id = &"s01_11_line3"
+display_name = "1.11 'She won't remember I was even here.'"
+next_beat_id = &"s01_12_exit"
+note = "Muttered, half-internal."
+dialogue_id = &"nsb_s01_marcus_vo_03"
+speaker_actor_id = &"marcus"
+timeout_seconds = 6.0
+
+[sub_resource type="Resource" id="Resource_beat_s01_12_exit"]
+script = ExtResource("4_action")
+beat_id = &"s01_12_exit"
+display_name = "1.12 Marcus leaves"
+next_beat_id = &"s01_12_vo"
+actor_id = &"marcus"
+action_id = &"exit"
+wait_for_completion = true
+timeout_seconds = 4.0
+
+[sub_resource type="Resource" id="Resource_beat_s01_12_vo"]
+script = ExtResource("5_dialogue")
+beat_id = &"s01_12_vo"
+display_name = "1.12 V.O. 'Like everyone.'"
+next_beat_id = &"s01_13_cam"
+note = "\"I didn't know my brother was angry at me. I didn't know he was giving me his lunch money. I just knew he was always leaving. Like everyone.\""
+dialogue_id = &"nsb_s01_vo_child_03"
+speaker_actor_id = &"narrator_child"
+timeout_seconds = 12.0
+
+[sub_resource type="Resource" id="Resource_beat_s01_13_cam"]
+script = ExtResource("3_camera")
+beat_id = &"s01_13_cam"
+display_name = "1.13 School bench, wide -- Pure isolated"
+next_beat_id = &"s01_13_talk_a"
+note = "Three kids on a bench, Pure isolated in the frame despite being among them."
+camera_mode_id = &"wide_static"
+blend_seconds = 0.5
+
+[sub_resource type="Resource" id="Resource_beat_s01_13_talk_a"]
+script = ExtResource("5_dialogue")
+beat_id = &"s01_13_talk_a"
+display_name = "1.13 Classmates on the beach"
+next_beat_id = &"s01_13_face"
+note = "Casual weekend-at-the-beach chatter. Joy and privilege, entirely unaware."
+dialogue_id = &"nsb_s01_classmate_01"
+speaker_actor_id = &"classmate_a"
+target_actor_id = &"classmate_b"
+timeout_seconds = 8.0
+
+[sub_resource type="Resource" id="Resource_beat_s01_13_face"]
+script = ExtResource("3_camera")
+beat_id = &"s01_13_face"
+display_name = "1.13 Close -- Pure learning shame"
+next_beat_id = &"s01_13_vo"
+camera_mode_id = &"close_hold"
+blend_seconds = 0.5
+
+[sub_resource type="Resource" id="Resource_beat_s01_13_vo"]
+script = ExtResource("5_dialogue")
+beat_id = &"s01_13_vo"
+display_name = "1.13 V.O. 'The beach was for people who owned houses.'"
+next_beat_id = &"s01_14_cam"
+note = "\"The ocean was ten miles away. I could smell it sometimes -- salt and seaweed on the wind. But it wasn't for us.\""
+dialogue_id = &"nsb_s01_pure_vo_01"
+speaker_actor_id = &"narrator"
+timeout_seconds = 14.0
+
+[sub_resource type="Resource" id="Resource_beat_s01_14_cam"]
+script = ExtResource("3_camera")
+beat_id = &"s01_14_cam"
+display_name = "1.14 Wavy transition into memory"
+next_beat_id = &"s01_14_hold_child"
+note = "EARL'S GHOST. M2S period styling starts here and ends when the beat does -- the only period-styled beat in Sequence 1."
+camera_mode_id = &"slow_push"
+blend_seconds = 2.0
+
+[sub_resource type="Resource" id="Resource_beat_s01_14_hold_child"]
+script = ExtResource("4_action")
+beat_id = &"s01_14_hold_child"
+display_name = "1.14 Earl kneels and holds Pure (7)"
+next_beat_id = &"s01_14_line"
+note = "Warm, soft-focus, tender. Earl's memory design, period wardrobe."
+actor_id = &"earl"
+action_id = &"hold_child"
+wait_for_completion = true
+timeout_seconds = 6.0
+
+[sub_resource type="Resource" id="Resource_beat_s01_14_line"]
+script = ExtResource("5_dialogue")
+beat_id = &"s01_14_line"
+display_name = "1.14 Earl's promise"
+next_beat_id = &"s01_14_vanish"
+dialogue_id = &"nsb_s01_earl_01"
+speaker_actor_id = &"earl"
+target_actor_id = &"pure_child"
+timeout_seconds = 8.0
+
+[sub_resource type="Resource" id="Resource_beat_s01_14_vanish"]
+script = ExtResource("4_action")
+beat_id = &"s01_14_vanish"
+display_name = "1.14 Earl vanishes"
+next_beat_id = &"s01_14_vo"
+actor_id = &"earl"
+action_id = &"vanish"
+wait_for_completion = true
+timeout_seconds = 4.0
+
+[sub_resource type="Resource" id="Resource_beat_s01_14_vo"]
+script = ExtResource("5_dialogue")
+beat_id = &"s01_14_vo"
+display_name = "1.14 V.O. 'Seventeen dollars in his pocket.'"
+next_beat_id = &"s01_15_cam"
+note = "\"He loved us. He loved the street more. I spent my whole life trying to prove he was wrong about that -- that you could love both.\""
+dialogue_id = &"nsb_s01_vo_02"
+speaker_actor_id = &"narrator"
+timeout_seconds = 16.0
+
+[sub_resource type="Resource" id="Resource_beat_s01_15_cam"]
+script = ExtResource("3_camera")
+beat_id = &"s01_15_cam"
+display_name = "1.15 Back to school, present -- Pure's face"
+next_beat_id = &"s01_15_vo"
+note = "Present, haunted. The transition back out of the memory."
+camera_mode_id = &"close_hold"
+blend_seconds = 1.0
+
+[sub_resource type="Resource" id="Resource_beat_s01_15_vo"]
+script = ExtResource("5_dialogue")
+beat_id = &"s01_15_vo"
+display_name = "1.15 V.O. 'Love and failure.'"
+next_beat_id = &"s01_16_cam"
+note = "\"That pattern haunted me my whole life... I carried his seventeen dollars like they were gold.\""
+dialogue_id = &"nsb_s01_vo_03"
+speaker_actor_id = &"narrator"
+timeout_seconds = 12.0
+
+[sub_resource type="Resource" id="Resource_beat_s01_16_cam"]
+script = ExtResource("3_camera")
+beat_id = &"s01_16_cam"
+display_name = "1.16 Evening -- the ocean unseen"
+next_beat_id = &"s01_16_vo"
+note = "Aerial Santa Ana at sunset. The ocean is in frame and unreachable. No actor on screen."
+camera_mode_id = &"wide_static"
+blend_seconds = 1.0
+
+[sub_resource type="Resource" id="Resource_beat_s01_16_vo"]
+script = ExtResource("5_dialogue")
+beat_id = &"s01_16_vo"
+display_name = "1.16 V.O. 'We just never looked down.'"
+next_beat_id = &"s01_16_hold"
+note = "\"The ocean was there. It was always there. We just never looked down to see the ground we were standing on.\" Sets up the closing narration of Sequence 6."
+dialogue_id = &"nsb_s01_vo_04"
+speaker_actor_id = &"narrator"
+timeout_seconds = 14.0
+
+[sub_resource type="Resource" id="Resource_beat_s01_16_hold"]
+script = ExtResource("6_wait")
+beat_id = &"s01_16_hold"
+display_name = "1.16 Hold on the horizon"
+next_beat_id = &"s01_17_title"
+duration_seconds = 3.0
+
+[sub_resource type="Resource" id="Resource_beat_s01_17_title"]
+script = ExtResource("3_camera")
+beat_id = &"s01_17_title"
+display_name = "1.17 TITLE CARD"
+next_beat_id = &"s01_17_hold"
+note = "NO SAND BEACH. No dialogue."
+camera_mode_id = &"fade_to_black"
+blend_seconds = 2.0
+
+[sub_resource type="Resource" id="Resource_beat_s01_17_hold"]
+script = ExtResource("6_wait")
+beat_id = &"s01_17_hold"
+display_name = "1.17 Title held"
+next_beat_id = &"s01_end"
+duration_seconds = 5.0
+
+[sub_resource type="Resource" id="Resource_beat_s01_end"]
+script = ExtResource("7_end")
+beat_id = &"s01_end"
+display_name = "Sequence 1 complete"
+note = "Hands off to Sequence 2: The Fall."
+completion_signal = &"scene_finished"
+
+[resource]
+script = ExtResource("1_plan")
+plan_id = &"nsb_seq_01_the_setup"
+display_name = "Sequence 1: The Setup"
+description = "Delia's 3AM return and 6AM departure; Pure alone; Marcus's resented care; the beach he can't reach; Earl's ghost. Source breakdown: scenes/sequence_01_setup_breakdown.md (17 film beats, 2:45)."
+actors = Array[Resource]([SubResource("Resource_actor_delia"), SubResource("Resource_actor_pure"), SubResource("Resource_actor_pure_child"), SubResource("Resource_actor_marcus"), SubResource("Resource_actor_earl"), SubResource("Resource_actor_classmate_a"), SubResource("Resource_actor_classmate_b"), SubResource("Resource_actor_narrator"), SubResource("Resource_actor_narrator_child")])
+beats = Array[Resource]([SubResource("Resource_beat_s01_01_cam"), SubResource("Resource_beat_s01_01_enter"), SubResource("Resource_beat_s01_01_vo"), SubResource("Resource_beat_s01_02_cam"), SubResource("Resource_beat_s01_02_sleep"), SubResource("Resource_beat_s01_02_kiss"), SubResource("Resource_beat_s01_02_vo"), SubResource("Resource_beat_s01_03_cam"), SubResource("Resource_beat_s01_03_coffee"), SubResource("Resource_beat_s01_03_vo"), SubResource("Resource_beat_s01_04_change"), SubResource("Resource_beat_s01_04_vo"), SubResource("Resource_beat_s01_05_cam"), SubResource("Resource_beat_s01_05_vo"), SubResource("Resource_beat_s01_05_exit"), SubResource("Resource_beat_s01_06_cam"), SubResource("Resource_beat_s01_06_vo"), SubResource("Resource_beat_s01_07_wake"), SubResource("Resource_beat_s01_07_vo"), SubResource("Resource_beat_s01_08_cam"), SubResource("Resource_beat_s01_08_eat"), SubResource("Resource_beat_s01_08_vo"), SubResource("Resource_beat_s01_09_enter"), SubResource("Resource_beat_s01_09_cam"), SubResource("Resource_beat_s01_09_line1"), SubResource("Resource_beat_s01_09_line2"), SubResource("Resource_beat_s01_09_line3"), SubResource("Resource_beat_s01_09_line4"), SubResource("Resource_beat_s01_09_vo"), SubResource("Resource_beat_s01_10_cam"), SubResource("Resource_beat_s01_10_vo"), SubResource("Resource_beat_s01_11_cam"), SubResource("Resource_beat_s01_11_money"), SubResource("Resource_beat_s01_11_line1"), SubResource("Resource_beat_s01_11_line2"), SubResource("Resource_beat_s01_11_line3"), SubResource("Resource_beat_s01_12_exit"), SubResource("Resource_beat_s01_12_vo"), SubResource("Resource_beat_s01_13_cam"), SubResource("Resource_beat_s01_13_talk_a"), SubResource("Resource_beat_s01_13_face"), SubResource("Resource_beat_s01_13_vo"), SubResource("Resource_beat_s01_14_cam"), SubResource("Resource_beat_s01_14_hold_child"), SubResource("Resource_beat_s01_14_line"), SubResource("Resource_beat_s01_14_vanish"), SubResource("Resource_beat_s01_14_vo"), SubResource("Resource_beat_s01_15_cam"), SubResource("Resource_beat_s01_15_vo"), SubResource("Resource_beat_s01_16_cam"), SubResource("Resource_beat_s01_16_vo"), SubResource("Resource_beat_s01_16_hold"), SubResource("Resource_beat_s01_17_title"), SubResource("Resource_beat_s01_17_hold"), SubResource("Resource_beat_s01_end")])
