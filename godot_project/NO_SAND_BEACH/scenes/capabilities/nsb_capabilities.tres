@@ -1,15 +1,8 @@
-[gd_resource type="Resource" script_class="SceneCapabilityRegistry" load_steps=54 format=3]
+[gd_resource type="Resource" script_class="SceneCapabilityRegistry" load_steps=53 format=3]
 
 [ext_resource type="Script" path="res://addons/scene_animator/data/scene_capability_registry.gd" id="1_registry"]
 [ext_resource type="Script" path="res://addons/scene_animator/data/action_definition.gd" id="2_action"]
 [ext_resource type="Script" path="res://addons/scene_animator/data/camera_mode_definition.gd" id="3_camera"]
-
-[sub_resource type="Resource" id="Resource_action_idle"]
-script = ExtResource("2_action")
-id = &"idle"
-display_name = "Idle"
-animation_state = &"idle"
-motion_mode = "in_place"
 
 [sub_resource type="Resource" id="Resource_action_walk"]
 script = ExtResource("2_action")
@@ -24,13 +17,6 @@ id = &"talk"
 display_name = "Talk"
 animation_state = &"talk"
 motion_mode = "in_place"
-
-[sub_resource type="Resource" id="Resource_action_sit"]
-script = ExtResource("2_action")
-id = &"sit"
-display_name = "Sit Down"
-animation_state = &"sit"
-motion_mode = "none"
 
 [sub_resource type="Resource" id="Resource_action_sit_still"]
 script = ExtResource("2_action")
@@ -214,13 +200,6 @@ display_name = "Glitch Materialize"
 animation_state = &"glitch_in"
 motion_mode = "none"
 
-[sub_resource type="Resource" id="Resource_action_dissolve_glitch"]
-script = ExtResource("2_action")
-id = &"dissolve_glitch"
-display_name = "Glitch Dissolve"
-animation_state = &"glitch_out"
-motion_mode = "none"
-
 [sub_resource type="Resource" id="Resource_action_sleep"]
 script = ExtResource("2_action")
 id = &"sleep"
@@ -276,6 +255,20 @@ id = &"hold_child"
 display_name = "Kneel And Hold Child"
 animation_state = &"hold_child"
 motion_mode = "none"
+
+[sub_resource type="Resource" id="Resource_action_be_held"]
+script = ExtResource("2_action")
+id = &"be_held"
+display_name = "Being Held (child)"
+animation_state = &"held"
+motion_mode = "none"
+
+[sub_resource type="Resource" id="Resource_action_listen"]
+script = ExtResource("2_action")
+id = &"listen"
+display_name = "Listen / React Silently"
+animation_state = &"listen"
+motion_mode = "in_place"
 
 [sub_resource type="Resource" id="Resource_action_vanish"]
 script = ExtResource("2_action")
@@ -365,5 +358,5 @@ default_blend_seconds = 8.0
 
 [resource]
 script = ExtResource("1_registry")
-actions = Array[Resource]([SubResource("Resource_action_idle"), SubResource("Resource_action_walk"), SubResource("Resource_action_talk"), SubResource("Resource_action_sit"), SubResource("Resource_action_sit_still"), SubResource("Resource_action_stand_up"), SubResource("Resource_action_stand_still"), SubResource("Resource_action_enter"), SubResource("Resource_action_exit"), SubResource("Resource_action_cuffed"), SubResource("Resource_action_type"), SubResource("Resource_action_close_laptop"), SubResource("Resource_action_deflate"), SubResource("Resource_action_recoil"), SubResource("Resource_action_collapse"), SubResource("Resource_action_lie_still"), SubResource("Resource_action_turn_to_look"), SubResource("Resource_action_sit_up"), SubResource("Resource_action_hand_on_hand"), SubResource("Resource_action_embrace"), SubResource("Resource_action_watch"), SubResource("Resource_action_gavel"), SubResource("Resource_action_preside"), SubResource("Resource_action_rise"), SubResource("Resource_action_kneel"), SubResource("Resource_action_touch_sand"), SubResource("Resource_action_teach"), SubResource("Resource_action_smile"), SubResource("Resource_action_look_out"), SubResource("Resource_action_materialize_glitch"), SubResource("Resource_action_dissolve_glitch"), SubResource("Resource_action_sleep"), SubResource("Resource_action_wake"), SubResource("Resource_action_eat"), SubResource("Resource_action_kiss_forehead"), SubResource("Resource_action_change_clothes"), SubResource("Resource_action_pour_coffee"), SubResource("Resource_action_set_down"), SubResource("Resource_action_hold_child"), SubResource("Resource_action_vanish"), SubResource("Resource_action_read")])
+actions = Array[Resource]([SubResource("Resource_action_walk"), SubResource("Resource_action_talk"), SubResource("Resource_action_sit_still"), SubResource("Resource_action_stand_up"), SubResource("Resource_action_stand_still"), SubResource("Resource_action_enter"), SubResource("Resource_action_exit"), SubResource("Resource_action_cuffed"), SubResource("Resource_action_type"), SubResource("Resource_action_close_laptop"), SubResource("Resource_action_deflate"), SubResource("Resource_action_recoil"), SubResource("Resource_action_collapse"), SubResource("Resource_action_lie_still"), SubResource("Resource_action_turn_to_look"), SubResource("Resource_action_sit_up"), SubResource("Resource_action_hand_on_hand"), SubResource("Resource_action_embrace"), SubResource("Resource_action_watch"), SubResource("Resource_action_gavel"), SubResource("Resource_action_preside"), SubResource("Resource_action_rise"), SubResource("Resource_action_kneel"), SubResource("Resource_action_touch_sand"), SubResource("Resource_action_teach"), SubResource("Resource_action_smile"), SubResource("Resource_action_look_out"), SubResource("Resource_action_materialize_glitch"), SubResource("Resource_action_sleep"), SubResource("Resource_action_wake"), SubResource("Resource_action_eat"), SubResource("Resource_action_kiss_forehead"), SubResource("Resource_action_change_clothes"), SubResource("Resource_action_pour_coffee"), SubResource("Resource_action_set_down"), SubResource("Resource_action_hold_child"), SubResource("Resource_action_be_held"), SubResource("Resource_action_listen"), SubResource("Resource_action_vanish"), SubResource("Resource_action_read")])
 camera_modes = Array[Resource]([SubResource("Resource_camera_wide_static"), SubResource("Resource_camera_medium_static"), SubResource("Resource_camera_close_hold"), SubResource("Resource_camera_two_shot"), SubResource("Resource_camera_over_shoulder"), SubResource("Resource_camera_insert"), SubResource("Resource_camera_slow_push"), SubResource("Resource_camera_slow_pull_back"), SubResource("Resource_camera_fade_to_black")])

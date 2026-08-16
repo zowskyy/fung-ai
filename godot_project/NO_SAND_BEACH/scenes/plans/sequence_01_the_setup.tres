@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="ScenePlan" load_steps=72 format=3]
+[gd_resource type="Resource" script_class="ScenePlan" load_steps=75 format=3]
 
 [ext_resource type="Script" path="res://addons/scene_animator/data/scene_plan.gd" id="1_plan"]
 [ext_resource type="Script" path="res://addons/scene_animator/data/scene_actor_binding.gd" id="2_actor"]
@@ -454,12 +454,33 @@ blend_seconds = 0.5
 script = ExtResource("5_dialogue")
 beat_id = &"s01_13_talk_a"
 display_name = "1.13 Classmates on the beach"
-next_beat_id = &"s01_13_face"
+next_beat_id = &"s01_13_talk_b"
 note = "Casual weekend-at-the-beach chatter. Joy and privilege, entirely unaware."
 dialogue_id = &"nsb_s01_classmate_01"
 speaker_actor_id = &"classmate_a"
 target_actor_id = &"classmate_b"
-timeout_seconds = 8.0
+timeout_seconds = 6.0
+
+[sub_resource type="Resource" id="Resource_beat_s01_13_talk_b"]
+script = ExtResource("5_dialogue")
+beat_id = &"s01_13_talk_b"
+display_name = "1.13 The other classmate answers"
+next_beat_id = &"s01_13_listen"
+note = "The exchange has to be between the two of them, not delivered at Pure -- the point is that he is not in the conversation at all."
+dialogue_id = &"nsb_s01_classmate_02"
+speaker_actor_id = &"classmate_b"
+target_actor_id = &"classmate_a"
+timeout_seconds = 6.0
+
+[sub_resource type="Resource" id="Resource_beat_s01_13_listen"]
+script = ExtResource("4_action")
+beat_id = &"s01_13_listen"
+display_name = "1.13 Pure listens, not included"
+next_beat_id = &"s01_13_face"
+note = "He is on the same bench and outside the conversation. Isolation staged, not stated."
+actor_id = &"pure"
+action_id = &"listen"
+wait_for_completion = false
 
 [sub_resource type="Resource" id="Resource_beat_s01_13_face"]
 script = ExtResource("3_camera")
@@ -492,12 +513,22 @@ blend_seconds = 2.0
 script = ExtResource("4_action")
 beat_id = &"s01_14_hold_child"
 display_name = "1.14 Earl kneels and holds Pure (7)"
-next_beat_id = &"s01_14_line"
+next_beat_id = &"s01_14_held"
 note = "Warm, soft-focus, tender. Earl's memory design, period wardrobe."
 actor_id = &"earl"
 action_id = &"hold_child"
 wait_for_completion = true
 timeout_seconds = 6.0
+
+[sub_resource type="Resource" id="Resource_beat_s01_14_held"]
+script = ExtResource("4_action")
+beat_id = &"s01_14_held"
+display_name = "1.14 Pure (7) held in his father's arms"
+next_beat_id = &"s01_14_line"
+note = "The age-7 design's only appearance in the film -- it needs its own clip, since Earl's hold_child animates only Earl. This is the last time Pure is held by anyone until Marcus's hug in 4.05."
+actor_id = &"pure_child"
+action_id = &"be_held"
+wait_for_completion = false
 
 [sub_resource type="Resource" id="Resource_beat_s01_14_line"]
 script = ExtResource("5_dialogue")
@@ -603,4 +634,4 @@ plan_id = &"nsb_seq_01_the_setup"
 display_name = "Sequence 1: The Setup"
 description = "Delia's 3AM return and 6AM departure; Pure alone; Marcus's resented care; the beach he can't reach; Earl's ghost. Source breakdown: scenes/sequence_01_setup_breakdown.md (17 film beats, 2:45)."
 actors = Array[Resource]([SubResource("Resource_actor_delia"), SubResource("Resource_actor_pure"), SubResource("Resource_actor_pure_child"), SubResource("Resource_actor_marcus"), SubResource("Resource_actor_earl"), SubResource("Resource_actor_classmate_a"), SubResource("Resource_actor_classmate_b"), SubResource("Resource_actor_narrator"), SubResource("Resource_actor_narrator_child")])
-beats = Array[Resource]([SubResource("Resource_beat_s01_01_cam"), SubResource("Resource_beat_s01_01_enter"), SubResource("Resource_beat_s01_01_vo"), SubResource("Resource_beat_s01_02_cam"), SubResource("Resource_beat_s01_02_sleep"), SubResource("Resource_beat_s01_02_kiss"), SubResource("Resource_beat_s01_02_vo"), SubResource("Resource_beat_s01_03_cam"), SubResource("Resource_beat_s01_03_coffee"), SubResource("Resource_beat_s01_03_vo"), SubResource("Resource_beat_s01_04_change"), SubResource("Resource_beat_s01_04_vo"), SubResource("Resource_beat_s01_05_cam"), SubResource("Resource_beat_s01_05_vo"), SubResource("Resource_beat_s01_05_exit"), SubResource("Resource_beat_s01_06_cam"), SubResource("Resource_beat_s01_06_vo"), SubResource("Resource_beat_s01_07_wake"), SubResource("Resource_beat_s01_07_vo"), SubResource("Resource_beat_s01_08_cam"), SubResource("Resource_beat_s01_08_eat"), SubResource("Resource_beat_s01_08_vo"), SubResource("Resource_beat_s01_09_enter"), SubResource("Resource_beat_s01_09_cam"), SubResource("Resource_beat_s01_09_line1"), SubResource("Resource_beat_s01_09_line2"), SubResource("Resource_beat_s01_09_line3"), SubResource("Resource_beat_s01_09_line4"), SubResource("Resource_beat_s01_09_vo"), SubResource("Resource_beat_s01_10_cam"), SubResource("Resource_beat_s01_10_vo"), SubResource("Resource_beat_s01_11_cam"), SubResource("Resource_beat_s01_11_money"), SubResource("Resource_beat_s01_11_line1"), SubResource("Resource_beat_s01_11_line2"), SubResource("Resource_beat_s01_11_line3"), SubResource("Resource_beat_s01_12_exit"), SubResource("Resource_beat_s01_12_vo"), SubResource("Resource_beat_s01_13_cam"), SubResource("Resource_beat_s01_13_talk_a"), SubResource("Resource_beat_s01_13_face"), SubResource("Resource_beat_s01_13_vo"), SubResource("Resource_beat_s01_14_cam"), SubResource("Resource_beat_s01_14_hold_child"), SubResource("Resource_beat_s01_14_line"), SubResource("Resource_beat_s01_14_vanish"), SubResource("Resource_beat_s01_14_vo"), SubResource("Resource_beat_s01_15_cam"), SubResource("Resource_beat_s01_15_vo"), SubResource("Resource_beat_s01_16_cam"), SubResource("Resource_beat_s01_16_vo"), SubResource("Resource_beat_s01_16_hold"), SubResource("Resource_beat_s01_17_title"), SubResource("Resource_beat_s01_17_hold"), SubResource("Resource_beat_s01_end")])
+beats = Array[Resource]([SubResource("Resource_beat_s01_01_cam"), SubResource("Resource_beat_s01_01_enter"), SubResource("Resource_beat_s01_01_vo"), SubResource("Resource_beat_s01_02_cam"), SubResource("Resource_beat_s01_02_sleep"), SubResource("Resource_beat_s01_02_kiss"), SubResource("Resource_beat_s01_02_vo"), SubResource("Resource_beat_s01_03_cam"), SubResource("Resource_beat_s01_03_coffee"), SubResource("Resource_beat_s01_03_vo"), SubResource("Resource_beat_s01_04_change"), SubResource("Resource_beat_s01_04_vo"), SubResource("Resource_beat_s01_05_cam"), SubResource("Resource_beat_s01_05_vo"), SubResource("Resource_beat_s01_05_exit"), SubResource("Resource_beat_s01_06_cam"), SubResource("Resource_beat_s01_06_vo"), SubResource("Resource_beat_s01_07_wake"), SubResource("Resource_beat_s01_07_vo"), SubResource("Resource_beat_s01_08_cam"), SubResource("Resource_beat_s01_08_eat"), SubResource("Resource_beat_s01_08_vo"), SubResource("Resource_beat_s01_09_enter"), SubResource("Resource_beat_s01_09_cam"), SubResource("Resource_beat_s01_09_line1"), SubResource("Resource_beat_s01_09_line2"), SubResource("Resource_beat_s01_09_line3"), SubResource("Resource_beat_s01_09_line4"), SubResource("Resource_beat_s01_09_vo"), SubResource("Resource_beat_s01_10_cam"), SubResource("Resource_beat_s01_10_vo"), SubResource("Resource_beat_s01_11_cam"), SubResource("Resource_beat_s01_11_money"), SubResource("Resource_beat_s01_11_line1"), SubResource("Resource_beat_s01_11_line2"), SubResource("Resource_beat_s01_11_line3"), SubResource("Resource_beat_s01_12_exit"), SubResource("Resource_beat_s01_12_vo"), SubResource("Resource_beat_s01_13_cam"), SubResource("Resource_beat_s01_13_talk_a"), SubResource("Resource_beat_s01_13_talk_b"), SubResource("Resource_beat_s01_13_listen"), SubResource("Resource_beat_s01_13_face"), SubResource("Resource_beat_s01_13_vo"), SubResource("Resource_beat_s01_14_cam"), SubResource("Resource_beat_s01_14_hold_child"), SubResource("Resource_beat_s01_14_held"), SubResource("Resource_beat_s01_14_line"), SubResource("Resource_beat_s01_14_vanish"), SubResource("Resource_beat_s01_14_vo"), SubResource("Resource_beat_s01_15_cam"), SubResource("Resource_beat_s01_15_vo"), SubResource("Resource_beat_s01_16_cam"), SubResource("Resource_beat_s01_16_vo"), SubResource("Resource_beat_s01_16_hold"), SubResource("Resource_beat_s01_17_title"), SubResource("Resource_beat_s01_17_hold"), SubResource("Resource_beat_s01_end")])

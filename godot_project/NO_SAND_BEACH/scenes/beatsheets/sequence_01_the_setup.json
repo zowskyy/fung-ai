@@ -267,8 +267,21 @@
     {
       "type": "dialogue", "beat_id": "s01_13_talk_a", "display_name": "1.13 Classmates on the beach",
       "dialogue_id": "nsb_s01_classmate_01", "speaker_actor_id": "classmate_a", "target_actor_id": "classmate_b",
-      "timeout_seconds": 8.0,
+      "timeout_seconds": 6.0,
       "note": "Casual weekend-at-the-beach chatter. Joy and privilege, entirely unaware.",
+      "next_beat_id": "s01_13_talk_b"
+    },
+    {
+      "type": "dialogue", "beat_id": "s01_13_talk_b", "display_name": "1.13 The other classmate answers",
+      "dialogue_id": "nsb_s01_classmate_02", "speaker_actor_id": "classmate_b", "target_actor_id": "classmate_a",
+      "timeout_seconds": 6.0,
+      "note": "The exchange has to be between the two of them, not delivered at Pure -- the point is that he is not in the conversation at all.",
+      "next_beat_id": "s01_13_listen"
+    },
+    {
+      "type": "action", "beat_id": "s01_13_listen", "display_name": "1.13 Pure listens, not included",
+      "actor_id": "pure", "action_id": "listen", "wait_for_completion": false,
+      "note": "He is on the same bench and outside the conversation. Isolation staged, not stated.",
       "next_beat_id": "s01_13_face"
     },
     {
@@ -294,6 +307,12 @@
       "type": "action", "beat_id": "s01_14_hold_child", "display_name": "1.14 Earl kneels and holds Pure (7)",
       "actor_id": "earl", "action_id": "hold_child", "wait_for_completion": true, "timeout_seconds": 6.0,
       "note": "Warm, soft-focus, tender. Earl's memory design, period wardrobe.",
+      "next_beat_id": "s01_14_held"
+    },
+    {
+      "type": "action", "beat_id": "s01_14_held", "display_name": "1.14 Pure (7) held in his father's arms",
+      "actor_id": "pure_child", "action_id": "be_held", "wait_for_completion": false,
+      "note": "The age-7 design's only appearance in the film -- it needs its own clip, since Earl's hold_child animates only Earl. This is the last time Pure is held by anyone until Marcus's hug in 4.05.",
       "next_beat_id": "s01_14_line"
     },
     {

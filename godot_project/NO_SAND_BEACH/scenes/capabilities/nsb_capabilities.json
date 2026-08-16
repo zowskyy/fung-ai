@@ -2,11 +2,8 @@
   "_comment": "Capability registry for NO SAND BEACH. Every action_id and camera_mode_id used by any ScenePlan must appear here, or ScenePlanValidator raises an ERROR. animation_state names the clip the Character Animator profile must expose; motion_mode is 'none' for held poses, 'in_place' for cycles that don't translate the actor, and 'planar_root_motion' for locomotion that moves them across the frame.",
 
   "actions": [
-    {"id": "idle", "display_name": "Idle", "animation_state": "idle", "motion_mode": "in_place"},
     {"id": "walk", "display_name": "Walk", "animation_state": "walk", "motion_mode": "planar_root_motion"},
     {"id": "talk", "display_name": "Talk", "animation_state": "talk", "motion_mode": "in_place"},
-
-    {"id": "sit", "display_name": "Sit Down", "animation_state": "sit", "motion_mode": "none"},
     {"id": "sit_still", "display_name": "Sit Still", "animation_state": "sit_idle", "motion_mode": "in_place"},
     {"id": "stand_up", "display_name": "Stand Up", "animation_state": "stand_up", "motion_mode": "none"},
     {"id": "stand_still", "display_name": "Stand Still", "animation_state": "stand_idle", "motion_mode": "in_place"},
@@ -38,7 +35,6 @@
     {"id": "look_out", "display_name": "Look Out At Horizon", "animation_state": "look_out", "motion_mode": "in_place"},
 
     {"id": "materialize_glitch", "display_name": "Glitch Materialize", "animation_state": "glitch_in", "motion_mode": "none"},
-    {"id": "dissolve_glitch", "display_name": "Glitch Dissolve", "animation_state": "glitch_out", "motion_mode": "none"},
 
     {"id": "sleep", "display_name": "Sleeping", "animation_state": "sleep", "motion_mode": "in_place"},
     {"id": "wake", "display_name": "Wake Up", "animation_state": "wake", "motion_mode": "none"},
@@ -48,6 +44,8 @@
     {"id": "pour_coffee", "display_name": "Pour Coffee", "animation_state": "pour_coffee", "motion_mode": "none"},
     {"id": "set_down", "display_name": "Set Something Down", "animation_state": "set_down", "motion_mode": "none"},
     {"id": "hold_child", "display_name": "Kneel And Hold Child", "animation_state": "hold_child", "motion_mode": "none"},
+    {"id": "be_held", "display_name": "Being Held (child)", "animation_state": "held", "motion_mode": "none"},
+    {"id": "listen", "display_name": "Listen / React Silently", "animation_state": "listen", "motion_mode": "in_place"},
     {"id": "vanish", "display_name": "Vanish (Memory Ends)", "animation_state": "vanish", "motion_mode": "none"},
     {"id": "read", "display_name": "Read / Study", "animation_state": "read", "motion_mode": "in_place"}
   ],
