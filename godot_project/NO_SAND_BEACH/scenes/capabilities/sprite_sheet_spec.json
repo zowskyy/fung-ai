@@ -1,0 +1,739 @@
+{
+  "frame_size": [
+    512,
+    768
+  ],
+  "fps": 12.0,
+  "characters": {
+    "classmate_a": {
+      "actor_id": "classmate_a",
+      "display_name": "Classmate A (generic extra)",
+      "sheet_path": "res://NO_SAND_BEACH/assets/characters/classmate_a/classmate_a_sheet.png",
+      "frame_size": [
+        512,
+        768
+      ],
+      "columns": 6,
+      "rows": 1,
+      "sheet_size": [
+        3072,
+        768
+      ],
+      "clips": [
+        {
+          "clip": "talk",
+          "row": 0,
+          "frames": 6,
+          "fps": 12.0,
+          "loop": true,
+          "motion_mode": "in_place",
+          "beats": 1
+        }
+      ]
+    },
+    "classmate_b": {
+      "actor_id": "classmate_b",
+      "display_name": "Classmate B (generic extra)",
+      "sheet_path": "res://NO_SAND_BEACH/assets/characters/classmate_b/classmate_b_sheet.png",
+      "frame_size": [
+        512,
+        768
+      ],
+      "columns": 6,
+      "rows": 1,
+      "sheet_size": [
+        3072,
+        768
+      ],
+      "clips": [
+        {
+          "clip": "talk",
+          "row": 0,
+          "frames": 6,
+          "fps": 12.0,
+          "loop": true,
+          "motion_mode": "in_place",
+          "beats": 1
+        }
+      ]
+    },
+    "delia": {
+      "actor_id": "delia",
+      "display_name": "Delia",
+      "sheet_path": "res://NO_SAND_BEACH/assets/characters/delia/delia_sheet.png",
+      "frame_size": [
+        512,
+        768
+      ],
+      "columns": 8,
+      "rows": 10,
+      "sheet_size": [
+        4096,
+        7680
+      ],
+      "clips": [
+        {
+          "clip": "change_clothes",
+          "row": 0,
+          "frames": 4,
+          "fps": 12.0,
+          "loop": false,
+          "motion_mode": "none",
+          "beats": 1
+        },
+        {
+          "clip": "hand_on_hand",
+          "row": 1,
+          "frames": 4,
+          "fps": 12.0,
+          "loop": false,
+          "motion_mode": "none",
+          "beats": 1
+        },
+        {
+          "clip": "kiss_forehead",
+          "row": 2,
+          "frames": 4,
+          "fps": 12.0,
+          "loop": false,
+          "motion_mode": "none",
+          "beats": 1
+        },
+        {
+          "clip": "look_out",
+          "row": 3,
+          "frames": 6,
+          "fps": 12.0,
+          "loop": true,
+          "motion_mode": "in_place",
+          "beats": 1
+        },
+        {
+          "clip": "pour_coffee",
+          "row": 4,
+          "frames": 4,
+          "fps": 12.0,
+          "loop": false,
+          "motion_mode": "none",
+          "beats": 1
+        },
+        {
+          "clip": "sit_idle",
+          "row": 5,
+          "frames": 6,
+          "fps": 12.0,
+          "loop": true,
+          "motion_mode": "in_place",
+          "beats": 1
+        },
+        {
+          "clip": "stand_up",
+          "row": 6,
+          "frames": 4,
+          "fps": 12.0,
+          "loop": false,
+          "motion_mode": "none",
+          "beats": 1
+        },
+        {
+          "clip": "talk",
+          "row": 7,
+          "frames": 6,
+          "fps": 12.0,
+          "loop": true,
+          "motion_mode": "in_place",
+          "beats": 8
+        },
+        {
+          "clip": "walk",
+          "row": 8,
+          "frames": 8,
+          "fps": 12.0,
+          "loop": true,
+          "motion_mode": "planar_root_motion",
+          "beats": 2
+        },
+        {
+          "clip": "watch",
+          "row": 9,
+          "frames": 6,
+          "fps": 12.0,
+          "loop": true,
+          "motion_mode": "in_place",
+          "beats": 1
+        }
+      ]
+    },
+    "earl": {
+      "actor_id": "earl",
+      "display_name": "Earl (memory design, period-styled)",
+      "sheet_path": "res://NO_SAND_BEACH/assets/characters/earl/earl_sheet.png",
+      "frame_size": [
+        512,
+        768
+      ],
+      "columns": 6,
+      "rows": 3,
+      "sheet_size": [
+        3072,
+        2304
+      ],
+      "clips": [
+        {
+          "clip": "hold_child",
+          "row": 0,
+          "frames": 4,
+          "fps": 12.0,
+          "loop": false,
+          "motion_mode": "none",
+          "beats": 1
+        },
+        {
+          "clip": "talk",
+          "row": 1,
+          "frames": 6,
+          "fps": 12.0,
+          "loop": true,
+          "motion_mode": "in_place",
+          "beats": 1
+        },
+        {
+          "clip": "vanish",
+          "row": 2,
+          "frames": 4,
+          "fps": 12.0,
+          "loop": false,
+          "motion_mode": "none",
+          "beats": 1
+        }
+      ]
+    },
+    "earl_glitch": {
+      "actor_id": "earl_glitch",
+      "display_name": "Earl (glitch design -- CA-choppy thread mask)",
+      "sheet_path": "res://NO_SAND_BEACH/assets/characters/earl_glitch/earl_glitch_sheet.png",
+      "frame_size": [
+        512,
+        768
+      ],
+      "columns": 6,
+      "rows": 2,
+      "sheet_size": [
+        3072,
+        1536
+      ],
+      "clips": [
+        {
+          "clip": "glitch_in",
+          "row": 0,
+          "frames": 4,
+          "fps": 12.0,
+          "loop": false,
+          "motion_mode": "none",
+          "beats": 1
+        },
+        {
+          "clip": "talk",
+          "row": 1,
+          "frames": 6,
+          "fps": 12.0,
+          "loop": true,
+          "motion_mode": "in_place",
+          "beats": 2
+        }
+      ]
+    },
+    "interviewer": {
+      "actor_id": "interviewer",
+      "display_name": "Interviewer (generic, modular across the montage)",
+      "sheet_path": "res://NO_SAND_BEACH/assets/characters/interviewer/interviewer_sheet.png",
+      "frame_size": [
+        512,
+        768
+      ],
+      "columns": 6,
+      "rows": 1,
+      "sheet_size": [
+        3072,
+        768
+      ],
+      "clips": [
+        {
+          "clip": "talk",
+          "row": 0,
+          "frames": 6,
+          "fps": 12.0,
+          "loop": true,
+          "motion_mode": "in_place",
+          "beats": 2
+        }
+      ]
+    },
+    "judge": {
+      "actor_id": "judge",
+      "display_name": "Judge (generic; shares Seq 5's design)",
+      "sheet_path": "res://NO_SAND_BEACH/assets/characters/judge/judge_sheet.png",
+      "frame_size": [
+        512,
+        768
+      ],
+      "columns": 6,
+      "rows": 3,
+      "sheet_size": [
+        3072,
+        2304
+      ],
+      "clips": [
+        {
+          "clip": "gavel",
+          "row": 0,
+          "frames": 4,
+          "fps": 12.0,
+          "loop": false,
+          "motion_mode": "none",
+          "beats": 2
+        },
+        {
+          "clip": "preside",
+          "row": 1,
+          "frames": 6,
+          "fps": 12.0,
+          "loop": true,
+          "motion_mode": "in_place",
+          "beats": 1
+        },
+        {
+          "clip": "talk",
+          "row": 2,
+          "frames": 6,
+          "fps": 12.0,
+          "loop": true,
+          "motion_mode": "in_place",
+          "beats": 2
+        }
+      ]
+    },
+    "marcus": {
+      "actor_id": "marcus",
+      "display_name": "Marcus",
+      "sheet_path": "res://NO_SAND_BEACH/assets/characters/marcus/marcus_sheet.png",
+      "frame_size": [
+        512,
+        768
+      ],
+      "columns": 8,
+      "rows": 7,
+      "sheet_size": [
+        4096,
+        5376
+      ],
+      "clips": [
+        {
+          "clip": "embrace",
+          "row": 0,
+          "frames": 4,
+          "fps": 12.0,
+          "loop": false,
+          "motion_mode": "none",
+          "beats": 1
+        },
+        {
+          "clip": "look_out",
+          "row": 1,
+          "frames": 6,
+          "fps": 12.0,
+          "loop": true,
+          "motion_mode": "in_place",
+          "beats": 1
+        },
+        {
+          "clip": "set_down",
+          "row": 2,
+          "frames": 4,
+          "fps": 12.0,
+          "loop": false,
+          "motion_mode": "none",
+          "beats": 1
+        },
+        {
+          "clip": "sit_idle",
+          "row": 3,
+          "frames": 6,
+          "fps": 12.0,
+          "loop": true,
+          "motion_mode": "in_place",
+          "beats": 1
+        },
+        {
+          "clip": "stand_up",
+          "row": 4,
+          "frames": 4,
+          "fps": 12.0,
+          "loop": false,
+          "motion_mode": "none",
+          "beats": 1
+        },
+        {
+          "clip": "talk",
+          "row": 5,
+          "frames": 6,
+          "fps": 12.0,
+          "loop": true,
+          "motion_mode": "in_place",
+          "beats": 9
+        },
+        {
+          "clip": "walk",
+          "row": 6,
+          "frames": 8,
+          "fps": 12.0,
+          "loop": true,
+          "motion_mode": "planar_root_motion",
+          "beats": 4
+        }
+      ]
+    },
+    "officer": {
+      "actor_id": "officer",
+      "display_name": "Arresting Officer (generic extra)",
+      "sheet_path": "res://NO_SAND_BEACH/assets/characters/officer/officer_sheet.png",
+      "frame_size": [
+        512,
+        768
+      ],
+      "columns": 6,
+      "rows": 1,
+      "sheet_size": [
+        3072,
+        768
+      ],
+      "clips": [
+        {
+          "clip": "talk",
+          "row": 0,
+          "frames": 6,
+          "fps": 12.0,
+          "loop": true,
+          "motion_mode": "in_place",
+          "beats": 2
+        }
+      ]
+    },
+    "pure": {
+      "actor_id": "pure",
+      "display_name": "Pure (age 15 design)",
+      "sheet_path": "res://NO_SAND_BEACH/assets/characters/pure/pure_sheet.png",
+      "frame_size": [
+        512,
+        768
+      ],
+      "columns": 8,
+      "rows": 24,
+      "sheet_size": [
+        4096,
+        18432
+      ],
+      "clips": [
+        {
+          "clip": "close_laptop",
+          "row": 0,
+          "frames": 4,
+          "fps": 12.0,
+          "loop": false,
+          "motion_mode": "none",
+          "beats": 3
+        },
+        {
+          "clip": "collapse",
+          "row": 1,
+          "frames": 4,
+          "fps": 12.0,
+          "loop": false,
+          "motion_mode": "none",
+          "beats": 1
+        },
+        {
+          "clip": "cuffed",
+          "row": 2,
+          "frames": 4,
+          "fps": 12.0,
+          "loop": false,
+          "motion_mode": "none",
+          "beats": 1
+        },
+        {
+          "clip": "deflate",
+          "row": 3,
+          "frames": 4,
+          "fps": 12.0,
+          "loop": false,
+          "motion_mode": "none",
+          "beats": 1
+        },
+        {
+          "clip": "eat",
+          "row": 4,
+          "frames": 6,
+          "fps": 12.0,
+          "loop": true,
+          "motion_mode": "in_place",
+          "beats": 1
+        },
+        {
+          "clip": "kneel",
+          "row": 5,
+          "frames": 4,
+          "fps": 12.0,
+          "loop": false,
+          "motion_mode": "none",
+          "beats": 1
+        },
+        {
+          "clip": "lie_idle",
+          "row": 6,
+          "frames": 6,
+          "fps": 12.0,
+          "loop": true,
+          "motion_mode": "in_place",
+          "beats": 1
+        },
+        {
+          "clip": "listen",
+          "row": 7,
+          "frames": 6,
+          "fps": 12.0,
+          "loop": true,
+          "motion_mode": "in_place",
+          "beats": 1
+        },
+        {
+          "clip": "look_out",
+          "row": 8,
+          "frames": 6,
+          "fps": 12.0,
+          "loop": true,
+          "motion_mode": "in_place",
+          "beats": 2
+        },
+        {
+          "clip": "read",
+          "row": 9,
+          "frames": 6,
+          "fps": 12.0,
+          "loop": true,
+          "motion_mode": "in_place",
+          "beats": 1
+        },
+        {
+          "clip": "recoil",
+          "row": 10,
+          "frames": 4,
+          "fps": 12.0,
+          "loop": false,
+          "motion_mode": "none",
+          "beats": 1
+        },
+        {
+          "clip": "sit_idle",
+          "row": 11,
+          "frames": 6,
+          "fps": 12.0,
+          "loop": true,
+          "motion_mode": "in_place",
+          "beats": 6
+        },
+        {
+          "clip": "sit_up",
+          "row": 12,
+          "frames": 4,
+          "fps": 12.0,
+          "loop": false,
+          "motion_mode": "none",
+          "beats": 1
+        },
+        {
+          "clip": "sleep",
+          "row": 13,
+          "frames": 6,
+          "fps": 12.0,
+          "loop": true,
+          "motion_mode": "in_place",
+          "beats": 1
+        },
+        {
+          "clip": "smile",
+          "row": 14,
+          "frames": 4,
+          "fps": 12.0,
+          "loop": false,
+          "motion_mode": "none",
+          "beats": 1
+        },
+        {
+          "clip": "stand_idle",
+          "row": 15,
+          "frames": 6,
+          "fps": 12.0,
+          "loop": true,
+          "motion_mode": "in_place",
+          "beats": 2
+        },
+        {
+          "clip": "stand_up",
+          "row": 16,
+          "frames": 4,
+          "fps": 12.0,
+          "loop": false,
+          "motion_mode": "none",
+          "beats": 2
+        },
+        {
+          "clip": "talk",
+          "row": 17,
+          "frames": 6,
+          "fps": 12.0,
+          "loop": true,
+          "motion_mode": "in_place",
+          "beats": 14
+        },
+        {
+          "clip": "teach",
+          "row": 18,
+          "frames": 8,
+          "fps": 12.0,
+          "loop": true,
+          "motion_mode": "planar_root_motion",
+          "beats": 1
+        },
+        {
+          "clip": "touch_sand",
+          "row": 19,
+          "frames": 4,
+          "fps": 12.0,
+          "loop": false,
+          "motion_mode": "none",
+          "beats": 1
+        },
+        {
+          "clip": "turn_to_look",
+          "row": 20,
+          "frames": 4,
+          "fps": 12.0,
+          "loop": false,
+          "motion_mode": "none",
+          "beats": 1
+        },
+        {
+          "clip": "type",
+          "row": 21,
+          "frames": 6,
+          "fps": 12.0,
+          "loop": true,
+          "motion_mode": "in_place",
+          "beats": 3
+        },
+        {
+          "clip": "wake",
+          "row": 22,
+          "frames": 4,
+          "fps": 12.0,
+          "loop": false,
+          "motion_mode": "none",
+          "beats": 1
+        },
+        {
+          "clip": "walk",
+          "row": 23,
+          "frames": 8,
+          "fps": 12.0,
+          "loop": true,
+          "motion_mode": "planar_root_motion",
+          "beats": 5
+        }
+      ]
+    },
+    "pure_child": {
+      "actor_id": "pure_child",
+      "display_name": "Pure (age 7 design, flashback only)",
+      "sheet_path": "res://NO_SAND_BEACH/assets/characters/pure_child/pure_child_sheet.png",
+      "frame_size": [
+        512,
+        768
+      ],
+      "columns": 4,
+      "rows": 1,
+      "sheet_size": [
+        2048,
+        768
+      ],
+      "clips": [
+        {
+          "clip": "held",
+          "row": 0,
+          "frames": 4,
+          "fps": 12.0,
+          "loop": false,
+          "motion_mode": "none",
+          "beats": 1
+        }
+      ]
+    },
+    "pure_teen": {
+      "actor_id": "pure_teen",
+      "display_name": "Pure (age 15 design, arrest beat only)",
+      "sheet_path": "res://NO_SAND_BEACH/assets/characters/pure_teen/pure_teen_sheet.png",
+      "frame_size": [
+        512,
+        768
+      ],
+      "columns": 4,
+      "rows": 1,
+      "sheet_size": [
+        2048,
+        768
+      ],
+      "clips": [
+        {
+          "clip": "cuffed",
+          "row": 0,
+          "frames": 4,
+          "fps": 12.0,
+          "loop": false,
+          "motion_mode": "none",
+          "beats": 1
+        }
+      ]
+    },
+    "student_kid": {
+      "actor_id": "student_kid",
+      "display_name": "Student (generic extra)",
+      "sheet_path": "res://NO_SAND_BEACH/assets/characters/student_kid/student_kid_sheet.png",
+      "frame_size": [
+        512,
+        768
+      ],
+      "columns": 6,
+      "rows": 1,
+      "sheet_size": [
+        3072,
+        768
+      ],
+      "clips": [
+        {
+          "clip": "talk",
+          "row": 0,
+          "frames": 6,
+          "fps": 12.0,
+          "loop": true,
+          "motion_mode": "in_place",
+          "beats": 1
+        }
+      ]
+    }
+  },
+  "totals": {
+    "characters": 13,
+    "clips": 56,
+    "frames": 292
+  }
+}
