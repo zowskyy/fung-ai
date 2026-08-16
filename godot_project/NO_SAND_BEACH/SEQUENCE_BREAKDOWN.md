@@ -55,42 +55,59 @@ NO SAND BEACH takes visual and tonal direction from *Menace II Society* (1993). 
 
 ---
 
-## Sequence 4: The Collapse — beats not yet authored
+## Sequence 4: The Collapse ✅ Beats authored (8 beats, 1:46)
 
-- **Story beats:** Pure collapses. Hospital scene — Delia's speech ("I saved your body. I didn't save your heart."). Marcus arrives, they reconcile after 20 years of tension. Pure goes home, deletes the app, memories return.
-- **Likely locations:** Hospital room, home (app deletion)
-- **Characters:** Pure (age 27 design), Delia (age-locked generic design — no visible-aging pass, per user decision), Marcus (age-locked generic design — same)
-- **Animation states (anticipated):** Pure — collapsing, lying in hospital bed, listening, deleting app (relief); Delia — holding hand, speaking (raw/vulnerable, different register than Seq 1's tired-tender); Marcus — entering hospital, embracing (first hug in 20 years)
-- **Key emotional beat:** the Marcus/Pure hug — likely the sequence's visual and emotional centerpiece, deserves its own beat with a held camera composition
-
----
-
-## Sequence 5: The Courtroom — beats not yet authored
-
-- **Story beats:** Pure petitions for honest expungement. Judge denies him. Pure's response line: "The law doesn't respect me. But I'm not going to let that break me."
-- **Likely locations:** Courtroom (interior)
-- **Characters:** Pure (age 27 design), Judge (new minor character — not previously designed), possibly Delia/Marcus in gallery for support
-- **Animation states (anticipated):** Pure — standing, speaking (resolve, not defeat), listening to denial; Judge — presiding, delivering ruling
-- **New asset needed:** Judge character design (not covered by existing roster)
+- **Locations:** Home workspace (night — same desk as Sequence 3 close, deliberate callback), hospital room
+- **Characters:** Pure (age 27, contemporary), Delia (age-locked generic), Marcus (age-locked generic)
+- **Animation states:**
+  - Pure: sliding from chair (collapse), lying in hospital bed, turning to look, sitting up, seated at desk (deletion), sitting back (returning memories)
+  - Delia: seated hospital-side, hand-over-hand, speaking directly (Beat 4.03 — the film's most important speech), watching background (during Marcus/Pure exchange)
+  - Marcus: entering, standing at foot of bed, crossing, bending to embrace
+- **Key beats:**
+  - Beat 4.03 (Delia's speech): filmed as held close, no cuts — "I saved your body. I didn't save your heart."
+  - Beat 4.05 (the hug): first in twenty years; static, held; the film's emotional centerpiece
+  - Beat 4.08 (the return): memories come back as audio-only — three sound fragments (Delia's laugh, Marcus's voice, Earl's warm pre-glitch voice) — no illustrated images; mirrors the unillustrated memory-loss beats of Sequence 3
+- Full detail: `scenes/sequence_04_the_collapse_breakdown.md`
 
 ---
 
-## Sequence 6: The Sand — beats not yet authored
+## Sequence 5: The Courtroom ✅ Beats authored (5 beats, 1:03)
 
-- **Story beats:** Pure brings his family to Huntington Beach, kneels and touches sand for the first time. Starts a free coding class for kids; one kid asks how he made it; Pure's answer ("I didn't make it. I came back.")
-- **Likely locations:** Huntington Beach (sand/ocean, first time this location appears in the film), coding classroom
-- **Characters:** Pure (age 27 design), Delia, Marcus, one or more student-kid extras
-- **Animation states (anticipated):** Pure — kneeling, touching sand (the film's title payoff — deserves careful, unhurried animation), teaching, smiling
-- **Note:** this is the visual and thematic payoff of the whole film's title; treat as a priority sequence for polish even if shorter than Sequence 1
+- **Locations:** Courtroom interior (contemporary; recommend same environment as Seq 2's courtroom for "same system, twice" visual echo; same judge design also recommended)
+- **Characters:** Pure (age 27, most formal wardrobe — dressed for the petition), Judge (generic minor-character; recommended shared design with Seq 2's judge), Delia and Marcus in gallery (background, no dialogue)
+- **Animation states:**
+  - Pure: seated (petitioner's table), standing (speaking, receiving denial, giving response), walking to exit
+  - Judge: presiding, speaking, gavel
+  - Delia and Marcus: seated (gallery), rising, walking out
+- **Key beats:**
+  - Beat 5.02: camera stays on Pure during his petition speech — does not cut to Judge
+  - Beat 5.04 (Pure's response): held close, mirrors Delia's held close in Beat 4.03 — "The law doesn't respect me. But I'm not going to let that break me."
+  - Beat 5.05: three of them walking out together — family unit, first time since hospital
+- Full detail: `scenes/sequence_05_the_courtroom_breakdown.md`
 
 ---
 
-## Sequence 7: The Lesson — beats not yet authored
+## Sequence 6: The Sand ✅ Beats authored (8 beats, 1:41) — incorporates Sequence 7
 
-- **Story beats:** Closing narration over final imagery — the "love isn't a subscription, it's the sand under your feet" thematic statement. Largely voice-over/narration rather than staged action.
-- **Likely locations:** Could reuse Sequence 6's beach imagery, or be a montage of prior locations
-- **Characters:** Narration only (adult Pure V.O., matching the narrator voice already used in Sequence 1)
-- **Open question (carried from `production_metadata.json`):** should this be a standalone sequence, or folded into Sequence 6 as a closing beat? Given it's narration over imagery rather than new staged action, folding it into Sequence 6 would avoid building a near-empty seventh ScenePlan. Recommend deciding this when Sequence 6's beats are authored.
+- **Locations:** Huntington Beach exterior (user-sourced OC-specific environment), small community coding classroom (generic interior from Claude-generated environment set)
+- **Characters:** Pure (age 27, most casual wardrobe), Delia, Marcus, student-kid extras (generic/simple, no individual design)
+- **Animation states:**
+  - Pure: walking (beach arrival), kneeling (the title-payoff gesture), hand touching sand, standing (beach family image), teaching/circling (classroom), smiling (genuine, first unguarded smile in the film)
+  - Delia and Marcus: walking (beach), standing together (beach), classroom background
+  - Student kid extra: seated at computer, looking up, speaking one line
+- **Key beats:**
+  - Beat 6.02 (the kneeling): the film's most important single physical action; slow push, close on hand in sand, held face close-up; CA dissolve pipeline may need focus-center on hand rather than face for the sand close-up
+  - Beat 6.03: the family together at the ocean — static, silent, held
+  - Beat 6.06 (Pure's answer): "I didn't make it. I came back." — the film's thesis line, said simply
+  - Beats 6.07–6.08 (closing narration / The Lesson, folded): pull-back over beach imagery, V.O. narration, slow fade to black
+- Full detail: `scenes/sequence_06_the_sand_breakdown.md`
+
+---
+
+## Sequence 7: The Lesson — **FOLDED into Sequence 6**
+
+- **Status:** Decision made during Sequence 6 breakdown. The Lesson's closing narration is represented by Beats 6.07–6.08 of Sequence 6 — narration-over-imagery with no new staged action. No separate ScenePlan resource needed.
+- See `sequences_06_the_sand_breakdown.md`, Scene 6C and Beat summary for the full narration text and camera treatment.
 
 ---
 
@@ -102,4 +119,4 @@ NO SAND BEACH takes visual and tonal direction from *Menace II Society* (1993). 
 4. ~~**New characters not in the original roster**~~ — **Resolved:** classmates (Seq 1), Judge (Seq 5), and student-kids (Seq 6) all stay simple/generic — no individual design reference needed, no age-variant or period-styling treatment. Lightweight, single-sequence-only designs.
 5. ~~**Earl's "glitch" treatment (Seq 3)**~~ — **Resolved:** a fully separate glitch-state design (not a shared sprite with a VFX overlay), built as a black-and-white CA-choppy thread mask — same underlying CA engine as the main render style, tuned to a chaotic rule instead of smooth dissolution. Full spec: `RENDER_STYLE.md`.
 
-Sequences 2–7 need their own beat-by-beat breakdowns (in the style of Sequence 1) authored before they can become `ScenePlan` resources. That authoring work is not yet scheduled — it's the next planning step after Phase A wraps.
+All sequences (1–6, with 7 folded into 6) now have beat-by-beat breakdowns authored. The next planning step is Phase C: converting each breakdown into `.tres` ScenePlan resources using the Scene Animator plugin format, and creating CharacterAnimationProfile resources for each principal character design. See `production_metadata.json` for current sequence status and estimated durations.
