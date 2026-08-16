@@ -1,0 +1,423 @@
+[gd_resource type="Resource" script_class="ScenePlan" load_steps=53 format=3]
+
+[ext_resource type="Script" path="res://addons/scene_animator/data/scene_plan.gd" id="1_plan"]
+[ext_resource type="Script" path="res://addons/scene_animator/data/scene_actor_binding.gd" id="2_actor"]
+[ext_resource type="Script" path="res://addons/scene_animator/data/beats/camera_beat.gd" id="3_camera"]
+[ext_resource type="Script" path="res://addons/scene_animator/data/beats/action_beat.gd" id="4_action"]
+[ext_resource type="Script" path="res://addons/scene_animator/data/beats/wait_beat.gd" id="5_wait"]
+[ext_resource type="Script" path="res://addons/scene_animator/data/beats/dialogue_beat.gd" id="6_dialogue"]
+[ext_resource type="Script" path="res://addons/scene_animator/data/beats/move_to_beat.gd" id="7_move_to"]
+[ext_resource type="Script" path="res://addons/scene_animator/data/beats/end_beat.gd" id="8_end"]
+
+[sub_resource type="Resource" id="Resource_actor_pure"]
+script = ExtResource("2_actor")
+actor_id = &"pure"
+display_name = "Pure (27, contemporary)"
+required = true
+actor_tags = Array[StringName](["protagonist", "human"])
+
+[sub_resource type="Resource" id="Resource_actor_delia"]
+script = ExtResource("2_actor")
+actor_id = &"delia"
+display_name = "Delia"
+required = true
+actor_tags = Array[StringName](["family", "human"])
+
+[sub_resource type="Resource" id="Resource_actor_marcus"]
+script = ExtResource("2_actor")
+actor_id = &"marcus"
+display_name = "Marcus"
+required = true
+actor_tags = Array[StringName](["family", "human"])
+
+[sub_resource type="Resource" id="Resource_actor_narrator"]
+script = ExtResource("2_actor")
+actor_id = &"narrator"
+display_name = "Adult Pure (V.O.)"
+required = false
+actor_tags = Array[StringName](["voiceover"])
+
+[sub_resource type="Resource" id="Resource_beat_s04_01_cam"]
+script = ExtResource("3_camera")
+beat_id = &"s04_01_cam"
+display_name = "4.01 Desk, medium static"
+next_beat_id = &"s04_01_collapse"
+note = "Static medium on desk/screen. Pure slides out of frame; hold on the empty chair."
+camera_mode_id = &"medium_static"
+blend_seconds = 0.0
+
+[sub_resource type="Resource" id="Resource_beat_s04_01_collapse"]
+script = ExtResource("4_action")
+beat_id = &"s04_01_collapse"
+display_name = "4.01 The body gives out"
+next_beat_id = &"s04_01_hold"
+note = "Quiet, not dramatic. No crash -- the body just stops cooperating."
+actor_id = &"pure"
+action_id = &"collapse"
+wait_for_completion = true
+timeout_seconds = 6.0
+
+[sub_resource type="Resource" id="Resource_beat_s04_01_hold"]
+script = ExtResource("5_wait")
+beat_id = &"s04_01_hold"
+display_name = "4.01 Hold empty chair"
+next_beat_id = &"s04_02_cam"
+note = "Hold longer than comfortable. The glowing screen over the empty chair IS the image."
+duration_seconds = 4.0
+
+[sub_resource type="Resource" id="Resource_beat_s04_02_cam"]
+script = ExtResource("3_camera")
+beat_id = &"s04_02_cam"
+display_name = "4.02 Hospital wide"
+next_beat_id = &"s04_02_lie"
+note = "Wide, sparse hospital room. Cut, not dissolve -- the ellipsis is deliberate."
+camera_mode_id = &"wide_static"
+blend_seconds = 0.0
+
+[sub_resource type="Resource" id="Resource_beat_s04_02_lie"]
+script = ExtResource("4_action")
+beat_id = &"s04_02_lie"
+display_name = "4.02 Pure lies still"
+next_beat_id = &"s04_02_hand"
+actor_id = &"pure"
+action_id = &"lie_still"
+wait_for_completion = false
+
+[sub_resource type="Resource" id="Resource_beat_s04_02_hand"]
+script = ExtResource("4_action")
+beat_id = &"s04_02_hand"
+display_name = "4.02 Delia's hand over his"
+next_beat_id = &"s04_02_push"
+note = "Resting, not clutching. The hands are this scene's visual anchor."
+actor_id = &"delia"
+action_id = &"hand_on_hand"
+wait_for_completion = true
+timeout_seconds = 4.0
+
+[sub_resource type="Resource" id="Resource_beat_s04_02_push"]
+script = ExtResource("3_camera")
+beat_id = &"s04_02_push"
+display_name = "4.02 Push to the hands"
+next_beat_id = &"s04_02_hold"
+note = "Slow push to the two hands. Opens in silence -- no dialogue in this beat."
+camera_mode_id = &"slow_push"
+blend_seconds = 3.0
+
+[sub_resource type="Resource" id="Resource_beat_s04_02_hold"]
+script = ExtResource("5_wait")
+beat_id = &"s04_02_hold"
+display_name = "4.02 Hold on hands"
+next_beat_id = &"s04_03_cam"
+duration_seconds = 3.0
+
+[sub_resource type="Resource" id="Resource_beat_s04_03_cam"]
+script = ExtResource("3_camera")
+beat_id = &"s04_03_cam"
+display_name = "4.03 Close on Delia, HELD"
+next_beat_id = &"s04_03_line1"
+note = "NON-NEGOTIABLE: no cuts during the speech. Camera stays on Delia until the last line."
+camera_mode_id = &"close_hold"
+blend_seconds = 0.0
+
+[sub_resource type="Resource" id="Resource_beat_s04_03_line1"]
+script = ExtResource("6_dialogue")
+beat_id = &"s04_03_line1"
+display_name = "4.03 'I worked three jobs...'"
+next_beat_id = &"s04_03_pause1"
+note = "\"I worked three jobs because I didn't want you to think you had to be rich to be loved.\""
+dialogue_id = &"nsb_s04_delia_01"
+speaker_actor_id = &"delia"
+target_actor_id = &"pure"
+timeout_seconds = 12.0
+
+[sub_resource type="Resource" id="Resource_beat_s04_03_pause1"]
+script = ExtResource("5_wait")
+beat_id = &"s04_03_pause1"
+display_name = "4.03 Pause -- she finds it"
+next_beat_id = &"s04_03_line2"
+note = "The silences between her sentences are as important as the sentences."
+duration_seconds = 1.5
+
+[sub_resource type="Resource" id="Resource_beat_s04_03_line2"]
+script = ExtResource("6_dialogue")
+beat_id = &"s04_03_line2"
+display_name = "4.03 'But I made you think...'"
+next_beat_id = &"s04_03_turn"
+note = "\"But I made you think you had to be perfect to be worthy. That's on me.\""
+dialogue_id = &"nsb_s04_delia_02"
+speaker_actor_id = &"delia"
+target_actor_id = &"pure"
+timeout_seconds = 12.0
+
+[sub_resource type="Resource" id="Resource_beat_s04_03_turn"]
+script = ExtResource("4_action")
+beat_id = &"s04_03_turn"
+display_name = "4.03 Pure turns to look"
+next_beat_id = &"s04_03_cam_pure"
+note = "First time he looks at her in this scene. She doesn't flinch."
+actor_id = &"pure"
+action_id = &"turn_to_look"
+wait_for_completion = true
+timeout_seconds = 3.0
+
+[sub_resource type="Resource" id="Resource_beat_s04_03_cam_pure"]
+script = ExtResource("3_camera")
+beat_id = &"s04_03_cam_pure"
+display_name = "4.03 Find Pure -- ONLY now"
+next_beat_id = &"s04_03_line3"
+note = "The one permitted move: find Pure's face for the last line, and only the last line."
+camera_mode_id = &"close_hold"
+blend_seconds = 0.5
+
+[sub_resource type="Resource" id="Resource_beat_s04_03_line3"]
+script = ExtResource("6_dialogue")
+beat_id = &"s04_03_line3"
+display_name = "4.03 'I saved your body...'"
+next_beat_id = &"s04_04_enter"
+note = "\"I saved your body. I didn't save your heart. That's on you.\" -- the film's most important line."
+dialogue_id = &"nsb_s04_delia_03"
+speaker_actor_id = &"delia"
+target_actor_id = &"pure"
+timeout_seconds = 12.0
+
+[sub_resource type="Resource" id="Resource_beat_s04_04_enter"]
+script = ExtResource("4_action")
+beat_id = &"s04_04_enter"
+display_name = "4.04 Marcus enters"
+next_beat_id = &"s04_04_cam"
+note = "Stands at the foot of the bed. Not hostile, not easy."
+actor_id = &"marcus"
+action_id = &"enter"
+wait_for_completion = true
+timeout_seconds = 4.0
+
+[sub_resource type="Resource" id="Resource_beat_s04_04_cam"]
+script = ExtResource("3_camera")
+beat_id = &"s04_04_cam"
+display_name = "4.04 Brothers in one frame"
+next_beat_id = &"s04_04_line1"
+note = "First shared shot in the film. Equal weight -- neither looms, though Marcus stands and Pure is in bed."
+camera_mode_id = &"two_shot"
+blend_seconds = 0.5
+
+[sub_resource type="Resource" id="Resource_beat_s04_04_line1"]
+script = ExtResource("6_dialogue")
+beat_id = &"s04_04_line1"
+display_name = "4.04 'I did everything right.'"
+next_beat_id = &"s04_04_line2"
+note = "\"...I'm still fighting just to stay above water. And she's here.\""
+dialogue_id = &"nsb_s04_marcus_01"
+speaker_actor_id = &"marcus"
+target_actor_id = &"pure"
+timeout_seconds = 10.0
+
+[sub_resource type="Resource" id="Resource_beat_s04_04_line2"]
+script = ExtResource("6_dialogue")
+beat_id = &"s04_04_line2"
+display_name = "4.04 'I know.'"
+next_beat_id = &"s04_04_line3"
+dialogue_id = &"nsb_s04_pure_01"
+speaker_actor_id = &"pure"
+target_actor_id = &"marcus"
+timeout_seconds = 5.0
+
+[sub_resource type="Resource" id="Resource_beat_s04_04_line3"]
+script = ExtResource("6_dialogue")
+beat_id = &"s04_04_line3"
+display_name = "4.04 'You don't.'"
+next_beat_id = &"s04_04_line4"
+dialogue_id = &"nsb_s04_marcus_02"
+speaker_actor_id = &"marcus"
+target_actor_id = &"pure"
+timeout_seconds = 5.0
+
+[sub_resource type="Resource" id="Resource_beat_s04_04_line4"]
+script = ExtResource("6_dialogue")
+beat_id = &"s04_04_line4"
+display_name = "4.04 'I know I'm the reason...'"
+next_beat_id = &"s04_04_beat"
+note = "\"I know I'm the reason you think love is something you have to earn.\""
+dialogue_id = &"nsb_s04_pure_02"
+speaker_actor_id = &"pure"
+target_actor_id = &"marcus"
+timeout_seconds = 8.0
+
+[sub_resource type="Resource" id="Resource_beat_s04_04_beat"]
+script = ExtResource("5_wait")
+beat_id = &"s04_04_beat"
+display_name = "4.04 Beat before '...yeah'"
+next_beat_id = &"s04_04_line5"
+duration_seconds = 1.5
+
+[sub_resource type="Resource" id="Resource_beat_s04_04_line5"]
+script = ExtResource("6_dialogue")
+beat_id = &"s04_04_line5"
+display_name = "4.04 '...yeah.'"
+next_beat_id = &"s04_05_cam"
+dialogue_id = &"nsb_s04_marcus_03"
+speaker_actor_id = &"marcus"
+target_actor_id = &"pure"
+timeout_seconds = 5.0
+
+[sub_resource type="Resource" id="Resource_beat_s04_05_cam"]
+script = ExtResource("3_camera")
+beat_id = &"s04_05_cam"
+display_name = "4.05 The hug -- static medium"
+next_beat_id = &"s04_05_sit_up"
+note = "NON-NEGOTIABLE: camera does NOT move. No crane, no circle-pan. Stillness and weight."
+camera_mode_id = &"medium_static"
+blend_seconds = 0.0
+
+[sub_resource type="Resource" id="Resource_beat_s04_05_sit_up"]
+script = ExtResource("4_action")
+beat_id = &"s04_05_sit_up"
+display_name = "4.05 Pure sits up"
+next_beat_id = &"s04_05_cross"
+actor_id = &"pure"
+action_id = &"sit_up"
+wait_for_completion = true
+timeout_seconds = 3.0
+
+[sub_resource type="Resource" id="Resource_beat_s04_05_cross"]
+script = ExtResource("7_move_to")
+beat_id = &"s04_05_cross"
+display_name = "4.05 Marcus crosses to the bed"
+next_beat_id = &"s04_05_watch"
+actor_id = &"marcus"
+arrival_radius = 0.4
+locomotion_mode = "walk"
+timeout_seconds = 5.0
+
+[sub_resource type="Resource" id="Resource_beat_s04_05_watch"]
+script = ExtResource("4_action")
+beat_id = &"s04_05_watch"
+display_name = "4.05 Delia watches"
+next_beat_id = &"s04_05_embrace"
+note = "Background. One expression carrying twenty years of waiting for this."
+actor_id = &"delia"
+action_id = &"watch"
+wait_for_completion = false
+
+[sub_resource type="Resource" id="Resource_beat_s04_05_embrace"]
+script = ExtResource("4_action")
+beat_id = &"s04_05_embrace"
+display_name = "4.05 THE HUG"
+next_beat_id = &"s04_05_hold"
+note = "Not graceful -- Marcus has to bend awkwardly over a hospital bed. That's why it reads as real."
+actor_id = &"marcus"
+action_id = &"embrace"
+wait_for_completion = true
+timeout_seconds = 8.0
+
+[sub_resource type="Resource" id="Resource_beat_s04_05_hold"]
+script = ExtResource("5_wait")
+beat_id = &"s04_05_hold"
+display_name = "4.05 Let it sit"
+next_beat_id = &"s04_06_cam"
+note = "Don't cut. Silence is the sound design here."
+duration_seconds = 6.0
+
+[sub_resource type="Resource" id="Resource_beat_s04_06_cam"]
+script = ExtResource("3_camera")
+beat_id = &"s04_06_cam"
+display_name = "4.06 Home, wide resting"
+next_beat_id = &"s04_06_sit"
+note = "Daylight now -- deliberate contrast with 4.01's night. Closed laptop visible on the desk."
+camera_mode_id = &"wide_static"
+blend_seconds = 0.0
+
+[sub_resource type="Resource" id="Resource_beat_s04_06_sit"]
+script = ExtResource("4_action")
+beat_id = &"s04_06_sit"
+display_name = "4.06 Pure sitting, thinking"
+next_beat_id = &"s04_06_vo"
+actor_id = &"pure"
+action_id = &"sit_still"
+wait_for_completion = false
+
+[sub_resource type="Resource" id="Resource_beat_s04_06_vo"]
+script = ExtResource("6_dialogue")
+beat_id = &"s04_06_vo"
+display_name = "4.06 V.O. 'Outlines.'"
+next_beat_id = &"s04_07_cam"
+note = "\"The memories I'd lost were already trying to come back. The shape of them. Outlines.\""
+dialogue_id = &"nsb_s04_vo_01"
+speaker_actor_id = &"narrator"
+timeout_seconds = 10.0
+
+[sub_resource type="Resource" id="Resource_beat_s04_07_cam"]
+script = ExtResource("3_camera")
+beat_id = &"s04_07_cam"
+display_name = "4.07 Over-shoulder to screen"
+next_beat_id = &"s04_07_delete"
+camera_mode_id = &"over_shoulder"
+blend_seconds = 0.5
+
+[sub_resource type="Resource" id="Resource_beat_s04_07_delete"]
+script = ExtResource("4_action")
+beat_id = &"s04_07_delete"
+display_name = "4.07 Deletes the app"
+next_beat_id = &"s04_07_insert"
+note = "Matter-of-fact. No swelling score, no dramatic hesitation -- the decision was already made."
+actor_id = &"pure"
+action_id = &"close_laptop"
+wait_for_completion = true
+timeout_seconds = 8.0
+
+[sub_resource type="Resource" id="Resource_beat_s04_07_insert"]
+script = ExtResource("3_camera")
+beat_id = &"s04_07_insert"
+display_name = "4.07 Insert: the empty screen"
+next_beat_id = &"s04_07_hold"
+note = "No visual confirmation the app is 'really' gone. The empty screen is enough."
+camera_mode_id = &"insert"
+blend_seconds = 0.0
+
+[sub_resource type="Resource" id="Resource_beat_s04_07_hold"]
+script = ExtResource("5_wait")
+beat_id = &"s04_07_hold"
+display_name = "4.07 Silence from the laptop"
+next_beat_id = &"s04_08_cam"
+duration_seconds = 3.0
+
+[sub_resource type="Resource" id="Resource_beat_s04_08_cam"]
+script = ExtResource("3_camera")
+beat_id = &"s04_08_cam"
+display_name = "4.08 Close on Pure, HELD"
+next_beat_id = &"s04_08_still"
+note = "Hold until the V.O. ends. His face carries the whole beat -- no cut-away."
+camera_mode_id = &"close_hold"
+blend_seconds = 0.5
+
+[sub_resource type="Resource" id="Resource_beat_s04_08_still"]
+script = ExtResource("5_wait")
+beat_id = &"s04_08_still"
+display_name = "4.08 Long still beat"
+next_beat_id = &"s04_08_vo"
+note = "Then the memory audio fragments enter: Delia's laugh, Marcus's voice, Earl's warm pre-glitch voice. AUDIO ONLY -- no illustrated flashback, mirroring the unillustrated memory-loss beats of Seq 3."
+duration_seconds = 3.0
+
+[sub_resource type="Resource" id="Resource_beat_s04_08_vo"]
+script = ExtResource("6_dialogue")
+beat_id = &"s04_08_vo"
+display_name = "4.08 V.O. 'But they came back.'"
+next_beat_id = &"s04_end"
+note = "\"The code that erased me turned out to be deletable too... Not all at once. But they came back.\""
+dialogue_id = &"nsb_s04_vo_02"
+speaker_actor_id = &"narrator"
+timeout_seconds = 14.0
+
+[sub_resource type="Resource" id="Resource_beat_s04_end"]
+script = ExtResource("8_end")
+beat_id = &"s04_end"
+display_name = "Sequence 4 complete"
+note = "Hands off to Sequence 5: The Courtroom."
+completion_signal = &"scene_finished"
+
+[resource]
+script = ExtResource("1_plan")
+plan_id = &"nsb_seq_04_the_collapse"
+display_name = "Sequence 4: The Collapse"
+description = "Pure collapses; the hospital reconciliation; the app deleted; the memories return as sound. Source breakdown: scenes/sequence_04_the_collapse_breakdown.md (8 film beats, 1:46)."
+actors = Array[Resource]([SubResource("Resource_actor_pure"), SubResource("Resource_actor_delia"), SubResource("Resource_actor_marcus"), SubResource("Resource_actor_narrator")])
+beats = Array[Resource]([SubResource("Resource_beat_s04_01_cam"), SubResource("Resource_beat_s04_01_collapse"), SubResource("Resource_beat_s04_01_hold"), SubResource("Resource_beat_s04_02_cam"), SubResource("Resource_beat_s04_02_lie"), SubResource("Resource_beat_s04_02_hand"), SubResource("Resource_beat_s04_02_push"), SubResource("Resource_beat_s04_02_hold"), SubResource("Resource_beat_s04_03_cam"), SubResource("Resource_beat_s04_03_line1"), SubResource("Resource_beat_s04_03_pause1"), SubResource("Resource_beat_s04_03_line2"), SubResource("Resource_beat_s04_03_turn"), SubResource("Resource_beat_s04_03_cam_pure"), SubResource("Resource_beat_s04_03_line3"), SubResource("Resource_beat_s04_04_enter"), SubResource("Resource_beat_s04_04_cam"), SubResource("Resource_beat_s04_04_line1"), SubResource("Resource_beat_s04_04_line2"), SubResource("Resource_beat_s04_04_line3"), SubResource("Resource_beat_s04_04_line4"), SubResource("Resource_beat_s04_04_beat"), SubResource("Resource_beat_s04_04_line5"), SubResource("Resource_beat_s04_05_cam"), SubResource("Resource_beat_s04_05_sit_up"), SubResource("Resource_beat_s04_05_cross"), SubResource("Resource_beat_s04_05_watch"), SubResource("Resource_beat_s04_05_embrace"), SubResource("Resource_beat_s04_05_hold"), SubResource("Resource_beat_s04_06_cam"), SubResource("Resource_beat_s04_06_sit"), SubResource("Resource_beat_s04_06_vo"), SubResource("Resource_beat_s04_07_cam"), SubResource("Resource_beat_s04_07_delete"), SubResource("Resource_beat_s04_07_insert"), SubResource("Resource_beat_s04_07_hold"), SubResource("Resource_beat_s04_08_cam"), SubResource("Resource_beat_s04_08_still"), SubResource("Resource_beat_s04_08_vo"), SubResource("Resource_beat_s04_end")])

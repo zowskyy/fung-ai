@@ -1,0 +1,37 @@
+[gd_scene load_steps=6 format=3]
+
+[ext_resource type="Script" path="res://addons/character_animator/runtime/character_animator.gd" id="1_animator"]
+[ext_resource type="Script" path="res://addons/character_animator/runtime/animation_clip.gd" id="2_clip"]
+[ext_resource type="Texture2D" path="res://NO_SAND_BEACH/assets/characters/earl/earl_sheet.png" id="3_sheet"]
+
+[sub_resource type="Resource" id="Resource_clip_hold_child"]
+script = ExtResource("2_clip")
+name = &"hold_child"
+frames = Array[Rect2]([Rect2(0, 0, 512, 768), Rect2(512, 0, 512, 768), Rect2(1024, 0, 512, 768), Rect2(1536, 0, 512, 768)])
+fps = 12.0
+loop = false
+
+[sub_resource type="Resource" id="Resource_clip_talk"]
+script = ExtResource("2_clip")
+name = &"talk"
+frames = Array[Rect2]([Rect2(0, 768, 512, 768), Rect2(512, 768, 512, 768), Rect2(1024, 768, 512, 768), Rect2(1536, 768, 512, 768), Rect2(2048, 768, 512, 768), Rect2(2560, 768, 512, 768)])
+fps = 12.0
+loop = true
+
+[sub_resource type="Resource" id="Resource_clip_vanish"]
+script = ExtResource("2_clip")
+name = &"vanish"
+frames = Array[Rect2]([Rect2(0, 1536, 512, 768), Rect2(512, 1536, 512, 768), Rect2(1024, 1536, 512, 768), Rect2(1536, 1536, 512, 768)])
+fps = 12.0
+loop = false
+
+[node name="Earl" type="Sprite2D"]
+script = ExtResource("1_animator")
+texture = ExtResource("3_sheet")
+clips = {
+&"hold_child": SubResource("Resource_clip_hold_child"),
+&"talk": SubResource("Resource_clip_talk"),
+&"vanish": SubResource("Resource_clip_vanish")
+}
+initial_animation = &"talk"
+auto_play = true

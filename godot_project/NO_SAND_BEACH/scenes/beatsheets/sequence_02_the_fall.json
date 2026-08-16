@@ -1,0 +1,366 @@
+{
+  "plan_id": "nsb_seq_02_the_fall",
+  "display_name": "Sequence 2: The Fall",
+  "description": "Teen arrest; the frame-up at 21; ten years inside; the library computer; release into a wall of closed doors. Source breakdown: scenes/sequence_02_the_fall_breakdown.md (13 film beats, 2:51).",
+
+  "_comment": "M2S period styling runs from s02_01 through s02_10_gate, then pivots to contemporary at the prison gate -- the pivot is a lighting and palette change, not just a wardrobe swap, so it lands on the camera beat s02_10_cam. Pure is the age-15 design for beat 2.01 only, then the age-27 design (prison wardrobe, then contemporary) for the rest.",
+
+  "actors": [
+    {"actor_id": "pure_teen", "display_name": "Pure (age 15 design, arrest beat only)", "actor_tags": ["protagonist", "human"], "required": false},
+    {"actor_id": "pure", "display_name": "Pure (age 27 design)", "actor_tags": ["protagonist", "human"], "required": true},
+    {"actor_id": "officer", "display_name": "Arresting Officer (generic extra)", "actor_tags": ["authority", "human"], "required": false},
+    {"actor_id": "judge", "display_name": "Judge (generic; shares Seq 5's design)", "actor_tags": ["authority", "human"], "required": false},
+    {"actor_id": "interviewer", "display_name": "Interviewer (generic, modular across the montage)", "actor_tags": ["extra", "human"], "required": false},
+    {"actor_id": "narrator", "display_name": "Adult Pure (V.O.)", "actor_tags": ["voiceover"], "required": false}
+  ],
+
+  "beats": [
+    {
+      "type": "camera", "beat_id": "s02_01_cam", "display_name": "2.01 Street corner, night, red/blue strobe",
+      "camera_mode_id": "wide_static", "blend_seconds": 0.0,
+      "note": "Deliberately undramatic. No chase, no fight -- this is already routine to him.",
+      "next_beat_id": "s02_01_cuffed"
+    },
+    {
+      "type": "action", "beat_id": "s02_01_cuffed", "display_name": "2.01 THE FIRST ARREST -- age 15",
+      "actor_id": "pure_teen", "action_id": "cuffed", "wait_for_completion": true, "timeout_seconds": 6.0,
+      "note": "Flat, practiced stillness. He doesn't struggle, doesn't cry. Remember this staging -- beat 2.04 echoes it exactly.",
+      "next_beat_id": "s02_01_push"
+    },
+    {
+      "type": "camera", "beat_id": "s02_01_push", "display_name": "2.01 Push to his face",
+      "camera_mode_id": "slow_push", "blend_seconds": 2.0,
+      "note": "Unreadable, resigned.",
+      "next_beat_id": "s02_01_vo"
+    },
+    {
+      "type": "dialogue", "beat_id": "s02_01_vo", "display_name": "2.01 V.O. 'First time, I was fifteen.'",
+      "dialogue_id": "nsb_s02_vo_01", "speaker_actor_id": "narrator",
+      "timeout_seconds": 8.0,
+      "note": "\"Wasn't the last time. Wasn't even close to the worst time.\"",
+      "next_beat_id": "s02_02_cam"
+    },
+
+    {
+      "type": "camera", "beat_id": "s02_02_cam", "display_name": "2.02 THE PATTERN -- flash montage",
+      "camera_mode_id": "insert", "blend_seconds": 0.0,
+      "note": "Four flash images, each barely a beat: empty courtroom bench, probation waiting room, calendar page, night bus stop. Hard cuts, no movement within each -- deliberately choppy and list-like.",
+      "next_beat_id": "s02_02_vo"
+    },
+    {
+      "type": "dialogue", "beat_id": "s02_02_vo", "display_name": "2.02 V.O. 'My name already meant something.'",
+      "dialogue_id": "nsb_s02_vo_02", "speaker_actor_id": "narrator",
+      "timeout_seconds": 10.0,
+      "note": "\"...By twenty-one, my name already meant something to people who'd never met me.\" Carries continuously across the cuts.",
+      "next_beat_id": "s02_03_cam"
+    },
+
+    {
+      "type": "camera", "beat_id": "s02_03_cam", "display_name": "2.03 Storefront exterior, day",
+      "camera_mode_id": "wide_static", "blend_seconds": 0.5,
+      "note": "Staging must make the wrongness readable without dialogue: Pure is visibly, spatially not the source of the commotion, and it doesn't matter.",
+      "next_beat_id": "s02_03_walk"
+    },
+    {
+      "type": "move_to", "beat_id": "s02_03_walk", "display_name": "2.03 WRONG PLACE -- Pure walking",
+      "actor_id": "pure", "locomotion_mode": "walk", "arrival_radius": 0.5, "timeout_seconds": 6.0,
+      "note": "Unhurried, minding his own path. Commotion breaks out ahead -- not his doing, barely his proximity.",
+      "next_beat_id": "s02_03_line1"
+    },
+    {
+      "type": "dialogue", "beat_id": "s02_03_line1", "display_name": "2.03 'Don't move!'",
+      "dialogue_id": "nsb_s02_officer_01", "speaker_actor_id": "officer", "target_actor_id": "pure",
+      "timeout_seconds": 4.0,
+      "next_beat_id": "s02_03_line2"
+    },
+    {
+      "type": "dialogue", "beat_id": "s02_03_line2", "display_name": "2.03 'I didn't-- I wasn't even--'",
+      "dialogue_id": "nsb_s02_pure_01", "speaker_actor_id": "pure", "target_actor_id": "officer",
+      "timeout_seconds": 5.0,
+      "next_beat_id": "s02_03_line3"
+    },
+    {
+      "type": "dialogue", "beat_id": "s02_03_line3", "display_name": "2.03 'Hands where I can see them.'",
+      "dialogue_id": "nsb_s02_officer_02", "speaker_actor_id": "officer", "target_actor_id": "pure",
+      "timeout_seconds": 4.0,
+      "next_beat_id": "s02_04_cam"
+    },
+
+    {
+      "type": "camera", "beat_id": "s02_04_cam", "display_name": "2.04 Echo 2.01's framing exactly",
+      "camera_mode_id": "wide_static", "blend_seconds": 0.0,
+      "note": "Deliberate visual echo of the teen arrest -- same posture, same wall-lean, same cuff-click. The repetition is the meaning.",
+      "next_beat_id": "s02_04_cuffed"
+    },
+    {
+      "type": "action", "beat_id": "s02_04_cuffed", "display_name": "2.04 THIS ONE STICKS",
+      "actor_id": "pure", "action_id": "cuffed", "wait_for_completion": true, "timeout_seconds": 6.0,
+      "note": "Unlike 2.01's flatness, his face here shows the moment he understands: this is the one that doesn't wash off.",
+      "next_beat_id": "s02_04_break"
+    },
+    {
+      "type": "camera", "beat_id": "s02_04_break", "display_name": "2.04 Break from the echo -- hold his face",
+      "camera_mode_id": "close_hold", "blend_seconds": 0.5,
+      "note": "No rage, no protest theatrics. Just the specific weight of an unjust world closing a door.",
+      "next_beat_id": "s02_04_vo"
+    },
+    {
+      "type": "dialogue", "beat_id": "s02_04_vo", "display_name": "2.04 V.O. 'And I didn't even do it.'",
+      "dialogue_id": "nsb_s02_vo_03", "speaker_actor_id": "narrator",
+      "timeout_seconds": 8.0,
+      "next_beat_id": "s02_05_cam"
+    },
+
+    {
+      "type": "camera", "beat_id": "s02_05_cam", "display_name": "2.05 Courtroom wide, sparse",
+      "camera_mode_id": "wide_static", "blend_seconds": 0.5,
+      "note": "Not a trial drama -- a single decisive image. Same courtroom environment Sequence 5 reuses.",
+      "next_beat_id": "s02_05_line"
+    },
+    {
+      "type": "dialogue", "beat_id": "s02_05_line", "display_name": "2.05 'Ten years.'",
+      "dialogue_id": "nsb_s02_judge_01", "speaker_actor_id": "judge", "target_actor_id": "pure",
+      "timeout_seconds": 4.0,
+      "next_beat_id": "s02_05_gavel"
+    },
+    {
+      "type": "action", "beat_id": "s02_05_gavel", "display_name": "2.05 Gavel",
+      "actor_id": "judge", "action_id": "gavel", "wait_for_completion": true, "timeout_seconds": 2.0,
+      "note": "Sharp, final, then a hard cut to silence.",
+      "next_beat_id": "s02_05_face"
+    },
+    {
+      "type": "camera", "beat_id": "s02_05_face", "display_name": "2.05 Close on Pure, unmoving",
+      "camera_mode_id": "close_hold", "blend_seconds": 0.0,
+      "next_beat_id": "s02_05_vo"
+    },
+    {
+      "type": "dialogue", "beat_id": "s02_05_vo", "display_name": "2.05 V.O. 'For something I never touched.'",
+      "dialogue_id": "nsb_s02_vo_04", "speaker_actor_id": "narrator",
+      "timeout_seconds": 6.0,
+      "next_beat_id": "s02_06_cam"
+    },
+
+    {
+      "type": "camera", "beat_id": "s02_06_cam", "display_name": "2.06 THE CELL -- static, held",
+      "camera_mode_id": "wide_static", "blend_seconds": 0.5,
+      "note": "No camera movement. The stillness itself is the image. The sequence's visual low point.",
+      "next_beat_id": "s02_06_sit"
+    },
+    {
+      "type": "action", "beat_id": "s02_06_sit", "display_name": "2.06 Pure sits, doesn't move",
+      "actor_id": "pure", "action_id": "sit_still", "wait_for_completion": false,
+      "next_beat_id": "s02_06_vo"
+    },
+    {
+      "type": "dialogue", "beat_id": "s02_06_vo", "display_name": "2.06 V.O. 'A long time to sit with what you didn't do.'",
+      "dialogue_id": "nsb_s02_vo_05", "speaker_actor_id": "narrator",
+      "timeout_seconds": 8.0,
+      "next_beat_id": "s02_06_hold"
+    },
+    {
+      "type": "wait", "beat_id": "s02_06_hold", "display_name": "2.06 Hold the stillness",
+      "duration_seconds": 3.0,
+      "next_beat_id": "s02_07_cam"
+    },
+
+    {
+      "type": "camera", "beat_id": "s02_07_cam", "display_name": "2.07 Prison library, wide",
+      "camera_mode_id": "wide_static", "blend_seconds": 0.5,
+      "note": "Mostly empty, fluorescent. This location rhymes forward to Sequence 6's coding classroom.",
+      "next_beat_id": "s02_07_approach"
+    },
+    {
+      "type": "move_to", "beat_id": "s02_07_approach", "display_name": "2.07 THE BROKEN COMPUTER",
+      "actor_id": "pure", "locomotion_mode": "walk", "arrival_radius": 0.4, "timeout_seconds": 6.0,
+      "note": "Approaches it like it's nothing, almost by accident -- then something catches.",
+      "next_beat_id": "s02_07_insert"
+    },
+    {
+      "type": "camera", "beat_id": "s02_07_insert", "display_name": "2.07 Close -- his hands, the screen glow",
+      "camera_mode_id": "insert", "blend_seconds": 2.0,
+      "note": "The screen glow is the first non-institutional light in the sequence. A deliberate visual turn.",
+      "next_beat_id": "s02_07_type"
+    },
+    {
+      "type": "action", "beat_id": "s02_07_type", "display_name": "2.07 Testing what still works",
+      "actor_id": "pure", "action_id": "type", "wait_for_completion": false,
+      "note": "Uneven, testing. Contrast with the confident typing of 2.08 and Sequence 3.",
+      "next_beat_id": "s02_07_vo"
+    },
+    {
+      "type": "dialogue", "beat_id": "s02_07_vo", "display_name": "2.07 V.O. 'The first thing in years that did exactly what I told it to.'",
+      "dialogue_id": "nsb_s02_vo_06", "speaker_actor_id": "narrator",
+      "timeout_seconds": 10.0,
+      "next_beat_id": "s02_08_cam"
+    },
+
+    {
+      "type": "camera", "beat_id": "s02_08_cam", "display_name": "2.08 THE CODE OBEYS -- montage",
+      "camera_mode_id": "insert", "blend_seconds": 0.0,
+      "note": "Tight cuts building rhythm: hands on keys, pages of notes, screen text, his face lit by the monitor. The sequence's emotional pivot.",
+      "next_beat_id": "s02_08_read"
+    },
+    {
+      "type": "action", "beat_id": "s02_08_read", "display_name": "2.08 Library books, scribbled notes",
+      "actor_id": "pure", "action_id": "read", "wait_for_completion": false,
+      "next_beat_id": "s02_08_type"
+    },
+    {
+      "type": "action", "beat_id": "s02_08_type", "display_name": "2.08 Increasingly confident typing",
+      "actor_id": "pure", "action_id": "type", "wait_for_completion": false,
+      "note": "Posture changes across the montage -- hunched and uncertain to upright and focused.",
+      "next_beat_id": "s02_08_vo"
+    },
+    {
+      "type": "dialogue", "beat_id": "s02_08_vo", "display_name": "2.08 V.O. 'The code obeyed. The world never had.'",
+      "dialogue_id": "nsb_s02_vo_07", "speaker_actor_id": "narrator",
+      "timeout_seconds": 20.0,
+      "note": "\"...no appeal, no jury, no lie. That was the first time I felt like I had any control over anything.\"",
+      "next_beat_id": "s02_09_cam"
+    },
+
+    {
+      "type": "camera", "beat_id": "s02_09_cam", "display_name": "2.09 TEN YEARS -- the repeated window",
+      "camera_mode_id": "wide_static", "blend_seconds": 0.0,
+      "note": "TIME-COMPRESSION DEVICE: identical locked-off framing of the cell window, only the light changes, season to season, several times. Keep the framing byte-identical so only light reads as different -- that is what makes the years legible without a calendar graphic.",
+      "next_beat_id": "s02_09_hold"
+    },
+    {
+      "type": "wait", "beat_id": "s02_09_hold", "display_name": "2.09 The window, repeating",
+      "duration_seconds": 8.0,
+      "note": "Intercut with the library computer, Pure visibly more capable each time we return to it.",
+      "next_beat_id": "s02_09_close"
+    },
+    {
+      "type": "action", "beat_id": "s02_09_close", "display_name": "2.09 Closes a notebook full of code",
+      "actor_id": "pure", "action_id": "close_laptop", "wait_for_completion": true, "timeout_seconds": 4.0,
+      "note": "Final image of the montage: older, steadier, ready.",
+      "next_beat_id": "s02_09_vo"
+    },
+    {
+      "type": "dialogue", "beat_id": "s02_09_vo", "display_name": "2.09 V.O. 'I came out knowing exactly what I could build.'",
+      "dialogue_id": "nsb_s02_vo_08", "speaker_actor_id": "narrator",
+      "timeout_seconds": 10.0,
+      "note": "V.O. only, no other sound -- deliberate quiet to let the passage of time land.",
+      "next_beat_id": "s02_10_cam"
+    },
+
+    {
+      "type": "camera", "beat_id": "s02_10_cam", "display_name": "2.10 THE GATE -- STYLE PIVOT",
+      "camera_mode_id": "wide_static", "blend_seconds": 1.0,
+      "note": "THE SEQUENCE'S BIGGEST TECHNIQUE MOMENT: M2S period styling ends here and contemporary begins. The light itself should feel like a style change, not just a lighting change.",
+      "next_beat_id": "s02_10_walk"
+    },
+    {
+      "type": "move_to", "beat_id": "s02_10_walk", "display_name": "2.10 Pure steps through the gate",
+      "actor_id": "pure", "locomotion_mode": "walk", "arrival_radius": 0.5, "timeout_seconds": 8.0,
+      "note": "Stops just past the threshold, looks back once, then forward.",
+      "next_beat_id": "s02_10_face"
+    },
+    {
+      "type": "camera", "beat_id": "s02_10_face", "display_name": "2.10 Close -- squinting into the light",
+      "camera_mode_id": "close_hold", "blend_seconds": 1.0,
+      "note": "Something like hope. First genuinely bright open exterior in the sequence.",
+      "next_beat_id": "s02_10_vo"
+    },
+    {
+      "type": "dialogue", "beat_id": "s02_10_vo", "display_name": "2.10 V.O. 'I walked out thinking the hard part was over.'",
+      "dialogue_id": "nsb_s02_vo_09", "speaker_actor_id": "narrator",
+      "timeout_seconds": 8.0,
+      "next_beat_id": "s02_11_cam"
+    },
+
+    {
+      "type": "camera", "beat_id": "s02_11_cam", "display_name": "2.11 Interview two-shot, warm",
+      "camera_mode_id": "two_shot", "blend_seconds": 0.5,
+      "note": "First fully contemporary interior. Clean, bright, ordinary office banality -- which makes the rejection land colder against the prison's visual weight.",
+      "next_beat_id": "s02_11_sit"
+    },
+    {
+      "type": "action", "beat_id": "s02_11_sit", "display_name": "2.11 Pure engaged, leaning forward",
+      "actor_id": "pure", "action_id": "sit_still", "wait_for_completion": false,
+      "next_beat_id": "s02_11_line1"
+    },
+    {
+      "type": "dialogue", "beat_id": "s02_11_line1", "display_name": "2.11 'This all looks great, Pure--- oh.'",
+      "dialogue_id": "nsb_s02_interviewer_01", "speaker_actor_id": "interviewer", "target_actor_id": "pure",
+      "timeout_seconds": 8.0,
+      "note": "The pause mid-sentence is the beat: their eyes drop to the page and the warmth drains out.",
+      "next_beat_id": "s02_11_folder"
+    },
+    {
+      "type": "camera", "beat_id": "s02_11_folder", "display_name": "2.11 Insert: the folder page",
+      "camera_mode_id": "insert", "blend_seconds": 0.0,
+      "note": "Background-check result implied, never shown in detail.",
+      "next_beat_id": "s02_11_line2"
+    },
+    {
+      "type": "dialogue", "beat_id": "s02_11_line2", "display_name": "2.11 'I can explain that.'",
+      "dialogue_id": "nsb_s02_pure_02", "speaker_actor_id": "pure", "target_actor_id": "interviewer",
+      "timeout_seconds": 5.0,
+      "next_beat_id": "s02_11_line3"
+    },
+    {
+      "type": "dialogue", "beat_id": "s02_11_line3", "display_name": "2.11 'We'll be in touch.'",
+      "dialogue_id": "nsb_s02_interviewer_02", "speaker_actor_id": "interviewer", "target_actor_id": "pure",
+      "timeout_seconds": 5.0,
+      "note": "Already retreating into scripted politeness.",
+      "next_beat_id": "s02_12_cam"
+    },
+
+    {
+      "type": "camera", "beat_id": "s02_12_cam", "display_name": "2.12 DOOR AFTER DOOR -- rhyming coverage",
+      "camera_mode_id": "two_shot", "blend_seconds": 0.0,
+      "note": "Near-identical composition each repetition across different offices. Each room distinct enough to signal 'many', but the human beats interchangeable -- that sameness is the argument.",
+      "next_beat_id": "s02_12_deflate"
+    },
+    {
+      "type": "action", "beat_id": "s02_12_deflate", "display_name": "2.12 Posture deflates across the montage",
+      "actor_id": "pure", "action_id": "deflate", "wait_for_completion": true, "timeout_seconds": 10.0,
+      "note": "The confident lean-forward from 2.11 is gone by the final repetition.",
+      "next_beat_id": "s02_12_vo"
+    },
+    {
+      "type": "dialogue", "beat_id": "s02_12_vo", "display_name": "2.12 V.O. 'Same page. Same look. Same door.'",
+      "dialogue_id": "nsb_s02_vo_10", "speaker_actor_id": "narrator",
+      "timeout_seconds": 10.0,
+      "next_beat_id": "s02_13_cam"
+    },
+
+    {
+      "type": "camera", "beat_id": "s02_13_cam", "display_name": "2.13 THE WEIGHT -- wide, isolating",
+      "camera_mode_id": "wide_static", "blend_seconds": 1.0,
+      "note": "A bus stop or stairwell -- somewhere transitional and anonymous.",
+      "next_beat_id": "s02_13_sit"
+    },
+    {
+      "type": "action", "beat_id": "s02_13_sit", "display_name": "2.13 Sits with the accumulated weight",
+      "actor_id": "pure", "action_id": "sit_still", "wait_for_completion": false,
+      "next_beat_id": "s02_13_hands"
+    },
+    {
+      "type": "camera", "beat_id": "s02_13_hands", "display_name": "2.13 Slow push to his hands",
+      "camera_mode_id": "slow_push", "blend_seconds": 3.0,
+      "note": "The same hands that built working code from nothing in a prison library.",
+      "next_beat_id": "s02_13_vo"
+    },
+    {
+      "type": "dialogue", "beat_id": "s02_13_vo", "display_name": "2.13 V.O. 'I'd build my own door.'",
+      "dialogue_id": "nsb_s02_vo_11", "speaker_actor_id": "narrator",
+      "timeout_seconds": 14.0,
+      "note": "\"The code never lied to me. Never looked at a page and changed its mind about me...\" The app's idea is born HERE, in the image -- never stated outright.",
+      "next_beat_id": "s02_13_hold"
+    },
+    {
+      "type": "wait", "beat_id": "s02_13_hold", "display_name": "2.13 Hold on the hands",
+      "duration_seconds": 3.0,
+      "next_beat_id": "s02_end"
+    },
+    {
+      "type": "end", "beat_id": "s02_end", "display_name": "Sequence 2 complete",
+      "completion_signal": "scene_finished",
+      "note": "Hands off to Sequence 3: The App."
+    }
+  ]
+}

@@ -1,0 +1,275 @@
+[gd_resource type="Resource" script_class="ScenePlan" load_steps=38 format=3]
+
+[ext_resource type="Script" path="res://addons/scene_animator/data/scene_plan.gd" id="1_plan"]
+[ext_resource type="Script" path="res://addons/scene_animator/data/scene_actor_binding.gd" id="2_actor"]
+[ext_resource type="Script" path="res://addons/scene_animator/data/beats/camera_beat.gd" id="3_camera"]
+[ext_resource type="Script" path="res://addons/scene_animator/data/beats/action_beat.gd" id="4_action"]
+[ext_resource type="Script" path="res://addons/scene_animator/data/beats/wait_beat.gd" id="5_wait"]
+[ext_resource type="Script" path="res://addons/scene_animator/data/beats/dialogue_beat.gd" id="6_dialogue"]
+[ext_resource type="Script" path="res://addons/scene_animator/data/beats/move_to_beat.gd" id="7_move_to"]
+[ext_resource type="Script" path="res://addons/scene_animator/data/beats/end_beat.gd" id="8_end"]
+
+[sub_resource type="Resource" id="Resource_actor_pure"]
+script = ExtResource("2_actor")
+actor_id = &"pure"
+display_name = "Pure (27, formal wardrobe)"
+required = true
+actor_tags = Array[StringName](["protagonist", "human"])
+
+[sub_resource type="Resource" id="Resource_actor_judge"]
+script = ExtResource("2_actor")
+actor_id = &"judge"
+display_name = "Judge (generic; shares Seq 2's design)"
+required = true
+actor_tags = Array[StringName](["authority", "human"])
+
+[sub_resource type="Resource" id="Resource_actor_delia"]
+script = ExtResource("2_actor")
+actor_id = &"delia"
+display_name = "Delia (gallery)"
+required = false
+actor_tags = Array[StringName](["family", "human"])
+
+[sub_resource type="Resource" id="Resource_actor_marcus"]
+script = ExtResource("2_actor")
+actor_id = &"marcus"
+display_name = "Marcus (gallery)"
+required = false
+actor_tags = Array[StringName](["family", "human"])
+
+[sub_resource type="Resource" id="Resource_beat_s05_01_cam"]
+script = ExtResource("3_camera")
+beat_id = &"s05_01_cam"
+display_name = "5.01 Courtroom wide, austere"
+next_beat_id = &"s05_01_sit"
+note = "Sparse gallery -- three people, two of them Delia and Marcus. Not a spectacle: a man at a table asking a system to acknowledge what it did."
+camera_mode_id = &"wide_static"
+blend_seconds = 0.0
+
+[sub_resource type="Resource" id="Resource_beat_s05_01_sit"]
+script = ExtResource("4_action")
+beat_id = &"s05_01_sit"
+display_name = "5.01 Pure at the petitioner's table"
+next_beat_id = &"s05_01_gallery"
+note = "Composed. A single folder, hands flat on the surface. Not defeated before it starts."
+actor_id = &"pure"
+action_id = &"sit_still"
+wait_for_completion = false
+
+[sub_resource type="Resource" id="Resource_beat_s05_01_gallery"]
+script = ExtResource("4_action")
+beat_id = &"s05_01_gallery"
+display_name = "5.01 Delia and Marcus seated"
+next_beat_id = &"s05_01_gallery_m"
+actor_id = &"delia"
+action_id = &"sit_still"
+wait_for_completion = false
+
+[sub_resource type="Resource" id="Resource_beat_s05_01_gallery_m"]
+script = ExtResource("4_action")
+beat_id = &"s05_01_gallery_m"
+display_name = "5.01 Marcus seated"
+next_beat_id = &"s05_01_preside"
+actor_id = &"marcus"
+action_id = &"sit_still"
+wait_for_completion = false
+
+[sub_resource type="Resource" id="Resource_beat_s05_01_preside"]
+script = ExtResource("4_action")
+beat_id = &"s05_01_preside"
+display_name = "5.01 Judge enters and presides"
+next_beat_id = &"s05_01_hold"
+actor_id = &"judge"
+action_id = &"preside"
+wait_for_completion = true
+timeout_seconds = 5.0
+
+[sub_resource type="Resource" id="Resource_beat_s05_01_hold"]
+script = ExtResource("5_wait")
+beat_id = &"s05_01_hold"
+display_name = "5.01 Settle to order"
+next_beat_id = &"s05_02_stand"
+duration_seconds = 3.0
+
+[sub_resource type="Resource" id="Resource_beat_s05_02_stand"]
+script = ExtResource("4_action")
+beat_id = &"s05_02_stand"
+display_name = "5.02 Pure stands"
+next_beat_id = &"s05_02_cam"
+actor_id = &"pure"
+action_id = &"stand_up"
+wait_for_completion = true
+timeout_seconds = 3.0
+
+[sub_resource type="Resource" id="Resource_beat_s05_02_cam"]
+script = ExtResource("3_camera")
+beat_id = &"s05_02_cam"
+display_name = "5.02 Medium on Pure -- do NOT cut to the bench"
+next_beat_id = &"s05_02_argument"
+note = "Deliberate: we watch him make the argument, not the system receive it. His agency is the subject."
+camera_mode_id = &"medium_static"
+blend_seconds = 0.5
+
+[sub_resource type="Resource" id="Resource_beat_s05_02_argument"]
+script = ExtResource("6_dialogue")
+beat_id = &"s05_02_argument"
+display_name = "5.02 The honest argument"
+next_beat_id = &"s05_03_cam"
+note = "\"I was convicted at twenty-one for something I didn't do... I'm asking this court for the chance to be seen as what I've actually built.\""
+dialogue_id = &"nsb_s05_pure_01"
+speaker_actor_id = &"pure"
+target_actor_id = &"judge"
+timeout_seconds = 20.0
+
+[sub_resource type="Resource" id="Resource_beat_s05_03_cam"]
+script = ExtResource("3_camera")
+beat_id = &"s05_03_cam"
+display_name = "5.03 Cut to the bench -- the one time"
+next_beat_id = &"s05_03_denial"
+note = "The only cut to the Judge in the sequence. Professional, unmoved."
+camera_mode_id = &"close_hold"
+blend_seconds = 0.0
+
+[sub_resource type="Resource" id="Resource_beat_s05_03_denial"]
+script = ExtResource("6_dialogue")
+beat_id = &"s05_03_denial"
+display_name = "5.03 'Petition denied.'"
+next_beat_id = &"s05_03_gavel"
+note = "\"...This court's record-keeping is not in error.\" Tone-deaf, not malicious -- a bureaucratic frame that never touches what he asked. That's its own cruelty."
+dialogue_id = &"nsb_s05_judge_01"
+speaker_actor_id = &"judge"
+target_actor_id = &"pure"
+timeout_seconds = 12.0
+
+[sub_resource type="Resource" id="Resource_beat_s05_03_gavel"]
+script = ExtResource("4_action")
+beat_id = &"s05_03_gavel"
+display_name = "5.03 Gavel"
+next_beat_id = &"s05_03_receive"
+note = "Sharp, final. Then the room's ambient floods back in, indifferent."
+actor_id = &"judge"
+action_id = &"gavel"
+wait_for_completion = true
+timeout_seconds = 2.0
+
+[sub_resource type="Resource" id="Resource_beat_s05_03_receive"]
+script = ExtResource("3_camera")
+beat_id = &"s05_03_receive"
+display_name = "5.03 Back to Pure, absorbing it"
+next_beat_id = &"s05_03_hold"
+note = "Not shock -- he knew this was possible. A man confirming something he already suspected about the world."
+camera_mode_id = &"close_hold"
+blend_seconds = 0.5
+
+[sub_resource type="Resource" id="Resource_beat_s05_03_hold"]
+script = ExtResource("5_wait")
+beat_id = &"s05_03_hold"
+display_name = "5.03 He stays standing"
+next_beat_id = &"s05_04_line1"
+duration_seconds = 3.0
+
+[sub_resource type="Resource" id="Resource_beat_s05_04_line1"]
+script = ExtResource("6_dialogue")
+beat_id = &"s05_04_line1"
+display_name = "5.04 'The law doesn't respect me.'"
+next_beat_id = &"s05_04_pause"
+note = "\"The law doesn't respect me. But I'm not going to let that break me.\" Camera stays close_hold from s05_03_receive -- no new camera beat, no cut."
+dialogue_id = &"nsb_s05_pure_02"
+speaker_actor_id = &"pure"
+timeout_seconds = 8.0
+
+[sub_resource type="Resource" id="Resource_beat_s05_04_pause"]
+script = ExtResource("5_wait")
+beat_id = &"s05_04_pause"
+display_name = "5.04 A beat"
+next_beat_id = &"s05_04_line2"
+duration_seconds = 1.5
+
+[sub_resource type="Resource" id="Resource_beat_s05_04_line2"]
+script = ExtResource("6_dialogue")
+beat_id = &"s05_04_line2"
+display_name = "5.04 'Because my mother didn't break.'"
+next_beat_id = &"s05_04_line3"
+note = "\"She worked three jobs. Her back was shot. She never complained once... she decided it wasn't going to be the thing that stopped her.\""
+dialogue_id = &"nsb_s05_pure_03"
+speaker_actor_id = &"pure"
+timeout_seconds = 14.0
+
+[sub_resource type="Resource" id="Resource_beat_s05_04_line3"]
+script = ExtResource("6_dialogue")
+beat_id = &"s05_04_line3"
+display_name = "5.04 'So I won't either.'"
+next_beat_id = &"s05_05_cam"
+note = "Quieter. By the end of this speech his posture is taller than when he sat down. Not vindicated -- decided."
+dialogue_id = &"nsb_s05_pure_04"
+speaker_actor_id = &"pure"
+timeout_seconds = 6.0
+
+[sub_resource type="Resource" id="Resource_beat_s05_05_cam"]
+script = ExtResource("3_camera")
+beat_id = &"s05_05_cam"
+display_name = "5.05 Wide from behind, toward the doors"
+next_beat_id = &"s05_05_rise_d"
+camera_mode_id = &"wide_static"
+blend_seconds = 0.5
+
+[sub_resource type="Resource" id="Resource_beat_s05_05_rise_d"]
+script = ExtResource("4_action")
+beat_id = &"s05_05_rise_d"
+display_name = "5.05 Delia rises"
+next_beat_id = &"s05_05_rise_m"
+actor_id = &"delia"
+action_id = &"rise"
+wait_for_completion = false
+
+[sub_resource type="Resource" id="Resource_beat_s05_05_rise_m"]
+script = ExtResource("4_action")
+beat_id = &"s05_05_rise_m"
+display_name = "5.05 Marcus rises"
+next_beat_id = &"s05_05_walk"
+actor_id = &"marcus"
+action_id = &"rise"
+wait_for_completion = true
+timeout_seconds = 3.0
+
+[sub_resource type="Resource" id="Resource_beat_s05_05_walk"]
+script = ExtResource("7_move_to")
+beat_id = &"s05_05_walk"
+display_name = "5.05 The three walk out together"
+next_beat_id = &"s05_05_empty"
+note = "No words. They fall in beside him -- the family unit from the hospital now moving in the same direction."
+actor_id = &"pure"
+arrival_radius = 0.5
+locomotion_mode = "walk"
+timeout_seconds = 8.0
+
+[sub_resource type="Resource" id="Resource_beat_s05_05_empty"]
+script = ExtResource("3_camera")
+beat_id = &"s05_05_empty"
+display_name = "5.05 Hold on the empty room"
+next_beat_id = &"s05_05_hold"
+note = "The institution without them. Not triumphant -- just the room, still running, unchanged."
+camera_mode_id = &"wide_static"
+blend_seconds = 0.0
+
+[sub_resource type="Resource" id="Resource_beat_s05_05_hold"]
+script = ExtResource("5_wait")
+beat_id = &"s05_05_hold"
+display_name = "5.05 Beat on the empty courtroom"
+next_beat_id = &"s05_end"
+duration_seconds = 3.0
+
+[sub_resource type="Resource" id="Resource_beat_s05_end"]
+script = ExtResource("8_end")
+beat_id = &"s05_end"
+display_name = "Sequence 5 complete"
+note = "Hands off to Sequence 6: The Sand."
+completion_signal = &"scene_finished"
+
+[resource]
+script = ExtResource("1_plan")
+plan_id = &"nsb_seq_05_the_courtroom"
+display_name = "Sequence 5: The Courtroom"
+description = "The expungement petition is denied; Pure answers with resolve rather than defeat. Source breakdown: scenes/sequence_05_the_courtroom_breakdown.md (5 film beats, 1:03)."
+actors = Array[Resource]([SubResource("Resource_actor_pure"), SubResource("Resource_actor_judge"), SubResource("Resource_actor_delia"), SubResource("Resource_actor_marcus")])
+beats = Array[Resource]([SubResource("Resource_beat_s05_01_cam"), SubResource("Resource_beat_s05_01_sit"), SubResource("Resource_beat_s05_01_gallery"), SubResource("Resource_beat_s05_01_gallery_m"), SubResource("Resource_beat_s05_01_preside"), SubResource("Resource_beat_s05_01_hold"), SubResource("Resource_beat_s05_02_stand"), SubResource("Resource_beat_s05_02_cam"), SubResource("Resource_beat_s05_02_argument"), SubResource("Resource_beat_s05_03_cam"), SubResource("Resource_beat_s05_03_denial"), SubResource("Resource_beat_s05_03_gavel"), SubResource("Resource_beat_s05_03_receive"), SubResource("Resource_beat_s05_03_hold"), SubResource("Resource_beat_s05_04_line1"), SubResource("Resource_beat_s05_04_pause"), SubResource("Resource_beat_s05_04_line2"), SubResource("Resource_beat_s05_04_line3"), SubResource("Resource_beat_s05_05_cam"), SubResource("Resource_beat_s05_05_rise_d"), SubResource("Resource_beat_s05_05_rise_m"), SubResource("Resource_beat_s05_05_walk"), SubResource("Resource_beat_s05_05_empty"), SubResource("Resource_beat_s05_05_hold"), SubResource("Resource_beat_s05_end")])
