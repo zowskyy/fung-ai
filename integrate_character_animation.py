@@ -1,51 +1,27 @@
 #!/usr/bin/env python3
 """
-Character animation integration: layers character animations (from ElevenLabs) onto
-environment clips with proper timing, position, and scale.
+Character animation integration for silent film: overlays character PNG images onto
+environment clips with per-scene positioning, scale, and opacity.
 
-Supports:
-- Character flow_ids from ElevenLabs (video + audio)
-- Per-scene character placement (x, y, scale)
-- Keyframe timing and transitions
-- Sync with voiceover
+Uses FFmpeg drawtext and overlay filters to composite static character images
+at specified positions onto environment video frames.
 
-Prepared for implementation of:
-- Sharp linework character designs
-- Dynamic pose sequencing (snap-and-pop mechanics)
-- Body language synchronization with dialogue
+Silent film workflow:
+- Each scene maps to one character image (PNG file)
+- Position (x, y, scale) controls placement and size
+- Character pose variants (different PNG files) communicate emotion
+- No audio sync required (pure silent film with text subtitles)
 """
 import argparse
 import json
 import os
 import sys
-import csv
+import subprocess
 from pathlib import Path
 
 
 def load_character_metadata(metadata_path):
-    """
-    Load character animation metadata JSON:
-    {
-      "characters": [
-        {
-          "name": "protagonist",
-          "flow_id": "...",
-          "base_scale": 1.0,
-          "poses": [...],
-          "dialogues": [...]
-        }
-      ],
-      "scenes": [
-        {
-          "clip_id": "beach_01",
-          "character": "protagonist",
-          "pose_sequence": ["idle", "turn_left", "walk_forward"],
-          "timing": [0.0, 1.2, 2.5],
-          "position": {"x": 640, "y": 540, "scale": 1.0}
-        }
-      ]
-    }
-    """
+    """Load character animation metadata JSON for silent film."""
     if not os.path.exists(metadata_path):
         print(f"ERROR: metadata not found: {metadata_path}")
         return None
@@ -58,109 +34,61 @@ def load_character_metadata(metadata_path):
         return None
 
 
-def create_character_metadata_template():
-    """Generate template for character animation metadata."""
-    template = {
-        "characters": [
-            {
-                "name": "protagonist",
-                "flow_id": "FLOW_ID_FROM_ELEVENLABS",
-                "base_scale": 1.0,
-                "style_notes": "Sharp linework, dynamic poses with snap-and-pop transitions",
-                "poses": [
-                    {"name": "idle", "frame_range": [0, 12]},
-                    {"name": "turn_left", "frame_range": [12, 24]},
-                    {"name": "walk_forward", "frame_range": [24, 48]}
-                ],
-                "dialogue_sync": {
-                    "character_voice_id": "VOICE_ID_FROM_ELEVENLABS",
-                    "mouth_shape_tracking": "optional"
-                }
-            }
-        ],
-        "scenes": [
-            {
-                "clip_id": "beach_01",
-                "chapter": 1,
-                "location": "beach",
-                "character": "protagonist",
-                "pose_sequence": [
-                    {"pose": "idle", "duration": 1.0, "notes": "opening stance"},
-                    {"pose": "turn_left", "duration": 0.8, "notes": "notice something"},
-                    {"pose": "walk_forward", "duration": 2.0, "notes": "approach camera"}
-                ],
-                "position": {
-                    "x": 640,
-                    "y": 540,
-                    "scale": 1.0,
-                    "notes": "center-bottom of frame, occupies ~30% frame width"
-                },
-                "layer_order": "character_over_background",
-                "transition_in": {"type": "fade", "duration": 0.2},
-                "transition_out": {"type": "fade", "duration": 0.2}
-            }
-        ],
-        "notes": [
-            "Implementation approach: use FFmpeg filter_complex to overlay character video",
-            "Position uses 1280x720 frame coordinates (baseline)",
-            "Scale is multiplier relative to base_scale (1.0 = original size)",
-            "Timing is absolute seconds from clip start",
-            "Poses reference ElevenLabs-generated character animation frames"
-        ]
-    }
-    return template
-
-
 def validate_character_metadata(metadata):
     """Validate character metadata structure."""
     if 'characters' not in metadata or 'scenes' not in metadata:
         print("ERROR: metadata missing 'characters' or 'scenes' key")
         return False
 
-    # Check character references
-    char_names = {c['name'] for c in metadata['characters']}
+    # Build character ID set (allowing null for environment-only scenes)
+    char_ids = {c['id'] for c in metadata['characters']}
+
     for scene in metadata['scenes']:
-        if scene.get('character') not in char_names:
-            print(f"ERROR: scene '{scene['clip_id']}' references unknown character '{scene['character']}'")
+        character_id = scene.get('character_id')
+        # character_id can be None for environment-only shots, but if present must be valid
+        if character_id is not None and character_id not in char_ids:
+            print(f"ERROR: scene '{scene['clip_id']}' references unknown character '{character_id}'")
             return False
 
     return True
 
 
-def generate_ffmpeg_overlay_filter(scene_metadata, char_video, env_video, output_video):
+def generate_ffmpeg_overlay_command(scene_metadata, char_image_path, env_video, output_video):
     """
-    Generate FFmpeg command to overlay character onto environment.
+    Generate FFmpeg command to overlay static character PNG onto environment video.
 
-    Uses scale and overlay filters:
-    [env]scale=w=1280:h=720[env_scaled];
-    [char]scale=w=384:h=576[char_scaled];
-    [env_scaled][char_scaled]overlay=x=448:y=144:enable='between(t,0,5)'[out]
+    Uses scale2ref and overlay filters to place character image at specified position.
     """
     pos = scene_metadata['position']
-    char_width = int(1280 * pos['scale'] * 0.3)  # ~30% of frame
-    char_height = int(char_width * 1.5)  # Assume 3:2 aspect for character
+    if not pos or pos.get('scale') is None:
+        print(f"  WARNING: scene '{scene_metadata['clip_id']}' missing position/scale, skipping character overlay")
+        return None
 
-    x = int(pos['x'] - char_width / 2)
-    y = int(pos['y'] - char_height / 2)
+    scale = pos['scale']
+    x = int(pos['x'])
+    y = int(pos['y'])
 
-    # Build filter chain
+    # Character will occupy approximately 30% of frame width
+    # Scale is multiplier (1.0 = original size of character PNG)
+    # Use scale2ref to scale character to reference video dimensions
+    char_scale = 0.3 * scale  # 30% of frame = 384px (of 1280)
+
     filter_complex = (
-        f"[0:v]scale=w=1280:h=720[env];"
-        f"[1:v]scale=w={char_width}:h={char_height}[char];"
-        f"[env][char]overlay=x={x}:y={y}:format=auto[v]"
+        f"[1:v]scale=w=iw*{char_scale}:h=ih*{char_scale},setsar=1[char];"
+        f"[0:v][char]overlay=x={x}:y={y}:enable='isnan(prev_selected_t)+gte(t\\,0)'[v]"
     )
 
     cmd = [
         'ffmpeg',
-        '-i', env_video,       # [0] environment clip
-        '-i', char_video,      # [1] character animation
+        '-i', env_video,               # [0] environment video
+        '-loop', '1',                  # Loop image for duration of video
+        '-i', char_image_path,         # [1] character PNG (looped to match video length)
         '-filter_complex', filter_complex,
-        '-map', '[v]',
-        '-map', '0:a',         # Keep environment audio (will mux voiceover later)
+        '-pix_fmt', 'yuv420p',        # Compatibility
         '-c:v', 'libx264',
         '-preset', 'medium',
         '-crf', '18',
-        '-c:a', 'aac',
+        '-shortest',                   # End at shortest input (the video)
         output_video
     ]
 
@@ -169,31 +97,21 @@ def generate_ffmpeg_overlay_filter(scene_metadata, char_video, env_video, output
 
 def main():
     ap = argparse.ArgumentParser(
-        description='Integrate character animations from ElevenLabs with environment clips'
+        description='Overlay character PNG images onto environment clips (silent film workflow)'
     )
-    ap.add_argument('--metadata', default='character_metadata.json',
-                    help='Character animation metadata JSON')
+    ap.add_argument('--metadata', default='character_metadata_silent.json',
+                    help='Character metadata JSON (silent film format)')
     ap.add_argument('--env-clips', default='graded',
-                    help='Directory with environment clips')
+                    help='Directory with environment video clips')
     ap.add_argument('--char-clips', default='characters',
-                    help='Directory with character animation clips from ElevenLabs')
-    ap.add_argument('--output-dir', default='composited',
-                    help='Output directory for character+environment composites')
-    ap.add_argument('--create-template', action='store_true',
-                    help='Generate template metadata and exit')
+                    help='Directory with character PNG images')
+    ap.add_argument('--output-dir', default='composited_silent',
+                    help='Output directory for composited clips')
     ap.add_argument('--validate-only', action='store_true',
                     help='Validate metadata without processing')
     ap.add_argument('--micro-test', metavar='CLIP_ID',
-                    help='Test with single clip (e.g., "beach_01") before full batch')
+                    help='Test with single clip before full batch')
     args = ap.parse_args()
-
-    if args.create_template:
-        template = create_character_metadata_template()
-        with open(args.metadata, 'w') as f:
-            json.dump(template, f, indent=2)
-        print(f"✓ Created template metadata: {args.metadata}")
-        print(f"  Edit this file with your character and scene definitions")
-        return 0
 
     # Load and validate metadata
     metadata = load_character_metadata(args.metadata)
@@ -203,9 +121,13 @@ def main():
     if not validate_character_metadata(metadata):
         sys.exit(1)
 
-    print(f"✓ Loaded character metadata")
+    print(f"✓ Loaded character metadata: {args.metadata}")
     print(f"  Characters: {len(metadata['characters'])}")
     print(f"  Scenes: {len(metadata['scenes'])}")
+
+    if args.validate_only:
+        print("✓ Metadata validation passed")
+        return 0
 
     # Micro-test or full batch
     if args.micro_test:
@@ -218,49 +140,83 @@ def main():
         scenes = metadata['scenes']
         print(f"\n[FULL BATCH] Processing {len(scenes)} scenes")
 
-    if args.validate_only:
-        print("✓ Metadata validation passed")
-        return 0
-
-    # Create output directory
     os.makedirs(args.output_dir, exist_ok=True)
 
-    print(f"\nGenerating character+environment composites...")
+    print(f"\nOverlaying characters onto environment clips...")
     print(f"  Environment clips: {args.env_clips}")
-    print(f"  Character clips: {args.char_clips}")
-    print(f"  Output: {args.output_dir}")
+    print(f"  Character images: {args.char_clips}")
+    print(f"  Output: {args.output_dir}\n")
 
-    for i, scene in enumerate(scenes):
+    skipped = 0
+    processed = 0
+    failed = 0
+
+    for i, scene in enumerate(scenes, 1):
         clip_id = scene['clip_id']
-        char_name = scene['character']
+        character_id = scene.get('character_id')
+        image_file = scene.get('image')
 
         env_path = os.path.join(args.env_clips, f"{clip_id}.mp4")
-        char_path = os.path.join(args.char_clips, f"{char_name}_{clip_id}.mp4")
-        output_path = os.path.join(args.output_dir, f"{clip_id}_composite.mp4")
+        output_path = os.path.join(args.output_dir, f"{clip_id}.mp4")
 
+        # Check environment clip exists
         if not os.path.exists(env_path):
-            print(f"  ✗ {clip_id}: environment clip not found")
+            print(f"  [{i}/{len(scenes)}] ✗ {clip_id}: environment clip not found")
+            failed += 1
             continue
 
+        # Handle environment-only scenes (no character)
+        if character_id is None or image_file is None:
+            print(f"  [{i}/{len(scenes)}] ⊕ {clip_id}: environment only (no character)")
+            # Just copy environment clip to output
+            cmd = ['ffmpeg', '-i', env_path, '-c', 'copy', output_path]
+            try:
+                subprocess.run(cmd, check=True, capture_output=True)
+                skipped += 1
+            except subprocess.CalledProcessError as e:
+                print(f"      ✗ FFmpeg error: {e.stderr.decode()[:100]}")
+                failed += 1
+            continue
+
+        # Get character image path
+        char_path = os.path.join(args.char_clips, image_file)
         if not os.path.exists(char_path):
-            print(f"  ⚠ {clip_id}: character clip not found (placeholder)")
+            print(f"  [{i}/{len(scenes)}] ⚠ {clip_id}: character image not found ({image_file})")
+            failed += 1
             continue
 
-        print(f"  Processing {clip_id}...", end=' ', flush=True)
+        print(f"  [{i}/{len(scenes)}] Processing {clip_id}...", end=' ', flush=True)
 
-        # Generate FFmpeg command
-        cmd = generate_ffmpeg_overlay_filter(scene, char_path, env_path, output_path)
+        # Generate and execute FFmpeg command
+        cmd = generate_ffmpeg_overlay_command(scene, char_path, env_path, output_path)
+        if cmd is None:
+            print("✗ (invalid position)")
+            failed += 1
+            continue
 
-        # Execute (in real implementation; here just showing structure)
-        import subprocess
         try:
-            result = subprocess.run(cmd, check=True, capture_output=True)
+            result = subprocess.run(cmd, check=True, capture_output=True, timeout=300)
             print(f"✓")
+            processed += 1
         except subprocess.CalledProcessError as e:
-            print(f"✗ FFmpeg error: {e.stderr.decode()}")
+            print(f"✗ FFmpeg error")
+            print(f"      {e.stderr.decode()[:200]}")
+            failed += 1
+        except subprocess.TimeoutExpired:
+            print(f"✗ Timeout (>300s)")
+            failed += 1
 
-    print(f"\n✓ Character integration complete")
-    print(f"  Composited clips in: {args.output_dir}")
+    print(f"\n{'='*60}")
+    print(f"Character integration complete:")
+    print(f"  ✓ Processed: {processed}")
+    print(f"  ⊕ Environment only: {skipped}")
+    print(f"  ✗ Failed: {failed}")
+    print(f"  Total: {len(scenes)}")
+    print(f"\nOutput: {args.output_dir}/")
+    print(f"{'='*60}")
+
+    if failed > 0:
+        sys.exit(1)
 
 
 if __name__ == '__main__':
