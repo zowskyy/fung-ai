@@ -1,0 +1,257 @@
+{
+  "plan_id": "nsb_seq_03_the_app",
+  "display_name": "Sequence 3: The App",
+  "description": "Pure builds No Sand Beach; the corner office; the memories start going; Earl's glitch warning. Source breakdown: scenes/sequence_03_the_app_breakdown.md (12 film beats, 2:22).",
+
+  "_comment": "KEY DISCIPLINE: the memory-loss beats (s03_07, s03_08) deliberately show NOTHING where the memory should be -- no illustrated glitch for Pure's own recollection, only for Earl's on-screen appearance. Sequence 4's beat 4.08 mirrors this by returning the memories as audio only.",
+
+  "actors": [
+    {"actor_id": "pure", "display_name": "Pure (age 27, contemporary then business wardrobe)", "actor_tags": ["protagonist", "human"], "required": true},
+    {"actor_id": "earl_glitch", "display_name": "Earl (glitch design -- CA-choppy thread mask)", "actor_tags": ["apparition"], "required": true},
+    {"actor_id": "narrator", "display_name": "Adult Pure (V.O.)", "actor_tags": ["voiceover"], "required": false}
+  ],
+
+  "beats": [
+    {
+      "type": "camera", "beat_id": "s03_01_cam", "display_name": "3.01 Home workspace, night",
+      "camera_mode_id": "medium_static", "blend_seconds": 0.0,
+      "note": "Same desk Sequence 4 opens on -- the collapse in 4.01 reuses this exact setup.",
+      "next_beat_id": "s03_01_type"
+    },
+    {
+      "type": "action", "beat_id": "s03_01_type", "display_name": "3.01 THE IDEA TAKES SHAPE",
+      "actor_id": "pure", "action_id": "type", "wait_for_completion": false,
+      "note": "Confident coding -- the deliberate contrast to Sequence 2's uncertain prison typing.",
+      "next_beat_id": "s03_01_vo"
+    },
+    {
+      "type": "dialogue", "beat_id": "s03_01_vo", "display_name": "3.01 V.O. 'I decided what I got to touch.'",
+      "dialogue_id": "nsb_s03_vo_01", "speaker_actor_id": "narrator",
+      "timeout_seconds": 16.0,
+      "note": "\"I called it No Sand Beach. Because I grew up seeing that ocean and never once touched the sand. This time, I decided what I got to touch.\"",
+      "next_beat_id": "s03_02_cam"
+    },
+
+    {
+      "type": "camera", "beat_id": "s03_02_cam", "display_name": "3.02 THE LAUNCH -- insert on the screen",
+      "camera_mode_id": "insert", "blend_seconds": 0.5,
+      "note": "Held silence. No dialogue in this beat.",
+      "next_beat_id": "s03_02_hold"
+    },
+    {
+      "type": "wait", "beat_id": "s03_02_hold", "display_name": "3.02 The held silence after launch",
+      "duration_seconds": 8.0,
+      "note": "He exhales. The thing is live. Nothing has happened yet.",
+      "next_beat_id": "s03_03_cam"
+    },
+
+    {
+      "type": "camera", "beat_id": "s03_03_cam", "display_name": "3.03 Close on phone, then his face",
+      "camera_mode_id": "close_hold", "blend_seconds": 0.5,
+      "note": "Contents of the offer implied, not detailed.",
+      "next_beat_id": "s03_03_line"
+    },
+    {
+      "type": "dialogue", "beat_id": "s03_03_line", "display_name": "3.03 'Yes -- yes, I can start Monday.'",
+      "dialogue_id": "nsb_s03_pure_01", "speaker_actor_id": "pure",
+      "timeout_seconds": 6.0,
+      "note": "Controlled, trying not to sound too eager.",
+      "next_beat_id": "s03_03_wide"
+    },
+    {
+      "type": "camera", "beat_id": "s03_03_wide", "display_name": "3.03 Wide -- alone in the small apartment",
+      "camera_mode_id": "wide_static", "blend_seconds": 0.5,
+      "note": "Same humble scale as the Seq 2 job-hunting apartment, to sharpen the contrast with 3.04's corner office.",
+      "next_beat_id": "s03_03_vo"
+    },
+    {
+      "type": "dialogue", "beat_id": "s03_03_vo", "display_name": "3.03 V.O. 'The door didn't see the ten years.'",
+      "dialogue_id": "nsb_s03_vo_02", "speaker_actor_id": "narrator",
+      "timeout_seconds": 10.0,
+      "note": "\"Every door that had slammed shut for ten years opened on the first try.\"",
+      "next_beat_id": "s03_04_cam"
+    },
+
+    {
+      "type": "camera", "beat_id": "s03_04_cam", "display_name": "3.04 THE CORNER OFFICE -- the window view",
+      "camera_mode_id": "wide_static", "blend_seconds": 1.0,
+      "note": "REPEATED COMPOSITION #1 of 3. This exact framing returns in 3.05 and 3.12 with shifting emotional weight -- success, then unease, then isolation.",
+      "next_beat_id": "s03_04_look"
+    },
+    {
+      "type": "action", "beat_id": "s03_04_look", "display_name": "3.04 Pure looks out at Newport",
+      "actor_id": "pure", "action_id": "look_out", "wait_for_completion": false,
+      "next_beat_id": "s03_04_vo"
+    },
+    {
+      "type": "dialogue", "beat_id": "s03_04_vo", "display_name": "3.04 V.O. 'Just from a different kind of distance now.'",
+      "dialogue_id": "nsb_s03_vo_03", "speaker_actor_id": "narrator",
+      "timeout_seconds": 12.0,
+      "note": "\"I could see the whole ocean from up there. Funny -- I still couldn't touch it.\" The film's title thesis restated as irony.",
+      "next_beat_id": "s03_05_cam"
+    },
+
+    {
+      "type": "camera", "beat_id": "s03_05_cam", "display_name": "3.05 THE NEW LIFE -- window view again",
+      "camera_mode_id": "wide_static", "blend_seconds": 0.5,
+      "note": "REPEATED COMPOSITION #2. Same framing as 3.04, now read as comfort.",
+      "next_beat_id": "s03_05_stand"
+    },
+    {
+      "type": "action", "beat_id": "s03_05_stand", "display_name": "3.05 Presenting, at ease",
+      "actor_id": "pure", "action_id": "stand_still", "wait_for_completion": false,
+      "next_beat_id": "s03_05_vo"
+    },
+    {
+      "type": "dialogue", "beat_id": "s03_05_vo", "display_name": "3.05 V.O. 'I started to forget I ever had to.'",
+      "dialogue_id": "nsb_s03_vo_04", "speaker_actor_id": "narrator",
+      "timeout_seconds": 16.0,
+      "note": "\"...I stopped checking over my shoulder. I stopped explaining myself. I started to forget I ever had to.\" The word 'forget' plants 3.06-3.08.",
+      "next_beat_id": "s03_06_cam"
+    },
+
+    {
+      "type": "camera", "beat_id": "s03_06_cam", "display_name": "3.06 THE FIRST GLITCH -- close on Pure",
+      "camera_mode_id": "close_hold", "blend_seconds": 0.5,
+      "note": "Something in him stalls. NO visual effect on him -- the failure is internal and unillustrated.",
+      "next_beat_id": "s03_06_still"
+    },
+    {
+      "type": "action", "beat_id": "s03_06_still", "display_name": "3.06 He goes still mid-thought",
+      "actor_id": "pure", "action_id": "stand_still", "wait_for_completion": true, "timeout_seconds": 5.0,
+      "next_beat_id": "s03_06_vo"
+    },
+    {
+      "type": "dialogue", "beat_id": "s03_06_vo", "display_name": "3.06 V.O. 'I told myself I was just tired.'",
+      "dialogue_id": "nsb_s03_vo_05", "speaker_actor_id": "narrator",
+      "timeout_seconds": 8.0,
+      "next_beat_id": "s03_07_cam"
+    },
+
+    {
+      "type": "camera", "beat_id": "s03_07_cam", "display_name": "3.07 WHAT'S HER LAUGH? -- held close",
+      "camera_mode_id": "close_hold", "blend_seconds": 0.5,
+      "note": "SHOW NOTHING. No flashback, no degraded image, no glitch overlay. The screen simply does not supply the memory, because he cannot. Absence is the technique.",
+      "next_beat_id": "s03_07_hold"
+    },
+    {
+      "type": "wait", "beat_id": "s03_07_hold", "display_name": "3.07 The blank where Delia's laugh should be",
+      "duration_seconds": 4.0,
+      "next_beat_id": "s03_07_vo"
+    },
+    {
+      "type": "dialogue", "beat_id": "s03_07_vo", "display_name": "3.07 V.O. 'I couldn't find it.'",
+      "dialogue_id": "nsb_s03_vo_06", "speaker_actor_id": "narrator",
+      "timeout_seconds": 12.0,
+      "note": "\"I tried to remember my mother's laugh. I couldn't find it. Not the sound, not even the shape of her face when she did it.\"",
+      "next_beat_id": "s03_08_hold"
+    },
+
+    {
+      "type": "wait", "beat_id": "s03_08_hold", "display_name": "3.08 MARCUS'S VOICE -- checking, finding it",
+      "duration_seconds": 3.0,
+      "note": "Same discipline as 3.07: nothing illustrated. This time the memory is still there, which is worse -- it makes the loss countable.",
+      "next_beat_id": "s03_08_vo"
+    },
+    {
+      "type": "dialogue", "beat_id": "s03_08_vo", "display_name": "3.08 V.O. 'How many more times I'd get to check.'",
+      "dialogue_id": "nsb_s03_vo_07", "speaker_actor_id": "narrator",
+      "timeout_seconds": 10.0,
+      "note": "\"Marcus's voice was still there. That time. I didn't know how many more times I'd get to check.\"",
+      "next_beat_id": "s03_09_cam"
+    },
+
+    {
+      "type": "camera", "beat_id": "s03_09_cam", "display_name": "3.09 THE SCREEN GLITCHES -- insert",
+      "camera_mode_id": "insert", "blend_seconds": 0.0,
+      "note": "First full deployment of the CA-choppy chaotic-rule pattern (RENDER_STYLE.md). Earl's glitch design is a full separate design, not a transition from his Seq 1 memory appearance.",
+      "next_beat_id": "s03_09_materialize"
+    },
+    {
+      "type": "action", "beat_id": "s03_09_materialize", "display_name": "3.09 Earl materializes as glitch",
+      "actor_id": "earl_glitch", "action_id": "materialize_glitch", "wait_for_completion": true, "timeout_seconds": 8.0,
+      "note": "No dialogue yet -- the appearance itself is the beat.",
+      "next_beat_id": "s03_09_hold"
+    },
+    {
+      "type": "wait", "beat_id": "s03_09_hold", "display_name": "3.09 Let the apparition sit",
+      "duration_seconds": 3.0,
+      "next_beat_id": "s03_10_cam"
+    },
+
+    {
+      "type": "camera", "beat_id": "s03_10_cam", "display_name": "3.10 Two-shot: the screen as scene partner",
+      "camera_mode_id": "two_shot", "blend_seconds": 0.5,
+      "note": "Treat the glitch screen as a full scene partner, not a prop, despite Earl only existing on the monitor.",
+      "next_beat_id": "s03_10_line1"
+    },
+    {
+      "type": "dialogue", "beat_id": "s03_10_line1", "display_name": "3.10 'You built a lie, and you're falling in love with it.'",
+      "dialogue_id": "nsb_s03_earl_01", "speaker_actor_id": "earl_glitch", "target_actor_id": "pure",
+      "timeout_seconds": 8.0,
+      "note": "Voice run through the same distortion texture as the visual glitch -- warm underneath, corrupted on top.",
+      "next_beat_id": "s03_10_line2"
+    },
+    {
+      "type": "dialogue", "beat_id": "s03_10_line2", "display_name": "3.10 'You're killing her by becoming a stranger.'",
+      "dialogue_id": "nsb_s03_earl_02", "speaker_actor_id": "earl_glitch", "target_actor_id": "pure",
+      "timeout_seconds": 10.0,
+      "note": "\"You think you're honoring your mother by becoming someone else?\" The film's central accusation.",
+      "next_beat_id": "s03_10_line3"
+    },
+    {
+      "type": "dialogue", "beat_id": "s03_10_line3", "display_name": "3.10 'I'm not... I'm not you.'",
+      "dialogue_id": "nsb_s03_pure_02", "speaker_actor_id": "pure", "target_actor_id": "earl_glitch",
+      "timeout_seconds": 6.0,
+      "note": "Quiet, almost to himself. The one thing he has always been most afraid of.",
+      "next_beat_id": "s03_11_recoil"
+    },
+
+    {
+      "type": "action", "beat_id": "s03_11_recoil", "display_name": "3.11 THE REJECTION -- recoils, closes the laptop",
+      "actor_id": "pure", "action_id": "recoil", "wait_for_completion": true, "timeout_seconds": 4.0,
+      "next_beat_id": "s03_11_close"
+    },
+    {
+      "type": "action", "beat_id": "s03_11_close", "display_name": "3.11 Closes the laptop",
+      "actor_id": "pure", "action_id": "close_laptop", "wait_for_completion": true, "timeout_seconds": 3.0,
+      "note": "Abrupt cut to black on the screen. He is not ready to hear it.",
+      "next_beat_id": "s03_11_vo"
+    },
+    {
+      "type": "dialogue", "beat_id": "s03_11_vo", "display_name": "3.11 V.O. 'I told myself a lot of things, that year.'",
+      "dialogue_id": "nsb_s03_vo_08", "speaker_actor_id": "narrator",
+      "timeout_seconds": 10.0,
+      "next_beat_id": "s03_12_cam"
+    },
+
+    {
+      "type": "camera", "beat_id": "s03_12_cam", "display_name": "3.12 ALONE IN THE OFFICE -- window view, third time",
+      "camera_mode_id": "wide_static", "blend_seconds": 1.0,
+      "note": "REPEATED COMPOSITION #3, now at night and reframed as isolation. This beat rhymes camera-for-camera with Sequence 2's prison-cell stillness (s02_06) -- the corner office IS the cell.",
+      "next_beat_id": "s03_12_sit"
+    },
+    {
+      "type": "action", "beat_id": "s03_12_sit", "display_name": "3.12 Sitting alone",
+      "actor_id": "pure", "action_id": "sit_still", "wait_for_completion": false,
+      "next_beat_id": "s03_12_vo"
+    },
+    {
+      "type": "dialogue", "beat_id": "s03_12_vo", "display_name": "3.12 V.O. 'I still couldn't remember what my mother's laugh sounded like.'",
+      "dialogue_id": "nsb_s03_vo_09", "speaker_actor_id": "narrator",
+      "timeout_seconds": 12.0,
+      "note": "\"I had everything I built.\" The sequence's closing indictment.",
+      "next_beat_id": "s03_12_hold"
+    },
+    {
+      "type": "wait", "beat_id": "s03_12_hold", "display_name": "3.12 Hold on the isolation",
+      "duration_seconds": 3.0,
+      "next_beat_id": "s03_end"
+    },
+    {
+      "type": "end", "beat_id": "s03_end", "display_name": "Sequence 3 complete",
+      "completion_signal": "scene_finished",
+      "note": "Hands off to Sequence 4: The Collapse -- which opens on this same desk."
+    }
+  ]
+}

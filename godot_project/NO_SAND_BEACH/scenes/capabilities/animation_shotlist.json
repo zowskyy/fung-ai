@@ -1,0 +1,1162 @@
+{
+  "characters": {
+    "classmate_a": {
+      "actor_id": "classmate_a",
+      "display_name": "Classmate A (generic extra)",
+      "actor_tags": [
+        "extra",
+        "human"
+      ],
+      "sequences": [
+        "nsb_seq_01_the_setup"
+      ],
+      "clips": {
+        "talk": {
+          "clip": "talk",
+          "motion_mode": "in_place",
+          "actions": [
+            "(dialogue)"
+          ],
+          "beats": [
+            {
+              "sequence": "nsb_seq_01_the_setup",
+              "beat_id": "s01_13_talk_a"
+            }
+          ]
+        }
+      },
+      "clip_count": 1,
+      "beat_count": 1
+    },
+    "classmate_b": {
+      "actor_id": "classmate_b",
+      "display_name": "Classmate B (generic extra)",
+      "actor_tags": [
+        "extra",
+        "human"
+      ],
+      "sequences": [
+        "nsb_seq_01_the_setup"
+      ],
+      "clips": {
+        "talk": {
+          "clip": "talk",
+          "motion_mode": "in_place",
+          "actions": [
+            "(dialogue)"
+          ],
+          "beats": [
+            {
+              "sequence": "nsb_seq_01_the_setup",
+              "beat_id": "s01_13_talk_b"
+            }
+          ]
+        }
+      },
+      "clip_count": 1,
+      "beat_count": 1
+    },
+    "delia": {
+      "actor_id": "delia",
+      "display_name": "Delia",
+      "actor_tags": [
+        "family",
+        "human"
+      ],
+      "sequences": [
+        "nsb_seq_01_the_setup",
+        "nsb_seq_04_the_collapse",
+        "nsb_seq_05_the_courtroom",
+        "nsb_seq_06_the_sand"
+      ],
+      "clips": {
+        "change_clothes": {
+          "clip": "change_clothes",
+          "motion_mode": "none",
+          "actions": [
+            "change_clothes"
+          ],
+          "beats": [
+            {
+              "sequence": "nsb_seq_01_the_setup",
+              "beat_id": "s01_04_change"
+            }
+          ]
+        },
+        "hand_on_hand": {
+          "clip": "hand_on_hand",
+          "motion_mode": "none",
+          "actions": [
+            "hand_on_hand"
+          ],
+          "beats": [
+            {
+              "sequence": "nsb_seq_04_the_collapse",
+              "beat_id": "s04_02_hand"
+            }
+          ]
+        },
+        "kiss_forehead": {
+          "clip": "kiss_forehead",
+          "motion_mode": "none",
+          "actions": [
+            "kiss_forehead"
+          ],
+          "beats": [
+            {
+              "sequence": "nsb_seq_01_the_setup",
+              "beat_id": "s01_02_kiss"
+            }
+          ]
+        },
+        "look_out": {
+          "clip": "look_out",
+          "motion_mode": "in_place",
+          "actions": [
+            "look_out"
+          ],
+          "beats": [
+            {
+              "sequence": "nsb_seq_06_the_sand",
+              "beat_id": "s06_03_look_d"
+            }
+          ]
+        },
+        "pour_coffee": {
+          "clip": "pour_coffee",
+          "motion_mode": "none",
+          "actions": [
+            "pour_coffee"
+          ],
+          "beats": [
+            {
+              "sequence": "nsb_seq_01_the_setup",
+              "beat_id": "s01_03_coffee"
+            }
+          ]
+        },
+        "sit_idle": {
+          "clip": "sit_idle",
+          "motion_mode": "in_place",
+          "actions": [
+            "sit_still"
+          ],
+          "beats": [
+            {
+              "sequence": "nsb_seq_05_the_courtroom",
+              "beat_id": "s05_01_gallery"
+            }
+          ]
+        },
+        "stand_up": {
+          "clip": "stand_up",
+          "motion_mode": "none",
+          "actions": [
+            "rise"
+          ],
+          "beats": [
+            {
+              "sequence": "nsb_seq_05_the_courtroom",
+              "beat_id": "s05_05_rise_d"
+            }
+          ]
+        },
+        "talk": {
+          "clip": "talk",
+          "motion_mode": "in_place",
+          "actions": [
+            "(dialogue)"
+          ],
+          "beats": [
+            {
+              "sequence": "nsb_seq_01_the_setup",
+              "beat_id": "s01_01_vo"
+            },
+            {
+              "sequence": "nsb_seq_01_the_setup",
+              "beat_id": "s01_02_vo"
+            },
+            {
+              "sequence": "nsb_seq_01_the_setup",
+              "beat_id": "s01_03_vo"
+            },
+            {
+              "sequence": "nsb_seq_01_the_setup",
+              "beat_id": "s01_04_vo"
+            },
+            {
+              "sequence": "nsb_seq_01_the_setup",
+              "beat_id": "s01_05_vo"
+            },
+            {
+              "sequence": "nsb_seq_04_the_collapse",
+              "beat_id": "s04_03_line1"
+            },
+            {
+              "sequence": "nsb_seq_04_the_collapse",
+              "beat_id": "s04_03_line2"
+            },
+            {
+              "sequence": "nsb_seq_04_the_collapse",
+              "beat_id": "s04_03_line3"
+            }
+          ]
+        },
+        "walk": {
+          "clip": "walk",
+          "motion_mode": "planar_root_motion",
+          "actions": [
+            "enter",
+            "exit"
+          ],
+          "beats": [
+            {
+              "sequence": "nsb_seq_01_the_setup",
+              "beat_id": "s01_01_enter"
+            },
+            {
+              "sequence": "nsb_seq_01_the_setup",
+              "beat_id": "s01_05_exit"
+            }
+          ]
+        },
+        "watch": {
+          "clip": "watch",
+          "motion_mode": "in_place",
+          "actions": [
+            "watch"
+          ],
+          "beats": [
+            {
+              "sequence": "nsb_seq_04_the_collapse",
+              "beat_id": "s04_05_watch"
+            }
+          ]
+        }
+      },
+      "clip_count": 10,
+      "beat_count": 18
+    },
+    "earl": {
+      "actor_id": "earl",
+      "display_name": "Earl (memory design, period-styled)",
+      "actor_tags": [
+        "family",
+        "human",
+        "flashback"
+      ],
+      "sequences": [
+        "nsb_seq_01_the_setup"
+      ],
+      "clips": {
+        "hold_child": {
+          "clip": "hold_child",
+          "motion_mode": "none",
+          "actions": [
+            "hold_child"
+          ],
+          "beats": [
+            {
+              "sequence": "nsb_seq_01_the_setup",
+              "beat_id": "s01_14_hold_child"
+            }
+          ]
+        },
+        "talk": {
+          "clip": "talk",
+          "motion_mode": "in_place",
+          "actions": [
+            "(dialogue)"
+          ],
+          "beats": [
+            {
+              "sequence": "nsb_seq_01_the_setup",
+              "beat_id": "s01_14_line"
+            }
+          ]
+        },
+        "vanish": {
+          "clip": "vanish",
+          "motion_mode": "none",
+          "actions": [
+            "vanish"
+          ],
+          "beats": [
+            {
+              "sequence": "nsb_seq_01_the_setup",
+              "beat_id": "s01_14_vanish"
+            }
+          ]
+        }
+      },
+      "clip_count": 3,
+      "beat_count": 3
+    },
+    "earl_glitch": {
+      "actor_id": "earl_glitch",
+      "display_name": "Earl (glitch design -- CA-choppy thread mask)",
+      "actor_tags": [
+        "apparition"
+      ],
+      "sequences": [
+        "nsb_seq_03_the_app"
+      ],
+      "clips": {
+        "glitch_in": {
+          "clip": "glitch_in",
+          "motion_mode": "none",
+          "actions": [
+            "materialize_glitch"
+          ],
+          "beats": [
+            {
+              "sequence": "nsb_seq_03_the_app",
+              "beat_id": "s03_09_materialize"
+            }
+          ]
+        },
+        "talk": {
+          "clip": "talk",
+          "motion_mode": "in_place",
+          "actions": [
+            "(dialogue)"
+          ],
+          "beats": [
+            {
+              "sequence": "nsb_seq_03_the_app",
+              "beat_id": "s03_10_line1"
+            },
+            {
+              "sequence": "nsb_seq_03_the_app",
+              "beat_id": "s03_10_line2"
+            }
+          ]
+        }
+      },
+      "clip_count": 2,
+      "beat_count": 3
+    },
+    "interviewer": {
+      "actor_id": "interviewer",
+      "display_name": "Interviewer (generic, modular across the montage)",
+      "actor_tags": [
+        "extra",
+        "human"
+      ],
+      "sequences": [
+        "nsb_seq_02_the_fall"
+      ],
+      "clips": {
+        "talk": {
+          "clip": "talk",
+          "motion_mode": "in_place",
+          "actions": [
+            "(dialogue)"
+          ],
+          "beats": [
+            {
+              "sequence": "nsb_seq_02_the_fall",
+              "beat_id": "s02_11_line1"
+            },
+            {
+              "sequence": "nsb_seq_02_the_fall",
+              "beat_id": "s02_11_line3"
+            }
+          ]
+        }
+      },
+      "clip_count": 1,
+      "beat_count": 2
+    },
+    "judge": {
+      "actor_id": "judge",
+      "display_name": "Judge (generic; shares Seq 5's design)",
+      "actor_tags": [
+        "authority",
+        "human"
+      ],
+      "sequences": [
+        "nsb_seq_02_the_fall",
+        "nsb_seq_05_the_courtroom"
+      ],
+      "clips": {
+        "gavel": {
+          "clip": "gavel",
+          "motion_mode": "none",
+          "actions": [
+            "gavel"
+          ],
+          "beats": [
+            {
+              "sequence": "nsb_seq_02_the_fall",
+              "beat_id": "s02_05_gavel"
+            },
+            {
+              "sequence": "nsb_seq_05_the_courtroom",
+              "beat_id": "s05_03_gavel"
+            }
+          ]
+        },
+        "preside": {
+          "clip": "preside",
+          "motion_mode": "in_place",
+          "actions": [
+            "preside"
+          ],
+          "beats": [
+            {
+              "sequence": "nsb_seq_05_the_courtroom",
+              "beat_id": "s05_01_preside"
+            }
+          ]
+        },
+        "talk": {
+          "clip": "talk",
+          "motion_mode": "in_place",
+          "actions": [
+            "(dialogue)"
+          ],
+          "beats": [
+            {
+              "sequence": "nsb_seq_02_the_fall",
+              "beat_id": "s02_05_line"
+            },
+            {
+              "sequence": "nsb_seq_05_the_courtroom",
+              "beat_id": "s05_03_denial"
+            }
+          ]
+        }
+      },
+      "clip_count": 3,
+      "beat_count": 5
+    },
+    "marcus": {
+      "actor_id": "marcus",
+      "display_name": "Marcus",
+      "actor_tags": [
+        "family",
+        "human"
+      ],
+      "sequences": [
+        "nsb_seq_01_the_setup",
+        "nsb_seq_04_the_collapse",
+        "nsb_seq_05_the_courtroom",
+        "nsb_seq_06_the_sand"
+      ],
+      "clips": {
+        "embrace": {
+          "clip": "embrace",
+          "motion_mode": "none",
+          "actions": [
+            "embrace"
+          ],
+          "beats": [
+            {
+              "sequence": "nsb_seq_04_the_collapse",
+              "beat_id": "s04_05_embrace"
+            }
+          ]
+        },
+        "look_out": {
+          "clip": "look_out",
+          "motion_mode": "in_place",
+          "actions": [
+            "look_out"
+          ],
+          "beats": [
+            {
+              "sequence": "nsb_seq_06_the_sand",
+              "beat_id": "s06_03_look_m"
+            }
+          ]
+        },
+        "set_down": {
+          "clip": "set_down",
+          "motion_mode": "none",
+          "actions": [
+            "set_down"
+          ],
+          "beats": [
+            {
+              "sequence": "nsb_seq_01_the_setup",
+              "beat_id": "s01_11_money"
+            }
+          ]
+        },
+        "sit_idle": {
+          "clip": "sit_idle",
+          "motion_mode": "in_place",
+          "actions": [
+            "sit_still"
+          ],
+          "beats": [
+            {
+              "sequence": "nsb_seq_05_the_courtroom",
+              "beat_id": "s05_01_gallery_m"
+            }
+          ]
+        },
+        "stand_up": {
+          "clip": "stand_up",
+          "motion_mode": "none",
+          "actions": [
+            "rise"
+          ],
+          "beats": [
+            {
+              "sequence": "nsb_seq_05_the_courtroom",
+              "beat_id": "s05_05_rise_m"
+            }
+          ]
+        },
+        "talk": {
+          "clip": "talk",
+          "motion_mode": "in_place",
+          "actions": [
+            "(dialogue)"
+          ],
+          "beats": [
+            {
+              "sequence": "nsb_seq_01_the_setup",
+              "beat_id": "s01_09_line1"
+            },
+            {
+              "sequence": "nsb_seq_01_the_setup",
+              "beat_id": "s01_09_line3"
+            },
+            {
+              "sequence": "nsb_seq_01_the_setup",
+              "beat_id": "s01_09_vo"
+            },
+            {
+              "sequence": "nsb_seq_01_the_setup",
+              "beat_id": "s01_10_vo"
+            },
+            {
+              "sequence": "nsb_seq_01_the_setup",
+              "beat_id": "s01_11_line1"
+            },
+            {
+              "sequence": "nsb_seq_01_the_setup",
+              "beat_id": "s01_11_line3"
+            },
+            {
+              "sequence": "nsb_seq_04_the_collapse",
+              "beat_id": "s04_04_line1"
+            },
+            {
+              "sequence": "nsb_seq_04_the_collapse",
+              "beat_id": "s04_04_line3"
+            },
+            {
+              "sequence": "nsb_seq_04_the_collapse",
+              "beat_id": "s04_04_line5"
+            }
+          ]
+        },
+        "walk": {
+          "clip": "walk",
+          "motion_mode": "planar_root_motion",
+          "actions": [
+            "enter",
+            "exit",
+            "walk"
+          ],
+          "beats": [
+            {
+              "sequence": "nsb_seq_01_the_setup",
+              "beat_id": "s01_09_enter"
+            },
+            {
+              "sequence": "nsb_seq_01_the_setup",
+              "beat_id": "s01_12_exit"
+            },
+            {
+              "sequence": "nsb_seq_04_the_collapse",
+              "beat_id": "s04_04_enter"
+            },
+            {
+              "sequence": "nsb_seq_04_the_collapse",
+              "beat_id": "s04_05_cross"
+            }
+          ]
+        }
+      },
+      "clip_count": 7,
+      "beat_count": 18
+    },
+    "officer": {
+      "actor_id": "officer",
+      "display_name": "Arresting Officer (generic extra)",
+      "actor_tags": [
+        "authority",
+        "human"
+      ],
+      "sequences": [
+        "nsb_seq_02_the_fall"
+      ],
+      "clips": {
+        "talk": {
+          "clip": "talk",
+          "motion_mode": "in_place",
+          "actions": [
+            "(dialogue)"
+          ],
+          "beats": [
+            {
+              "sequence": "nsb_seq_02_the_fall",
+              "beat_id": "s02_03_line1"
+            },
+            {
+              "sequence": "nsb_seq_02_the_fall",
+              "beat_id": "s02_03_line3"
+            }
+          ]
+        }
+      },
+      "clip_count": 1,
+      "beat_count": 2
+    },
+    "pure": {
+      "actor_id": "pure",
+      "display_name": "Pure (age 15 design)",
+      "actor_tags": [
+        "protagonist",
+        "human"
+      ],
+      "sequences": [
+        "nsb_seq_01_the_setup",
+        "nsb_seq_02_the_fall",
+        "nsb_seq_03_the_app",
+        "nsb_seq_04_the_collapse",
+        "nsb_seq_05_the_courtroom",
+        "nsb_seq_06_the_sand"
+      ],
+      "clips": {
+        "close_laptop": {
+          "clip": "close_laptop",
+          "motion_mode": "none",
+          "actions": [
+            "close_laptop"
+          ],
+          "beats": [
+            {
+              "sequence": "nsb_seq_02_the_fall",
+              "beat_id": "s02_09_close"
+            },
+            {
+              "sequence": "nsb_seq_03_the_app",
+              "beat_id": "s03_11_close"
+            },
+            {
+              "sequence": "nsb_seq_04_the_collapse",
+              "beat_id": "s04_07_delete"
+            }
+          ]
+        },
+        "collapse": {
+          "clip": "collapse",
+          "motion_mode": "none",
+          "actions": [
+            "collapse"
+          ],
+          "beats": [
+            {
+              "sequence": "nsb_seq_04_the_collapse",
+              "beat_id": "s04_01_collapse"
+            }
+          ]
+        },
+        "cuffed": {
+          "clip": "cuffed",
+          "motion_mode": "none",
+          "actions": [
+            "cuffed"
+          ],
+          "beats": [
+            {
+              "sequence": "nsb_seq_02_the_fall",
+              "beat_id": "s02_04_cuffed"
+            }
+          ]
+        },
+        "deflate": {
+          "clip": "deflate",
+          "motion_mode": "none",
+          "actions": [
+            "deflate"
+          ],
+          "beats": [
+            {
+              "sequence": "nsb_seq_02_the_fall",
+              "beat_id": "s02_12_deflate"
+            }
+          ]
+        },
+        "eat": {
+          "clip": "eat",
+          "motion_mode": "in_place",
+          "actions": [
+            "eat"
+          ],
+          "beats": [
+            {
+              "sequence": "nsb_seq_01_the_setup",
+              "beat_id": "s01_08_eat"
+            }
+          ]
+        },
+        "kneel": {
+          "clip": "kneel",
+          "motion_mode": "none",
+          "actions": [
+            "kneel"
+          ],
+          "beats": [
+            {
+              "sequence": "nsb_seq_06_the_sand",
+              "beat_id": "s06_02_kneel"
+            }
+          ]
+        },
+        "lie_idle": {
+          "clip": "lie_idle",
+          "motion_mode": "in_place",
+          "actions": [
+            "lie_still"
+          ],
+          "beats": [
+            {
+              "sequence": "nsb_seq_04_the_collapse",
+              "beat_id": "s04_02_lie"
+            }
+          ]
+        },
+        "listen": {
+          "clip": "listen",
+          "motion_mode": "in_place",
+          "actions": [
+            "listen"
+          ],
+          "beats": [
+            {
+              "sequence": "nsb_seq_01_the_setup",
+              "beat_id": "s01_13_listen"
+            }
+          ]
+        },
+        "look_out": {
+          "clip": "look_out",
+          "motion_mode": "in_place",
+          "actions": [
+            "look_out"
+          ],
+          "beats": [
+            {
+              "sequence": "nsb_seq_03_the_app",
+              "beat_id": "s03_04_look"
+            },
+            {
+              "sequence": "nsb_seq_06_the_sand",
+              "beat_id": "s06_01_look"
+            }
+          ]
+        },
+        "read": {
+          "clip": "read",
+          "motion_mode": "in_place",
+          "actions": [
+            "read"
+          ],
+          "beats": [
+            {
+              "sequence": "nsb_seq_02_the_fall",
+              "beat_id": "s02_08_read"
+            }
+          ]
+        },
+        "recoil": {
+          "clip": "recoil",
+          "motion_mode": "none",
+          "actions": [
+            "recoil"
+          ],
+          "beats": [
+            {
+              "sequence": "nsb_seq_03_the_app",
+              "beat_id": "s03_11_recoil"
+            }
+          ]
+        },
+        "sit_idle": {
+          "clip": "sit_idle",
+          "motion_mode": "in_place",
+          "actions": [
+            "sit_still"
+          ],
+          "beats": [
+            {
+              "sequence": "nsb_seq_02_the_fall",
+              "beat_id": "s02_06_sit"
+            },
+            {
+              "sequence": "nsb_seq_02_the_fall",
+              "beat_id": "s02_11_sit"
+            },
+            {
+              "sequence": "nsb_seq_02_the_fall",
+              "beat_id": "s02_13_sit"
+            },
+            {
+              "sequence": "nsb_seq_03_the_app",
+              "beat_id": "s03_12_sit"
+            },
+            {
+              "sequence": "nsb_seq_04_the_collapse",
+              "beat_id": "s04_06_sit"
+            },
+            {
+              "sequence": "nsb_seq_05_the_courtroom",
+              "beat_id": "s05_01_sit"
+            }
+          ]
+        },
+        "sit_up": {
+          "clip": "sit_up",
+          "motion_mode": "none",
+          "actions": [
+            "sit_up"
+          ],
+          "beats": [
+            {
+              "sequence": "nsb_seq_04_the_collapse",
+              "beat_id": "s04_05_sit_up"
+            }
+          ]
+        },
+        "sleep": {
+          "clip": "sleep",
+          "motion_mode": "in_place",
+          "actions": [
+            "sleep"
+          ],
+          "beats": [
+            {
+              "sequence": "nsb_seq_01_the_setup",
+              "beat_id": "s01_02_sleep"
+            }
+          ]
+        },
+        "smile": {
+          "clip": "smile",
+          "motion_mode": "none",
+          "actions": [
+            "smile"
+          ],
+          "beats": [
+            {
+              "sequence": "nsb_seq_06_the_sand",
+              "beat_id": "s06_06_smile"
+            }
+          ]
+        },
+        "stand_idle": {
+          "clip": "stand_idle",
+          "motion_mode": "in_place",
+          "actions": [
+            "stand_still"
+          ],
+          "beats": [
+            {
+              "sequence": "nsb_seq_03_the_app",
+              "beat_id": "s03_05_stand"
+            },
+            {
+              "sequence": "nsb_seq_03_the_app",
+              "beat_id": "s03_06_still"
+            }
+          ]
+        },
+        "stand_up": {
+          "clip": "stand_up",
+          "motion_mode": "none",
+          "actions": [
+            "stand_up"
+          ],
+          "beats": [
+            {
+              "sequence": "nsb_seq_05_the_courtroom",
+              "beat_id": "s05_02_stand"
+            },
+            {
+              "sequence": "nsb_seq_06_the_sand",
+              "beat_id": "s06_03_stand"
+            }
+          ]
+        },
+        "talk": {
+          "clip": "talk",
+          "motion_mode": "in_place",
+          "actions": [
+            "(dialogue)"
+          ],
+          "beats": [
+            {
+              "sequence": "nsb_seq_01_the_setup",
+              "beat_id": "s01_09_line2"
+            },
+            {
+              "sequence": "nsb_seq_01_the_setup",
+              "beat_id": "s01_09_line4"
+            },
+            {
+              "sequence": "nsb_seq_01_the_setup",
+              "beat_id": "s01_11_line2"
+            },
+            {
+              "sequence": "nsb_seq_02_the_fall",
+              "beat_id": "s02_03_line2"
+            },
+            {
+              "sequence": "nsb_seq_02_the_fall",
+              "beat_id": "s02_11_line2"
+            },
+            {
+              "sequence": "nsb_seq_03_the_app",
+              "beat_id": "s03_03_line"
+            },
+            {
+              "sequence": "nsb_seq_03_the_app",
+              "beat_id": "s03_10_line3"
+            },
+            {
+              "sequence": "nsb_seq_04_the_collapse",
+              "beat_id": "s04_04_line2"
+            },
+            {
+              "sequence": "nsb_seq_04_the_collapse",
+              "beat_id": "s04_04_line4"
+            },
+            {
+              "sequence": "nsb_seq_05_the_courtroom",
+              "beat_id": "s05_02_argument"
+            },
+            {
+              "sequence": "nsb_seq_05_the_courtroom",
+              "beat_id": "s05_04_line1"
+            },
+            {
+              "sequence": "nsb_seq_05_the_courtroom",
+              "beat_id": "s05_04_line2"
+            },
+            {
+              "sequence": "nsb_seq_05_the_courtroom",
+              "beat_id": "s05_04_line3"
+            },
+            {
+              "sequence": "nsb_seq_06_the_sand",
+              "beat_id": "s06_06_answer"
+            }
+          ]
+        },
+        "teach": {
+          "clip": "teach",
+          "motion_mode": "planar_root_motion",
+          "actions": [
+            "teach"
+          ],
+          "beats": [
+            {
+              "sequence": "nsb_seq_06_the_sand",
+              "beat_id": "s06_04_teach"
+            }
+          ]
+        },
+        "touch_sand": {
+          "clip": "touch_sand",
+          "motion_mode": "none",
+          "actions": [
+            "touch_sand"
+          ],
+          "beats": [
+            {
+              "sequence": "nsb_seq_06_the_sand",
+              "beat_id": "s06_02_touch"
+            }
+          ]
+        },
+        "turn_to_look": {
+          "clip": "turn_to_look",
+          "motion_mode": "none",
+          "actions": [
+            "turn_to_look"
+          ],
+          "beats": [
+            {
+              "sequence": "nsb_seq_04_the_collapse",
+              "beat_id": "s04_03_turn"
+            }
+          ]
+        },
+        "type": {
+          "clip": "type",
+          "motion_mode": "in_place",
+          "actions": [
+            "type"
+          ],
+          "beats": [
+            {
+              "sequence": "nsb_seq_02_the_fall",
+              "beat_id": "s02_07_type"
+            },
+            {
+              "sequence": "nsb_seq_02_the_fall",
+              "beat_id": "s02_08_type"
+            },
+            {
+              "sequence": "nsb_seq_03_the_app",
+              "beat_id": "s03_01_type"
+            }
+          ]
+        },
+        "wake": {
+          "clip": "wake",
+          "motion_mode": "none",
+          "actions": [
+            "wake"
+          ],
+          "beats": [
+            {
+              "sequence": "nsb_seq_01_the_setup",
+              "beat_id": "s01_07_wake"
+            }
+          ]
+        },
+        "walk": {
+          "clip": "walk",
+          "motion_mode": "planar_root_motion",
+          "actions": [
+            "walk"
+          ],
+          "beats": [
+            {
+              "sequence": "nsb_seq_02_the_fall",
+              "beat_id": "s02_03_walk"
+            },
+            {
+              "sequence": "nsb_seq_02_the_fall",
+              "beat_id": "s02_07_approach"
+            },
+            {
+              "sequence": "nsb_seq_02_the_fall",
+              "beat_id": "s02_10_walk"
+            },
+            {
+              "sequence": "nsb_seq_05_the_courtroom",
+              "beat_id": "s05_05_walk"
+            },
+            {
+              "sequence": "nsb_seq_06_the_sand",
+              "beat_id": "s06_01_walk"
+            }
+          ]
+        }
+      },
+      "clip_count": 24,
+      "beat_count": 53
+    },
+    "pure_child": {
+      "actor_id": "pure_child",
+      "display_name": "Pure (age 7 design, flashback only)",
+      "actor_tags": [
+        "protagonist",
+        "human",
+        "flashback"
+      ],
+      "sequences": [
+        "nsb_seq_01_the_setup"
+      ],
+      "clips": {
+        "held": {
+          "clip": "held",
+          "motion_mode": "none",
+          "actions": [
+            "be_held"
+          ],
+          "beats": [
+            {
+              "sequence": "nsb_seq_01_the_setup",
+              "beat_id": "s01_14_held"
+            }
+          ]
+        }
+      },
+      "clip_count": 1,
+      "beat_count": 1
+    },
+    "pure_teen": {
+      "actor_id": "pure_teen",
+      "display_name": "Pure (age 15 design, arrest beat only)",
+      "actor_tags": [
+        "protagonist",
+        "human"
+      ],
+      "sequences": [
+        "nsb_seq_02_the_fall"
+      ],
+      "clips": {
+        "cuffed": {
+          "clip": "cuffed",
+          "motion_mode": "none",
+          "actions": [
+            "cuffed"
+          ],
+          "beats": [
+            {
+              "sequence": "nsb_seq_02_the_fall",
+              "beat_id": "s02_01_cuffed"
+            }
+          ]
+        }
+      },
+      "clip_count": 1,
+      "beat_count": 1
+    },
+    "student_kid": {
+      "actor_id": "student_kid",
+      "display_name": "Student (generic extra)",
+      "actor_tags": [
+        "extra",
+        "human"
+      ],
+      "sequences": [
+        "nsb_seq_06_the_sand"
+      ],
+      "clips": {
+        "talk": {
+          "clip": "talk",
+          "motion_mode": "in_place",
+          "actions": [
+            "(dialogue)"
+          ],
+          "beats": [
+            {
+              "sequence": "nsb_seq_06_the_sand",
+              "beat_id": "s06_05_question"
+            }
+          ]
+        }
+      },
+      "clip_count": 1,
+      "beat_count": 1
+    }
+  },
+  "unused_actions": [],
+  "characters_without_clips": [],
+  "totals": {
+    "characters": 13,
+    "distinct_clips": 37,
+    "clip_assignments": 56
+  }
+}

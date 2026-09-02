@@ -1,0 +1,262 @@
+{
+  "plan_id": "nsb_seq_04_the_collapse",
+  "display_name": "Sequence 4: The Collapse",
+  "description": "Pure collapses; the hospital reconciliation; the app deleted; the memories return as sound. Source breakdown: scenes/sequence_04_the_collapse_breakdown.md (8 film beats, 1:46).",
+
+  "_comment": "One prose beat expands into several ScenePlan beats: a camera beat sets the framing, action beats drive the character animation, dialogue beats carry the lines, and wait beats hold the silent time the breakdown calls for. Beat ids are s04_<film beat>_<role> so they trace back to the breakdown.",
+
+  "actors": [
+    {"actor_id": "pure", "display_name": "Pure (27, contemporary)", "actor_tags": ["protagonist", "human"], "required": true},
+    {"actor_id": "delia", "display_name": "Delia", "actor_tags": ["family", "human"], "required": true},
+    {"actor_id": "marcus", "display_name": "Marcus", "actor_tags": ["family", "human"], "required": true},
+    {"actor_id": "narrator", "display_name": "Adult Pure (V.O.)", "actor_tags": ["voiceover"], "required": false}
+  ],
+
+  "beats": [
+    {
+      "type": "camera", "beat_id": "s04_01_cam", "display_name": "4.01 Desk, medium static",
+      "camera_mode_id": "medium_static", "blend_seconds": 0.0,
+      "note": "Static medium on desk/screen. Pure slides out of frame; hold on the empty chair.",
+      "next_beat_id": "s04_01_collapse"
+    },
+    {
+      "type": "action", "beat_id": "s04_01_collapse", "display_name": "4.01 The body gives out",
+      "actor_id": "pure", "action_id": "collapse", "wait_for_completion": true, "timeout_seconds": 6.0,
+      "note": "Quiet, not dramatic. No crash -- the body just stops cooperating.",
+      "next_beat_id": "s04_01_hold"
+    },
+    {
+      "type": "wait", "beat_id": "s04_01_hold", "display_name": "4.01 Hold empty chair",
+      "duration_seconds": 4.0,
+      "note": "Hold longer than comfortable. The glowing screen over the empty chair IS the image.",
+      "next_beat_id": "s04_02_cam"
+    },
+
+    {
+      "type": "camera", "beat_id": "s04_02_cam", "display_name": "4.02 Hospital wide",
+      "camera_mode_id": "wide_static", "blend_seconds": 0.0,
+      "note": "Wide, sparse hospital room. Cut, not dissolve -- the ellipsis is deliberate.",
+      "next_beat_id": "s04_02_lie"
+    },
+    {
+      "type": "action", "beat_id": "s04_02_lie", "display_name": "4.02 Pure lies still",
+      "actor_id": "pure", "action_id": "lie_still", "wait_for_completion": false,
+      "next_beat_id": "s04_02_hand"
+    },
+    {
+      "type": "action", "beat_id": "s04_02_hand", "display_name": "4.02 Delia's hand over his",
+      "actor_id": "delia", "action_id": "hand_on_hand", "wait_for_completion": true, "timeout_seconds": 4.0,
+      "note": "Resting, not clutching. The hands are this scene's visual anchor.",
+      "next_beat_id": "s04_02_push"
+    },
+    {
+      "type": "camera", "beat_id": "s04_02_push", "display_name": "4.02 Push to the hands",
+      "camera_mode_id": "slow_push", "blend_seconds": 3.0,
+      "note": "Slow push to the two hands. Opens in silence -- no dialogue in this beat.",
+      "next_beat_id": "s04_02_hold"
+    },
+    {
+      "type": "wait", "beat_id": "s04_02_hold", "display_name": "4.02 Hold on hands",
+      "duration_seconds": 3.0,
+      "next_beat_id": "s04_03_cam"
+    },
+
+    {
+      "type": "camera", "beat_id": "s04_03_cam", "display_name": "4.03 Close on Delia, HELD",
+      "camera_mode_id": "close_hold", "blend_seconds": 0.0,
+      "note": "NON-NEGOTIABLE: no cuts during the speech. Camera stays on Delia until the last line.",
+      "next_beat_id": "s04_03_line1"
+    },
+    {
+      "type": "dialogue", "beat_id": "s04_03_line1", "display_name": "4.03 'I worked three jobs...'",
+      "dialogue_id": "nsb_s04_delia_01", "speaker_actor_id": "delia", "target_actor_id": "pure",
+      "timeout_seconds": 12.0,
+      "note": "\"I worked three jobs because I didn't want you to think you had to be rich to be loved.\"",
+      "next_beat_id": "s04_03_pause1"
+    },
+    {
+      "type": "wait", "beat_id": "s04_03_pause1", "display_name": "4.03 Pause -- she finds it",
+      "duration_seconds": 1.5,
+      "note": "The silences between her sentences are as important as the sentences.",
+      "next_beat_id": "s04_03_line2"
+    },
+    {
+      "type": "dialogue", "beat_id": "s04_03_line2", "display_name": "4.03 'But I made you think...'",
+      "dialogue_id": "nsb_s04_delia_02", "speaker_actor_id": "delia", "target_actor_id": "pure",
+      "timeout_seconds": 12.0,
+      "note": "\"But I made you think you had to be perfect to be worthy. That's on me.\"",
+      "next_beat_id": "s04_03_turn"
+    },
+    {
+      "type": "action", "beat_id": "s04_03_turn", "display_name": "4.03 Pure turns to look",
+      "actor_id": "pure", "action_id": "turn_to_look", "wait_for_completion": true, "timeout_seconds": 3.0,
+      "note": "First time he looks at her in this scene. She doesn't flinch.",
+      "next_beat_id": "s04_03_cam_pure"
+    },
+    {
+      "type": "camera", "beat_id": "s04_03_cam_pure", "display_name": "4.03 Find Pure -- ONLY now",
+      "camera_mode_id": "close_hold", "blend_seconds": 0.5,
+      "note": "The one permitted move: find Pure's face for the last line, and only the last line.",
+      "next_beat_id": "s04_03_line3"
+    },
+    {
+      "type": "dialogue", "beat_id": "s04_03_line3", "display_name": "4.03 'I saved your body...'",
+      "dialogue_id": "nsb_s04_delia_03", "speaker_actor_id": "delia", "target_actor_id": "pure",
+      "timeout_seconds": 12.0,
+      "note": "\"I saved your body. I didn't save your heart. That's on you.\" -- the film's most important line.",
+      "next_beat_id": "s04_04_enter"
+    },
+
+    {
+      "type": "action", "beat_id": "s04_04_enter", "display_name": "4.04 Marcus enters",
+      "actor_id": "marcus", "action_id": "enter", "wait_for_completion": true, "timeout_seconds": 4.0,
+      "note": "Stands at the foot of the bed. Not hostile, not easy.",
+      "next_beat_id": "s04_04_cam"
+    },
+    {
+      "type": "camera", "beat_id": "s04_04_cam", "display_name": "4.04 Brothers in one frame",
+      "camera_mode_id": "two_shot", "blend_seconds": 0.5,
+      "note": "First shared shot in the film. Equal weight -- neither looms, though Marcus stands and Pure is in bed.",
+      "next_beat_id": "s04_04_line1"
+    },
+    {
+      "type": "dialogue", "beat_id": "s04_04_line1", "display_name": "4.04 'I did everything right.'",
+      "dialogue_id": "nsb_s04_marcus_01", "speaker_actor_id": "marcus", "target_actor_id": "pure",
+      "timeout_seconds": 10.0,
+      "note": "\"...I'm still fighting just to stay above water. And she's here.\"",
+      "next_beat_id": "s04_04_line2"
+    },
+    {
+      "type": "dialogue", "beat_id": "s04_04_line2", "display_name": "4.04 'I know.'",
+      "dialogue_id": "nsb_s04_pure_01", "speaker_actor_id": "pure", "target_actor_id": "marcus",
+      "timeout_seconds": 5.0,
+      "next_beat_id": "s04_04_line3"
+    },
+    {
+      "type": "dialogue", "beat_id": "s04_04_line3", "display_name": "4.04 'You don't.'",
+      "dialogue_id": "nsb_s04_marcus_02", "speaker_actor_id": "marcus", "target_actor_id": "pure",
+      "timeout_seconds": 5.0,
+      "next_beat_id": "s04_04_line4"
+    },
+    {
+      "type": "dialogue", "beat_id": "s04_04_line4", "display_name": "4.04 'I know I'm the reason...'",
+      "dialogue_id": "nsb_s04_pure_02", "speaker_actor_id": "pure", "target_actor_id": "marcus",
+      "timeout_seconds": 8.0,
+      "note": "\"I know I'm the reason you think love is something you have to earn.\"",
+      "next_beat_id": "s04_04_beat"
+    },
+    {
+      "type": "wait", "beat_id": "s04_04_beat", "display_name": "4.04 Beat before '...yeah'",
+      "duration_seconds": 1.5,
+      "next_beat_id": "s04_04_line5"
+    },
+    {
+      "type": "dialogue", "beat_id": "s04_04_line5", "display_name": "4.04 '...yeah.'",
+      "dialogue_id": "nsb_s04_marcus_03", "speaker_actor_id": "marcus", "target_actor_id": "pure",
+      "timeout_seconds": 5.0,
+      "next_beat_id": "s04_05_cam"
+    },
+
+    {
+      "type": "camera", "beat_id": "s04_05_cam", "display_name": "4.05 The hug -- static medium",
+      "camera_mode_id": "medium_static", "blend_seconds": 0.0,
+      "note": "NON-NEGOTIABLE: camera does NOT move. No crane, no circle-pan. Stillness and weight.",
+      "next_beat_id": "s04_05_sit_up"
+    },
+    {
+      "type": "action", "beat_id": "s04_05_sit_up", "display_name": "4.05 Pure sits up",
+      "actor_id": "pure", "action_id": "sit_up", "wait_for_completion": true, "timeout_seconds": 3.0,
+      "next_beat_id": "s04_05_cross"
+    },
+    {
+      "type": "move_to", "beat_id": "s04_05_cross", "display_name": "4.05 Marcus crosses to the bed",
+      "actor_id": "marcus", "locomotion_mode": "walk", "arrival_radius": 0.4, "timeout_seconds": 5.0,
+      "next_beat_id": "s04_05_watch"
+    },
+    {
+      "type": "action", "beat_id": "s04_05_watch", "display_name": "4.05 Delia watches",
+      "actor_id": "delia", "action_id": "watch", "wait_for_completion": false,
+      "note": "Background. One expression carrying twenty years of waiting for this.",
+      "next_beat_id": "s04_05_embrace"
+    },
+    {
+      "type": "action", "beat_id": "s04_05_embrace", "display_name": "4.05 THE HUG",
+      "actor_id": "marcus", "action_id": "embrace", "wait_for_completion": true, "timeout_seconds": 8.0,
+      "note": "Not graceful -- Marcus has to bend awkwardly over a hospital bed. That's why it reads as real.",
+      "next_beat_id": "s04_05_hold"
+    },
+    {
+      "type": "wait", "beat_id": "s04_05_hold", "display_name": "4.05 Let it sit",
+      "duration_seconds": 6.0,
+      "note": "Don't cut. Silence is the sound design here.",
+      "next_beat_id": "s04_06_cam"
+    },
+
+    {
+      "type": "camera", "beat_id": "s04_06_cam", "display_name": "4.06 Home, wide resting",
+      "camera_mode_id": "wide_static", "blend_seconds": 0.0,
+      "note": "Daylight now -- deliberate contrast with 4.01's night. Closed laptop visible on the desk.",
+      "next_beat_id": "s04_06_sit"
+    },
+    {
+      "type": "action", "beat_id": "s04_06_sit", "display_name": "4.06 Pure sitting, thinking",
+      "actor_id": "pure", "action_id": "sit_still", "wait_for_completion": false,
+      "next_beat_id": "s04_06_vo"
+    },
+    {
+      "type": "dialogue", "beat_id": "s04_06_vo", "display_name": "4.06 V.O. 'Outlines.'",
+      "dialogue_id": "nsb_s04_vo_01", "speaker_actor_id": "narrator",
+      "timeout_seconds": 10.0,
+      "note": "\"The memories I'd lost were already trying to come back. The shape of them. Outlines.\"",
+      "next_beat_id": "s04_07_cam"
+    },
+
+    {
+      "type": "camera", "beat_id": "s04_07_cam", "display_name": "4.07 Over-shoulder to screen",
+      "camera_mode_id": "over_shoulder", "blend_seconds": 0.5,
+      "next_beat_id": "s04_07_delete"
+    },
+    {
+      "type": "action", "beat_id": "s04_07_delete", "display_name": "4.07 Deletes the app",
+      "actor_id": "pure", "action_id": "close_laptop", "wait_for_completion": true, "timeout_seconds": 8.0,
+      "note": "Matter-of-fact. No swelling score, no dramatic hesitation -- the decision was already made.",
+      "next_beat_id": "s04_07_insert"
+    },
+    {
+      "type": "camera", "beat_id": "s04_07_insert", "display_name": "4.07 Insert: the empty screen",
+      "camera_mode_id": "insert", "blend_seconds": 0.0,
+      "note": "No visual confirmation the app is 'really' gone. The empty screen is enough.",
+      "next_beat_id": "s04_07_hold"
+    },
+    {
+      "type": "wait", "beat_id": "s04_07_hold", "display_name": "4.07 Silence from the laptop",
+      "duration_seconds": 3.0,
+      "next_beat_id": "s04_08_cam"
+    },
+
+    {
+      "type": "camera", "beat_id": "s04_08_cam", "display_name": "4.08 Close on Pure, HELD",
+      "camera_mode_id": "close_hold", "blend_seconds": 0.5,
+      "note": "Hold until the V.O. ends. His face carries the whole beat -- no cut-away.",
+      "next_beat_id": "s04_08_still"
+    },
+    {
+      "type": "wait", "beat_id": "s04_08_still", "display_name": "4.08 Long still beat",
+      "duration_seconds": 3.0,
+      "note": "Then the memory audio fragments enter: Delia's laugh, Marcus's voice, Earl's warm pre-glitch voice. AUDIO ONLY -- no illustrated flashback, mirroring the unillustrated memory-loss beats of Seq 3.",
+      "next_beat_id": "s04_08_vo"
+    },
+    {
+      "type": "dialogue", "beat_id": "s04_08_vo", "display_name": "4.08 V.O. 'But they came back.'",
+      "dialogue_id": "nsb_s04_vo_02", "speaker_actor_id": "narrator",
+      "timeout_seconds": 14.0,
+      "note": "\"The code that erased me turned out to be deletable too... Not all at once. But they came back.\"",
+      "next_beat_id": "s04_end"
+    },
+    {
+      "type": "end", "beat_id": "s04_end", "display_name": "Sequence 4 complete",
+      "completion_signal": "scene_finished",
+      "note": "Hands off to Sequence 5: The Courtroom."
+    }
+  ]
+}

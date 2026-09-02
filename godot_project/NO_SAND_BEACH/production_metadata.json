@@ -1,7 +1,7 @@
 {
   "film_name": "NO SAND BEACH",
   "format_version": 1,
-  "status": "sequences_01_06_authored",
+  "status": "scene_plans_generated",
   "sequences": [
     {
       "id": "seq_01_the_setup",
@@ -11,7 +11,9 @@
       "duration_seconds": 165,
       "duration_status": "final",
       "breakdown_path": "res://NO_SAND_BEACH/scenes/sequence_01_setup_breakdown.md",
-      "scene_plan_path": null
+      "scene_plan_path": "res://NO_SAND_BEACH/scenes/plans/sequence_01_the_setup.tres",
+      "beatsheet_path": "res://NO_SAND_BEACH/scenes/beatsheets/sequence_01_the_setup.json",
+      "scene_plan_beats": 55
     },
     {
       "id": "seq_02_the_fall",
@@ -21,7 +23,9 @@
       "duration_seconds": 171,
       "duration_status": "final",
       "breakdown_path": "res://NO_SAND_BEACH/scenes/sequence_02_the_fall_breakdown.md",
-      "scene_plan_path": null
+      "scene_plan_path": "res://NO_SAND_BEACH/scenes/plans/sequence_02_the_fall.tres",
+      "beatsheet_path": "res://NO_SAND_BEACH/scenes/beatsheets/sequence_02_the_fall.json",
+      "scene_plan_beats": 56
     },
     {
       "id": "seq_03_the_app",
@@ -31,7 +35,9 @@
       "duration_seconds": 142,
       "duration_status": "final",
       "breakdown_path": "res://NO_SAND_BEACH/scenes/sequence_03_the_app_breakdown.md",
-      "scene_plan_path": null
+      "scene_plan_path": "res://NO_SAND_BEACH/scenes/plans/sequence_03_the_app.tres",
+      "beatsheet_path": "res://NO_SAND_BEACH/scenes/beatsheets/sequence_03_the_app.json",
+      "scene_plan_beats": 38
     },
     {
       "id": "seq_04_the_collapse",
@@ -41,7 +47,9 @@
       "duration_seconds": 106,
       "duration_status": "estimated",
       "breakdown_path": "res://NO_SAND_BEACH/scenes/sequence_04_the_collapse_breakdown.md",
-      "scene_plan_path": null
+      "scene_plan_path": "res://NO_SAND_BEACH/scenes/plans/sequence_04_the_collapse.tres",
+      "beatsheet_path": "res://NO_SAND_BEACH/scenes/beatsheets/sequence_04_the_collapse.json",
+      "scene_plan_beats": 40
     },
     {
       "id": "seq_05_the_courtroom",
@@ -51,7 +59,9 @@
       "duration_seconds": 63,
       "duration_status": "estimated",
       "breakdown_path": "res://NO_SAND_BEACH/scenes/sequence_05_the_courtroom_breakdown.md",
-      "scene_plan_path": null
+      "scene_plan_path": "res://NO_SAND_BEACH/scenes/plans/sequence_05_the_courtroom.tres",
+      "beatsheet_path": "res://NO_SAND_BEACH/scenes/beatsheets/sequence_05_the_courtroom.json",
+      "scene_plan_beats": 25
     },
     {
       "id": "seq_06_the_sand",
@@ -62,7 +72,9 @@
       "duration_status": "estimated",
       "note": "Incorporates Sequence 7 (The Lesson) as closing narration beats 6.07-6.08. No separate ScenePlan resource needed for seq_07.",
       "breakdown_path": "res://NO_SAND_BEACH/scenes/sequence_06_the_sand_breakdown.md",
-      "scene_plan_path": null
+      "scene_plan_path": "res://NO_SAND_BEACH/scenes/plans/sequence_06_the_sand.tres",
+      "beatsheet_path": "res://NO_SAND_BEACH/scenes/beatsheets/sequence_06_the_sand.json",
+      "scene_plan_beats": 35
     },
     {
       "id": "seq_07_the_lesson",
@@ -87,7 +99,10 @@
     "film": "Menace II Society (1993)",
     "scope": "homage_plus_period_beats",
     "applies_throughout": "Cinematography and character-archetype homage only -- tight hardened-realism framing, high-contrast compositions favoring faces/body language, weighted staging, moral-weight-of-choices character register. Story stays contemporary, stays in Santa Ana.",
-    "literal_period_styling_sequences": ["seq_01_the_setup", "seq_02_the_fall"],
+    "literal_period_styling_sequences": [
+      "seq_01_the_setup",
+      "seq_02_the_fall"
+    ],
     "literal_period_styling_note": "seq_01: only Beat 1.14 (Earl's Ghost flashback). seq_02: the full sequence (arrest through prison), reverting to contemporary styling for the sequence's closing job-interview beats. Period styling is a deliberate stylistic choice, not literal in-story chronology.",
     "confirmed_by_user": true
   },
@@ -102,14 +117,21 @@
   "characters": {
     "pure": {
       "role": "protagonist",
-      "age_states_needed": ["age_7", "age_15", "age_27"],
+      "age_states_needed": [
+        "age_7",
+        "age_15",
+        "age_27"
+      ],
       "age_states_confirmed": true,
       "age_state_coverage": {
         "age_7": "Earl's Ghost flashback only (seq_01, Beat 1.14)",
         "age_15": "The Setup present-day timeline (seq_01) + covers the teen-arrest beat opening seq_02",
         "age_27": "Covers 21yo framing/prison through the rest of the film (seq_02 close through seq_07). Two wardrobe/environment passes needed within this single design: prison-era (period-styled, seq_02) and contemporary (seq_03 onward) -- same character sprite base, different costuming, not a separate age variant."
       },
-      "period_styled_states": ["age_15_teen_arrest_beat", "age_27_prison_era_wardrobe"],
+      "period_styled_states": [
+        "age_15_teen_arrest_beat",
+        "age_27_prison_era_wardrobe"
+      ],
       "design_reference_notes": {
         "age_7": "User-supplied personal photo reference (not stored in repo -- real identifiable individual, kept out of version control). Style notes for the age-7 design: tight cornrows/braided hairstyle, light blue/grey pullover hoodie, casual everyday streetwear, direct wide-eyed candid expression, slim youthful build. Note: reference photo's subject looks visually older than 7 -- user directed this look apply to the age-7 design regardless; treat as an intentional stylistic choice, not a literal age match.",
         "age_27": "User-supplied reference images (not stored in repo). Two moods identified: (1) intense/serious close-up -- short low natural haircut, blue crew-neck shirt, gold/silver cross necklace, stud earrings both ears, direct unflinching eye contact; (2) prayerful/vulnerable -- same wardrobe, hands clasped near chin in a contemplative/anxious gesture, eyes closed or downcast, framed 'Last Supper' print visible in the background setting -- fits the redemption-arc emotional register (Collapse/Courtroom/Sand sequences). A third image (two men greeting/handshaking outdoors) is assumed to be a joint Pure(27)+Marcus rapport/relationship reference rather than a distinct third mood -- flag if that reading is wrong."
@@ -143,7 +165,9 @@
     },
     "delia": {
       "role": "mother",
-      "age_states_needed": ["age_locked_generic"],
+      "age_states_needed": [
+        "age_locked_generic"
+      ],
       "age_states_confirmed": true,
       "age_lock_note": "User confirmed: single design used across the entire film, no visibly-older second pass for seq_04 (The Collapse) onward despite years of in-story time passing. Resolves SEQUENCE_BREAKDOWN.md open question #2.",
       "design_reference_notes": {
@@ -160,7 +184,9 @@
     },
     "marcus": {
       "role": "older_brother",
-      "age_states_needed": ["age_locked_generic"],
+      "age_states_needed": [
+        "age_locked_generic"
+      ],
       "age_states_confirmed": true,
       "age_lock_note": "User confirmed: single design used across the entire film, no visibly-older second pass for seq_04 (The Collapse) onward despite years of in-story time passing. Resolves SEQUENCE_BREAKDOWN.md open question #3. Supersedes the earlier early_30s/mid_40s two-design plan.",
       "design_reference_notes": {
@@ -178,9 +204,13 @@
     },
     "earl": {
       "role": "father_deceased",
-      "age_states_needed": ["memory_single_design"],
+      "age_states_needed": [
+        "memory_single_design"
+      ],
       "age_states_confirmed": true,
-      "period_styled_states": ["memory_single_design"],
+      "period_styled_states": [
+        "memory_single_design"
+      ],
       "appearance_modes": {
         "memory": "seq_01 Beat 1.14 flashback -- warm, sepia, soft-focus, tender. M2S period-styled (see visual_reference above).",
         "glitch": "seq_03 on-screen warning -- full separate design, not a transition from the memory design. Black-and-white CA-choppy thread mask (chaotic-rule CA pattern, distinct from the smooth-dissolution rule used elsewhere). See RENDER_STYLE.md."
@@ -219,20 +249,27 @@
   "environments": {
     "generation_policy": "Low-fidelity chunky pixel art references only -- the CA-dissolve pass (RENDER_STYLE.md) softens them further at render time, so source art only needs to read as a recognizable place. 4 variants generated per environment via ElevenLabs flux-2-pro; best variant locked as reference_v1. User-supplied B&W illustration references included per-folder where style overlap exists.",
     "beach": {
-      "sequences": ["seq_06_the_sand", "seq_07_the_lesson"],
+      "sequences": [
+        "seq_06_the_sand",
+        "seq_07_the_lesson"
+      ],
       "story_context": "Pure's first time seeing the ocean -- wide open expanse, the first horizon he's ever stood in front of. Transformative contemplative moment.",
       "realized_asset": {
         "status": "first_reference_generated",
         "path": "res://NO_SAND_BEACH/assets/environments/beach/beach_reference_v1.png",
         "generation_method": "ElevenLabs creative_generate_image",
         "model_id": "flux-2-pro",
-        "prompt": "Black-and-white chunky pixel art environment reference. Southern California beach shoreline — empty sand, dark ocean horizon, overcast grey sky, a pier and lifeguard tower silhouette visible in the distance. Empty, vast, contemplative. Deliberately sparse and low-fidelity. Hard-edged pixel blocks, high contrast ink style. No color, pure black and white.",
+        "prompt": "Black-and-white chunky pixel art environment reference. Southern California beach shoreline \u2014 empty sand, dark ocean horizon, overcast grey sky, a pier and lifeguard tower silhouette visible in the distance. Empty, vast, contemplative. Deliberately sparse and low-fidelity. Hard-edged pixel blocks, high contrast ink style. No color, pure black and white.",
         "selected_variant": "v3 of 4",
         "note": "v3 selected: dark halftone sky at top band, minimal ocean horizon, pier/lifeguard tower silhouette at far right -- the most cinematically weighted of the four. Matches user style ref 3.png (beach pier, high-contrast woodblock print). All 4 variants committed as beach_generated_v1-v4.png. User ref 3.png committed as user_style_ref_1.png."
       }
     },
     "car": {
-      "sequences": ["seq_01_the_setup", "seq_02_the_fall", "seq_03_the_app"],
+      "sequences": [
+        "seq_01_the_setup",
+        "seq_02_the_fall",
+        "seq_03_the_app"
+      ],
       "story_context": "Santa Ana street corner -- the neighborhood exterior, parked cars, storefronts. Primary recurring exterior environment across multiple sequences.",
       "realized_asset": {
         "status": "first_reference_generated",
@@ -245,7 +282,9 @@
       }
     },
     "forest": {
-      "sequences": ["seq_01_the_setup"],
+      "sequences": [
+        "seq_01_the_setup"
+      ],
       "story_context": "The concrete drainage ditch where Earl (Pure's father) was shot -- referenced in VO: 'Shot in a drainage ditch with seventeen dollars in his pocket.' Liminal, forgotten, threatening. Named 'forest' in the asset folder by legacy convention.",
       "realized_asset": {
         "status": "first_reference_generated",
@@ -258,7 +297,11 @@
       }
     },
     "kitchen": {
-      "sequences": ["seq_02_the_fall", "seq_03_the_app", "seq_04_the_collapse"],
+      "sequences": [
+        "seq_02_the_fall",
+        "seq_03_the_app",
+        "seq_04_the_collapse"
+      ],
       "story_context": "Delia's apartment kitchen -- site of domestic arguments, late-night confrontations, and quiet family moments across multiple sequences.",
       "realized_asset": {
         "status": "first_reference_generated",
@@ -271,7 +314,10 @@
       }
     },
     "park": {
-      "sequences": ["seq_03_the_app", "seq_06_the_sand"],
+      "sequences": [
+        "seq_03_the_app",
+        "seq_06_the_sand"
+      ],
       "story_context": "Santa Ana community park -- humble neighborhood green space, site of recurring outdoor beats in the contemporary timeline.",
       "realized_asset": {
         "status": "first_reference_generated",
@@ -284,7 +330,10 @@
       }
     },
     "schoolyard": {
-      "sequences": ["seq_01_the_setup", "seq_06_the_sand"],
+      "sequences": [
+        "seq_01_the_setup",
+        "seq_06_the_sand"
+      ],
       "story_context": "Pure's school -- the institution that both confines and eventually channels him. Cracked asphalt blacktop, chain-link fencing, institutional school buildings.",
       "realized_asset": {
         "status": "first_reference_generated",
@@ -296,5 +345,15 @@
         "note": "v2 selected: dark building silhouette looming over the blacktop, isolated concrete bench, debris on cracked asphalt -- most oppressive and institutional of the three available (v4 URL expired from previous session before download, so v1-v3 only). All 3 available variants committed. User style ref: user_style_ref_1.png (mural exterior wall, school aesthetic)."
       }
     }
+  },
+  "scene_plan_pipeline": {
+    "summary": "Prose breakdowns (scenes/*_breakdown.md) are the human source of truth. Each is captured as a JSON beat sheet (scenes/beatsheets/), and scene_plan_builder.py generates the Godot ScenePlan .tres deterministically. One prose beat expands into several ScenePlan beats -- a camera beat sets framing, action beats drive animation, dialogue beats carry lines, wait beats hold silent time.",
+    "builder": "res://NO_SAND_BEACH/tools/scene_plan_builder.py",
+    "capability_registry": "res://NO_SAND_BEACH/scenes/capabilities/nsb_capabilities.tres",
+    "rebuild_command": "python3 tools/scene_plan_builder.py build <beatsheet.json> <plan.tres> --registry scenes/capabilities/nsb_capabilities.json",
+    "validation": "tests/test_scene_plan_builder.py mirrors ScenePlanValidator's ERROR rules so plans are gated in CI without a Godot binary. All six plans validate with 0 errors and 0 warnings.",
+    "prose_beats_total": 63,
+    "scene_plan_beats_total": 249,
+    "godot_import_status": "unverified -- no Godot binary in the authoring environment. The .tres files are generated against the addon's GDScript @export contracts and checked by test, but have not been opened in the editor."
   }
 }

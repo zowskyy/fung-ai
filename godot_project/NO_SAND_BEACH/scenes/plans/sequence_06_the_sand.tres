@@ -1,0 +1,372 @@
+[gd_resource type="Resource" script_class="ScenePlan" load_steps=49 format=3]
+
+[ext_resource type="Script" path="res://addons/scene_animator/data/scene_plan.gd" id="1_plan"]
+[ext_resource type="Script" path="res://addons/scene_animator/data/scene_actor_binding.gd" id="2_actor"]
+[ext_resource type="Script" path="res://addons/scene_animator/data/beats/camera_beat.gd" id="3_camera"]
+[ext_resource type="Script" path="res://addons/scene_animator/data/beats/move_to_beat.gd" id="4_move_to"]
+[ext_resource type="Script" path="res://addons/scene_animator/data/beats/action_beat.gd" id="5_action"]
+[ext_resource type="Script" path="res://addons/scene_animator/data/beats/dialogue_beat.gd" id="6_dialogue"]
+[ext_resource type="Script" path="res://addons/scene_animator/data/beats/wait_beat.gd" id="7_wait"]
+[ext_resource type="Script" path="res://addons/scene_animator/data/beats/end_beat.gd" id="8_end"]
+
+[sub_resource type="Resource" id="Resource_actor_pure"]
+script = ExtResource("2_actor")
+actor_id = &"pure"
+display_name = "Pure (27, casual)"
+required = true
+actor_tags = Array[StringName](["protagonist", "human"])
+
+[sub_resource type="Resource" id="Resource_actor_delia"]
+script = ExtResource("2_actor")
+actor_id = &"delia"
+display_name = "Delia"
+required = true
+actor_tags = Array[StringName](["family", "human"])
+
+[sub_resource type="Resource" id="Resource_actor_marcus"]
+script = ExtResource("2_actor")
+actor_id = &"marcus"
+display_name = "Marcus"
+required = true
+actor_tags = Array[StringName](["family", "human"])
+
+[sub_resource type="Resource" id="Resource_actor_student_kid"]
+script = ExtResource("2_actor")
+actor_id = &"student_kid"
+display_name = "Student (generic extra)"
+required = false
+actor_tags = Array[StringName](["extra", "human"])
+
+[sub_resource type="Resource" id="Resource_actor_narrator"]
+script = ExtResource("2_actor")
+actor_id = &"narrator"
+display_name = "Adult Pure (V.O.)"
+required = false
+actor_tags = Array[StringName](["voiceover"])
+
+[sub_resource type="Resource" id="Resource_beat_s06_01_cam"]
+script = ExtResource("3_camera")
+beat_id = &"s06_01_cam"
+display_name = "6.01 Wide -- ocean at scale"
+next_beat_id = &"s06_01_walk"
+note = "First coastal exterior in the film. The three of them small against the water. After five sequences of interiors, this is the film breathing out."
+camera_mode_id = &"wide_static"
+blend_seconds = 0.0
+
+[sub_resource type="Resource" id="Resource_beat_s06_01_walk"]
+script = ExtResource("4_move_to")
+beat_id = &"s06_01_walk"
+display_name = "6.01 The family walks to the sand"
+next_beat_id = &"s06_01_look"
+actor_id = &"pure"
+arrival_radius = 0.5
+locomotion_mode = "walk"
+timeout_seconds = 8.0
+
+[sub_resource type="Resource" id="Resource_beat_s06_01_look"]
+script = ExtResource("5_action")
+beat_id = &"s06_01_look"
+display_name = "6.01 Pure looks out"
+next_beat_id = &"s06_01_vo"
+actor_id = &"pure"
+action_id = &"look_out"
+wait_for_completion = false
+
+[sub_resource type="Resource" id="Resource_beat_s06_01_vo"]
+script = ExtResource("6_dialogue")
+beat_id = &"s06_01_vo"
+display_name = "6.01 V.O. 'Ten miles from this.'"
+next_beat_id = &"s06_02_cam"
+note = "\"I grew up ten miles from this.\""
+dialogue_id = &"nsb_s06_vo_01"
+speaker_actor_id = &"narrator"
+timeout_seconds = 6.0
+
+[sub_resource type="Resource" id="Resource_beat_s06_02_cam"]
+script = ExtResource("3_camera")
+beat_id = &"s06_02_cam"
+display_name = "6.02 Medium, slow push"
+next_beat_id = &"s06_02_kneel"
+note = "Slow but not precious. The moment should feel actual, not symbolic."
+camera_mode_id = &"slow_push"
+blend_seconds = 4.0
+
+[sub_resource type="Resource" id="Resource_beat_s06_02_kneel"]
+script = ExtResource("5_action")
+beat_id = &"s06_02_kneel"
+display_name = "6.02 Pure kneels"
+next_beat_id = &"s06_02_insert"
+note = "Not ceremonially -- he just kneels down, the way you would if you wanted to feel something."
+actor_id = &"pure"
+action_id = &"kneel"
+wait_for_completion = true
+timeout_seconds = 6.0
+
+[sub_resource type="Resource" id="Resource_beat_s06_02_insert"]
+script = ExtResource("3_camera")
+beat_id = &"s06_02_insert"
+display_name = "6.02 Insert: the hand in the sand"
+next_beat_id = &"s06_02_touch"
+note = "HIGHEST-POLISH FRAME IN THE FILM. Light the sand so texture reads in black-and-white. Apply the CA dissolve gently here with the focus centre on the hand, not the face."
+camera_mode_id = &"insert"
+blend_seconds = 1.0
+
+[sub_resource type="Resource" id="Resource_beat_s06_02_touch"]
+script = ExtResource("5_action")
+beat_id = &"s06_02_touch"
+display_name = "6.02 THE KNEELING -- touches the sand"
+next_beat_id = &"s06_02_face"
+note = "Takes a handful. Lets some fall. Holds the rest. Stays there a moment of actual presence, then the hand relaxes and the rest falls."
+actor_id = &"pure"
+action_id = &"touch_sand"
+wait_for_completion = true
+timeout_seconds = 8.0
+
+[sub_resource type="Resource" id="Resource_beat_s06_02_face"]
+script = ExtResource("3_camera")
+beat_id = &"s06_02_face"
+display_name = "6.02 Close on his face, held"
+next_beat_id = &"s06_02_vo"
+camera_mode_id = &"close_hold"
+blend_seconds = 1.0
+
+[sub_resource type="Resource" id="Resource_beat_s06_02_vo"]
+script = ExtResource("6_dialogue")
+beat_id = &"s06_02_vo"
+display_name = "6.02 V.O. 'Just as sand.'"
+next_beat_id = &"s06_02_hold"
+note = "Three words, after the silence of the action. Let the words and the image sit together -- do not rush to the next beat."
+dialogue_id = &"nsb_s06_vo_02"
+speaker_actor_id = &"narrator"
+timeout_seconds = 6.0
+
+[sub_resource type="Resource" id="Resource_beat_s06_02_hold"]
+script = ExtResource("7_wait")
+beat_id = &"s06_02_hold"
+display_name = "6.02 Let it land"
+next_beat_id = &"s06_03_cam"
+duration_seconds = 3.0
+
+[sub_resource type="Resource" id="Resource_beat_s06_03_cam"]
+script = ExtResource("3_camera")
+beat_id = &"s06_03_cam"
+display_name = "6.03 Medium wide -- all three, equal weight"
+next_beat_id = &"s06_03_stand"
+note = "The film's only peaceful family image. Static, held. No one looming, no one at the edge."
+camera_mode_id = &"two_shot"
+blend_seconds = 1.0
+
+[sub_resource type="Resource" id="Resource_beat_s06_03_stand"]
+script = ExtResource("5_action")
+beat_id = &"s06_03_stand"
+display_name = "6.03 Pure rises; the others come alongside"
+next_beat_id = &"s06_03_look_d"
+actor_id = &"pure"
+action_id = &"stand_up"
+wait_for_completion = true
+timeout_seconds = 3.0
+
+[sub_resource type="Resource" id="Resource_beat_s06_03_look_d"]
+script = ExtResource("5_action")
+beat_id = &"s06_03_look_d"
+display_name = "6.03 Delia looks out"
+next_beat_id = &"s06_03_look_m"
+actor_id = &"delia"
+action_id = &"look_out"
+wait_for_completion = false
+
+[sub_resource type="Resource" id="Resource_beat_s06_03_look_m"]
+script = ExtResource("5_action")
+beat_id = &"s06_03_look_m"
+display_name = "6.03 Marcus looks out"
+next_beat_id = &"s06_03_hold"
+actor_id = &"marcus"
+action_id = &"look_out"
+wait_for_completion = false
+
+[sub_resource type="Resource" id="Resource_beat_s06_03_hold"]
+script = ExtResource("7_wait")
+beat_id = &"s06_03_hold"
+display_name = "6.03 THE FAMILY -- hold, no dialogue"
+next_beat_id = &"s06_04_cam"
+note = "No gesture, no embrace, no dialogue. They're just at a beach looking at water. That's the point."
+duration_seconds = 6.0
+
+[sub_resource type="Resource" id="Resource_beat_s06_04_cam"]
+script = ExtResource("3_camera")
+beat_id = &"s06_04_cam"
+display_name = "6.04 Classroom wide"
+next_beat_id = &"s06_04_teach"
+note = "Deliberately rhymes with the prison library (2.07): a small room, a few computers, someone learning because code gives them what they can't get elsewhere. Pure is now on the other side of that."
+camera_mode_id = &"wide_static"
+blend_seconds = 0.0
+
+[sub_resource type="Resource" id="Resource_beat_s06_04_teach"]
+script = ExtResource("5_action")
+beat_id = &"s06_04_teach"
+display_name = "6.04 Pure teaching, circling"
+next_beat_id = &"s06_04_vo"
+actor_id = &"pure"
+action_id = &"teach"
+wait_for_completion = false
+
+[sub_resource type="Resource" id="Resource_beat_s06_04_vo"]
+script = ExtResource("6_dialogue")
+beat_id = &"s06_04_vo"
+display_name = "6.04 V.O. 'It's yours if you want it.'"
+next_beat_id = &"s06_05_cam"
+note = "\"I started a free coding class. Nothing formal. Just -- here's what I know. It's yours if you want it.\""
+dialogue_id = &"nsb_s06_vo_03"
+speaker_actor_id = &"narrator"
+timeout_seconds = 10.0
+
+[sub_resource type="Resource" id="Resource_beat_s06_05_cam"]
+script = ExtResource("3_camera")
+beat_id = &"s06_05_cam"
+display_name = "6.05 Close on the kid asking"
+next_beat_id = &"s06_05_question"
+note = "Genuine, unselfconscious. The kid means it as a simple question -- the weight is what Pure brings to it."
+camera_mode_id = &"close_hold"
+blend_seconds = 0.5
+
+[sub_resource type="Resource" id="Resource_beat_s06_05_question"]
+script = ExtResource("6_dialogue")
+beat_id = &"s06_05_question"
+display_name = "6.05 'Pure, how did you make it?'"
+next_beat_id = &"s06_05_cut"
+dialogue_id = &"nsb_s06_kid_01"
+speaker_actor_id = &"student_kid"
+target_actor_id = &"pure"
+timeout_seconds = 6.0
+
+[sub_resource type="Resource" id="Resource_beat_s06_05_cut"]
+script = ExtResource("3_camera")
+beat_id = &"s06_05_cut"
+display_name = "6.05 Cut to Pure -- the only cut here"
+next_beat_id = &"s06_05_beat"
+camera_mode_id = &"close_hold"
+blend_seconds = 0.0
+
+[sub_resource type="Resource" id="Resource_beat_s06_05_beat"]
+script = ExtResource("7_wait")
+beat_id = &"s06_05_beat"
+display_name = "6.05 The beat before the answer"
+next_beat_id = &"s06_06_smile"
+note = "Don't fill it. Let it breathe. He already knows this answer."
+duration_seconds = 2.0
+
+[sub_resource type="Resource" id="Resource_beat_s06_06_smile"]
+script = ExtResource("5_action")
+beat_id = &"s06_06_smile"
+display_name = "6.06 The first unguarded smile in the film"
+next_beat_id = &"s06_06_answer"
+note = "Small and real, not cinematic. A man who has finally stopped managing his presentation."
+actor_id = &"pure"
+action_id = &"smile"
+wait_for_completion = true
+timeout_seconds = 3.0
+
+[sub_resource type="Resource" id="Resource_beat_s06_06_answer"]
+script = ExtResource("6_dialogue")
+beat_id = &"s06_06_answer"
+display_name = "6.06 'I didn't make it. I came back.'"
+next_beat_id = &"s06_06_hold"
+note = "\"I didn't make it. I came back. That's the only thing that matters.\" The film's thesis, delivered casually, to a child. The understatement is the point."
+dialogue_id = &"nsb_s06_pure_01"
+speaker_actor_id = &"pure"
+target_actor_id = &"student_kid"
+timeout_seconds = 10.0
+
+[sub_resource type="Resource" id="Resource_beat_s06_06_hold"]
+script = ExtResource("7_wait")
+beat_id = &"s06_06_hold"
+display_name = "6.06 Hold a beat after"
+next_beat_id = &"s06_07_cam"
+duration_seconds = 2.0
+
+[sub_resource type="Resource" id="Resource_beat_s06_07_cam"]
+script = ExtResource("3_camera")
+beat_id = &"s06_07_cam"
+display_name = "6.07 Slow pull back from the beach"
+next_beat_id = &"s06_07_vo"
+note = "One of the film's few camera movements -- pushes are for emphasis, this pull-back is for release. Ends wider than the film started."
+camera_mode_id = &"slow_pull_back"
+blend_seconds = 6.0
+
+[sub_resource type="Resource" id="Resource_beat_s06_07_vo"]
+script = ExtResource("6_dialogue")
+beat_id = &"s06_07_vo"
+display_name = "6.07 V.O. 'The sand under your feet.'"
+next_beat_id = &"s06_08_line1"
+note = "\"...love isn't a subscription... It's the sand under your feet -- the ground you've been standing on your whole life. You just never looked down.\""
+dialogue_id = &"nsb_s06_vo_04"
+speaker_actor_id = &"narrator"
+timeout_seconds = 16.0
+
+[sub_resource type="Resource" id="Resource_beat_s06_08_line1"]
+script = ExtResource("6_dialogue")
+beat_id = &"s06_08_line1"
+display_name = "6.08 'She needed him to be present.'"
+next_beat_id = &"s06_08_line2"
+note = "\"His mother didn't need him to be successful. She needed him to be present.\""
+dialogue_id = &"nsb_s06_vo_05"
+speaker_actor_id = &"narrator"
+timeout_seconds = 8.0
+
+[sub_resource type="Resource" id="Resource_beat_s06_08_line2"]
+script = ExtResource("6_dialogue")
+beat_id = &"s06_08_line2"
+display_name = "6.08 'He needed him to be real.'"
+next_beat_id = &"s06_08_beat"
+note = "\"His brother didn't need him to be perfect. He needed him to be real.\""
+dialogue_id = &"nsb_s06_vo_06"
+speaker_actor_id = &"narrator"
+timeout_seconds = 8.0
+
+[sub_resource type="Resource" id="Resource_beat_s06_08_beat"]
+script = ExtResource("7_wait")
+beat_id = &"s06_08_beat"
+display_name = "6.08 Beat"
+next_beat_id = &"s06_08_line3"
+duration_seconds = 2.0
+
+[sub_resource type="Resource" id="Resource_beat_s06_08_line3"]
+script = ExtResource("6_dialogue")
+beat_id = &"s06_08_line3"
+display_name = "6.08 'Love yourself. Love others.'"
+next_beat_id = &"s06_08_fade"
+note = "\"Love yourself. Love others. Anything can happen.\" The fade begins on this line."
+dialogue_id = &"nsb_s06_vo_07"
+speaker_actor_id = &"narrator"
+timeout_seconds = 8.0
+
+[sub_resource type="Resource" id="Resource_beat_s06_08_fade"]
+script = ExtResource("3_camera")
+beat_id = &"s06_08_fade"
+display_name = "6.08 Fade to black -- do not cut"
+next_beat_id = &"s06_08_silence"
+note = "Fade, never cut. Completes in silence. The final sensation is wide, then black, then nothing."
+camera_mode_id = &"fade_to_black"
+blend_seconds = 8.0
+
+[sub_resource type="Resource" id="Resource_beat_s06_08_silence"]
+script = ExtResource("7_wait")
+beat_id = &"s06_08_silence"
+display_name = "6.08 Black, silent"
+next_beat_id = &"s06_end"
+duration_seconds = 8.0
+
+[sub_resource type="Resource" id="Resource_beat_s06_end"]
+script = ExtResource("8_end")
+beat_id = &"s06_end"
+display_name = "End of film"
+note = "End of NO SAND BEACH. Sequence 7 (The Lesson) is folded into beats 6.07-6.08 above."
+completion_signal = &"scene_finished"
+
+[resource]
+script = ExtResource("1_plan")
+plan_id = &"nsb_seq_06_the_sand"
+display_name = "Sequence 6: The Sand"
+description = "Huntington Beach; Pure touches the sand for the first time; the coding class; the closing narration. Incorporates Sequence 7 (The Lesson) as beats 6.07-6.08. Source breakdown: scenes/sequence_06_the_sand_breakdown.md (8 film beats, 1:41)."
+actors = Array[Resource]([SubResource("Resource_actor_pure"), SubResource("Resource_actor_delia"), SubResource("Resource_actor_marcus"), SubResource("Resource_actor_student_kid"), SubResource("Resource_actor_narrator")])
+beats = Array[Resource]([SubResource("Resource_beat_s06_01_cam"), SubResource("Resource_beat_s06_01_walk"), SubResource("Resource_beat_s06_01_look"), SubResource("Resource_beat_s06_01_vo"), SubResource("Resource_beat_s06_02_cam"), SubResource("Resource_beat_s06_02_kneel"), SubResource("Resource_beat_s06_02_insert"), SubResource("Resource_beat_s06_02_touch"), SubResource("Resource_beat_s06_02_face"), SubResource("Resource_beat_s06_02_vo"), SubResource("Resource_beat_s06_02_hold"), SubResource("Resource_beat_s06_03_cam"), SubResource("Resource_beat_s06_03_stand"), SubResource("Resource_beat_s06_03_look_d"), SubResource("Resource_beat_s06_03_look_m"), SubResource("Resource_beat_s06_03_hold"), SubResource("Resource_beat_s06_04_cam"), SubResource("Resource_beat_s06_04_teach"), SubResource("Resource_beat_s06_04_vo"), SubResource("Resource_beat_s06_05_cam"), SubResource("Resource_beat_s06_05_question"), SubResource("Resource_beat_s06_05_cut"), SubResource("Resource_beat_s06_05_beat"), SubResource("Resource_beat_s06_06_smile"), SubResource("Resource_beat_s06_06_answer"), SubResource("Resource_beat_s06_06_hold"), SubResource("Resource_beat_s06_07_cam"), SubResource("Resource_beat_s06_07_vo"), SubResource("Resource_beat_s06_08_line1"), SubResource("Resource_beat_s06_08_line2"), SubResource("Resource_beat_s06_08_beat"), SubResource("Resource_beat_s06_08_line3"), SubResource("Resource_beat_s06_08_fade"), SubResource("Resource_beat_s06_08_silence"), SubResource("Resource_beat_s06_end")])

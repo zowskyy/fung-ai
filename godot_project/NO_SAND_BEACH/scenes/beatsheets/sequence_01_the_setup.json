@@ -1,0 +1,387 @@
+{
+  "plan_id": "nsb_seq_01_the_setup",
+  "display_name": "Sequence 1: The Setup",
+  "description": "Delia's 3AM return and 6AM departure; Pure alone; Marcus's resented care; the beach he can't reach; Earl's ghost. Source breakdown: scenes/sequence_01_setup_breakdown.md (17 film beats, 2:45).",
+
+  "_comment": "Pure appears as the age-15 design throughout the present-day beats (the locked 3-design budget covers all of Seq 01's present timeline with age_15) and the age-7 design only in Beat 1.14's flashback -- so they are two distinct actors here. The 'child's voice' V.O. in beats 1.07/1.08/1.12 is a voice-casting note, not a second sprite, hence the separate narrator_child actor.",
+
+  "actors": [
+    {"actor_id": "delia", "display_name": "Delia", "actor_tags": ["family", "human"], "required": true},
+    {"actor_id": "pure", "display_name": "Pure (age 15 design)", "actor_tags": ["protagonist", "human"], "required": true},
+    {"actor_id": "pure_child", "display_name": "Pure (age 7 design, flashback only)", "actor_tags": ["protagonist", "human", "flashback"], "required": false},
+    {"actor_id": "marcus", "display_name": "Marcus", "actor_tags": ["family", "human"], "required": true},
+    {"actor_id": "earl", "display_name": "Earl (memory design, period-styled)", "actor_tags": ["family", "human", "flashback"], "required": false},
+    {"actor_id": "classmate_a", "display_name": "Classmate A (generic extra)", "actor_tags": ["extra", "human"], "required": false},
+    {"actor_id": "classmate_b", "display_name": "Classmate B (generic extra)", "actor_tags": ["extra", "human"], "required": false},
+    {"actor_id": "narrator", "display_name": "Adult Pure (V.O.)", "actor_tags": ["voiceover"], "required": false},
+    {"actor_id": "narrator_child", "display_name": "Young Pure (V.O.)", "actor_tags": ["voiceover"], "required": false}
+  ],
+
+  "beats": [
+    {
+      "type": "camera", "beat_id": "s01_01_cam", "display_name": "1.01 Apartment door, 3AM",
+      "camera_mode_id": "wide_static", "blend_seconds": 0.0,
+      "note": "Delia comes home at 3AM. The apartment is dark except one lamp.",
+      "next_beat_id": "s01_01_enter"
+    },
+    {
+      "type": "action", "beat_id": "s01_01_enter", "display_name": "1.01 Delia returns",
+      "actor_id": "delia", "action_id": "enter", "wait_for_completion": true, "timeout_seconds": 6.0,
+      "note": "Exhaustion carried in the body, not performed on the face.",
+      "next_beat_id": "s01_01_vo"
+    },
+    {
+      "type": "dialogue", "beat_id": "s01_01_vo", "display_name": "1.01 V.O. 'Twenty-three clients today.'",
+      "dialogue_id": "nsb_s01_delia_vo_01", "speaker_actor_id": "delia",
+      "timeout_seconds": 14.0,
+      "note": "Internal monologue -- the day's ledger. \"...Still got to do Hilton prep at 6.\"",
+      "next_beat_id": "s01_02_cam"
+    },
+
+    {
+      "type": "camera", "beat_id": "s01_02_cam", "display_name": "1.02 Pure's room, close",
+      "camera_mode_id": "close_hold", "blend_seconds": 1.0,
+      "next_beat_id": "s01_02_sleep"
+    },
+    {
+      "type": "action", "beat_id": "s01_02_sleep", "display_name": "1.02 Pure asleep",
+      "actor_id": "pure", "action_id": "sleep", "wait_for_completion": false,
+      "next_beat_id": "s01_02_kiss"
+    },
+    {
+      "type": "action", "beat_id": "s01_02_kiss", "display_name": "1.02 THE RITUAL -- forehead kiss",
+      "actor_id": "delia", "action_id": "kiss_forehead", "wait_for_completion": true, "timeout_seconds": 5.0,
+      "note": "The tenderness she has no time to show him awake.",
+      "next_beat_id": "s01_02_vo"
+    },
+    {
+      "type": "dialogue", "beat_id": "s01_02_vo", "display_name": "1.02 V.O. 'You're gonna make it, baby.'",
+      "dialogue_id": "nsb_s01_delia_vo_02", "speaker_actor_id": "delia", "target_actor_id": "pure",
+      "timeout_seconds": 10.0,
+      "note": "\"You're gonna have better than this. Better than me.\"",
+      "next_beat_id": "s01_03_cam"
+    },
+
+    {
+      "type": "camera", "beat_id": "s01_03_cam", "display_name": "1.03 Kitchen, medium",
+      "camera_mode_id": "medium_static", "blend_seconds": 0.5,
+      "next_beat_id": "s01_03_coffee"
+    },
+    {
+      "type": "action", "beat_id": "s01_03_coffee", "display_name": "1.03 Coffee machine",
+      "actor_id": "delia", "action_id": "pour_coffee", "wait_for_completion": true, "timeout_seconds": 5.0,
+      "next_beat_id": "s01_03_vo"
+    },
+    {
+      "type": "dialogue", "beat_id": "s01_03_vo", "display_name": "1.03 V.O. 'No time. Never time.'",
+      "dialogue_id": "nsb_s01_delia_vo_03", "speaker_actor_id": "delia",
+      "timeout_seconds": 8.0,
+      "note": "\"No time. Never time. Just make it to 6 AM.\"",
+      "next_beat_id": "s01_04_change"
+    },
+
+    {
+      "type": "action", "beat_id": "s01_04_change", "display_name": "1.04 The uniform change",
+      "actor_id": "delia", "action_id": "change_clothes", "wait_for_completion": true, "timeout_seconds": 5.0,
+      "note": "Home health aide out, hotel housekeeper in. Three jobs made visible as costume.",
+      "next_beat_id": "s01_04_vo"
+    },
+    {
+      "type": "dialogue", "beat_id": "s01_04_vo", "display_name": "1.04 V.O. 'Just keep moving.'",
+      "dialogue_id": "nsb_s01_delia_vo_04", "speaker_actor_id": "delia",
+      "timeout_seconds": 8.0,
+      "note": "\"Hilton pays better. Hotel housekeeper, 6 to 2. Then cafeteria at 3. Just keep moving.\"",
+      "next_beat_id": "s01_05_cam"
+    },
+
+    {
+      "type": "camera", "beat_id": "s01_05_cam", "display_name": "1.05 The door again -- rhymes with 1.01",
+      "camera_mode_id": "wide_static", "blend_seconds": 0.5,
+      "note": "Same framing as her return. Three hours later she's leaving again.",
+      "next_beat_id": "s01_05_vo"
+    },
+    {
+      "type": "dialogue", "beat_id": "s01_05_vo", "display_name": "1.05 V.O. 'I love you so much it scares me.'",
+      "dialogue_id": "nsb_s01_delia_vo_05", "speaker_actor_id": "delia", "target_actor_id": "pure",
+      "timeout_seconds": 8.0,
+      "next_beat_id": "s01_05_exit"
+    },
+    {
+      "type": "action", "beat_id": "s01_05_exit", "display_name": "1.05 The departure",
+      "actor_id": "delia", "action_id": "exit", "wait_for_completion": true, "timeout_seconds": 5.0,
+      "next_beat_id": "s01_06_cam"
+    },
+
+    {
+      "type": "camera", "beat_id": "s01_06_cam", "display_name": "1.06 The empty apartment",
+      "camera_mode_id": "wide_static", "blend_seconds": 0.0,
+      "note": "No actor on screen. The apartment holds her absence.",
+      "next_beat_id": "s01_06_vo"
+    },
+    {
+      "type": "dialogue", "beat_id": "s01_06_vo", "display_name": "1.06 V.O. 'She never stopped.'",
+      "dialogue_id": "nsb_s01_vo_01", "speaker_actor_id": "narrator",
+      "timeout_seconds": 10.0,
+      "note": "Adult Pure, retrospective: \"Her knees ached. Her back was shot. But she never stopped.\"",
+      "next_beat_id": "s01_07_wake"
+    },
+
+    {
+      "type": "action", "beat_id": "s01_07_wake", "display_name": "1.07 Pure wakes alone",
+      "actor_id": "pure", "action_id": "wake", "wait_for_completion": true, "timeout_seconds": 4.0,
+      "next_beat_id": "s01_07_vo"
+    },
+    {
+      "type": "dialogue", "beat_id": "s01_07_vo", "display_name": "1.07 V.O. 'I learned not to ask where.'",
+      "dialogue_id": "nsb_s01_vo_child_01", "speaker_actor_id": "narrator_child",
+      "timeout_seconds": 8.0,
+      "note": "\"Mom was always already gone when I woke up. I learned not to ask where. I learned to make myself breakfast.\"",
+      "next_beat_id": "s01_08_cam"
+    },
+
+    {
+      "type": "camera", "beat_id": "s01_08_cam", "display_name": "1.08 Breakfast alone, wide",
+      "camera_mode_id": "wide_static", "blend_seconds": 0.5,
+      "note": "The kitchen scaled to make one kid at a table look small.",
+      "next_beat_id": "s01_08_eat"
+    },
+    {
+      "type": "action", "beat_id": "s01_08_eat", "display_name": "1.08 Pure eats alone",
+      "actor_id": "pure", "action_id": "eat", "wait_for_completion": false,
+      "next_beat_id": "s01_08_vo"
+    },
+    {
+      "type": "dialogue", "beat_id": "s01_08_vo", "display_name": "1.08 V.O. 'I didn't know it was supposed to be different.'",
+      "dialogue_id": "nsb_s01_vo_child_02", "speaker_actor_id": "narrator_child",
+      "timeout_seconds": 12.0,
+      "next_beat_id": "s01_09_enter"
+    },
+
+    {
+      "type": "action", "beat_id": "s01_09_enter", "display_name": "1.09 Marcus arrives",
+      "actor_id": "marcus", "action_id": "enter", "wait_for_completion": true, "timeout_seconds": 4.0,
+      "next_beat_id": "s01_09_cam"
+    },
+    {
+      "type": "camera", "beat_id": "s01_09_cam", "display_name": "1.09 Two-shot, brothers",
+      "camera_mode_id": "two_shot", "blend_seconds": 0.5,
+      "next_beat_id": "s01_09_line1"
+    },
+    {
+      "type": "dialogue", "beat_id": "s01_09_line1", "display_name": "1.09 'Pure, it's 7:15.'",
+      "dialogue_id": "nsb_s01_marcus_01", "speaker_actor_id": "marcus", "target_actor_id": "pure",
+      "timeout_seconds": 5.0,
+      "next_beat_id": "s01_09_line2"
+    },
+    {
+      "type": "dialogue", "beat_id": "s01_09_line2", "display_name": "1.09 'I know.'",
+      "dialogue_id": "nsb_s01_pure_01", "speaker_actor_id": "pure", "target_actor_id": "marcus",
+      "timeout_seconds": 4.0,
+      "next_beat_id": "s01_09_line3"
+    },
+    {
+      "type": "dialogue", "beat_id": "s01_09_line3", "display_name": "1.09 'Did Mom leave money for lunch?'",
+      "dialogue_id": "nsb_s01_marcus_02", "speaker_actor_id": "marcus", "target_actor_id": "pure",
+      "timeout_seconds": 5.0,
+      "next_beat_id": "s01_09_line4"
+    },
+    {
+      "type": "dialogue", "beat_id": "s01_09_line4", "display_name": "1.09 'Yeah. On the counter.'",
+      "dialogue_id": "nsb_s01_pure_02", "speaker_actor_id": "pure", "target_actor_id": "marcus",
+      "timeout_seconds": 4.0,
+      "next_beat_id": "s01_09_vo"
+    },
+    {
+      "type": "dialogue", "beat_id": "s01_09_vo", "display_name": "1.09 V.O. 'He shouldn't have to know about money yet.'",
+      "dialogue_id": "nsb_s01_marcus_vo_01", "speaker_actor_id": "marcus",
+      "timeout_seconds": 10.0,
+      "note": "Internal. \"He shouldn't have to know she's not coming back today.\"",
+      "next_beat_id": "s01_10_cam"
+    },
+
+    {
+      "type": "camera", "beat_id": "s01_10_cam", "display_name": "1.10 Close on Marcus",
+      "camera_mode_id": "close_hold", "blend_seconds": 0.5,
+      "note": "Silent beat. The resentment is entirely on his face and in the V.O.",
+      "next_beat_id": "s01_10_vo"
+    },
+    {
+      "type": "dialogue", "beat_id": "s01_10_vo", "display_name": "1.10 V.O. 'I had to be perfect.'",
+      "dialogue_id": "nsb_s01_marcus_vo_02", "speaker_actor_id": "marcus",
+      "timeout_seconds": 14.0,
+      "note": "\"I did everything right... He can fail and she'll still love him... Me? I had to be perfect.\" This line is the seed Sequence 4's hospital confrontation pays off.",
+      "next_beat_id": "s01_11_cam"
+    },
+
+    {
+      "type": "camera", "beat_id": "s01_11_cam", "display_name": "1.11 Wide -- Marcus at the counter",
+      "camera_mode_id": "wide_static", "blend_seconds": 0.5,
+      "note": "His sacrifice made visible: he's adding his own money to what Delia left.",
+      "next_beat_id": "s01_11_money"
+    },
+    {
+      "type": "action", "beat_id": "s01_11_money", "display_name": "1.11 Marcus adds lunch money",
+      "actor_id": "marcus", "action_id": "set_down", "wait_for_completion": true, "timeout_seconds": 4.0,
+      "note": "Care masked as obligation. He will never say what this is.",
+      "next_beat_id": "s01_11_line1"
+    },
+    {
+      "type": "dialogue", "beat_id": "s01_11_line1", "display_name": "1.11 'If Mom calls, tell her I came by.'",
+      "dialogue_id": "nsb_s01_marcus_03", "speaker_actor_id": "marcus", "target_actor_id": "pure",
+      "timeout_seconds": 5.0,
+      "next_beat_id": "s01_11_line2"
+    },
+    {
+      "type": "dialogue", "beat_id": "s01_11_line2", "display_name": "1.11 'Okay.'",
+      "dialogue_id": "nsb_s01_pure_03", "speaker_actor_id": "pure", "target_actor_id": "marcus",
+      "timeout_seconds": 3.0,
+      "next_beat_id": "s01_11_line3"
+    },
+    {
+      "type": "dialogue", "beat_id": "s01_11_line3", "display_name": "1.11 'She won't remember I was even here.'",
+      "dialogue_id": "nsb_s01_marcus_vo_03", "speaker_actor_id": "marcus",
+      "timeout_seconds": 6.0,
+      "note": "Muttered, half-internal.",
+      "next_beat_id": "s01_12_exit"
+    },
+
+    {
+      "type": "action", "beat_id": "s01_12_exit", "display_name": "1.12 Marcus leaves",
+      "actor_id": "marcus", "action_id": "exit", "wait_for_completion": true, "timeout_seconds": 4.0,
+      "next_beat_id": "s01_12_vo"
+    },
+    {
+      "type": "dialogue", "beat_id": "s01_12_vo", "display_name": "1.12 V.O. 'Like everyone.'",
+      "dialogue_id": "nsb_s01_vo_child_03", "speaker_actor_id": "narrator_child",
+      "timeout_seconds": 12.0,
+      "note": "\"I didn't know my brother was angry at me. I didn't know he was giving me his lunch money. I just knew he was always leaving. Like everyone.\"",
+      "next_beat_id": "s01_13_cam"
+    },
+
+    {
+      "type": "camera", "beat_id": "s01_13_cam", "display_name": "1.13 School bench, wide -- Pure isolated",
+      "camera_mode_id": "wide_static", "blend_seconds": 0.5,
+      "note": "Three kids on a bench, Pure isolated in the frame despite being among them.",
+      "next_beat_id": "s01_13_talk_a"
+    },
+    {
+      "type": "dialogue", "beat_id": "s01_13_talk_a", "display_name": "1.13 Classmates on the beach",
+      "dialogue_id": "nsb_s01_classmate_01", "speaker_actor_id": "classmate_a", "target_actor_id": "classmate_b",
+      "timeout_seconds": 6.0,
+      "note": "Casual weekend-at-the-beach chatter. Joy and privilege, entirely unaware.",
+      "next_beat_id": "s01_13_talk_b"
+    },
+    {
+      "type": "dialogue", "beat_id": "s01_13_talk_b", "display_name": "1.13 The other classmate answers",
+      "dialogue_id": "nsb_s01_classmate_02", "speaker_actor_id": "classmate_b", "target_actor_id": "classmate_a",
+      "timeout_seconds": 6.0,
+      "note": "The exchange has to be between the two of them, not delivered at Pure -- the point is that he is not in the conversation at all.",
+      "next_beat_id": "s01_13_listen"
+    },
+    {
+      "type": "action", "beat_id": "s01_13_listen", "display_name": "1.13 Pure listens, not included",
+      "actor_id": "pure", "action_id": "listen", "wait_for_completion": false,
+      "note": "He is on the same bench and outside the conversation. Isolation staged, not stated.",
+      "next_beat_id": "s01_13_face"
+    },
+    {
+      "type": "camera", "beat_id": "s01_13_face", "display_name": "1.13 Close -- Pure learning shame",
+      "camera_mode_id": "close_hold", "blend_seconds": 0.5,
+      "next_beat_id": "s01_13_vo"
+    },
+    {
+      "type": "dialogue", "beat_id": "s01_13_vo", "display_name": "1.13 V.O. 'The beach was for people who owned houses.'",
+      "dialogue_id": "nsb_s01_pure_vo_01", "speaker_actor_id": "narrator",
+      "timeout_seconds": 14.0,
+      "note": "\"The ocean was ten miles away. I could smell it sometimes -- salt and seaweed on the wind. But it wasn't for us.\"",
+      "next_beat_id": "s01_14_cam"
+    },
+
+    {
+      "type": "camera", "beat_id": "s01_14_cam", "display_name": "1.14 Wavy transition into memory",
+      "camera_mode_id": "slow_push", "blend_seconds": 2.0,
+      "note": "EARL'S GHOST. M2S period styling starts here and ends when the beat does -- the only period-styled beat in Sequence 1.",
+      "next_beat_id": "s01_14_hold_child"
+    },
+    {
+      "type": "action", "beat_id": "s01_14_hold_child", "display_name": "1.14 Earl kneels and holds Pure (7)",
+      "actor_id": "earl", "action_id": "hold_child", "wait_for_completion": true, "timeout_seconds": 6.0,
+      "note": "Warm, soft-focus, tender. Earl's memory design, period wardrobe.",
+      "next_beat_id": "s01_14_held"
+    },
+    {
+      "type": "action", "beat_id": "s01_14_held", "display_name": "1.14 Pure (7) held in his father's arms",
+      "actor_id": "pure_child", "action_id": "be_held", "wait_for_completion": false,
+      "note": "The age-7 design's only appearance in the film -- it needs its own clip, since Earl's hold_child animates only Earl. This is the last time Pure is held by anyone until Marcus's hug in 4.05.",
+      "next_beat_id": "s01_14_line"
+    },
+    {
+      "type": "dialogue", "beat_id": "s01_14_line", "display_name": "1.14 Earl's promise",
+      "dialogue_id": "nsb_s01_earl_01", "speaker_actor_id": "earl", "target_actor_id": "pure_child",
+      "timeout_seconds": 8.0,
+      "next_beat_id": "s01_14_vanish"
+    },
+    {
+      "type": "action", "beat_id": "s01_14_vanish", "display_name": "1.14 Earl vanishes",
+      "actor_id": "earl", "action_id": "vanish", "wait_for_completion": true, "timeout_seconds": 4.0,
+      "next_beat_id": "s01_14_vo"
+    },
+    {
+      "type": "dialogue", "beat_id": "s01_14_vo", "display_name": "1.14 V.O. 'Seventeen dollars in his pocket.'",
+      "dialogue_id": "nsb_s01_vo_02", "speaker_actor_id": "narrator",
+      "timeout_seconds": 16.0,
+      "note": "\"He loved us. He loved the street more. I spent my whole life trying to prove he was wrong about that -- that you could love both.\"",
+      "next_beat_id": "s01_15_cam"
+    },
+
+    {
+      "type": "camera", "beat_id": "s01_15_cam", "display_name": "1.15 Back to school, present -- Pure's face",
+      "camera_mode_id": "close_hold", "blend_seconds": 1.0,
+      "note": "Present, haunted. The transition back out of the memory.",
+      "next_beat_id": "s01_15_vo"
+    },
+    {
+      "type": "dialogue", "beat_id": "s01_15_vo", "display_name": "1.15 V.O. 'Love and failure.'",
+      "dialogue_id": "nsb_s01_vo_03", "speaker_actor_id": "narrator",
+      "timeout_seconds": 12.0,
+      "note": "\"That pattern haunted me my whole life... I carried his seventeen dollars like they were gold.\"",
+      "next_beat_id": "s01_16_cam"
+    },
+
+    {
+      "type": "camera", "beat_id": "s01_16_cam", "display_name": "1.16 Evening -- the ocean unseen",
+      "camera_mode_id": "wide_static", "blend_seconds": 1.0,
+      "note": "Aerial Santa Ana at sunset. The ocean is in frame and unreachable. No actor on screen.",
+      "next_beat_id": "s01_16_vo"
+    },
+    {
+      "type": "dialogue", "beat_id": "s01_16_vo", "display_name": "1.16 V.O. 'We just never looked down.'",
+      "dialogue_id": "nsb_s01_vo_04", "speaker_actor_id": "narrator",
+      "timeout_seconds": 14.0,
+      "note": "\"The ocean was there. It was always there. We just never looked down to see the ground we were standing on.\" Sets up the closing narration of Sequence 6.",
+      "next_beat_id": "s01_16_hold"
+    },
+    {
+      "type": "wait", "beat_id": "s01_16_hold", "display_name": "1.16 Hold on the horizon",
+      "duration_seconds": 3.0,
+      "next_beat_id": "s01_17_title"
+    },
+
+    {
+      "type": "camera", "beat_id": "s01_17_title", "display_name": "1.17 TITLE CARD",
+      "camera_mode_id": "fade_to_black", "blend_seconds": 2.0,
+      "note": "NO SAND BEACH. No dialogue.",
+      "next_beat_id": "s01_17_hold"
+    },
+    {
+      "type": "wait", "beat_id": "s01_17_hold", "display_name": "1.17 Title held",
+      "duration_seconds": 5.0,
+      "next_beat_id": "s01_end"
+    },
+    {
+      "type": "end", "beat_id": "s01_end", "display_name": "Sequence 1 complete",
+      "completion_signal": "scene_finished",
+      "note": "Hands off to Sequence 2: The Fall."
+    }
+  ]
+}
