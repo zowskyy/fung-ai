@@ -1,0 +1,252 @@
+{
+  "metadata": {
+    "title": "No Sand Beach — Character Animation Integration",
+    "chapters": 21,
+    "locations": 6,
+    "total_scenes": 99,
+    "status": "template — customize per your voiceover script and visual direction",
+    "notes": "Map each scene to a character and pose. Use character images from characters/ directory. Position uses 1280×720 coordinates."
+  },
+  "characters": [
+    {
+      "id": "protagonist",
+      "name": "Protagonist",
+      "primary_images": [
+        "pure.png",
+        "pureteen.png",
+        "pureyoung1.png",
+        "pureolder1.png"
+      ],
+      "base_scale": 1.0,
+      "style": "Expressionist B&W, expressive eyes, emotional intensity",
+      "narrative_role": "Main character, narrator, internal monologue",
+      "age_progression": {
+        "teen": "pureteen.png",
+        "young_adult": "pureyoung1.png",
+        "adult": "pureolder1.png",
+        "intimate_moments": "pure.png"
+      }
+    },
+    {
+      "id": "brother",
+      "name": "Brother",
+      "primary_images": [
+        "purebrother.png",
+        "purebrother2.png",
+        "purebrother3.png",
+        "purebrother4.png",
+        "purebrother5.png",
+        "purebrother6.png"
+      ],
+      "base_scale": 0.95,
+      "style": "Expressionist B&W, sibling resemblance, varied emotional states",
+      "narrative_role": "Family support, dialogue partner, relationship exploration",
+      "pose_variations": 6
+    },
+    {
+      "id": "mother",
+      "name": "Mother",
+      "primary_images": ["mama.png"],
+      "base_scale": 1.05,
+      "style": "Expressionist B&W, domestic setting, authority and nurturing",
+      "narrative_role": "Family matriarch, guidance, kitchen scenes",
+      "notes": "Image includes interior environment context"
+    },
+    {
+      "id": "father",
+      "name": "Father",
+      "primary_images": ["puredadglitch.jpg"],
+      "base_scale": 1.0,
+      "style": "Expressionist B&W with glitch effect, symbolic fragmentation",
+      "narrative_role": "Memory/absence, emotional climax, thematic weight",
+      "notes": "Glitch overlay suggests memory distortion or loss"
+    },
+    {
+      "id": "delia",
+      "name": "Delia",
+      "primary_images": ["delia.png"],
+      "base_scale": 0.9,
+      "style": "Expressionist B&W, distinct secondary character",
+      "narrative_role": "Supporting character, specific scenes",
+      "notes": "Different design language but compatible aesthetic"
+    }
+  ],
+  "scenes": [
+    {
+      "section": "CHAPTER 1: Beach",
+      "location": "beach",
+      "clips": ["beach_01", "beach_02", "beach_03", "beach_04", "beach_05"],
+      "chapters": [1],
+      "narrative_context": "Opening, sand and memory, formative moment",
+      "voiceover_theme": "Childhood memory, sensory detail",
+      "scenes": [
+        {
+          "clip_id": "beach_01",
+          "chapter": 1,
+          "location": "beach",
+          "character_id": "protagonist",
+          "image": "pureteen.png",
+          "timing": {
+            "start": 0.0,
+            "end": 0.41,
+            "description": "Scene duration ~10 frames at 24fps"
+          },
+          "position": {
+            "x": 640,
+            "y": 540,
+            "scale": 1.0,
+            "notes": "Center-bottom of frame, protagonist stands in sand"
+          },
+          "layer_order": "character_over_background",
+          "pose": "standing",
+          "pose_timing": {
+            "start": 0.0,
+            "end": 0.41,
+            "notes": "Static pose or subtle shifts"
+          },
+          "transition_in": {
+            "type": "fade",
+            "duration": 0.2,
+            "easing": "ease-in"
+          },
+          "transition_out": {
+            "type": "fade",
+            "duration": 0.2,
+            "easing": "ease-out"
+          },
+          "audio_sync": {
+            "voiceover_start": 0.0,
+            "dialogue": "OPTIONAL: actual dialogue text here",
+            "emotion": "nostalgic, reflective"
+          }
+        },
+        {
+          "clip_id": "beach_02",
+          "chapter": 1,
+          "location": "beach",
+          "character_id": "protagonist",
+          "image": "pureteen.png",
+          "timing": {"start": 0.41, "end": 0.82},
+          "position": {"x": 640, "y": 540, "scale": 1.0},
+          "pose": "standing_with_gesture",
+          "transition_in": {"type": "cut", "duration": 0.0},
+          "transition_out": {"type": "fade", "duration": 0.2}
+        },
+        {
+          "clip_id": "beach_03",
+          "chapter": 1,
+          "location": "beach",
+          "character_id": "protagonist",
+          "image": "pure.png",
+          "timing": {"start": 0.82, "end": 1.23},
+          "position": {"x": 800, "y": 480, "scale": 0.6},
+          "pose": "close_up_emotional",
+          "notes": "Shift to intimate close-up for emotional beat",
+          "transition_in": {"type": "fade", "duration": 0.15},
+          "transition_out": {"type": "fade", "duration": 0.15}
+        },
+        {
+          "clip_id": "beach_04",
+          "chapter": 1,
+          "location": "beach",
+          "character_id": "protagonist",
+          "image": "pureteen.png",
+          "timing": {"start": 1.23, "end": 1.64},
+          "position": {"x": 640, "y": 540, "scale": 1.0},
+          "pose": "standing",
+          "transition_in": {"type": "cut", "duration": 0.0},
+          "transition_out": {"type": "fade", "duration": 0.25}
+        },
+        {
+          "clip_id": "beach_05",
+          "chapter": 1,
+          "location": "beach",
+          "character_id": null,
+          "image": null,
+          "timing": {"start": 1.64, "end": 2.05},
+          "notes": "Scene transition without character (environment focus)"
+        }
+      ]
+    },
+    {
+      "section": "CHAPTER 2-5: Car, Forest, Kitchen, Park",
+      "locations": ["car", "forest", "kitchen", "park"],
+      "chapters": [2, 3, 4, 5],
+      "note": "Follow same structure as beach chapter above. Customize character, position, and pose per scene."
+    },
+    {
+      "section": "CHAPTER 6: Schoolyard",
+      "location": "schoolyard",
+      "chapters": [6],
+      "narrative_context": "Peer relationships, childhood bonds, social memory",
+      "scenes": [
+        {
+          "clip_id": "schoolyard_01",
+          "character_id": "protagonist",
+          "image": "pureteen.png",
+          "position": {"x": 640, "y": 540, "scale": 1.0},
+          "pose": "standing_with_brother",
+          "notes": "Protagonist and brother in schoolyard setting"
+        },
+        {
+          "clip_id": "schoolyard_02",
+          "character_id": "brother",
+          "image": "purebrother.png",
+          "position": {"x": 700, "y": 540, "scale": 0.9},
+          "pose": "standing_facing",
+          "notes": "Brother's perspective, interaction with protagonist"
+        }
+      ]
+    }
+  ],
+  "animation_guidelines": {
+    "positioning": {
+      "center_bottom": {"x": 640, "y": 540, "description": "Default character placement, full body visible"},
+      "center_middle": {"x": 640, "y": 360, "description": "Seated or mid-body focus"},
+      "left_frame": {"x": 320, "y": 540, "description": "Screen left, creates compositional balance"},
+      "right_frame": {"x": 960, "y": 540, "description": "Screen right, alternative composition"},
+      "close_up": {"x": 800, "y": 360, "scale": 0.6, "description": "Intimate moments, pure.png"}
+    },
+    "scale": {
+      "full": 1.0,
+      "large": 1.2,
+      "medium": 0.8,
+      "small": 0.5,
+      "notes": "Scale relative to character base_scale"
+    },
+    "transitions": {
+      "fade": {"duration": 0.2, "use_case": "Most scene changes"},
+      "cut": {"duration": 0.0, "use_case": "Dialogue exchanges, quick interactions"},
+      "dissolve": {"duration": 0.3, "use_case": "Location transitions, emotional shifts"}
+    },
+    "pose_timing": {
+      "static": {"duration": "1.0s+", "description": "Hold pose for full scene"},
+      "subtle_shift": {"duration": "0.3s", "description": "Micro-movements within scene"},
+      "pose_transition": {"duration": "0.5s", "description": "Change between two character images"}
+    },
+    "voiceover_sync": {
+      "rule": "Character emotion/pose should match voiceover tone at that moment",
+      "dialogue": "Match character image to voice delivery (angry=aggressive pose, sad=vulnerable pose)",
+      "internal_monologue": "Use close-up (pure.png) for introspective moments",
+      "narration": "Use full-body character for active/present moments"
+    }
+  },
+  "implementation_checklist": [
+    "[ ] Complete character assignments for all 99 scenes",
+    "[ ] Map voiceover script to character emotions/poses",
+    "[ ] Define position (x, y, scale) for each scene",
+    "[ ] Test micro-test with beach_01 + pureteen.png",
+    "[ ] Review composited preview before full batch",
+    "[ ] Adjust positions/scales based on visual feedback",
+    "[ ] Run full batch integration_character_animation.py",
+    "[ ] Assemble final.mp4 with character+environment composites",
+    "[ ] QA: Verify character positioning and pose timing",
+    "[ ] Export for Godot integration"
+  ],
+  "output": {
+    "characters_directory": "characters/",
+    "metadata_file": "character_metadata.json",
+    "composited_output": "composited/",
+    "processing_command": "python integrate_character_animation.py --metadata character_metadata.json --env-clips graded --char-clips characters --output-dir composited"
+  }
+}
