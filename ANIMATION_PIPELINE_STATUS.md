@@ -43,10 +43,14 @@ Animation pipeline infrastructure has been validated and batch interpolation is 
   - forest_test_01: 77.5px mean flow → flagged
   - **Result**: All source transitions too dramatic for optical flow
 
-### 5. Full Batch Interpolation 🔄 (In Progress)
-- Started full `pairs.csv` run (18 clips, ~90 sec per clip estimated)
-- Expected completion: ~27 minutes total
-- Running on AMD Radeon 660M (2GB shared VRAM)
+### 5. Full Batch Interpolation ✓ (Complete)
+- Processed all 18 clip pairs via `pairs.csv`
+- **Results**: 15 completed, 2 flagged, 1 failed
+  - **Completed**: 15 clips across 5 locations (beach, car, forest, kitchen, park)
+  - **Flagged**: schoolyard_01, schoolyard_02 (mean flow 108-110px, > 12px threshold)
+  - **Failed**: schoolyard_03 (corrupted input: schoolyard_v4.png is 894B placeholder)
+- All completed clips generated ~5-7MB MP4 files
+- Total processing: ~30 min on AMD Radeon 660M (2GB shared VRAM)
 
 ## Motion Analysis
 
@@ -90,14 +94,73 @@ Two options per the toolkit README:
 **Uncommitted Changes**:
 - `ANIMATION_PIPELINE_STATUS.md` (this file)
 
-## Next Steps
+### 6. QA Report Generation ✓ (Complete)
+- All 17 completed clips analyzed for quality metrics
+- **QA Results**:
+  - **All 17 clips flagged** for large_motion (expected given source transitions)
+  - Motion magnitude: 27-110px mean flow (12px threshold)
+  - Flow inconsistency: 11-42px (8px threshold)
+  - **Flicker risk identified** at 4 location boundaries:
+    - beach → car: Δ 35.1 luma
+    - forest → kitchen: Δ 35.5 luma
+    - kitchen → park: Δ 66.1 luma (largest jump)
+    - park → schoolyard: Δ 37.3 luma
+- Contact sheet generated: `contact.png` (all 17 clips in one image)
 
-1. **Monitor** full batch completion (~27 min)
-2. **Analyze** final QA report (flagged vs. done ratio)
-3. **Decision**: Accept flagged clips + manual RIFE retry, or regenerate keyframes with tighter spacing
-4. **QA Report** generation: `python3 qa_report.py --out clips --sheet contact.png`
-5. **Coherence Pass** (B&W grading): `bash coherence_pass.sh clips/ graded/`
-6. **FFmpeg Assembly**: Concatenate interpolated clips → master timeline
+### 7. Coherence Pass (B&W Grading + De-flicker) ✓ (Complete)
+- Batch median luma calculated: 143.44
+- Applied histogram matching to all 17 clips:
+  - Beach: 0.70-0.93x (bright scenes, reduced)
+  - Car: 1.08-2.0x (dark scenes, boosted)
+  - Forest: 0.87-1.08x (well-balanced)
+  - Kitchen: 1.41-2.0x (very dark, boosted max)
+  - Park: 0.84-0.88x (bright scenes, reduced)
+  - Schoolyard: 0.94-1.09x (well-balanced)
+- Applied grain + vignette for expressionist aesthetic
+- **Output**: 17 graded clips, 36MB total in `graded/` directory
+
+## Pipeline Status: FUNCTIONAL ✓
+
+**What Works**:
+- End-to-end keyframe → interpolation → QA → grading pipeline
+- Checkpoint resume (SQLite state tracking)
+- Automatic QA gates and flagging
+- Histogram matching for cross-clip consistency
+- No crashes, proper error handling
+
+**Current Limitations**:
+- Optical flow struggles with large motion (>12px)
+- Keyframes are full-scene transitions (too much motion for flow)
+- Schoolyard series has corrupted final frame
+- RIFE backend not tested (GPU constraints on 660M)
+
+## Next Steps for Full Animation
+
+1. **FFmpeg Assembly**:
+   - Create master concat list from `graded/` clips
+   - Assemble in order: beach → car → forest → kitchen → park → schoolyard
+   - Handle schoolyard missing clips gracefully
+   - Example: `ffmpeg -f concat -safe 0 -i filelist.txt -c copy output.mp4`
+
+2. **Audio Sync** (from No Sand Beach animatic registry):
+   - Pull dialogue and V.O. from animatic_registry.json
+   - Use ElevenLabs flow zPaM8QMVMK98FaFWNd9b (master audio flow)
+   - Sync to assembled timeline
+
+3. **Optional: RIFE Retry** for flagged clips:
+   - Route schoolyard_01, schoolyard_02 to `rife-ncnn-vulkan` backend
+   - Replace flagged clips in final output
+   - Requires: AMD GPU driver + RIFE binary on PATH
+
+4. **Color Grading & Export**:
+   - Import graded clips to Godot/DaVinci
+   - Apply final grade (already has histogram matching + grain)
+   - Export master at target resolution/fps
+
+5. **Integration with Godot**:
+   - Import assembled clips as animation assets
+   - Set up character/scene sequencing
+   - Test interactivity and sync
 
 ## Hardware Notes
 
