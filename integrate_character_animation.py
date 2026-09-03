@@ -57,7 +57,7 @@ def generate_ffmpeg_overlay_command(scene_metadata, char_image_path, env_video, 
     """
     Generate FFmpeg command to overlay static character PNG onto environment video.
 
-    Uses scale2ref and overlay filters to place character image at specified position.
+    Uses scale and overlay filters to place character image at specified position.
     """
     pos = scene_metadata['position']
     if not pos or pos.get('scale') is None:
@@ -70,12 +70,12 @@ def generate_ffmpeg_overlay_command(scene_metadata, char_image_path, env_video, 
 
     # Character will occupy approximately 30% of frame width
     # Scale is multiplier (1.0 = original size of character PNG)
-    # Use scale2ref to scale character to reference video dimensions
     char_scale = 0.3 * scale  # 30% of frame = 384px (of 1280)
 
+    # Simplified filter: scale character, then overlay at position
     filter_complex = (
-        f"[1:v]scale=w=iw*{char_scale}:h=ih*{char_scale},setsar=1[char];"
-        f"[0:v][char]overlay=x={x}:y={y}:enable='isnan(prev_selected_t)+gte(t\\,0)'[v]"
+        f"[1:v]scale=iw*{char_scale}:ih*{char_scale}[char];"
+        f"[0:v][char]overlay={x}:{y}"
     )
 
     cmd = [
@@ -201,9 +201,10 @@ def main():
         except subprocess.CalledProcessError as e:
             print(f"✗ FFmpeg error")
             error_output = e.stderr.decode()
-            # Print full error, focusing on the actual error line (usually near the end)
-            error_lines = error_output.split('\n')
-            print(f"      {chr(10).join(error_lines[-10:])}")
+            # Print last 15 lines of error (contains actual error message)
+            error_lines = [line for line in error_output.split('\n') if line.strip()]
+            for line in error_lines[-15:]:
+                print(f"      {line}")
             failed += 1
         except subprocess.TimeoutExpired:
             print(f"✗ Timeout (>300s)")
