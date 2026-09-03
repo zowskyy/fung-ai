@@ -200,7 +200,10 @@ def main():
             processed += 1
         except subprocess.CalledProcessError as e:
             print(f"✗ FFmpeg error")
-            print(f"      {e.stderr.decode()[:200]}")
+            error_output = e.stderr.decode()
+            # Print full error, focusing on the actual error line (usually near the end)
+            error_lines = error_output.split('\n')
+            print(f"      {chr(10).join(error_lines[-10:])}")
             failed += 1
         except subprocess.TimeoutExpired:
             print(f"✗ Timeout (>300s)")
