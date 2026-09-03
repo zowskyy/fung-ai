@@ -1,0 +1,57 @@
+NO SAND BEACH — METADATA SUMMARY
+============================================================
+
+Total duration: 5 minutes (300 seconds)
+Total clips: 99
+Characters: 4
+
+ACTS:
+
+Act 1: Prologue: No Sand
+  Time: 0-38s
+  Clips: 10
+  Pace: 3.8s per clip
+  Description: Child Pure, ocean billboard, Delia working, empty rent jar
+
+Act 2: The Wound
+  Time: 38-75s
+  Clips: 12
+  Pace: 3.1s per clip
+  Description: Earl's death, police light, apartment silence, key ring
+
+Act 3: The Cage
+  Time: 75-116s
+  Clips: 14
+  Pace: 2.9s per clip
+  Description: Years passing, arrest, court, prison, code glowing
+
+Act 4: The Door
+  Time: 116-157s
+  Clips: 15
+  Pace: 2.7s per clip
+  Description: Interview hope, rejection email, apartment desperation, shared meal
+
+Act 5: The Seduction
+  Time: 157-204s
+  Clips: 16
+  Pace: 2.9s per clip
+  Description: App building, identity rewrite, office ascent, sand on desk, memory blur
+
+Act 6: The Glitch
+  Time: 204-235s
+  Clips: 14
+  Pace: 2.2s per clip
+  Description: Code crash, missed calls, E appears, glitch overlay, memory archive
+  Note: FAST PACING - candidate for interpolation
+
+Act 7: The Collapse
+  Time: 235-266s
+  Clips: 10
+  Pace: 3.1s per clip
+  Description: Collapse, key ring, embracing, reconciliation, Del's line
+
+Act 8: Sand
+  Time: 266-300s
+  Clips: 8
+  Pace: 4.2s per clip
+  Description: Beach walk, barefoot sand, coding class, wisdom, family

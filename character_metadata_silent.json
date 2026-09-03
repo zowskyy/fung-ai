@@ -2,603 +2,2258 @@
   "metadata": {
     "title": "No Sand Beach — Silent Film",
     "format": "silent_film_with_character_animation",
-    "chapters": 21,
-    "locations": 6,
+    "total_duration_seconds": 300,
     "total_scenes": 99,
-    "total_duration_seconds": 8.61,
+    "total_acts": 8,
+    "pacing_strategy": "hybrid: poetic holds + variable cuts",
     "subtitle_file": "subtitles.srt",
-    "notes": "Character poses chosen to communicate emotion and dialogue through gesture. No audio—pure visual storytelling + text."
+    "production_notes": "5-minute silent film; character poses communicate emotion and gesture; Glitch section flagged for optional interpolation"
   },
   "characters": [
     {
-      "id": "protagonist",
+      "id": "pure",
       "name": "Pure (protagonist)",
-      "role": "Narrator, main character, age progression",
-      "images": {
-        "teen": "pureteen.png",
-        "intimate": "pure.png",
-        "young_adult": "pureyoung1.png",
+      "role": "7-year-old to 31-year-old; emotional core of story",
+      "ages": {
+        "child": "pureteen.png",
+        "teen_grief": "pure.png",
+        "teen_arrest": "pureteen.png",
+        "prisoner": "pure.png",
+        "released": "pureteen.png",
+        "seduced": "pureyoung1.png",
+        "dissolving": "pure.png",
+        "collapsed": "pureyoung1.png",
         "elder": "pureolder1.png"
       }
     },
     {
-      "id": "mother",
-      "name": "Delia (mother)",
-      "role": "Sacrificial presence, love, family anchor",
-      "images": {"primary": "mama.png"}
+      "id": "del",
+      "name": "Del (mother)",
+      "role": "Delia; three jobs, exhausted love, emotional anchor",
+      "images": {
+        "primary": "mama.png"
+      }
     },
     {
-      "id": "brother",
-      "name": "Marcus (brother)",
-      "role": "Sibling trauma, resentment, reconciliation",
-      "images": {
-        "grieving": "purebrother.png",
-        "resentful": "purebrother2.png",
-        "reconciling": "purebrother5.png",
+      "id": "shadow",
+      "name": "Shadow (brother)",
+      "role": "Marcus; witness, protector, resentment, reconciliation",
+      "ages": {
+        "child": "purebrother.png",
+        "grief": "purebrother.png",
+        "struggle": "purebrother2.png",
+        "embrace": "purebrother5.png",
         "peace": "purebrother6.png"
       }
     },
     {
-      "id": "father",
-      "name": "Earl (father, glitch)",
-      "role": "Memory, haunting, warning, absence",
-      "images": {"glitch": "puredadglitch.jpg"}
+      "id": "e",
+      "name": "E (father)",
+      "role": "Earl; dead, glitching, warning, memory",
+      "images": {
+        "glitch": "puredadglitch.jpg"
+      }
+    }
+  ],
+  "acts": [
+    {
+      "name": "Prologue: No Sand",
+      "start_time": 0,
+      "end_time": 38,
+      "duration": 38,
+      "clips_count": 10,
+      "clip_duration": 3.8,
+      "location": "beach",
+      "characters": [
+        "pure",
+        null
+      ],
+      "description": "Child Pure, ocean billboard, Delia working, empty rent jar"
+    },
+    {
+      "name": "The Wound",
+      "start_time": 38,
+      "end_time": 75,
+      "duration": 37,
+      "clips_count": 12,
+      "clip_duration": 3.08,
+      "location": "car",
+      "characters": [
+        "pure",
+        "shadow",
+        "e"
+      ],
+      "description": "Earl's death, police light, apartment silence, key ring"
+    },
+    {
+      "name": "The Cage",
+      "start_time": 75,
+      "end_time": 116,
+      "duration": 41,
+      "clips_count": 14,
+      "clip_duration": 2.93,
+      "location": "forest",
+      "characters": [
+        "pure",
+        null
+      ],
+      "description": "Years passing, arrest, court, prison, code glowing"
+    },
+    {
+      "name": "The Door",
+      "start_time": 116,
+      "end_time": 157,
+      "duration": 41,
+      "clips_count": 15,
+      "clip_duration": 2.73,
+      "location": "kitchen",
+      "characters": [
+        "pure",
+        "del",
+        "shadow"
+      ],
+      "description": "Interview hope, rejection email, apartment desperation, shared meal"
+    },
+    {
+      "name": "The Seduction",
+      "start_time": 157,
+      "end_time": 204,
+      "duration": 47,
+      "clips_count": 16,
+      "clip_duration": 2.94,
+      "location": "park",
+      "characters": [
+        "pure",
+        null
+      ],
+      "description": "App building, identity rewrite, office ascent, sand on desk, memory blur"
+    },
+    {
+      "name": "The Glitch",
+      "start_time": 204,
+      "end_time": 235,
+      "duration": 31,
+      "clips_count": 14,
+      "clip_duration": 2.21,
+      "location": "schoolyard",
+      "characters": [
+        "pure",
+        "e"
+      ],
+      "description": "Code crash, missed calls, E appears, glitch overlay, memory archive",
+      "note": "FAST PACING - candidate for interpolation"
+    },
+    {
+      "name": "The Collapse",
+      "start_time": 235,
+      "end_time": 266,
+      "duration": 31,
+      "clips_count": 10,
+      "clip_duration": 3.1,
+      "location": "kitchen",
+      "characters": [
+        "pure",
+        "del",
+        "shadow"
+      ],
+      "description": "Collapse, key ring, embracing, reconciliation, Del's line"
+    },
+    {
+      "name": "Sand",
+      "start_time": 266,
+      "end_time": 300,
+      "duration": 34,
+      "clips_count": 8,
+      "clip_duration": 4.25,
+      "location": "beach",
+      "characters": [
+        "pure",
+        "del",
+        "shadow",
+        null
+      ],
+      "description": "Beach walk, barefoot sand, coding class, wisdom, family"
     }
   ],
   "scenes": [
     {
-      "clip_id": "beach_01",
-      "chapter": 1,
+      "clip_id": "beach_01_a",
+      "act": 1,
+      "act_name": "Prologue: No Sand",
       "location": "beach",
-      "character_id": "protagonist",
+      "character_id": "pure",
       "image": "pureteen.png",
-      "position": {"x": 640, "y": 540, "scale": 1.0},
-      "pose": "standing_looking_distant",
-      "emotion": "nostalgic",
-      "subtitle_timing": {"start": 0.0, "end": 0.41},
-      "notes": "Opening: young Pure gazing at the horizon, remembering childhood"
+      "position": {
+        "x": 640,
+        "y": 540,
+        "scale": 1.0
+      },
+      "pose": "child_looking_horizon",
+      "emotion": "no sand",
+      "timing": {
+        "start": 0.0,
+        "end": 3.8,
+        "duration": 3.8
+      },
+      "notes": "Prologue: No Sand - 1/10 clips"
     },
     {
-      "clip_id": "beach_02",
-      "chapter": 2,
+      "clip_id": "beach_01_b",
+      "act": 1,
+      "act_name": "Prologue: No Sand",
       "location": "beach",
-      "character_id": "mother",
+      "character_id": "pure",
+      "image": "pureteen.png",
+      "position": {
+        "x": 640,
+        "y": 540,
+        "scale": 1.0
+      },
+      "pose": "child_looking_horizon",
+      "emotion": "no sand",
+      "timing": {
+        "start": 3.8,
+        "end": 7.6,
+        "duration": 3.8
+      },
+      "notes": "Prologue: No Sand - 2/10 clips"
+    },
+    {
+      "clip_id": "beach_01_c",
+      "act": 1,
+      "act_name": "Prologue: No Sand",
+      "location": "beach",
+      "character_id": "pure",
+      "image": "pureteen.png",
+      "position": {
+        "x": 640,
+        "y": 540,
+        "scale": 1.0
+      },
+      "pose": "child_looking_horizon",
+      "emotion": "no sand",
+      "timing": {
+        "start": 7.6,
+        "end": 11.4,
+        "duration": 3.8
+      },
+      "notes": "Prologue: No Sand - 3/10 clips"
+    },
+    {
+      "clip_id": "beach_02_a",
+      "act": 1,
+      "act_name": "Prologue: No Sand",
+      "location": "beach",
+      "character_id": "pure",
+      "image": "pureteen.png",
+      "position": {
+        "x": 640,
+        "y": 540,
+        "scale": 1.0
+      },
+      "pose": "child_looking_horizon",
+      "emotion": "no sand",
+      "timing": {
+        "start": 11.4,
+        "end": 15.2,
+        "duration": 3.8
+      },
+      "notes": "Prologue: No Sand - 4/10 clips"
+    },
+    {
+      "clip_id": "beach_02_b",
+      "act": 1,
+      "act_name": "Prologue: No Sand",
+      "location": "beach",
+      "character_id": "del",
       "image": "mama.png",
-      "position": {"x": 640, "y": 540, "scale": 1.0},
+      "position": {
+        "x": 640,
+        "y": 540,
+        "scale": 1.0
+      },
       "pose": "working_exhausted",
-      "emotion": "sacrifice",
-      "subtitle_timing": {"start": 0.41, "end": 0.82},
-      "notes": "Mother's presence, working, exhausted but loving"
+      "emotion": "no sand",
+      "timing": {
+        "start": 15.2,
+        "end": 19.0,
+        "duration": 3.8
+      },
+      "notes": "Prologue: No Sand - 5/10 clips"
     },
     {
-      "clip_id": "beach_03",
-      "chapter": 3,
+      "clip_id": "beach_02_c",
+      "act": 1,
+      "act_name": "Prologue: No Sand",
       "location": "beach",
-      "character_id": "protagonist",
-      "image": "pureteen.png",
-      "position": {"x": 640, "y": 540, "scale": 1.0},
-      "pose": "standing_resigned",
-      "emotion": "acceptance",
-      "subtitle_timing": {"start": 0.82, "end": 1.23},
-      "notes": "The beach wasn't for us—acceptance of reality"
-    },
-    {
-      "clip_id": "beach_04",
-      "chapter": 3,
-      "location": "beach",
-      "character_id": null,
-      "image": null,
-      "position": null,
-      "pose": "environment_only",
-      "subtitle_timing": {"start": 0.82, "end": 1.23},
-      "notes": "Pure fades, environment focus (implied presence)"
-    },
-    {
-      "clip_id": "beach_05",
-      "chapter": 3,
-      "location": "beach",
-      "character_id": "brother",
-      "image": "purebrother.png",
-      "position": {"x": 640, "y": 540, "scale": 0.95},
-      "pose": "standing_watching",
-      "emotion": "resentful_observation",
-      "subtitle_timing": {"start": 0.82, "end": 1.23},
-      "notes": "Brother's presence in childhood memory, watching"
-    },
-    {
-      "clip_id": "car_01",
-      "chapter": 4,
-      "location": "car",
-      "character_id": "protagonist",
-      "image": "pure.png",
-      "position": {"x": 640, "y": 360, "scale": 0.8},
-      "pose": "close_up_grief",
-      "emotion": "grief",
-      "subtitle_timing": {"start": 1.23, "end": 1.64},
-      "notes": "Close-up: father's death, Pure's grief at age 7"
-    },
-    {
-      "clip_id": "car_02",
-      "chapter": 5,
-      "location": "car",
-      "character_id": "father",
-      "image": "puredadglitch.jpg",
-      "position": {"x": 640, "y": 400, "scale": 0.9},
-      "pose": "glitch_memory",
-      "emotion": "haunting",
-      "subtitle_timing": {"start": 1.64, "end": 2.05},
-      "notes": "Father appears as glitch, symbolic presence, the absence"
-    },
-    {
-      "clip_id": "car_03",
-      "chapter": 6,
-      "location": "car",
-      "character_id": "brother",
-      "image": "purebrother.png",
-      "position": {"x": 640, "y": 540, "scale": 0.95},
-      "pose": "standing_grief",
-      "emotion": "shared_trauma",
-      "subtitle_timing": {"start": 2.05, "end": 2.46},
-      "notes": "Brother shares the loss, shared family wound"
-    },
-    {
-      "clip_id": "car_04",
-      "chapter": 6,
-      "location": "car",
-      "character_id": "protagonist",
-      "image": "pureteen.png",
-      "position": {"x": 640, "y": 540, "scale": 1.0},
-      "pose": "standing_conflicted",
-      "emotion": "conflicted_love",
-      "subtitle_timing": {"start": 2.05, "end": 2.46},
-      "notes": "Pure conflicted: loved his father, but father loved the street"
-    },
-    {
-      "clip_id": "car_05",
-      "chapter": 6,
-      "location": "car",
-      "character_id": "father",
-      "image": "puredadglitch.jpg",
-      "position": {"x": 800, "y": 300, "scale": 0.7},
-      "pose": "glitch_fading",
-      "emotion": "haunting_fades",
-      "subtitle_timing": {"start": 2.05, "end": 2.46},
-      "notes": "Father's glitch fades, memory dissolving"
-    },
-    {
-      "clip_id": "forest_01",
-      "chapter": 7,
-      "location": "forest",
-      "character_id": "protagonist",
-      "image": "pureteen.png",
-      "position": {"x": 640, "y": 540, "scale": 1.0},
-      "pose": "standing_ashamed",
-      "emotion": "shame",
-      "subtitle_timing": {"start": 2.46, "end": 2.87},
-      "notes": "Teen arrest, stupid mistakes, shame"
-    },
-    {
-      "clip_id": "forest_02",
-      "chapter": 8,
-      "location": "forest",
-      "character_id": "protagonist",
-      "image": "pureteen.png",
-      "position": {"x": 640, "y": 540, "scale": 1.0},
-      "pose": "standing_defiant",
-      "emotion": "injustice",
-      "subtitle_timing": {"start": 2.87, "end": 3.28},
-      "notes": "Age 21: framed for crime, defiant anger"
-    },
-    {
-      "clip_id": "forest_03",
-      "chapter": 9,
-      "location": "forest",
-      "character_id": "protagonist",
-      "image": "pure.png",
-      "position": {"x": 640, "y": 360, "scale": 0.8},
-      "pose": "close_up_intense_focus",
-      "emotion": "determination",
-      "subtitle_timing": {"start": 3.28, "end": 3.69},
-      "notes": "Prison: learning to code, intense focus, control"
-    },
-    {
-      "clip_id": "forest_04",
-      "chapter": 9,
-      "location": "forest",
-      "character_id": "protagonist",
-      "image": "pure.png",
-      "position": {"x": 640, "y": 360, "scale": 0.8},
-      "pose": "close_up_awakening",
-      "emotion": "awakening",
-      "subtitle_timing": {"start": 3.28, "end": 3.69},
-      "notes": "Code obeys him, first sense of control and power"
-    },
-    {
-      "clip_id": "forest_05",
-      "chapter": 9,
-      "location": "forest",
-      "character_id": null,
-      "image": null,
-      "position": null,
-      "pose": "environment_only",
-      "subtitle_timing": {"start": 3.28, "end": 3.69},
-      "notes": "Prison solitude, environment represents isolation"
-    },
-    {
-      "clip_id": "kitchen_01",
-      "chapter": 10,
-      "location": "kitchen",
-      "character_id": "protagonist",
-      "image": "pureyoung1.png",
-      "position": {"x": 640, "y": 540, "scale": 1.0},
-      "pose": "standing_hopeful",
-      "emotion": "hope",
-      "subtitle_timing": {"start": 3.69, "end": 4.10},
-      "notes": "Released from prison, interviewing for job, hopeful"
-    },
-    {
-      "clip_id": "kitchen_02",
-      "chapter": 10,
-      "location": "kitchen",
-      "character_id": "protagonist",
-      "image": "pureyoung1.png",
-      "position": {"x": 640, "y": 540, "scale": 1.0},
-      "pose": "standing_deflated",
-      "emotion": "rejection",
-      "subtitle_timing": {"start": 3.69, "end": 4.10},
-      "notes": "Background check kills the interview, deflation"
-    },
-    {
-      "clip_id": "kitchen_03",
-      "chapter": 11,
-      "location": "kitchen",
-      "character_id": "mother",
+      "character_id": "del",
       "image": "mama.png",
-      "position": {"x": 640, "y": 540, "scale": 1.0},
-      "pose": "working_endless",
-      "emotion": "exhaustion_persistence",
-      "subtitle_timing": {"start": 4.10, "end": 4.51},
-      "notes": "Mother still working, doors closing everywhere"
+      "position": {
+        "x": 640,
+        "y": 540,
+        "scale": 1.0
+      },
+      "pose": "working_exhausted",
+      "emotion": "no sand",
+      "timing": {
+        "start": 19.0,
+        "end": 22.8,
+        "duration": 3.8
+      },
+      "notes": "Prologue: No Sand - 6/10 clips"
     },
     {
-      "clip_id": "kitchen_04",
-      "chapter": 12,
+      "clip_id": "beach_03_a",
+      "act": 1,
+      "act_name": "Prologue: No Sand",
+      "location": "beach",
+      "character_id": "del",
+      "image": "mama.png",
+      "position": {
+        "x": 640,
+        "y": 540,
+        "scale": 1.0
+      },
+      "pose": "working_exhausted",
+      "emotion": "no sand",
+      "timing": {
+        "start": 22.8,
+        "end": 26.6,
+        "duration": 3.8
+      },
+      "notes": "Prologue: No Sand - 7/10 clips"
+    },
+    {
+      "clip_id": "beach_03_b",
+      "act": 1,
+      "act_name": "Prologue: No Sand",
+      "location": "beach",
+      "character_id": "del",
+      "image": "mama.png",
+      "position": {
+        "x": 640,
+        "y": 540,
+        "scale": 1.0
+      },
+      "pose": "working_exhausted",
+      "emotion": "no sand",
+      "timing": {
+        "start": 26.6,
+        "end": 30.4,
+        "duration": 3.8
+      },
+      "notes": "Prologue: No Sand - 8/10 clips"
+    },
+    {
+      "clip_id": "beach_03_c",
+      "act": 1,
+      "act_name": "Prologue: No Sand",
+      "location": "beach",
+      "character_id": "shadow",
+      "image": "purebrother.png",
+      "position": {
+        "x": 640,
+        "y": 540,
+        "scale": 1.0
+      },
+      "pose": "watching",
+      "emotion": "no sand",
+      "timing": {
+        "start": 30.4,
+        "end": 34.2,
+        "duration": 3.8
+      },
+      "notes": "Prologue: No Sand - 9/10 clips"
+    },
+    {
+      "clip_id": "beach_03_d",
+      "act": 1,
+      "act_name": "Prologue: No Sand",
+      "location": "beach",
+      "character_id": "shadow",
+      "image": "purebrother.png",
+      "position": {
+        "x": 640,
+        "y": 540,
+        "scale": 1.0
+      },
+      "pose": "watching",
+      "emotion": "no sand",
+      "timing": {
+        "start": 34.2,
+        "end": 38.0,
+        "duration": 3.8
+      },
+      "notes": "Prologue: No Sand - 10/10 clips"
+    },
+    {
+      "clip_id": "beach_03_e",
+      "act": 2,
+      "act_name": "The Wound",
+      "location": "car",
+      "character_id": "pure",
+      "image": "pure.png",
+      "position": {
+        "x": 640,
+        "y": 540,
+        "scale": 1.0
+      },
+      "pose": "grief_close_up",
+      "emotion": "neutral",
+      "timing": {
+        "start": 38.0,
+        "end": 41.08,
+        "duration": 3.08
+      },
+      "notes": "The Wound - 1/12 clips"
+    },
+    {
+      "clip_id": "beach_03_f",
+      "act": 2,
+      "act_name": "The Wound",
+      "location": "car",
+      "character_id": "pure",
+      "image": "pure.png",
+      "position": {
+        "x": 640,
+        "y": 540,
+        "scale": 1.0
+      },
+      "pose": "grief_close_up",
+      "emotion": "neutral",
+      "timing": {
+        "start": 41.08,
+        "end": 44.16,
+        "duration": 3.08
+      },
+      "notes": "The Wound - 2/12 clips"
+    },
+    {
+      "clip_id": "car_01_a",
+      "act": 2,
+      "act_name": "The Wound",
+      "location": "car",
+      "character_id": "pure",
+      "image": "pure.png",
+      "position": {
+        "x": 640,
+        "y": 540,
+        "scale": 1.0
+      },
+      "pose": "grief_close_up",
+      "emotion": "neutral",
+      "timing": {
+        "start": 44.16,
+        "end": 47.24,
+        "duration": 3.08
+      },
+      "notes": "The Wound - 3/12 clips"
+    },
+    {
+      "clip_id": "car_01_b",
+      "act": 2,
+      "act_name": "The Wound",
+      "location": "car",
+      "character_id": "pure",
+      "image": "pure.png",
+      "position": {
+        "x": 640,
+        "y": 540,
+        "scale": 1.0
+      },
+      "pose": "grief_close_up",
+      "emotion": "neutral",
+      "timing": {
+        "start": 47.24,
+        "end": 50.32,
+        "duration": 3.08
+      },
+      "notes": "The Wound - 4/12 clips"
+    },
+    {
+      "clip_id": "car_01_c",
+      "act": 2,
+      "act_name": "The Wound",
+      "location": "car",
+      "character_id": "pure",
+      "image": "pure.png",
+      "position": {
+        "x": 640,
+        "y": 540,
+        "scale": 1.0
+      },
+      "pose": "grief_close_up",
+      "emotion": "neutral",
+      "timing": {
+        "start": 50.32,
+        "end": 53.4,
+        "duration": 3.08
+      },
+      "notes": "The Wound - 5/12 clips"
+    },
+    {
+      "clip_id": "car_01_d",
+      "act": 2,
+      "act_name": "The Wound",
+      "location": "car",
+      "character_id": "e",
+      "image": "puredadglitch.jpg",
+      "position": {
+        "x": 640,
+        "y": 540,
+        "scale": 1.0
+      },
+      "pose": "glitch_presence",
+      "emotion": "neutral",
+      "timing": {
+        "start": 53.4,
+        "end": 56.48,
+        "duration": 3.08
+      },
+      "notes": "The Wound - 6/12 clips"
+    },
+    {
+      "clip_id": "car_01_e",
+      "act": 2,
+      "act_name": "The Wound",
+      "location": "car",
+      "character_id": "e",
+      "image": "puredadglitch.jpg",
+      "position": {
+        "x": 640,
+        "y": 540,
+        "scale": 1.0
+      },
+      "pose": "glitch_presence",
+      "emotion": "neutral",
+      "timing": {
+        "start": 56.48,
+        "end": 59.56,
+        "duration": 3.08
+      },
+      "notes": "The Wound - 7/12 clips"
+    },
+    {
+      "clip_id": "car_02_a",
+      "act": 2,
+      "act_name": "The Wound",
+      "location": "car",
+      "character_id": "e",
+      "image": "puredadglitch.jpg",
+      "position": {
+        "x": 640,
+        "y": 540,
+        "scale": 1.0
+      },
+      "pose": "glitch_presence",
+      "emotion": "neutral",
+      "timing": {
+        "start": 59.56,
+        "end": 62.64,
+        "duration": 3.08
+      },
+      "notes": "The Wound - 8/12 clips"
+    },
+    {
+      "clip_id": "car_02_b",
+      "act": 2,
+      "act_name": "The Wound",
+      "location": "car",
+      "character_id": "e",
+      "image": "puredadglitch.jpg",
+      "position": {
+        "x": 640,
+        "y": 540,
+        "scale": 1.0
+      },
+      "pose": "glitch_presence",
+      "emotion": "neutral",
+      "timing": {
+        "start": 62.64,
+        "end": 65.72,
+        "duration": 3.08
+      },
+      "notes": "The Wound - 9/12 clips"
+    },
+    {
+      "clip_id": "car_02_c",
+      "act": 2,
+      "act_name": "The Wound",
+      "location": "car",
+      "character_id": "e",
+      "image": "puredadglitch.jpg",
+      "position": {
+        "x": 640,
+        "y": 540,
+        "scale": 1.0
+      },
+      "pose": "glitch_presence",
+      "emotion": "neutral",
+      "timing": {
+        "start": 65.72,
+        "end": 68.8,
+        "duration": 3.08
+      },
+      "notes": "The Wound - 10/12 clips"
+    },
+    {
+      "clip_id": "car_02_d",
+      "act": 2,
+      "act_name": "The Wound",
+      "location": "car",
+      "character_id": "shadow",
+      "image": "purebrother.png",
+      "position": {
+        "x": 640,
+        "y": 540,
+        "scale": 1.0
+      },
+      "pose": "shared_trauma",
+      "emotion": "neutral",
+      "timing": {
+        "start": 68.8,
+        "end": 71.88,
+        "duration": 3.08
+      },
+      "notes": "The Wound - 11/12 clips"
+    },
+    {
+      "clip_id": "car_02_e",
+      "act": 2,
+      "act_name": "The Wound",
+      "location": "car",
+      "character_id": "shadow",
+      "image": "purebrother.png",
+      "position": {
+        "x": 640,
+        "y": 540,
+        "scale": 1.0
+      },
+      "pose": "shared_trauma",
+      "emotion": "neutral",
+      "timing": {
+        "start": 71.88,
+        "end": 74.96,
+        "duration": 3.08
+      },
+      "notes": "The Wound - 12/12 clips"
+    },
+    {
+      "clip_id": "car_03_a",
+      "act": 3,
+      "act_name": "The Cage",
+      "location": "forest",
+      "character_id": "pure",
+      "image": "pureteen.png",
+      "position": {
+        "x": 640,
+        "y": 540,
+        "scale": 1.0
+      },
+      "pose": "arrested_teen",
+      "emotion": "neutral",
+      "timing": {
+        "start": 75.0,
+        "end": 77.93,
+        "duration": 2.93
+      },
+      "notes": "The Cage - 1/14 clips"
+    },
+    {
+      "clip_id": "car_03_b",
+      "act": 3,
+      "act_name": "The Cage",
+      "location": "forest",
+      "character_id": "pure",
+      "image": "pureteen.png",
+      "position": {
+        "x": 640,
+        "y": 540,
+        "scale": 1.0
+      },
+      "pose": "arrested_teen",
+      "emotion": "neutral",
+      "timing": {
+        "start": 77.93,
+        "end": 80.86,
+        "duration": 2.93
+      },
+      "notes": "The Cage - 2/14 clips"
+    },
+    {
+      "clip_id": "car_03_c",
+      "act": 3,
+      "act_name": "The Cage",
+      "location": "forest",
+      "character_id": "pure",
+      "image": "pureteen.png",
+      "position": {
+        "x": 640,
+        "y": 540,
+        "scale": 1.0
+      },
+      "pose": "arrested_teen",
+      "emotion": "neutral",
+      "timing": {
+        "start": 80.86,
+        "end": 83.79,
+        "duration": 2.93
+      },
+      "notes": "The Cage - 3/14 clips"
+    },
+    {
+      "clip_id": "car_03_d",
+      "act": 3,
+      "act_name": "The Cage",
+      "location": "forest",
+      "character_id": "pure",
+      "image": "pureteen.png",
+      "position": {
+        "x": 640,
+        "y": 540,
+        "scale": 1.0
+      },
+      "pose": "arrested_teen",
+      "emotion": "neutral",
+      "timing": {
+        "start": 83.79,
+        "end": 86.72,
+        "duration": 2.93
+      },
+      "notes": "The Cage - 4/14 clips"
+    },
+    {
+      "clip_id": "car_03_e",
+      "act": 3,
+      "act_name": "The Cage",
+      "location": "forest",
+      "character_id": "pure",
+      "image": "pureteen.png",
+      "position": {
+        "x": 640,
+        "y": 540,
+        "scale": 1.0
+      },
+      "pose": "arrested_teen",
+      "emotion": "neutral",
+      "timing": {
+        "start": 86.72,
+        "end": 89.65,
+        "duration": 2.93
+      },
+      "notes": "The Cage - 5/14 clips"
+    },
+    {
+      "clip_id": "car_03_f",
+      "act": 3,
+      "act_name": "The Cage",
+      "location": "forest",
+      "character_id": "pure",
+      "image": "pure.png",
+      "position": {
+        "x": 640,
+        "y": 540,
+        "scale": 1.0
+      },
+      "pose": "prison_focused",
+      "emotion": "neutral",
+      "timing": {
+        "start": 89.65,
+        "end": 92.58,
+        "duration": 2.93
+      },
+      "notes": "The Cage - 6/14 clips"
+    },
+    {
+      "clip_id": "car_03_g",
+      "act": 3,
+      "act_name": "The Cage",
+      "location": "forest",
+      "character_id": "pure",
+      "image": "pure.png",
+      "position": {
+        "x": 640,
+        "y": 540,
+        "scale": 1.0
+      },
+      "pose": "prison_focused",
+      "emotion": "neutral",
+      "timing": {
+        "start": 92.58,
+        "end": 95.51,
+        "duration": 2.93
+      },
+      "notes": "The Cage - 7/14 clips"
+    },
+    {
+      "clip_id": "forest_01_a",
+      "act": 3,
+      "act_name": "The Cage",
+      "location": "forest",
+      "character_id": "pure",
+      "image": "pure.png",
+      "position": {
+        "x": 640,
+        "y": 540,
+        "scale": 1.0
+      },
+      "pose": "prison_focused",
+      "emotion": "neutral",
+      "timing": {
+        "start": 95.51,
+        "end": 98.44,
+        "duration": 2.93
+      },
+      "notes": "The Cage - 8/14 clips"
+    },
+    {
+      "clip_id": "forest_01_b",
+      "act": 3,
+      "act_name": "The Cage",
+      "location": "forest",
+      "character_id": "pure",
+      "image": "pure.png",
+      "position": {
+        "x": 640,
+        "y": 540,
+        "scale": 1.0
+      },
+      "pose": "prison_focused",
+      "emotion": "neutral",
+      "timing": {
+        "start": 98.44,
+        "end": 101.37,
+        "duration": 2.93
+      },
+      "notes": "The Cage - 9/14 clips"
+    },
+    {
+      "clip_id": "forest_01_c",
+      "act": 3,
+      "act_name": "The Cage",
+      "location": "forest",
+      "character_id": "pure",
+      "image": "pure.png",
+      "position": {
+        "x": 640,
+        "y": 540,
+        "scale": 1.0
+      },
+      "pose": "prison_focused",
+      "emotion": "neutral",
+      "timing": {
+        "start": 101.37,
+        "end": 104.3,
+        "duration": 2.93
+      },
+      "notes": "The Cage - 10/14 clips"
+    },
+    {
+      "clip_id": "forest_01_d",
+      "act": 3,
+      "act_name": "The Cage",
+      "location": "forest",
+      "character_id": "pure",
+      "image": "pure.png",
+      "position": {
+        "x": 640,
+        "y": 540,
+        "scale": 1.0
+      },
+      "pose": "prison_focused",
+      "emotion": "neutral",
+      "timing": {
+        "start": 104.3,
+        "end": 107.23,
+        "duration": 2.93
+      },
+      "notes": "The Cage - 11/14 clips"
+    },
+    {
+      "clip_id": "forest_01_e",
+      "act": 3,
+      "act_name": "The Cage",
+      "location": "forest",
+      "character_id": "pure",
+      "image": "pure.png",
+      "position": {
+        "x": 640,
+        "y": 540,
+        "scale": 1.0
+      },
+      "pose": "prison_focused",
+      "emotion": "neutral",
+      "timing": {
+        "start": 107.23,
+        "end": 110.16,
+        "duration": 2.93
+      },
+      "notes": "The Cage - 12/14 clips"
+    },
+    {
+      "clip_id": "forest_01_f",
+      "act": 3,
+      "act_name": "The Cage",
+      "location": "forest",
+      "character_id": "pure",
+      "image": "pure.png",
+      "position": {
+        "x": 640,
+        "y": 540,
+        "scale": 1.0
+      },
+      "pose": "code_glowing",
+      "emotion": "neutral",
+      "timing": {
+        "start": 110.16,
+        "end": 113.09,
+        "duration": 2.93
+      },
+      "notes": "The Cage - 13/14 clips"
+    },
+    {
+      "clip_id": "forest_02_a",
+      "act": 3,
+      "act_name": "The Cage",
+      "location": "forest",
+      "character_id": "pure",
+      "image": "pure.png",
+      "position": {
+        "x": 640,
+        "y": 540,
+        "scale": 1.0
+      },
+      "pose": "code_glowing",
+      "emotion": "neutral",
+      "timing": {
+        "start": 113.09,
+        "end": 116.02,
+        "duration": 2.93
+      },
+      "notes": "The Cage - 14/14 clips"
+    },
+    {
+      "clip_id": "forest_02_b",
+      "act": 4,
+      "act_name": "The Door",
       "location": "kitchen",
-      "character_id": "brother",
+      "character_id": "pure",
+      "image": "pureteen.png",
+      "position": {
+        "x": 640,
+        "y": 540,
+        "scale": 1.0
+      },
+      "pose": "interview_hope",
+      "emotion": "neutral",
+      "timing": {
+        "start": 116.0,
+        "end": 118.73,
+        "duration": 2.73
+      },
+      "notes": "The Door - 1/15 clips"
+    },
+    {
+      "clip_id": "forest_02_c",
+      "act": 4,
+      "act_name": "The Door",
+      "location": "kitchen",
+      "character_id": "pure",
+      "image": "pureteen.png",
+      "position": {
+        "x": 640,
+        "y": 540,
+        "scale": 1.0
+      },
+      "pose": "interview_hope",
+      "emotion": "neutral",
+      "timing": {
+        "start": 118.73,
+        "end": 121.46,
+        "duration": 2.73
+      },
+      "notes": "The Door - 2/15 clips"
+    },
+    {
+      "clip_id": "forest_02_d",
+      "act": 4,
+      "act_name": "The Door",
+      "location": "kitchen",
+      "character_id": "pure",
+      "image": "pureteen.png",
+      "position": {
+        "x": 640,
+        "y": 540,
+        "scale": 1.0
+      },
+      "pose": "interview_hope",
+      "emotion": "neutral",
+      "timing": {
+        "start": 121.46,
+        "end": 124.19,
+        "duration": 2.73
+      },
+      "notes": "The Door - 3/15 clips"
+    },
+    {
+      "clip_id": "forest_03_a",
+      "act": 4,
+      "act_name": "The Door",
+      "location": "kitchen",
+      "character_id": "pure",
+      "image": "pureteen.png",
+      "position": {
+        "x": 640,
+        "y": 540,
+        "scale": 1.0
+      },
+      "pose": "interview_hope",
+      "emotion": "neutral",
+      "timing": {
+        "start": 124.19,
+        "end": 126.92,
+        "duration": 2.73
+      },
+      "notes": "The Door - 4/15 clips"
+    },
+    {
+      "clip_id": "forest_03_b",
+      "act": 4,
+      "act_name": "The Door",
+      "location": "kitchen",
+      "character_id": "pure",
+      "image": "pureteen.png",
+      "position": {
+        "x": 640,
+        "y": 540,
+        "scale": 1.0
+      },
+      "pose": "interview_hope",
+      "emotion": "neutral",
+      "timing": {
+        "start": 126.92,
+        "end": 129.65,
+        "duration": 2.73
+      },
+      "notes": "The Door - 5/15 clips"
+    },
+    {
+      "clip_id": "forest_03_c",
+      "act": 4,
+      "act_name": "The Door",
+      "location": "kitchen",
+      "character_id": "del",
+      "image": "mama.png",
+      "position": {
+        "x": 640,
+        "y": 540,
+        "scale": 1.0
+      },
+      "pose": "counting_cash",
+      "emotion": "neutral",
+      "timing": {
+        "start": 129.65,
+        "end": 132.38,
+        "duration": 2.73
+      },
+      "notes": "The Door - 6/15 clips"
+    },
+    {
+      "clip_id": "forest_03_d",
+      "act": 4,
+      "act_name": "The Door",
+      "location": "kitchen",
+      "character_id": "del",
+      "image": "mama.png",
+      "position": {
+        "x": 640,
+        "y": 540,
+        "scale": 1.0
+      },
+      "pose": "counting_cash",
+      "emotion": "neutral",
+      "timing": {
+        "start": 132.38,
+        "end": 135.11,
+        "duration": 2.73
+      },
+      "notes": "The Door - 7/15 clips"
+    },
+    {
+      "clip_id": "forest_03_e",
+      "act": 4,
+      "act_name": "The Door",
+      "location": "kitchen",
+      "character_id": "del",
+      "image": "mama.png",
+      "position": {
+        "x": 640,
+        "y": 540,
+        "scale": 1.0
+      },
+      "pose": "counting_cash",
+      "emotion": "neutral",
+      "timing": {
+        "start": 135.11,
+        "end": 137.84,
+        "duration": 2.73
+      },
+      "notes": "The Door - 8/15 clips"
+    },
+    {
+      "clip_id": "forest_03_f",
+      "act": 4,
+      "act_name": "The Door",
+      "location": "kitchen",
+      "character_id": "del",
+      "image": "mama.png",
+      "position": {
+        "x": 640,
+        "y": 540,
+        "scale": 1.0
+      },
+      "pose": "counting_cash",
+      "emotion": "neutral",
+      "timing": {
+        "start": 137.84,
+        "end": 140.57,
+        "duration": 2.73
+      },
+      "notes": "The Door - 9/15 clips"
+    },
+    {
+      "clip_id": "kitchen_01_a",
+      "act": 4,
+      "act_name": "The Door",
+      "location": "kitchen",
+      "character_id": "del",
+      "image": "mama.png",
+      "position": {
+        "x": 640,
+        "y": 540,
+        "scale": 1.0
+      },
+      "pose": "counting_cash",
+      "emotion": "neutral",
+      "timing": {
+        "start": 140.57,
+        "end": 143.3,
+        "duration": 2.73
+      },
+      "notes": "The Door - 10/15 clips"
+    },
+    {
+      "clip_id": "kitchen_01_b",
+      "act": 4,
+      "act_name": "The Door",
+      "location": "kitchen",
+      "character_id": "del",
+      "image": "mama.png",
+      "position": {
+        "x": 640,
+        "y": 540,
+        "scale": 1.0
+      },
+      "pose": "counting_cash",
+      "emotion": "neutral",
+      "timing": {
+        "start": 143.3,
+        "end": 146.03,
+        "duration": 2.73
+      },
+      "notes": "The Door - 11/15 clips"
+    },
+    {
+      "clip_id": "kitchen_01_c",
+      "act": 4,
+      "act_name": "The Door",
+      "location": "kitchen",
+      "character_id": "shadow",
       "image": "purebrother2.png",
-      "position": {"x": 640, "y": 540, "scale": 0.95},
-      "pose": "standing_resentful",
-      "emotion": "resentment",
-      "subtitle_timing": {"start": 4.51, "end": 4.92},
-      "notes": "Brother struggling, resentful of Pure's situation"
+      "position": {
+        "x": 640,
+        "y": 540,
+        "scale": 1.0
+      },
+      "pose": "cooking_nothing",
+      "emotion": "neutral",
+      "timing": {
+        "start": 146.03,
+        "end": 148.76,
+        "duration": 2.73
+      },
+      "notes": "The Door - 12/15 clips"
     },
     {
-      "clip_id": "kitchen_05",
-      "chapter": 12,
+      "clip_id": "kitchen_01_d",
+      "act": 4,
+      "act_name": "The Door",
       "location": "kitchen",
-      "character_id": "protagonist",
-      "image": "pure.png",
-      "position": {"x": 640, "y": 360, "scale": 0.8},
-      "pose": "close_up_drowning",
-      "emotion": "despair",
-      "subtitle_timing": {"start": 4.51, "end": 4.92},
-      "notes": "Pure drowning, close-up shows internal collapse"
+      "character_id": "shadow",
+      "image": "purebrother2.png",
+      "position": {
+        "x": 640,
+        "y": 540,
+        "scale": 1.0
+      },
+      "pose": "cooking_nothing",
+      "emotion": "neutral",
+      "timing": {
+        "start": 148.76,
+        "end": 151.49,
+        "duration": 2.73
+      },
+      "notes": "The Door - 13/15 clips"
     },
     {
-      "clip_id": "park_01",
-      "chapter": 13,
+      "clip_id": "kitchen_01_e",
+      "act": 4,
+      "act_name": "The Door",
+      "location": "kitchen",
+      "character_id": "shadow",
+      "image": "purebrother2.png",
+      "position": {
+        "x": 640,
+        "y": 540,
+        "scale": 1.0
+      },
+      "pose": "cooking_nothing",
+      "emotion": "neutral",
+      "timing": {
+        "start": 151.49,
+        "end": 154.22,
+        "duration": 2.73
+      },
+      "notes": "The Door - 14/15 clips"
+    },
+    {
+      "clip_id": "kitchen_02_a",
+      "act": 4,
+      "act_name": "The Door",
+      "location": "kitchen",
+      "character_id": "shadow",
+      "image": "purebrother2.png",
+      "position": {
+        "x": 640,
+        "y": 540,
+        "scale": 1.0
+      },
+      "pose": "cooking_nothing",
+      "emotion": "neutral",
+      "timing": {
+        "start": 154.22,
+        "end": 156.95,
+        "duration": 2.73
+      },
+      "notes": "The Door - 15/15 clips"
+    },
+    {
+      "clip_id": "kitchen_02_b",
+      "act": 5,
+      "act_name": "The Seduction",
       "location": "park",
-      "character_id": "protagonist",
+      "character_id": "pure",
       "image": "pureyoung1.png",
-      "position": {"x": 640, "y": 540, "scale": 1.0},
-      "pose": "standing_determined",
-      "emotion": "determination",
-      "subtitle_timing": {"start": 4.92, "end": 5.33},
-      "notes": "Building the app, determined, taking control"
+      "position": {
+        "x": 640,
+        "y": 540,
+        "scale": 1.0
+      },
+      "pose": "app_building",
+      "emotion": "neutral",
+      "timing": {
+        "start": 157.0,
+        "end": 159.94,
+        "duration": 2.94
+      },
+      "notes": "The Seduction - 1/16 clips"
     },
     {
-      "clip_id": "park_02",
-      "chapter": 14,
+      "clip_id": "kitchen_02_c",
+      "act": 5,
+      "act_name": "The Seduction",
       "location": "park",
-      "character_id": "protagonist",
+      "character_id": "pure",
       "image": "pureyoung1.png",
-      "position": {"x": 640, "y": 540, "scale": 1.0},
-      "pose": "standing_confident",
-      "emotion": "cunning",
-      "subtitle_timing": {"start": 5.33, "end": 5.74},
-      "notes": "Rewriting his background, confident, seductive"
+      "position": {
+        "x": 640,
+        "y": 540,
+        "scale": 1.0
+      },
+      "pose": "app_building",
+      "emotion": "neutral",
+      "timing": {
+        "start": 159.94,
+        "end": 162.88,
+        "duration": 2.94
+      },
+      "notes": "The Seduction - 2/16 clips"
     },
     {
-      "clip_id": "park_03",
-      "chapter": 15,
+      "clip_id": "kitchen_02_d",
+      "act": 5,
+      "act_name": "The Seduction",
       "location": "park",
-      "character_id": "protagonist",
+      "character_id": "pure",
       "image": "pureyoung1.png",
-      "position": {"x": 640, "y": 540, "scale": 1.0},
-      "pose": "standing_prideful",
-      "emotion": "pride",
-      "subtitle_timing": {"start": 5.74, "end": 6.15},
-      "notes": "Got the job, corner office, view, success intoxication"
+      "position": {
+        "x": 640,
+        "y": 540,
+        "scale": 1.0
+      },
+      "pose": "app_building",
+      "emotion": "neutral",
+      "timing": {
+        "start": 162.88,
+        "end": 165.82,
+        "duration": 2.94
+      },
+      "notes": "The Seduction - 3/16 clips"
     },
     {
-      "clip_id": "park_04",
-      "chapter": 15,
+      "clip_id": "kitchen_02_e",
+      "act": 5,
+      "act_name": "The Seduction",
       "location": "park",
-      "character_id": "protagonist",
-      "image": "pure.png",
-      "position": {"x": 640, "y": 360, "scale": 0.7},
-      "pose": "close_up_seduction",
-      "emotion": "seduction_by_lie",
-      "subtitle_timing": {"start": 5.74, "end": 6.15},
-      "notes": "The app is beautiful and evil, seduction close-up"
+      "character_id": "pure",
+      "image": "pureyoung1.png",
+      "position": {
+        "x": 640,
+        "y": 540,
+        "scale": 1.0
+      },
+      "pose": "app_building",
+      "emotion": "neutral",
+      "timing": {
+        "start": 165.82,
+        "end": 168.76,
+        "duration": 2.94
+      },
+      "notes": "The Seduction - 4/16 clips"
     },
     {
-      "clip_id": "park_05",
-      "chapter": 15,
+      "clip_id": "kitchen_02_f",
+      "act": 5,
+      "act_name": "The Seduction",
       "location": "park",
-      "character_id": null,
-      "image": null,
-      "position": null,
-      "pose": "environment_focus",
-      "subtitle_timing": {"start": 5.74, "end": 6.15},
-      "notes": "Environment shows success: office, view, wealth"
+      "character_id": "pure",
+      "image": "pureyoung1.png",
+      "position": {
+        "x": 640,
+        "y": 540,
+        "scale": 1.0
+      },
+      "pose": "app_building",
+      "emotion": "neutral",
+      "timing": {
+        "start": 168.76,
+        "end": 171.7,
+        "duration": 2.94
+      },
+      "notes": "The Seduction - 5/16 clips"
     },
     {
-      "clip_id": "schoolyard_01",
-      "chapter": 16,
+      "clip_id": "kitchen_03_a",
+      "act": 5,
+      "act_name": "The Seduction",
+      "location": "park",
+      "character_id": "pure",
+      "image": "pureyoung1.png",
+      "position": {
+        "x": 640,
+        "y": 540,
+        "scale": 1.0
+      },
+      "pose": "app_building",
+      "emotion": "neutral",
+      "timing": {
+        "start": 171.7,
+        "end": 174.64,
+        "duration": 2.94
+      },
+      "notes": "The Seduction - 6/16 clips"
+    },
+    {
+      "clip_id": "kitchen_03_b",
+      "act": 5,
+      "act_name": "The Seduction",
+      "location": "park",
+      "character_id": "pure",
+      "image": "pureyoung1.png",
+      "position": {
+        "x": 640,
+        "y": 540,
+        "scale": 1.0
+      },
+      "pose": "app_building",
+      "emotion": "neutral",
+      "timing": {
+        "start": 174.64,
+        "end": 177.58,
+        "duration": 2.94
+      },
+      "notes": "The Seduction - 7/16 clips"
+    },
+    {
+      "clip_id": "kitchen_03_c",
+      "act": 5,
+      "act_name": "The Seduction",
+      "location": "park",
+      "character_id": "pure",
+      "image": "pureyoung1.png",
+      "position": {
+        "x": 640,
+        "y": 540,
+        "scale": 1.0
+      },
+      "pose": "app_building",
+      "emotion": "neutral",
+      "timing": {
+        "start": 177.58,
+        "end": 180.52,
+        "duration": 2.94
+      },
+      "notes": "The Seduction - 8/16 clips"
+    },
+    {
+      "clip_id": "kitchen_03_d",
+      "act": 5,
+      "act_name": "The Seduction",
+      "location": "park",
+      "character_id": "pure",
+      "image": "pureyoung1.png",
+      "position": {
+        "x": 640,
+        "y": 540,
+        "scale": 1.0
+      },
+      "pose": "identity_rewrite",
+      "emotion": "neutral",
+      "timing": {
+        "start": 180.52,
+        "end": 183.46,
+        "duration": 2.94
+      },
+      "notes": "The Seduction - 9/16 clips"
+    },
+    {
+      "clip_id": "kitchen_03_e",
+      "act": 5,
+      "act_name": "The Seduction",
+      "location": "park",
+      "character_id": "pure",
+      "image": "pureyoung1.png",
+      "position": {
+        "x": 640,
+        "y": 540,
+        "scale": 1.0
+      },
+      "pose": "identity_rewrite",
+      "emotion": "neutral",
+      "timing": {
+        "start": 183.46,
+        "end": 186.4,
+        "duration": 2.94
+      },
+      "notes": "The Seduction - 10/16 clips"
+    },
+    {
+      "clip_id": "park_01_a",
+      "act": 5,
+      "act_name": "The Seduction",
+      "location": "park",
+      "character_id": "pure",
+      "image": "pureyoung1.png",
+      "position": {
+        "x": 640,
+        "y": 540,
+        "scale": 1.0
+      },
+      "pose": "identity_rewrite",
+      "emotion": "neutral",
+      "timing": {
+        "start": 186.4,
+        "end": 189.34,
+        "duration": 2.94
+      },
+      "notes": "The Seduction - 11/16 clips"
+    },
+    {
+      "clip_id": "park_01_b",
+      "act": 5,
+      "act_name": "The Seduction",
+      "location": "park",
+      "character_id": "pure",
+      "image": "pureyoung1.png",
+      "position": {
+        "x": 640,
+        "y": 540,
+        "scale": 1.0
+      },
+      "pose": "identity_rewrite",
+      "emotion": "neutral",
+      "timing": {
+        "start": 189.34,
+        "end": 192.28,
+        "duration": 2.94
+      },
+      "notes": "The Seduction - 12/16 clips"
+    },
+    {
+      "clip_id": "park_01_c",
+      "act": 5,
+      "act_name": "The Seduction",
+      "location": "park",
+      "character_id": "pure",
+      "image": "pureyoung1.png",
+      "position": {
+        "x": 640,
+        "y": 540,
+        "scale": 1.0
+      },
+      "pose": "identity_rewrite",
+      "emotion": "neutral",
+      "timing": {
+        "start": 192.28,
+        "end": 195.22,
+        "duration": 2.94
+      },
+      "notes": "The Seduction - 13/16 clips"
+    },
+    {
+      "clip_id": "park_01_d",
+      "act": 5,
+      "act_name": "The Seduction",
+      "location": "park",
+      "character_id": "pure",
+      "image": "pureyoung1.png",
+      "position": {
+        "x": 640,
+        "y": 540,
+        "scale": 1.0
+      },
+      "pose": "identity_rewrite",
+      "emotion": "neutral",
+      "timing": {
+        "start": 195.22,
+        "end": 198.16,
+        "duration": 2.94
+      },
+      "notes": "The Seduction - 14/16 clips"
+    },
+    {
+      "clip_id": "park_01_e",
+      "act": 5,
+      "act_name": "The Seduction",
+      "location": "park",
+      "character_id": "pure",
+      "image": "pureyoung1.png",
+      "position": {
+        "x": 640,
+        "y": 540,
+        "scale": 1.0
+      },
+      "pose": "office_success",
+      "emotion": "neutral",
+      "timing": {
+        "start": 198.16,
+        "end": 201.1,
+        "duration": 2.94
+      },
+      "notes": "The Seduction - 15/16 clips"
+    },
+    {
+      "clip_id": "park_01_f",
+      "act": 5,
+      "act_name": "The Seduction",
+      "location": "park",
+      "character_id": "pure",
+      "image": "pureyoung1.png",
+      "position": {
+        "x": 640,
+        "y": 540,
+        "scale": 1.0
+      },
+      "pose": "office_success",
+      "emotion": "neutral",
+      "timing": {
+        "start": 201.1,
+        "end": 204.04,
+        "duration": 2.94
+      },
+      "notes": "The Seduction - 16/16 clips"
+    },
+    {
+      "clip_id": "park_01_g",
+      "act": 6,
+      "act_name": "The Glitch",
       "location": "schoolyard",
-      "character_id": "protagonist",
+      "character_id": "pure",
       "image": "pure.png",
-      "position": {"x": 640, "y": 360, "scale": 0.8},
-      "pose": "close_up_forgetting",
-      "emotion": "horror",
-      "subtitle_timing": {"start": 6.15, "end": 6.56},
-      "notes": "Memories disappearing, horror, close-up dissolution"
+      "position": {
+        "x": 640,
+        "y": 540,
+        "scale": 1.0
+      },
+      "pose": "code_crash",
+      "emotion": "neutral",
+      "timing": {
+        "start": 204.0,
+        "end": 206.21,
+        "duration": 2.21
+      },
+      "notes": "The Glitch - 1/14 clips"
     },
     {
-      "clip_id": "schoolyard_02",
-      "chapter": 17,
+      "clip_id": "park_01_h",
+      "act": 6,
+      "act_name": "The Glitch",
       "location": "schoolyard",
-      "character_id": "protagonist",
+      "character_id": "pure",
       "image": "pure.png",
-      "position": {"x": 640, "y": 360, "scale": 0.75},
-      "pose": "close_up_fragmented",
-      "emotion": "fragmentation",
-      "subtitle_timing": {"start": 6.56, "end": 6.97},
-      "notes": "Becoming a stranger to himself, visual distortion"
+      "position": {
+        "x": 640,
+        "y": 540,
+        "scale": 1.0
+      },
+      "pose": "code_crash",
+      "emotion": "neutral",
+      "timing": {
+        "start": 206.21,
+        "end": 208.42,
+        "duration": 2.21
+      },
+      "notes": "The Glitch - 2/14 clips"
     },
     {
-      "clip_id": "schoolyard_03",
-      "chapter": 18,
+      "clip_id": "park_02_a",
+      "act": 6,
+      "act_name": "The Glitch",
       "location": "schoolyard",
-      "character_id": "father",
+      "character_id": "pure",
+      "image": "pure.png",
+      "position": {
+        "x": 640,
+        "y": 540,
+        "scale": 1.0
+      },
+      "pose": "code_crash",
+      "emotion": "neutral",
+      "timing": {
+        "start": 208.42,
+        "end": 210.63,
+        "duration": 2.21
+      },
+      "notes": "The Glitch - 3/14 clips"
+    },
+    {
+      "clip_id": "park_02_b",
+      "act": 6,
+      "act_name": "The Glitch",
+      "location": "schoolyard",
+      "character_id": "pure",
+      "image": "pure.png",
+      "position": {
+        "x": 640,
+        "y": 540,
+        "scale": 1.0
+      },
+      "pose": "code_crash",
+      "emotion": "neutral",
+      "timing": {
+        "start": 210.63,
+        "end": 212.84,
+        "duration": 2.21
+      },
+      "notes": "The Glitch - 4/14 clips"
+    },
+    {
+      "clip_id": "park_02_c",
+      "act": 6,
+      "act_name": "The Glitch",
+      "location": "schoolyard",
+      "character_id": "pure",
+      "image": "pure.png",
+      "position": {
+        "x": 640,
+        "y": 540,
+        "scale": 1.0
+      },
+      "pose": "code_crash",
+      "emotion": "neutral",
+      "timing": {
+        "start": 212.84,
+        "end": 215.05,
+        "duration": 2.21
+      },
+      "notes": "The Glitch - 5/14 clips"
+    },
+    {
+      "clip_id": "park_02_d",
+      "act": 6,
+      "act_name": "The Glitch",
+      "location": "schoolyard",
+      "character_id": "pure",
+      "image": "pure.png",
+      "position": {
+        "x": 640,
+        "y": 540,
+        "scale": 1.0
+      },
+      "pose": "code_crash",
+      "emotion": "neutral",
+      "timing": {
+        "start": 215.05,
+        "end": 217.26,
+        "duration": 2.21
+      },
+      "notes": "The Glitch - 6/14 clips"
+    },
+    {
+      "clip_id": "park_02_e",
+      "act": 6,
+      "act_name": "The Glitch",
+      "location": "schoolyard",
+      "character_id": "pure",
+      "image": "pure.png",
+      "position": {
+        "x": 640,
+        "y": 540,
+        "scale": 1.0
+      },
+      "pose": "code_crash",
+      "emotion": "neutral",
+      "timing": {
+        "start": 217.26,
+        "end": 219.47,
+        "duration": 2.21
+      },
+      "notes": "The Glitch - 7/14 clips"
+    },
+    {
+      "clip_id": "park_02_f",
+      "act": 6,
+      "act_name": "The Glitch",
+      "location": "schoolyard",
+      "character_id": "pure",
+      "image": "pure.png",
+      "position": {
+        "x": 640,
+        "y": 540,
+        "scale": 1.0
+      },
+      "pose": "code_crash",
+      "emotion": "neutral",
+      "timing": {
+        "start": 219.47,
+        "end": 221.68,
+        "duration": 2.21
+      },
+      "notes": "The Glitch - 8/14 clips"
+    },
+    {
+      "clip_id": "park_03_a",
+      "act": 6,
+      "act_name": "The Glitch",
+      "location": "schoolyard",
+      "character_id": "pure",
+      "image": "pure.png",
+      "position": {
+        "x": 640,
+        "y": 540,
+        "scale": 1.0
+      },
+      "pose": "code_crash",
+      "emotion": "neutral",
+      "timing": {
+        "start": 221.68,
+        "end": 223.89,
+        "duration": 2.21
+      },
+      "notes": "The Glitch - 9/14 clips"
+    },
+    {
+      "clip_id": "park_03_b",
+      "act": 6,
+      "act_name": "The Glitch",
+      "location": "schoolyard",
+      "character_id": "pure",
+      "image": "pure.png",
+      "position": {
+        "x": 640,
+        "y": 540,
+        "scale": 1.0
+      },
+      "pose": "code_crash",
+      "emotion": "neutral",
+      "timing": {
+        "start": 223.89,
+        "end": 226.1,
+        "duration": 2.21
+      },
+      "notes": "The Glitch - 10/14 clips"
+    },
+    {
+      "clip_id": "park_03_c",
+      "act": 6,
+      "act_name": "The Glitch",
+      "location": "schoolyard",
+      "character_id": "e",
       "image": "puredadglitch.jpg",
-      "position": {"x": 640, "y": 300, "scale": 0.8},
+      "position": {
+        "x": 640,
+        "y": 540,
+        "scale": 1.0
+      },
       "pose": "glitch_warning",
-      "emotion": "warning",
-      "subtitle_timing": {"start": 6.97, "end": 7.38},
-      "notes": "Father appears as glitch, delivers warning"
+      "emotion": "neutral",
+      "timing": {
+        "start": 226.1,
+        "end": 228.31,
+        "duration": 2.21
+      },
+      "notes": "The Glitch - 11/14 clips"
     },
     {
-      "clip_id": "schoolyard_04",
-      "chapter": 18,
+      "clip_id": "park_03_d",
+      "act": 6,
+      "act_name": "The Glitch",
       "location": "schoolyard",
-      "character_id": "protagonist",
-      "image": "pure.png",
-      "position": {"x": 640, "y": 360, "scale": 0.8},
-      "pose": "close_up_despair",
-      "emotion": "despair",
-      "subtitle_timing": {"start": 6.97, "end": 7.38},
-      "notes": "Pure hears the warning, despair visible in close-up"
+      "character_id": "e",
+      "image": "puredadglitch.jpg",
+      "position": {
+        "x": 640,
+        "y": 540,
+        "scale": 1.0
+      },
+      "pose": "glitch_warning",
+      "emotion": "neutral",
+      "timing": {
+        "start": 228.31,
+        "end": 230.52,
+        "duration": 2.21
+      },
+      "notes": "The Glitch - 12/14 clips"
     },
     {
-      "clip_id": "schoolyard_05",
-      "chapter": 18,
+      "clip_id": "park_03_e",
+      "act": 6,
+      "act_name": "The Glitch",
       "location": "schoolyard",
-      "character_id": null,
-      "image": null,
-      "position": null,
-      "pose": "environment_dissolution",
-      "subtitle_timing": {"start": 6.97, "end": 7.38},
-      "notes": "Environment shows dissolution, distortion"
+      "character_id": "e",
+      "image": "puredadglitch.jpg",
+      "position": {
+        "x": 640,
+        "y": 540,
+        "scale": 1.0
+      },
+      "pose": "glitch_warning",
+      "emotion": "neutral",
+      "timing": {
+        "start": 230.52,
+        "end": 232.73,
+        "duration": 2.21
+      },
+      "notes": "The Glitch - 13/14 clips"
     },
     {
-      "clip_id": "kitchen_01",
-      "chapter": 19,
-      "location": "kitchen",
-      "character_id": "mother",
-      "image": "mama.png",
-      "position": {"x": 640, "y": 540, "scale": 1.0},
-      "pose": "compassionate_presence",
-      "emotion": "compassion",
-      "subtitle_timing": {"start": 7.38, "end": 7.79},
-      "notes": "Hospital: Mom holds Pure's hand, unconditional love"
+      "clip_id": "park_03_f",
+      "act": 6,
+      "act_name": "The Glitch",
+      "location": "schoolyard",
+      "character_id": "e",
+      "image": "puredadglitch.jpg",
+      "position": {
+        "x": 640,
+        "y": 540,
+        "scale": 1.0
+      },
+      "pose": "glitch_warning",
+      "emotion": "neutral",
+      "timing": {
+        "start": 232.73,
+        "end": 234.94,
+        "duration": 2.21
+      },
+      "notes": "The Glitch - 14/14 clips"
     },
     {
-      "clip_id": "kitchen_02",
-      "chapter": 19,
+      "clip_id": "schoolyard_01_a",
+      "act": 7,
+      "act_name": "The Collapse",
       "location": "kitchen",
-      "character_id": "protagonist",
+      "character_id": "pure",
       "image": "pureyoung1.png",
-      "position": {"x": 640, "y": 540, "scale": 1.0},
-      "pose": "standing_vulnerable",
-      "emotion": "vulnerability",
-      "subtitle_timing": {"start": 7.38, "end": 7.79},
-      "notes": "Pure wakes in hospital, vulnerable, receiving mother's grace"
+      "position": {
+        "x": 640,
+        "y": 540,
+        "scale": 1.0
+      },
+      "pose": "collapsed",
+      "emotion": "neutral",
+      "timing": {
+        "start": 235.0,
+        "end": 238.1,
+        "duration": 3.1
+      },
+      "notes": "The Collapse - 1/10 clips"
     },
     {
-      "clip_id": "kitchen_03",
-      "chapter": 19,
+      "clip_id": "schoolyard_01_b",
+      "act": 7,
+      "act_name": "The Collapse",
       "location": "kitchen",
-      "character_id": "brother",
+      "character_id": "pure",
+      "image": "pureyoung1.png",
+      "position": {
+        "x": 640,
+        "y": 540,
+        "scale": 1.0
+      },
+      "pose": "collapsed",
+      "emotion": "neutral",
+      "timing": {
+        "start": 238.1,
+        "end": 241.2,
+        "duration": 3.1
+      },
+      "notes": "The Collapse - 2/10 clips"
+    },
+    {
+      "clip_id": "schoolyard_01_c",
+      "act": 7,
+      "act_name": "The Collapse",
+      "location": "kitchen",
+      "character_id": "pure",
+      "image": "pureyoung1.png",
+      "position": {
+        "x": 640,
+        "y": 540,
+        "scale": 1.0
+      },
+      "pose": "collapsed",
+      "emotion": "neutral",
+      "timing": {
+        "start": 241.2,
+        "end": 244.3,
+        "duration": 3.1
+      },
+      "notes": "The Collapse - 3/10 clips"
+    },
+    {
+      "clip_id": "schoolyard_01_d",
+      "act": 7,
+      "act_name": "The Collapse",
+      "location": "kitchen",
+      "character_id": "pure",
+      "image": "pureyoung1.png",
+      "position": {
+        "x": 640,
+        "y": 540,
+        "scale": 1.0
+      },
+      "pose": "collapsed",
+      "emotion": "neutral",
+      "timing": {
+        "start": 244.3,
+        "end": 247.4,
+        "duration": 3.1
+      },
+      "notes": "The Collapse - 4/10 clips"
+    },
+    {
+      "clip_id": "schoolyard_01_e",
+      "act": 7,
+      "act_name": "The Collapse",
+      "location": "kitchen",
+      "character_id": "del",
+      "image": "mama.png",
+      "position": {
+        "x": 640,
+        "y": 540,
+        "scale": 1.0
+      },
+      "pose": "holding_hand",
+      "emotion": "neutral",
+      "timing": {
+        "start": 247.4,
+        "end": 250.5,
+        "duration": 3.1
+      },
+      "notes": "The Collapse - 5/10 clips"
+    },
+    {
+      "clip_id": "schoolyard_01_f",
+      "act": 7,
+      "act_name": "The Collapse",
+      "location": "kitchen",
+      "character_id": "del",
+      "image": "mama.png",
+      "position": {
+        "x": 640,
+        "y": 540,
+        "scale": 1.0
+      },
+      "pose": "holding_hand",
+      "emotion": "neutral",
+      "timing": {
+        "start": 250.5,
+        "end": 253.6,
+        "duration": 3.1
+      },
+      "notes": "The Collapse - 6/10 clips"
+    },
+    {
+      "clip_id": "schoolyard_01_g",
+      "act": 7,
+      "act_name": "The Collapse",
+      "location": "kitchen",
+      "character_id": "del",
+      "image": "mama.png",
+      "position": {
+        "x": 640,
+        "y": 540,
+        "scale": 1.0
+      },
+      "pose": "holding_hand",
+      "emotion": "neutral",
+      "timing": {
+        "start": 253.6,
+        "end": 256.7,
+        "duration": 3.1
+      },
+      "notes": "The Collapse - 7/10 clips"
+    },
+    {
+      "clip_id": "schoolyard_01_h",
+      "act": 7,
+      "act_name": "The Collapse",
+      "location": "kitchen",
+      "character_id": "del",
+      "image": "mama.png",
+      "position": {
+        "x": 640,
+        "y": 540,
+        "scale": 1.0
+      },
+      "pose": "holding_hand",
+      "emotion": "neutral",
+      "timing": {
+        "start": 256.7,
+        "end": 259.8,
+        "duration": 3.1
+      },
+      "notes": "The Collapse - 8/10 clips"
+    },
+    {
+      "clip_id": "schoolyard_01_i",
+      "act": 7,
+      "act_name": "The Collapse",
+      "location": "kitchen",
+      "character_id": "shadow",
       "image": "purebrother5.png",
-      "position": {"x": 500, "y": 540, "scale": 0.95},
+      "position": {
+        "x": 640,
+        "y": 540,
+        "scale": 1.0
+      },
       "pose": "embracing",
-      "emotion": "reconciliation",
-      "subtitle_timing": {"start": 7.38, "end": 7.79},
-      "notes": "Marcus arrives, hugs Pure for first time in 20 years"
+      "emotion": "neutral",
+      "timing": {
+        "start": 259.8,
+        "end": 262.9,
+        "duration": 3.1
+      },
+      "notes": "The Collapse - 9/10 clips"
     },
     {
-      "clip_id": "kitchen_04",
-      "chapter": 19,
+      "clip_id": "schoolyard_02_a",
+      "act": 7,
+      "act_name": "The Collapse",
       "location": "kitchen",
-      "character_id": "mother",
+      "character_id": "shadow",
+      "image": "purebrother5.png",
+      "position": {
+        "x": 640,
+        "y": 540,
+        "scale": 1.0
+      },
+      "pose": "embracing",
+      "emotion": "neutral",
+      "timing": {
+        "start": 262.9,
+        "end": 266.0,
+        "duration": 3.1
+      },
+      "notes": "The Collapse - 10/10 clips"
+    },
+    {
+      "clip_id": "schoolyard_02_b",
+      "act": 8,
+      "act_name": "Sand",
+      "location": "beach",
+      "character_id": "pure",
+      "image": "pureolder1.png",
+      "position": {
+        "x": 640,
+        "y": 540,
+        "scale": 1.0
+      },
+      "pose": "barefoot_sand",
+      "emotion": "neutral",
+      "timing": {
+        "start": 266.0,
+        "end": 270.25,
+        "duration": 4.25
+      },
+      "notes": "Sand - 1/8 clips"
+    },
+    {
+      "clip_id": "schoolyard_02_c",
+      "act": 8,
+      "act_name": "Sand",
+      "location": "beach",
+      "character_id": "pure",
+      "image": "pureolder1.png",
+      "position": {
+        "x": 640,
+        "y": 540,
+        "scale": 1.0
+      },
+      "pose": "barefoot_sand",
+      "emotion": "neutral",
+      "timing": {
+        "start": 270.25,
+        "end": 274.5,
+        "duration": 4.25
+      },
+      "notes": "Sand - 2/8 clips"
+    },
+    {
+      "clip_id": "schoolyard_02_d",
+      "act": 8,
+      "act_name": "Sand",
+      "location": "beach",
+      "character_id": "pure",
+      "image": "pureolder1.png",
+      "position": {
+        "x": 640,
+        "y": 540,
+        "scale": 1.0
+      },
+      "pose": "barefoot_sand",
+      "emotion": "neutral",
+      "timing": {
+        "start": 274.5,
+        "end": 278.75,
+        "duration": 4.25
+      },
+      "notes": "Sand - 3/8 clips"
+    },
+    {
+      "clip_id": "schoolyard_02_e",
+      "act": 8,
+      "act_name": "Sand",
+      "location": "beach",
+      "character_id": "pure",
+      "image": "pureolder1.png",
+      "position": {
+        "x": 640,
+        "y": 540,
+        "scale": 1.0
+      },
+      "pose": "barefoot_sand",
+      "emotion": "neutral",
+      "timing": {
+        "start": 278.75,
+        "end": 283.0,
+        "duration": 4.25
+      },
+      "notes": "Sand - 4/8 clips"
+    },
+    {
+      "clip_id": "schoolyard_02_f",
+      "act": 8,
+      "act_name": "Sand",
+      "location": "beach",
+      "character_id": "del",
       "image": "mama.png",
-      "position": {"x": 640, "y": 540, "scale": 1.0},
-      "pose": "speaking_wisdom",
-      "emotion": "wisdom",
-      "subtitle_timing": {"start": 7.38, "end": 7.79},
-      "notes": "Mom speaks: 'I saved your body, not your heart'"
-    },
-    {
-      "clip_id": "kitchen_05",
-      "chapter": 19,
-      "location": "kitchen",
-      "character_id": null,
-      "image": null,
-      "position": null,
+      "position": {
+        "x": 640,
+        "y": 540,
+        "scale": 1.0
+      },
       "pose": "family_together",
-      "subtitle_timing": {"start": 7.38, "end": 7.79},
-      "notes": "Implied family moment, reconciliation visible in space"
+      "emotion": "neutral",
+      "timing": {
+        "start": 283.0,
+        "end": 287.25,
+        "duration": 4.25
+      },
+      "notes": "Sand - 5/8 clips"
     },
     {
-      "clip_id": "car_01",
-      "chapter": 20,
-      "location": "car",
-      "character_id": "protagonist",
-      "image": "pureyoung1.png",
-      "position": {"x": 640, "y": 540, "scale": 1.0},
-      "pose": "standing_determined",
-      "emotion": "determination",
-      "subtitle_timing": {"start": 7.79, "end": 8.20},
-      "notes": "Going home to delete the app"
-    },
-    {
-      "clip_id": "car_02",
-      "chapter": 20,
-      "location": "car",
-      "character_id": "protagonist",
-      "image": "pure.png",
-      "position": {"x": 640, "y": 360, "scale": 0.8},
-      "pose": "close_up_focused",
-      "emotion": "focused_healing",
-      "subtitle_timing": {"start": 7.79, "end": 8.20},
-      "notes": "Deleting the app, line by line, reclaiming self"
-    },
-    {
-      "clip_id": "car_03",
-      "chapter": 20,
-      "location": "car",
-      "character_id": "protagonist",
-      "image": "pureyoung1.png",
-      "position": {"x": 640, "y": 540, "scale": 1.0},
-      "pose": "standing_relieved",
-      "emotion": "relief",
-      "subtitle_timing": {"start": 7.79, "end": 8.20},
-      "notes": "Real memories returning: mother's kisses, prayers"
-    },
-    {
-      "clip_id": "car_04",
-      "chapter": 20,
-      "location": "car",
-      "character_id": "mother",
+      "clip_id": "schoolyard_02_g",
+      "act": 8,
+      "act_name": "Sand",
+      "location": "beach",
+      "character_id": "del",
       "image": "mama.png",
-      "position": {"x": 640, "y": 540, "scale": 1.0},
-      "pose": "loving_presence",
-      "emotion": "love",
-      "subtitle_timing": {"start": 7.79, "end": 8.20},
-      "notes": "Mother's love confirmed, grounded in real memory"
+      "position": {
+        "x": 640,
+        "y": 540,
+        "scale": 1.0
+      },
+      "pose": "family_together",
+      "emotion": "neutral",
+      "timing": {
+        "start": 287.25,
+        "end": 291.5,
+        "duration": 4.25
+      },
+      "notes": "Sand - 6/8 clips"
     },
     {
-      "clip_id": "car_05",
-      "chapter": 20,
-      "location": "car",
-      "character_id": "brother",
-      "image": "purebrother6.png",
-      "position": {"x": 640, "y": 540, "scale": 0.95},
-      "pose": "standing_together",
-      "emotion": "connection",
-      "subtitle_timing": {"start": 7.79, "end": 8.20},
-      "notes": "Brother's voice returns, real connection restored"
-    },
-    {
-      "clip_id": "beach_01",
-      "chapter": 21,
+      "clip_id": "schoolyard_02_h",
+      "act": 8,
+      "act_name": "Sand",
       "location": "beach",
-      "character_id": "protagonist",
-      "image": "pureolder1.png",
-      "position": {"x": 640, "y": 540, "scale": 1.0},
-      "pose": "standing_grounded",
-      "emotion": "peace",
-      "subtitle_timing": {"start": 8.20, "end": 8.61},
-      "notes": "Final return to beach, takes off shoes, touches sand"
-    },
-    {
-      "clip_id": "beach_02",
-      "chapter": 21,
-      "location": "beach",
-      "character_id": "mother",
+      "character_id": "del",
       "image": "mama.png",
-      "position": {"x": 500, "y": 540, "scale": 0.95},
-      "pose": "standing_present",
-      "emotion": "presence",
-      "subtitle_timing": {"start": 8.20, "end": 8.61},
-      "notes": "Mother present, family together at the beach"
+      "position": {
+        "x": 640,
+        "y": 540,
+        "scale": 1.0
+      },
+      "pose": "family_together",
+      "emotion": "neutral",
+      "timing": {
+        "start": 291.5,
+        "end": 295.75,
+        "duration": 4.25
+      },
+      "notes": "Sand - 7/8 clips"
     },
     {
-      "clip_id": "beach_03",
-      "chapter": 21,
+      "clip_id": "schoolyard_02_i",
+      "act": 8,
+      "act_name": "Sand",
       "location": "beach",
-      "character_id": "brother",
-      "image": "purebrother6.png",
-      "position": {"x": 780, "y": 540, "scale": 0.95},
-      "pose": "standing_together",
-      "emotion": "unity",
-      "subtitle_timing": {"start": 8.20, "end": 8.61},
-      "notes": "Brother present, whole family grounded in love"
-    },
-    {
-      "clip_id": "beach_04",
-      "chapter": 21,
-      "location": "beach",
-      "character_id": "protagonist",
-      "image": "pureolder1.png",
-      "position": {"x": 640, "y": 540, "scale": 1.0},
-      "pose": "kneeling_touching_sand",
-      "emotion": "redemption",
-      "subtitle_timing": {"start": 8.20, "end": 8.61},
-      "notes": "Pure kneels, touches sand, completes the circle"
-    },
-    {
-      "clip_id": "beach_05",
-      "chapter": 21,
-      "location": "beach",
-      "character_id": null,
-      "image": null,
-      "position": null,
-      "pose": "wide_shot_family",
-      "subtitle_timing": {"start": 8.20, "end": 8.61},
-      "notes": "Wide shot: family at beach, the sand under their feet, wisdom"
+      "character_id": "del",
+      "image": "mama.png",
+      "position": {
+        "x": 640,
+        "y": 540,
+        "scale": 1.0
+      },
+      "pose": "family_together",
+      "emotion": "neutral",
+      "timing": {
+        "start": 295.75,
+        "end": 300.0,
+        "duration": 4.25
+      },
+      "notes": "Sand - 8/8 clips"
     }
-  ],
-  "assembly_checklist": [
-    "[ ] Run: python integrate_character_animation.py --metadata character_metadata_silent.json --env-clips graded --char-clips characters --output-dir composited_silent",
-    "[ ] Verify: composited_silent/ contains 99 clips (check count)",
-    "[ ] Run: python generate_subtitles.py --format srt --output subtitles.srt",
-    "[ ] Run: python assemble_silent_film.py --clips composited_silent --pairs expanded_pairs.csv --subtitles subtitles.srt --output final_silent.mp4",
-    "[ ] Verify: final_silent.mp4 exists and plays in media player",
-    "[ ] Import: final_silent.mp4 to Godot project (res://assets/video/)",
-    "[ ] Test: VideoPlayer scene plays with proper timing (~8.6 seconds)",
-    "[ ] Review: Character positioning and pose timing matches emotional beats",
-    "[ ] QA: Subtitle text appears and times correctly with character actions",
-    "[ ] Ready: Silent film ready for production"
-  ],
-  "performance_expectations": {
-    "character_integration": "20-30 minutes (99 clips at ~10-20s each on 660M)",
-    "subtitle_generation": "<1 minute (automated)",
-    "silent_film_assembly": "5-10 minutes (FFmpeg concat + subtitle overlay)",
-    "total_time": "~1 hour from start to final_silent.mp4",
-    "final_output_size": "~50-80MB (1280×720, H.264, 8.6 seconds)",
-    "notes": "All processing local, no cloud, no uploads, ready for Godot"
-  }
+  ]
 }
