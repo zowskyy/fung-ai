@@ -19,6 +19,11 @@ import sys
 import subprocess
 from pathlib import Path
 
+# Fix Unicode encoding on Windows PowerShell
+if sys.platform == 'win32':
+    import io
+    sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding='utf-8')
+
 
 def load_character_metadata(metadata_path):
     """Load character animation metadata JSON for silent film."""
